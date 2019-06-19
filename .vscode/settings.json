@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "ft_nm.h": "c"
+        "ft_nm.h": "c",
+        "nlist.h": "c"
     }
 }

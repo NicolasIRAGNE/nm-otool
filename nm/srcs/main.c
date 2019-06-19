@@ -6,37 +6,78 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/19 14:04:48 by niragne          ###   ########.fr       */
+/*   Updated: 2019/06/19 15:37:06 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
+void	print_output(int nsyms, int symoff, int stroff, char *ptr)
+{
+	int i;
+
+	char *stringtable;
+	struct nlist_64 *array;
+
+	array = (void *)(ptr + symoff);
+	stringtable = (void *)(ptr + stroff);
+	i = 0;
+	while (i < nsyms)
+	{
+		ft_printf("%s\n", stringtable + array[i].n_un.n_strx);
+		i++;
+	}
+}
+
+void	handle_64(char *ptr, t_nm_browser *browser)
+{
+	struct mach_header_64 *header;
+	struct load_command *lc;
+	struct symtab_command *sym;
+	uint64_t i;
+
+	header = (struct mach_header_64*) browser->header;
+	i = (uint64_t)(ptr + sizeof(*header));
+	while (i < (uint64_t)(ptr + header->sizeofcmds))
+	{
+		lc = (struct load_command*) i;
+		if (lc->cmd == LC_SYMTAB)
+		{
+			sym = (struct symtab_command*)lc;
+			print_output(sym->nsyms, sym->symoff, sym->stroff, ptr);
+		}
+		i += lc->cmdsize;
+	}
+}
+
 void	get_header(char *ptr, t_nm_browser *browser)
 {
 	uint32_t magic;
 	magic = *(uint32_t*)ptr;
-	(void)browser;
 	if (magic == MH_MAGIC_64)
 	{
 		ft_printf("Executable 64 bits\n");
 		browser->type = E_64;
 		browser->header = (struct mach_header_64*)ptr;
+		handle_64(ptr, browser);
 	}
 	else if (magic == MH_MAGIC)
 	{
 		ft_printf("Executable 32 bits\n");
 		browser->type = E_32;
+		browser->header = (struct mach_header*)ptr;
 	}
 	else if (magic == FAT_MAGIC)
 	{
 		ft_printf("Executable fat 32 bits\n");
 		browser->type = E_FAT32;
+		browser->header = (struct fat_header*)ptr;
 	}
 	else if (magic == FAT_MAGIC_64)
 	{
 		ft_printf("Executable fat 64 bits\n");
 		browser->type = E_FAT64;
+		browser->header = (struct fat_header_64*)ptr;
 	}
 }
 

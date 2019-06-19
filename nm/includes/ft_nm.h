@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 12:58:24 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/19 14:08:11 by niragne          ###   ########.fr       */
+/*   Updated: 2019/06/19 15:36:38 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <mach-o/fat.h>
 # include <mach/machine.h>
 # include <mach/vm_prot.h>
+# include <mach-o/nlist.h>
 # include <fcntl.h>
 # include <sys/stat.h>
 # include <stdlib.h>
