@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/19 13:55:40 by niragne          ###   ########.fr       */
+/*   Updated: 2019/06/19 14:04:48 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,23 @@ void	get_header(char *ptr, t_nm_browser *browser)
 	if (magic == MH_MAGIC_64)
 	{
 		ft_printf("Executable 64 bits\n");
+		browser->type = E_64;
+		browser->header = (struct mach_header_64*)ptr;
 	}
 	else if (magic == MH_MAGIC)
 	{
 		ft_printf("Executable 32 bits\n");
+		browser->type = E_32;
 	}
 	else if (magic == FAT_MAGIC)
 	{
 		ft_printf("Executable fat 32 bits\n");
+		browser->type = E_FAT32;
 	}
 	else if (magic == FAT_MAGIC_64)
 	{
 		ft_printf("Executable fat 64 bits\n");
+		browser->type = E_FAT64;
 	}
 }
 
@@ -63,6 +68,7 @@ int main(int ac, char **av)
 		return (1);
 	}
 	get_header(ptr, &browser);
+	nm_print_header(&browser);
 	if (munmap(ptr, buf.st_size) < 0)
 	{
 		ft_printf("ERROR MUNMAP\n");

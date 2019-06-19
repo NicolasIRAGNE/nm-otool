@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 12:58:24 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/19 13:52:39 by niragne          ###   ########.fr       */
+/*   Updated: 2019/06/19 14:08:11 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,17 @@ typedef union u_browser_union
 	struct mach_header_64 *header64;
 	struct fat_header *header_fat;
 	struct fat_header64 *header_fat64;
-}			t_browser_union;
+}			t_browser_union; // de la bite en bois mdr
 
 struct s_nm_browser
 {
 	uint32_t		magic;
 	t_bin_type		type;
-	t_browser_union type_union;
+	void			*header;
 };
 
 typedef struct s_nm_browser t_nm_browser;
+
+void    nm_print_header(t_nm_browser *browser);
 
 #endif
