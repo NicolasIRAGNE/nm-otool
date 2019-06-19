@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:41 by niragne           #+#    #+#              #
-#    Updated: 2019/06/19 12:39:51 by niragne          ###   ########.fr        #
+#    Updated: 2019/06/19 13:05:10 by niragne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ OBJECTS	= $(addprefix $(OBJDIR)/, $(SRCS:%.c=%.o))
 INCLUDES = includes
 
 LIBFTDIR = ../libft
-LIBFT_INCLUDEDIR = includes
+LIBFT_INCLUDEDIR = $(LIBFTDIR)/includes
 LIBFT = $(LIBFTDIR)/libft.a
 
 SRCS = main.c

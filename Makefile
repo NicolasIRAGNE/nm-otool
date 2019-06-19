@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:50 by niragne           #+#    #+#              #
-#    Updated: 2019/06/19 12:36:11 by niragne          ###   ########.fr        #
+#    Updated: 2019/06/19 13:19:08 by niragne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,12 +61,14 @@ debug:
 	make all DEBUG=1
 
 $(NM_NAME): $(NM_DIR)/$(NM_NAME)
+	make -C $(NM_DIR) DEBUG=$(DEBUG)
 	rsync -u $< $@
 
 $(NM_DIR)/$(NM_NAME): $(LIBFT)
 	make -C $(NM_DIR) DEBUG=$(DEBUG)
 
 $(OTOOL_NAME): $(OTOOL_DIR)/$(OTOOL_NAME)
+	make -C $(OTOOL_DIR) DEBUG=$(DEBUG)
 	rsync -u $< $@
 
 $(OTOOL_DIR)/$(OTOOL_NAME): $(LIBFT)
