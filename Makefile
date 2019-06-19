@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:50 by niragne           #+#    #+#              #
-#    Updated: 2019/06/18 18:39:27 by niragne          ###   ########.fr        #
+#    Updated: 2019/06/19 12:36:11 by niragne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ CFLAGS = -DPATH=$(PWD) -Wall -Wextra -Werror $(INC)
 LFLAGS = -L $(LIBFTDIR)
 
 ifeq ($(DEBUG), 1)
+	MFLAGS = debug
 	LFLAGS += -fsanitize=address
 	CFLAGS += -DDEBUG
 	CC += -g3
@@ -56,20 +57,23 @@ endif
 
 all: $(LIBFT) $(NM_NAME) $(OTOOL_NAME)
 
+debug:
+	make all DEBUG=1
+
 $(NM_NAME): $(NM_DIR)/$(NM_NAME)
 	rsync -u $< $@
 
 $(NM_DIR)/$(NM_NAME): $(LIBFT)
-	make -C $(NM_DIR)
+	make -C $(NM_DIR) DEBUG=$(DEBUG)
 
 $(OTOOL_NAME): $(OTOOL_DIR)/$(OTOOL_NAME)
 	rsync -u $< $@
 
 $(OTOOL_DIR)/$(OTOOL_NAME): $(LIBFT)
-	make -C $(OTOOL_DIR)
+	make -C $(OTOOL_DIR) DEBUG=$(DEBUG)
 
 $(LIBFT):
-	make -C $(LIBFTDIR)
+	make -C $(LIBFTDIR) DEBUG=$(DEBUG)
 
 clean:
 	make -C $(NM_DIR) clean
