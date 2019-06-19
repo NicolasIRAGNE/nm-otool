@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:59:56 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/19 15:37:54 by niragne          ###   ########.fr       */
+/*   Updated: 2019/06/19 18:03:48 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void    nm_print_header(t_nm_browser *browser)
     if (browser->type == E_64)
     {
         struct mach_header_64 *ptr;
-        ptr = (struct mach_header_64*) browser->header;
+        ptr = (struct mach_header_64*) browser->header_union.header64;
         ft_dprintf(2,"mach magic number identifier: %x\n", ptr->magic);
         ft_dprintf(2,"cpu specifier: %p\n", ptr->cputype);
         ft_dprintf(2,"machine specifier: %p\n", ptr->cpusubtype);
@@ -30,7 +30,7 @@ void    nm_print_header(t_nm_browser *browser)
     else if (browser->type == E_32)
     {
         struct mach_header *ptr;
-        ptr = (struct mach_header*) browser->header;
+        ptr = (struct mach_header*) browser->header_union.header32;
         ft_dprintf(2,"mach magic number identifier: %x\n", ptr->magic);
         ft_dprintf(2,"cpu specifier: %p\n", ptr->cputype);
         ft_dprintf(2,"machine specifier: %p\n", ptr->cpusubtype);

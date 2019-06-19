@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:41 by niragne           #+#    #+#              #
-#    Updated: 2019/06/19 14:04:19 by niragne          ###   ########.fr        #
+#    Updated: 2019/06/19 17:58:26 by ldedier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,10 +41,11 @@ SRC	= $(addprefix $(SRCDIR)/, $(SRCS))
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJECTS)
-	$(CC) -o $(NAME) $(OBJECTS) $(LIBFT)
+	@$(CC) -o $(NAME) $(OBJECTS) $(LIBFT)
+	@echo "$(NAME) compiled with success"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDES)
-	mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)
 	$(CC) -o $@ -c $< $(CFLAGS) -I $(INCLUDES) -I $(LIBFT_INCLUDEDIR) $(LFLAGS)
 
 $(LIBFT):
@@ -55,3 +56,5 @@ clean:
 
 fclean: clean
 	rm -rf $(OBJECTS)
+
+re: fclean all

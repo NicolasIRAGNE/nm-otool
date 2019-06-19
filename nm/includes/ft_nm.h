@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 12:58:24 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/19 15:36:38 by niragne          ###   ########.fr       */
+/*   Updated: 2019/06/19 18:02:51 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,22 @@ typedef enum e_bin_type
 	E_FAT64
 }			t_bin_type;
 
-typedef union u_browser_union
+typedef union				u_header_union
 {
-	struct mach_header *header32;
-	struct mach_header_64 *header64;
-	struct fat_header *header_fat;
-	struct fat_header64 *header_fat64;
-}			t_browser_union; // de la bite en bois mdr
+	struct mach_header		*header32;
+	struct mach_header_64	*header64;
+	struct fat_header		*header_fat;
+	struct fat_header64		*header_fat64;
+}							t_header_union;
 
-struct s_nm_browser
+struct						s_nm_browser
 {
-	uint32_t		magic;
-	t_bin_type		type;
-	void			*header;
+	uint32_t				magic;
+	t_bin_type				type;
+	t_header_union			header_union;
 };
 
-typedef struct s_nm_browser t_nm_browser;
+typedef struct s_nm_browser	t_nm_browser;
 
-void    nm_print_header(t_nm_browser *browser);
-
+void						nm_print_header(t_nm_browser *browser);
 #endif
