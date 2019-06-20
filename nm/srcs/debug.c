@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:59:56 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/19 18:03:48 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/06/20 15:42:47 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,9 @@ void    nm_print_header(t_nm_browser *browser)
         ft_dprintf(2,"number of load commands: %d\n", ptr->ncmds);
         ft_dprintf(2,"the size of all the load commands: %d\n", ptr->sizeofcmds);
         ft_dprintf(2,"flags: %d\n", ptr->flags);
+    }
+    else if (browser->type == E_UNKNOWN)
+    {
+        ft_dprintf(2, "Unknown file type\n");
     }
 }

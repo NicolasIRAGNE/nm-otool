@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/20 14:29:39 by niragne          ###   ########.fr       */
+/*   Updated: 2019/06/20 16:05:24 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,29 @@ void	print_output(int nsyms, int symoff, int stroff, char *ptr)
 	}
 }
 
+void	print_output32(int nsyms, int symoff, int stroff, char *ptr)
+{
+	int				i;
+	char			*stringtable;
+	struct nlist	*array;
+
+	array = (void *)(ptr + symoff);
+	stringtable = (void *)(ptr + stroff);
+	i = 0;
+	while (i < nsyms)
+	{
+		if (array[i].n_value)
+		{
+			ft_printf("%08llx T %s\n", array[i].n_value, stringtable + array[i].n_un.n_strx);
+		}
+		else
+		{
+			ft_printf("%10s %s\n", "U", stringtable + array[i].n_un.n_strx);
+		}
+		i++;
+	}
+}
+
 void	handle_64(char *ptr, t_nm_browser *browser)
 {
 	struct mach_header_64 *header;
@@ -51,6 +74,27 @@ void	handle_64(char *ptr, t_nm_browser *browser)
 		{
 			sym = (struct symtab_command *)lc;
 			print_output(sym->nsyms, sym->symoff, sym->stroff, ptr);
+		}
+		i += lc->cmdsize;
+	}
+}
+
+void	handle_32(char *ptr, t_nm_browser *browser)
+{
+	struct mach_header *header;
+	struct load_command *lc;
+	struct symtab_command *sym;
+	uint64_t i;
+
+	header = browser->header_union.header32;
+	i = (uint64_t)(ptr + sizeof(*header));
+	while (i < (uint64_t)(ptr + header->sizeofcmds))
+	{
+		lc = (struct load_command*) i;
+		if (lc->cmd == LC_SYMTAB)
+		{
+			sym = (struct symtab_command *)lc;
+			print_output32(sym->nsyms, sym->symoff, sym->stroff, ptr);
 		}
 		i += lc->cmdsize;
 	}
@@ -73,6 +117,7 @@ void	get_header(char *ptr, t_nm_browser *browser)
 		ft_printf("Executable 32 bits\n");
 		browser->type = E_32;
 		browser->header_union.header32 = (struct mach_header*)ptr;
+		handle_32(ptr, browser);
 	}
 	else if (magic == FAT_MAGIC || magic == FAT_CIGAM)
 	{
@@ -86,6 +131,8 @@ void	get_header(char *ptr, t_nm_browser *browser)
 		browser->type = E_FAT64;
 		browser->header_union.fat_header = (struct fat_header*)ptr;
 	}
+	else
+		browser->type = E_UNKNOWN;
 }
 
 int main(int ac, char **av)

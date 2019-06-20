@@ -6,12 +6,12 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:50 by niragne           #+#    #+#              #
-#    Updated: 2019/06/19 13:19:08 by niragne          ###   ########.fr        #
+#    Updated: 2019/06/20 15:51:22 by niragne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME = 
+NAME = proj
 
 PWD = \"$(shell pwd)\"
 
@@ -54,8 +54,9 @@ ifeq ($(DEBUG), 1)
 	CC += -g3
 endif
 
+all: $(NAME)
 
-all: $(LIBFT) $(NM_NAME) $(OTOOL_NAME)
+$(NAME): $(LIBFT) $(NM_NAME) $(OTOOL_NAME)
 
 debug:
 	make all DEBUG=1
