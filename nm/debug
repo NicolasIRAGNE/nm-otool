@@ -1,0 +1,8 @@
+mach magic number identifier: feedfacf
+cpu specifier: 0x1000007
+machine specifier: 0x80000003
+type of file: 2
+number of load commands: 14
+the size of all the load commands: 728
+flags: 2097285
+reserved: 0

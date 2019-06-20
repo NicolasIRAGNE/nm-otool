@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/19 18:52:06 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/06/20 14:29:39 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,14 @@ void	print_output(int nsyms, int symoff, int stroff, char *ptr)
 	i = 0;
 	while (i < nsyms)
 	{
-		ft_printf("%s\n", stringtable + array[i].n_un.n_strx);
+		if (array[i].n_value)
+		{
+			ft_printf("%016llx T %s\n", array[i].n_value, stringtable + array[i].n_un.n_strx);
+		}
+		else
+		{
+			ft_printf("%18s %s\n", "U", stringtable + array[i].n_un.n_strx);
+		}
 		i++;
 	}
 }
@@ -54,27 +61,30 @@ void	get_header(char *ptr, t_nm_browser *browser)
 	uint32_t magic;
 
 	magic = *(uint32_t*)ptr;
-	browser->header_union.header64 = (struct mach_header_64*)ptr;
-	if (magic == MH_MAGIC_64)
+	if (magic == MH_MAGIC_64 || magic == MH_CIGAM_64)
 	{
 		ft_printf("Executable 64 bits\n");
 		browser->type = E_64;
+		browser->header_union.header64 = (struct mach_header_64*)ptr;
 		handle_64(ptr, browser);
 	}
-	else if (magic == MH_MAGIC)
+	else if (magic == MH_MAGIC || magic == MH_CIGAM)
 	{
 		ft_printf("Executable 32 bits\n");
 		browser->type = E_32;
+		browser->header_union.header32 = (struct mach_header*)ptr;
 	}
-	else if (magic == FAT_MAGIC)
+	else if (magic == FAT_MAGIC || magic == FAT_CIGAM)
 	{
 		ft_printf("Executable fat 32 bits\n");
 		browser->type = E_FAT32;
+		browser->header_union.fat_header = (struct fat_header*)ptr;
 	}
-	else if (magic == FAT_MAGIC_64)
+	else if (magic == FAT_MAGIC_64 || magic == FAT_CIGAM_64)
 	{
 		ft_printf("Executable fat 64 bits\n");
 		browser->type = E_FAT64;
+		browser->header_union.fat_header = (struct fat_header*)ptr;
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_display_len_integer.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldedier <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 23:39:16 by ldedier           #+#    #+#             */
-/*   Updated: 2018/02/06 21:19:32 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/06/20 14:29:17 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ int		ft_pf_len_o(t_pf pf)
 
 int		ft_pf_len_x(t_pf pf)
 {
-	int				res;
-	unsigned int	nb;
+	int					res;
+	unsigned long int	nb;
 
 	if (pf.var.integer == 0)
 	{
