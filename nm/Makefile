@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:41 by niragne           #+#    #+#              #
-#    Updated: 2019/06/20 17:42:45 by ldedier          ###   ########.fr        #
+#    Updated: 2019/06/20 18:37:09 by ldedier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ LIBFTDIR = ../libft
 LIBFT_INCLUDEDIR = $(LIBFTDIR)/includes
 LIBFT = $(LIBFTDIR)/libft.a
 
-SRCS = debug.c main.c
+SRCS = debug.c main.c symbols.c
 
 SRC	= $(addprefix $(SRCDIR)/, $(SRCS))
 
