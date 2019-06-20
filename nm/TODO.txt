@@ -1,3 +1,4 @@
 	1. fix le makefile (dependances)
-	2. tout le reste en fait
+	2. faire un truc generique pour pas dupliquer les handle comme un porcin
+	3. tout le reste en fait
 
