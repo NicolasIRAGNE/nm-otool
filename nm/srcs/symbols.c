@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_delete_node_ptr.c                               :+:      :+:    :+:   */
+/*   symbols.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 15:21:30 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/20 17:29:47 by ldedier          ###   ########.fr       */
+/*   Created: 2019/06/20 17:45:01 by ldedier           #+#    #+#             */
+/*   Updated: 2019/06/20 17:49:11 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "nm.h"
+/*
+148 int                 ft_tree_add_sorted_mul(t_tree **tree, void *content,
+		149         int (*sort)(void *, void *), int mul);
 
-int		ft_delete_node_ptr(t_list **prev, t_list **ptr, t_list **list)
+int		cmp_symbol_alpha(void *s1, void *s2)
 {
-	if (*prev == NULL)
-		*list = (*ptr)->next;
-	else
-		(*prev)->next = (*ptr)->next;
-	free(*ptr);
-	return (0);
+	symbol1 = (t_symbol *)s1;
+	symbol2 = (t_symbol *)s2;
+	return (ft_strcmp(s1->nlist->, s2));
 }
+*/

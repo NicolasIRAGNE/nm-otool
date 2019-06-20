@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_delete_node_ptr.c                               :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldedier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 15:21:30 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/20 17:29:47 by ldedier          ###   ########.fr       */
+/*   Created: 2017/11/06 18:40:32 by ldedier           #+#    #+#             */
+/*   Updated: 2017/11/09 14:27:43 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_delete_node_ptr(t_list **prev, t_list **ptr, t_list **list)
+void	ft_lstdel(t_list **alst, void (*del) (void *, size_t))
 {
-	if (*prev == NULL)
-		*list = (*ptr)->next;
-	else
-		(*prev)->next = (*ptr)->next;
-	free(*ptr);
-	return (0);
+	t_list *tmp;
+
+	while (*alst != NULL)
+	{
+		tmp = *alst;
+		*alst = (*alst)->next;
+		ft_lstdelone(&tmp, del);
+	}
+	alst = NULL;
 }

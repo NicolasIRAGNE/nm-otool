@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:41 by niragne           #+#    #+#              #
-#    Updated: 2019/06/20 15:58:21 by niragne          ###   ########.fr        #
+#    Updated: 2019/06/20 17:42:45 by ldedier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 DEBUG ?= 0
+OK_COLOR = \x1b[32;01m
+EOC = \033[0m
 
 ifeq ($(DEBUG), 1)
 	LFLAGS += -fsanitize=address
@@ -38,14 +40,16 @@ SRCS = debug.c main.c
 
 SRC	= $(addprefix $(SRCDIR)/, $(SRCS))
 
-all: $(NAME)
+all:
+	@make -C $(LIBFTDIR) all
+	@make $(NAME)
 
 debug: 
 	make all DEBUG=1
 
 $(NAME): $(LIBFT) $(OBJECTS)
 	$(CC) -o $(NAME) $(OBJECTS) $(LIBFT) $(LFLAGS)
-	@echo "$(NAME) compiled with success"
+	@echo "$(OK_COLOR)$(NAME) compiled with success$(EOC)"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDES)
 	@mkdir -p $(OBJDIR)

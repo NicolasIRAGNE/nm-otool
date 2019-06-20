@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 12:58:24 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/20 15:40:17 by niragne          ###   ########.fr       */
+/*   Updated: 2019/06/20 17:41:46 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,17 @@ typedef union				u_header_union
 	struct fat_header		*fat_header;
 }							t_header_union;
 
+struct						s_symbol
+{
+	struct nlist*			nlist;
+}							t_symbol;
+
 struct						s_nm_browser
 {
 	uint32_t				magic;
 	t_bin_type				type;
 	t_header_union			header_union;
+	t_tree					*symbols;
 };
 
 typedef struct s_nm_browser	t_nm_browser;
