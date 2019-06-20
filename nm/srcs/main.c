@@ -14,10 +14,9 @@
 
 void	print_output(int nsyms, int symoff, int stroff, char *ptr)
 {
-	int i;
-
-	char *stringtable;
-	struct nlist_64 *array;
+	int				i;
+	char			*stringtable;
+	struct nlist_64	*array;
 
 	array = (void *)(ptr + symoff);
 	stringtable = (void *)(ptr + stroff);
@@ -43,7 +42,7 @@ void	handle_64(char *ptr, t_nm_browser *browser)
 		lc = (struct load_command*) i;
 		if (lc->cmd == LC_SYMTAB)
 		{
-			sym = (struct symtab_command*)lc;
+			sym = (struct symtab_command *)lc;
 			print_output(sym->nsyms, sym->symoff, sym->stroff, ptr);
 		}
 		i += lc->cmdsize;
