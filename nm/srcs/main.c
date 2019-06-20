@@ -6,31 +6,96 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/20 17:44:40 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/06/20 19:45:58 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-void	print_output(int nsyms, int symoff, int stroff, char *ptr)
+void	debug_list(t_list *segments)
+{
+	struct segment_command_64 *seg;
+
+	while (segments)
+	{
+		seg = (struct segment_command_64 *)segments->content;
+		ft_printf("%s\n", seg->segname);
+		segments = segments->next;
+	}
+}
+
+void	*banane(t_list *segments, uint8_t n_sect)
+{
+	struct segment_command_64 *seg;
+	uint8_t i;
+
+	i = 0;
+
+	while (segments && i < n_sect)
+	{
+		seg = (struct segment_command_64*)segments->content;
+		if (i == n_sect - 1)
+		{
+			return (seg);
+		}
+		segments = segments->next;
+		i++;
+	}
+	return (NULL);
+}
+
+char	get_letter(char *str, uint8_t type)
+{
+	char ret;
+	if (str == NULL)
+		ret = 'U';
+
+	if (ft_strcmp(str, SEG_TEXT) == 0)
+	{
+		ret = 'D';
+	}
+	else if (ft_strcmp(str, SEG_LINKEDIT) == 0)
+	{
+		ret = 'T';
+	}
+	else if (ft_strcmp(str, SEG_DATA) == 0)
+	{
+		ret = 'B';
+	}
+	else if (ft_strcmp(str, SEG_IMPORT) == 0)
+	{
+		ret = 'I';
+	}
+	else
+	{
+		ret = 'U';
+	}
+	if (!(type & N_EXT))
+		ret = ft_tolower(ret);
+	return (ret);
+}
+
+void	print_output(int nsyms, int symoff, int stroff, char *ptr, t_list *segments)
 {
 	int				i;
 	char			*stringtable;
+	struct segment_command_64			*seg;
 	struct nlist_64	*array;
 
 	array = (void *)(ptr + symoff);
 	stringtable = (void *)(ptr + stroff);
 	i = 0;
+	debug_list(segments);
 	while (i < nsyms)
 	{
-		if (array[i].n_value)
-		{
-			ft_printf("%016llx T %s\n", array[i].n_value, stringtable + array[i].n_un.n_strx);
-		}
+		seg = (struct segment_command_64*)(banane(segments, array[i].n_sect));
+		char letter;
+		if (seg)
+			letter = get_letter(seg->segname, array[i].n_type);
 		else
-		{
-			ft_printf("%18s %s\n", "U", stringtable + array[i].n_un.n_strx);
-		}
+			letter = 'U';
+		ft_printf("%016llx %c %s\n", array[i].n_value, letter, stringtable + array[i].n_un.n_strx);
+		(void)segments;
 		i++;
 	}
 }
@@ -58,22 +123,31 @@ void	print_output32(int nsyms, int symoff, int stroff, char *ptr)
 	}
 }
 
+
 void	handle_64(char *ptr, t_nm_browser *browser)
 {
 	struct mach_header_64 *header;
 	struct load_command *lc;
 	struct symtab_command *sym;
+	struct segment_command_64 *seg;
+	t_list *segments = NULL;
 	uint64_t i;
 
 	header = browser->header_union.header64;
+
 	i = (uint64_t)(ptr + sizeof(*header));
 	while (i < (uint64_t)(ptr + header->sizeofcmds))
 	{
 		lc = (struct load_command*) i;
+		if (lc->cmd == LC_SEGMENT_64)
+		{
+			seg = (struct segment_command_64 *)lc;
+			ft_add_to_list_ptr(&segments, seg, sizeof(seg));
+		}
 		if (lc->cmd == LC_SYMTAB)
 		{
 			sym = (struct symtab_command *)lc;
-			print_output(sym->nsyms, sym->symoff, sym->stroff, ptr);
+			print_output(sym->nsyms, sym->symoff, sym->stroff, ptr, segments);
 		}
 		i += lc->cmdsize;
 	}
