@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 12:58:24 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/20 14:07:49 by niragne          ###   ########.fr       */
+/*   Updated: 2019/06/20 14:37:08 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef enum e_bin_type
 	E_32,
 	E_64,
 	E_FAT32,
-	E_FAT64,
+	E_FAT64
 }			t_bin_type;
 
 typedef union				u_header_union
