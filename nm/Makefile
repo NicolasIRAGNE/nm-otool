@@ -30,6 +30,8 @@ SPEED = -j8
 OBJDIR   = objs
 OBJECTS	= $(addprefix $(OBJDIR)/, $(SRCS:%.c=%.o))
 
+DEPS =		ft_nm.h symbols.h sections.h
+
 INCLUDES = includes
 
 LIBFTDIR = ../libft
@@ -40,15 +42,16 @@ SRCS =	debug.c main.c symbols.c symbols_sort.c options.c options_tools.c \
 		options_func.c fill.c fill_tools.c fill32.c fill64.c print.c init.c
 
 SRC	= $(addprefix $(SRCDIR)/, $(SRCS))
+DEP = $(addprefix $(INCLUDES)/, $(DEPS))
 
 all:
 	@make -C $(LIBFTDIR) all
 	@make $(NAME)
 
-debug: 
+debug:
 	make all DEBUG=1
 
-$(NAME): $(LIBFT) $(OBJECTS)
+$(NAME): $(LIBFT) $(OBJECTS) $(DEP)
 	$(CC) -o $(NAME) $(OBJECTS) $(LIBFT) $(LFLAGS)
 	@echo "$(OK_COLOR)$(NAME) compiled with success$(EOC)"
 
@@ -60,9 +63,11 @@ $(LIBFT):
 	make -C $(LIBFTDIR)
 
 clean:
+	make clean -C $(LIBFTDIR)
 	rm -rf $(NAME)
 
 fclean: clean
+	make fclean -C $(LIBFTDIR)
 	rm -rf $(OBJECTS)
 
 re: fclean all

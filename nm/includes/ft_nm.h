@@ -27,6 +27,7 @@
 # include <sys/stat.h>
 # include <stdlib.h>
 # include "symbols.h"
+# include "sections.h"
 
 # define DEFAULT_NM_FILE	"a.out"
 
@@ -55,6 +56,7 @@ struct						s_nm_browser
 	t_header_union			header_union;
 	struct stat				st;
 	t_tree					*symbols;
+	t_section_arr			section_arr;
 	int						ret;
 	long					(*sort_func)(void *, void *);
 	char					sort_mult;

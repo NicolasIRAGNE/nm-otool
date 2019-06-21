@@ -45,6 +45,7 @@ typedef struct				s_symbol
 {
 	t_symbol_union			symbol_union;
 	t_symbol_enum			symbol_enum;
+	char					debug;
 }							t_symbol;
 
 /*

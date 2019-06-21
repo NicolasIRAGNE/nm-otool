@@ -50,6 +50,7 @@ int	fill_browser32(t_nm_browser *browser)
 	while (i < (uint64_t)(browser->ptr + header->sizeofcmds))
 	{
 		lc = (struct load_command*) i;
+	
 		if (lc->cmd == LC_SYMTAB)
 		{
 			sym = (struct symtab_command *)lc;
