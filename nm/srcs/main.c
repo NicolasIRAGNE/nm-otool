@@ -12,14 +12,35 @@
 
 #include "ft_nm.h"
 
+void	print_section64(struct section_64 *section)
+{
+	ft_printf("\t%s, %s\n", section->segname, section->sectname);
+	ft_printf("\tsection type: %d\n", section->flags & SECTION_TYPE);
+}
+
+void	print_segment64(struct segment_command_64 *seg)
+{
+	struct section_64	*section_tab;
+	unsigned int		i;
+
+	i = 0;
+	section_tab = (void *)seg + sizeof(*seg);
+	ft_printf("%s\n", seg->segname);
+	ft_printf(BLUE"\t## %d sections ##\n\n"EOC, seg->nsects);
+	while (i < seg->nsects)
+	{
+		print_section64(&section_tab[i]);
+		i++;
+	}
+}
+
 void	debug_list(t_list *segments)
 {
 	struct segment_command_64 *seg;
-
 	while (segments)
 	{
 		seg = (struct segment_command_64 *)segments->content;
-		ft_printf("%s\n", seg->segname);
+		print_segment64(seg);
 		segments = segments->next;
 	}
 }
@@ -86,16 +107,20 @@ void	print_output(int nsyms, int symoff, int stroff, char *ptr, t_list *segments
 	stringtable = (void *)(ptr + stroff);
 	i = 0;
 	debug_list(segments);
+	(void)nsyms;
+	(void)seg;
 	while (i < nsyms)
 	{
 		seg = (struct segment_command_64*)(banane(segments, array[i].n_sect));
+/*
 		char letter;
 		if (seg)
 			letter = get_letter(seg->segname, array[i].n_type);
 		else
 			letter = 'U';
 		ft_printf("%016llx %c %s\n", array[i].n_value, letter, stringtable + array[i].n_un.n_strx);
-		(void)segments;
+	*/
+	ft_printf("%d (%s)\n", array[i].n_sect, stringtable + array[i].n_un.n_strx);
 		i++;
 	}
 }
@@ -141,11 +166,13 @@ void	handle_64(char *ptr, t_nm_browser *browser)
 		lc = (struct load_command*) i;
 		if (lc->cmd == LC_SEGMENT_64)
 		{
+			printf("SEGMENT\n");
 			seg = (struct segment_command_64 *)lc;
-			ft_add_to_list_ptr(&segments, seg, sizeof(seg));
+			ft_add_to_list_ptr_back(&segments, seg, sizeof(seg));
 		}
 		if (lc->cmd == LC_SYMTAB)
 		{
+			printf("SYMTAB\n");
 			sym = (struct symtab_command *)lc;
 			print_output(sym->nsyms, sym->symoff, sym->stroff, ptr, segments);
 		}

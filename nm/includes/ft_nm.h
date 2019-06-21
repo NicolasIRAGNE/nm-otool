@@ -49,6 +49,7 @@ struct						s_symbol
 	struct nlist*			nlist;
 }							t_symbol;
 
+
 struct						s_nm_browser
 {
 	uint32_t				magic;
