@@ -13,16 +13,29 @@
 #include "ft_nm.h"
 
 /*
-** TODO NIRAGNE C'EST CETTE FONCTION LA OLALALALALALALALALALLA LALALALALALALA LALLALA LAL AL LAALLALALA
-** cf page 452 of loader.h
-** attributes a character for a given section flag (EN VRAI je sais pas si ca suffit pour mais je pense parce que faire des
-** strcmp sur des section->sectname je pense c'est pas la bonne facon de faire apres ptet que ca l'est 😂)
+** if the symbol is global (ie (n_type & N_EXT)) then nm 
+** shall print an uppercase symbol, else its lowercase counterpart
 */
-
-int		process_fill_debug(t_symbol *symbol, int section_flags)
+char	global_case_symbol(uint8_t n_type, char c)
 {
-	(void)section_flags;
-	symbol->debug = 'X';
+	if (!(n_type & N_EXT))
+		return (ft_tolower(c));
+	else
+		return (c);
+}
+
+int		process_fill_debug(t_symbol *symbol, uint8_t n_type, char *sectname)
+{
+	if (!ft_strcmp(sectname, SECT_TEXT))
+		symbol->debug = global_case_symbol(n_type, 'T');
+	else if (!ft_strcmp(sectname, SECT_DATA))
+		symbol->debug = global_case_symbol(n_type, 'D');
+	else if (!ft_strcmp(sectname, SECT_BSS))
+		symbol->debug = global_case_symbol(n_type, 'B');
+	else if (!ft_strcmp(sectname, SECT_COMMON))
+		symbol->debug = global_case_symbol(n_type, 'C');
+	else
+		symbol->debug = global_case_symbol(n_type, 'S');
 	return (0);
 }
 
@@ -35,16 +48,18 @@ int		fill_debug64(t_symbol *symbol, t_section_arr section_arr)
 {
 	int			nsect;
 	t_symbol64	*symbol64;
+	uint64_t	type;
 
 	symbol64 = &symbol->symbol_union.symbol64;
 	nsect = symbol64->nlist->n_sect;
-	if (symbol64->nlist->n_type & N_SECT)
+	type = symbol64->nlist->n_type & N_TYPE;
+	if (type == N_SECT)
 	{
 		if (symbol64->nlist->n_sect <= section_arr.size)
 		{
-			if (process_fill_debug(symbol, section_arr.
-				sections[symbol64->nlist->n_sect].section_union.section64->flags))
-				return (1);
+			process_fill_debug(symbol, symbol64->nlist->n_type,
+					section_arr.sections[symbol64->nlist->n_sect].
+						section_union.section64->sectname);
 		}
 		else
 		{
@@ -52,8 +67,16 @@ int		fill_debug64(t_symbol *symbol, t_section_arr section_arr)
 			return (1);
 		}
 	}
-	else
+	else if (type == N_UNDF)
 		symbol->debug = 'U';
+	else if (type == N_ABS)
+		symbol->debug = 'A';
+	else if (type == N_INDR)
+		symbol->debug = 'I';
+	else if (type == N_PBUD)
+		symbol->debug = 'u';
+	else
+		symbol->debug = '?';
 	return (0);
 }
 

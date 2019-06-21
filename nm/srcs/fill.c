@@ -17,25 +17,25 @@ void	get_header(t_nm_browser *browser)
 	browser->magic = *(uint32_t*)browser->ptr;
 	if (browser->magic == MH_MAGIC_64 || browser->magic == MH_CIGAM_64)
 	{
-		ft_printf("Executable 64 bits\n");
+//		ft_printf("Executable 64 bits\n");
 		browser->type = E_64;
 		browser->header_union.header64 = (struct mach_header_64*)browser->ptr;
 	}
 	else if (browser->magic == MH_MAGIC || browser->magic == MH_CIGAM)
 	{
-		ft_printf("Executable 32 bits\n");
+//		ft_printf("Executable 32 bits\n");
 		browser->type = E_32;
 		browser->header_union.header32 = (struct mach_header*)browser->ptr;
 	}
 	else if (browser->magic == FAT_MAGIC || browser->magic == FAT_CIGAM)
 	{
-		ft_printf("Executable fat 32 bits\n");
+//		ft_printf("Executable fat 32 bits\n");
 		browser->type = E_FAT32;
 		browser->header_union.fat_header = (struct fat_header*)browser->ptr;
 	}
 	else if (browser->magic == FAT_MAGIC_64 || browser->magic == FAT_CIGAM_64)
 	{
-		ft_printf("Executable fat 64 bits\n");
+//		ft_printf("Executable fat 64 bits\n");
 		browser->type = E_FAT64;
 		browser->header_union.fat_header = (struct fat_header*)browser->ptr;
 	}

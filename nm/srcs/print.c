@@ -17,6 +17,7 @@ void	print_section64(struct section_64 *section64)
 	ft_printf(BLUE);
 	ft_printf("%s, %s\n", section64->segname, section64->sectname);
 	ft_printf("Section type: %d\n", section64->flags & SECTION_TYPE); //en vrai je pense faut aussi regarder les attributes en + du type (pour process_fill_debug)
+	ft_printf("Section attributes: %b\n", section64->flags & SECTION_ATTRIBUTES); //en vrai je pense faut aussi regarder les attributes en + du type (pour process_fill_debug)
 	ft_printf(EOC);
 }
 
@@ -76,7 +77,21 @@ void	print_symbol_tree(t_tree *tree, t_nm_browser *browser)
 	}
 }
 
+void	debug_sections(t_nm_browser *browser)
+{
+	int i;
+
+	i = 1;
+	while (i <= browser->section_arr.size)
+	{
+		ft_printf("section #%d\n", i);
+		print_section64(browser->section_arr.sections[i].section_union.section64);
+		i++;
+	}
+}
+
 void	nm_print(t_nm_browser *browser)
 {
 	print_symbol_tree(browser->symbols, browser);
+//	debug_sections(browser);
 }
