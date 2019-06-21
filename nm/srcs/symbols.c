@@ -12,12 +12,17 @@
 
 #include "ft_nm.h"
 
-int		cmp_symbol_alpha(void *s1, void *s2)
+char	*get_symbol_name(t_symbol *symbol)
 {
-	t_symbol *symbol1;
-	t_symbol *symbol2;
+	return (symbol->symbol_enum == E_SYMBOL_32
+				? symbol->symbol_union.symbol32.name
+					: symbol->symbol_union.symbol64.name);
+}
 
-	symbol1 = (t_symbol *)s1;
-	symbol2 = (t_symbol *)s2;
-	return (ft_strcmp(symbol1->name, symbol2->name));
+uint64_t get_symbol_value(t_symbol *symbol)
+{
+	return (symbol->symbol_enum == E_SYMBOL_32
+				? symbol->symbol_union.symbol32.nlist->n_value
+					: symbol->symbol_union.symbol64.nlist->n_value);
+
 }

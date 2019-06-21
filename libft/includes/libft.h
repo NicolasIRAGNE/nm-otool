@@ -146,9 +146,9 @@ void				ft_infix(t_tree *tree, void (*f)(t_tree *));
 void				ft_prefix(t_tree *tree, void (*f)(t_tree *));
 void				ft_postfix(t_tree *tree, void (*f)(t_tree *));
 int					ft_tree_add_sorted_mul(t_tree **tree, void *content,
-		int (*sort)(void *, void *), int mul);
+		long (*sort)(void *, void *), int mul);
 int					ft_tree_add_sorted(t_tree **tree, void *content,
-		int (*sort)(void *, void *));
+		long (*sort)(void *, void *));
 void				ft_tree_del(t_tree **tree, void (*free_func)(void *));
 void				ft_tree_del_value(t_tree **tree);
 void				ft_tree_del_ptr(t_tree **tree);

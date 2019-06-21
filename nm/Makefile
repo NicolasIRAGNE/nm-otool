@@ -36,7 +36,8 @@ LIBFTDIR = ../libft
 LIBFT_INCLUDEDIR = $(LIBFTDIR)/includes
 LIBFT = $(LIBFTDIR)/libft.a
 
-SRCS = debug.c main.c symbols.c
+SRCS =	debug.c main.c symbols.c symbols_sort.c options.c options_tools.c \
+		options_func.c fill.c fill_tools.c fill32.c fill64.c print.c init.c
 
 SRC	= $(addprefix $(SRCDIR)/, $(SRCS))
 

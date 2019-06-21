@@ -13,7 +13,7 @@
 #include "libft.h"
 
 int		ft_tree_add_sorted_mul(t_tree **tree, void *content,
-			int (*sort)(void*, void *), int mul)
+			long (*sort)(void*, void *), int mul)
 {
 	if (*tree == NULL)
 	{

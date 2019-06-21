@@ -12,42 +12,49 @@
 
 #include "ft_nm.h"
 
-int		process_nm(char *filename, t_nm_browser *browser)
+void	print_symbol64(t_symbol64 symbol64)
 {
-	if (init_browser(browser, filename))
-		return (1);
-	if (fill_browser(browser))
-		return (1);
-	nm_print(browser);
-	if (munmap(browser->ptr, browser->st.st_size) < 0)
+	if (symbol64.nlist->n_value)
 	{
-		ft_printf("ERROR MUNMAP\n");
-		return (1);
+		ft_printf("%016llx T %s\n", symbol64.nlist->n_value, symbol64.name);
 	}
-	return (0);
+	else
+	{
+		ft_printf("%18s %s\n", "U", symbol64.name);
+	}
 }
 
-int		main(int ac, char **av)
+void	print_symbol32(t_symbol32 symbol32)
 {
-	t_nm_browser	browser;
-	int				i;
-	int				ret;
+	if (symbol32.nlist->n_value)
+	{
+		ft_printf("%08llx T %s\n", symbol32.nlist->n_value, symbol32.name);
+	}
+	else
+	{
+		ft_printf("%10s %s\n", "U", symbol32.name);
+	}
+}
 
-	init_browser_general(&browser);
-	if ((ret = parse_options(&i, ac, av, &browser)))
-		return (ret == 1 ? 1 : 0);
-	if (browser.ret)
-		return (browser.ret);
-	if (i == ac)
+void	print_symbol(t_symbol *symbol)
+{
+	if (symbol->symbol_enum == E_SYMBOL_64)
+		print_symbol64(symbol->symbol_union.symbol64);
+	else
+		print_symbol32(symbol->symbol_union.symbol32);
+}
+
+void	print_symbol_tree(t_tree *tree)
+{
+	if (tree)
 	{
-		if (process_nm(DEFAULT_NM_FILE, &browser))
-			return (EXIT_FAILURE);
-		return (browser.ret);
+		print_symbol_tree(tree->left);
+		print_symbol((t_symbol *)tree->content);
+		print_symbol_tree(tree->right);
 	}
-	while (i < ac)
-	{
-		if (process_nm(av[i++], &browser))
-			return (EXIT_FAILURE);
-	}
-	return (browser.ret);
+}
+
+void	nm_print(t_nm_browser *browser)
+{
+	print_symbol_tree(browser->symbols);
 }
