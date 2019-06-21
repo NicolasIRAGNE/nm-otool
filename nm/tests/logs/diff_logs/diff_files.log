@@ -1,0 +1,7 @@
+hard-tests/32_exe_hard
+hard-tests/64_bundle
+hard-tests/64_exe_hard
+hard-tests/64_lib_dynamic_hard
+hard-tests/64_lib_dynamic_medium
+hard-tests/fat_hard
+hard-tests/object_medium
