@@ -12,8 +12,10 @@
 
 #include "ft_nm.h"
 
-int		process_nm(char *filename, t_nm_browser *browser)
+int		process_nm(char *filename, t_nm_browser *browser, int nb_args)
 {
+	if(nb_args > 1)
+		ft_printf("\n%s:\n", filename);
 	if (init_browser(browser, filename))
 		return (1);
 	if (fill_browser(browser))
@@ -32,6 +34,7 @@ int		main(int ac, char **av)
 	t_nm_browser	browser;
 	int				i;
 	int				ret;
+	int				nb_args;
 
 	init_browser_general(&browser);
 	if ((ret = parse_options(&i, ac, av, &browser)))
@@ -40,13 +43,14 @@ int		main(int ac, char **av)
 		return (browser.ret);
 	if (i == ac)
 	{
-		if (process_nm(DEFAULT_NM_FILE, &browser))
+		if (process_nm(DEFAULT_NM_FILE, &browser, 1))
 			return (EXIT_FAILURE);
 		return (browser.ret);
 	}
+	nb_args = ac - i;
 	while (i < ac)
 	{
-		if (process_nm(av[i++], &browser))
+		if (process_nm(av[i++], &browser, nb_args))
 			return (EXIT_FAILURE);
 	}
 	return (browser.ret);
