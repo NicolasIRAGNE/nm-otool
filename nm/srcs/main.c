@@ -12,6 +12,10 @@
 
 #include "ft_nm.h"
 
+/*
+** dump obj filename
+*/
+
 int		process_nm(char *filename, t_nm_browser *browser, int nb_args)
 {
 	if(nb_args > 1)

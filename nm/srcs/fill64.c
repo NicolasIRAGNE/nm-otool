@@ -12,6 +12,57 @@
 
 #include "ft_nm.h"
 
+/*
+** TODO NIRAGNE C'EST CETTE FONCTION LA OLALALALALALALALALALLA LALALALALALALA LALLALA LAL AL LAALLALALA
+** cf page 452 of loader.h
+** attributes a character for a given section flag (EN VRAI je sais pas si ca suffit pour mais je pense parce que faire des
+** strcmp sur des section->sectname je pense c'est pas la bonne facon de faire apres ptet que ca l'est 😂)
+*/
+
+int		process_fill_debug(t_symbol *symbol, int section_flags)
+{
+	(void)section_flags;
+	symbol->debug = 'X';
+	return (0);
+}
+
+/*
+** attribute a debug character for that symbol by peeking
+** at its corresponding section
+*/
+
+int		fill_debug64(t_symbol *symbol, t_section_arr section_arr)
+{
+	int			nsect;
+	t_symbol64	*symbol64;
+
+	symbol64 = &symbol->symbol_union.symbol64;
+	nsect = symbol64->nlist->n_sect;
+	if (symbol64->nlist->n_type & N_SECT)
+	{
+		if (symbol64->nlist->n_sect <= section_arr.size)
+		{
+			if (process_fill_debug(symbol, section_arr.
+				sections[symbol64->nlist->n_sect].section_union.section64->flags))
+				return (1);
+		}
+		else
+		{
+			//error corrupted
+			return (1);
+		}
+	}
+	else
+		symbol->debug = 'U';
+	return (0);
+}
+
+/*
+** create and append a new symbol to the symbol tree as it is sorted by the
+** appropriate function
+**
+** also fill its debug character by peeking at its corresponding section
+*/
 int		process_fill_symbols64(t_nm_browser *browser,
 			int nsyms, int symoff, int stroff)
 {
@@ -28,6 +79,11 @@ int		process_fill_symbols64(t_nm_browser *browser,
 		if (!(new_symbol = nm_new_symbol64(&array[i],
 			stringtable + array[i].n_un.n_strx)))
 			return (1);
+		if (fill_debug64(new_symbol, browser->section_arr))
+		{
+			free(new_symbol);
+			return (0);
+		}
 		if (add_symbol_to_browser(browser, new_symbol))
 		{
 			free(new_symbol);
@@ -155,7 +211,8 @@ int		get_sections64(t_nm_browser *browser)
 
 /*
 ** store sections by index of apparition and symbol tables sorted 
-** in a tree structure
+** in a tree structure (stocks the debug Character (T, U, ...) by peeking
+** at the matching section)
 */
 
 int		fill_browser64(t_nm_browser *browser)

@@ -1,0 +1,31 @@
+
+ok alor jai fait des trucs, mais la je vais dormir du coup je te laisse ca.
+
+du coup les fichiers a check sont surtout fill, fill64, (fill_tools) et print
+
+(j'ai tout fait pour 64 en gros faudra faire pareil pour 32 mais j'ai pas eu le temps donc regarde que pour 64, 32 est pas a jour)
+du coup on stocke les symbols dans l'arbre par ordre ok super
+
+Mais pour ce qui etait des T, D , t... il faut regarder nlist->n_sect qui parlent bien de sections et non de segments !
+Et qui plus est les sections sont indexes par ordre d'apparition dans le binaire en commencant a l'index 1
+
+Du coup je les ai tous foutu dans un tableau dont j'ai save la taille dans browser->sections_arr
+du coup va falloir regarder le type de section pour chaque symbol et donner un "symbol->debug" correspondant.
+
+Tout ca ca se passe dans process_fill_debug dans fill64 donc ca reste un gros truc a faire mais on a les outils pour maintenant (je crois) normalement 
+
+Aussi je me suis rendu compte que c'etait important de stocker de charactere de debug dans la structure de symbol pour cette raison:
+
+	si jamais on devait le calculer a chaque print 
+		-> on print et tout on est content
+		-> on tombe sur un symbol qui dit qu'il est dans la section 45
+		-> on a que 6 sections
+		-> on dit que c'est corrompu mais du coup on avait deja commence a print comme des oufs
+		-> -1000
+
+Aussi t'as le -p -r -n qui marchent (-help pour savoir ce que ca fait)
+
+
+Si t'es perdu j'ai mis en commentaire un truc de debug qui affiche la section de chaque symbol ligne 45 de print.c
+
+Ah ouai et ca se trouve je dis que de la merde mais je crois pas.
