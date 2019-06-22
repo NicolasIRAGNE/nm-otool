@@ -40,7 +40,7 @@ void	print_symbol64(t_symbol64 symbol64, char debug, t_nm_browser *browser)
 	}
 	else
 	{
-		ft_printf("%18s %s\n", "U", symbol64.name);
+		ft_printf("%18c %s\n", symbol64.nlist->n_value, symbol64.name);
 	}
 	(void)browser;
 //	debug_symbol_sect64(symbol64, browser);// Uncomment to get the sections info for each symbol

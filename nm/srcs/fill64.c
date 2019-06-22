@@ -13,74 +13,6 @@
 #include "ft_nm.h"
 
 /*
-** if the symbol is global (ie (n_type & N_EXT)) then nm 
-** shall print an uppercase symbol, else its lowercase counterpart
-*/
-char	global_case_symbol(uint8_t n_type, char c)
-{
-	if (!(n_type & N_EXT))
-		return (ft_tolower(c));
-	else
-		return (c);
-}
-
-int		process_fill_debug(t_symbol *symbol, uint8_t n_type, char *sectname)
-{
-	if (!ft_strcmp(sectname, SECT_TEXT))
-		symbol->debug = global_case_symbol(n_type, 'T');
-	else if (!ft_strcmp(sectname, SECT_DATA))
-		symbol->debug = global_case_symbol(n_type, 'D');
-	else if (!ft_strcmp(sectname, SECT_BSS))
-		symbol->debug = global_case_symbol(n_type, 'B');
-	else if (!ft_strcmp(sectname, SECT_COMMON))
-		symbol->debug = global_case_symbol(n_type, 'C');
-	else
-		symbol->debug = global_case_symbol(n_type, 'S');
-	return (0);
-}
-
-/*
-** attribute a debug character for that symbol by peeking
-** at its corresponding section
-*/
-
-int		fill_debug64(t_symbol *symbol, t_section_arr section_arr)
-{
-	int			nsect;
-	t_symbol64	*symbol64;
-	uint64_t	type;
-
-	symbol64 = &symbol->symbol_union.symbol64;
-	nsect = symbol64->nlist->n_sect;
-	type = symbol64->nlist->n_type & N_TYPE;
-	if (type == N_SECT)
-	{
-		if (symbol64->nlist->n_sect <= section_arr.size)
-		{
-			process_fill_debug(symbol, symbol64->nlist->n_type,
-					section_arr.sections[symbol64->nlist->n_sect].
-						section_union.section64->sectname);
-		}
-		else
-		{
-			//error corrupted
-			return (1);
-		}
-	}
-	else if (type == N_UNDF)
-		symbol->debug = 'U';
-	else if (type == N_ABS)
-		symbol->debug = 'A';
-	else if (type == N_INDR)
-		symbol->debug = 'I';
-	else if (type == N_PBUD)
-		symbol->debug = 'u';
-	else
-		symbol->debug = '?';
-	return (0);
-}
-
-/*
 ** create and append a new symbol to the symbol tree as it is sorted by the
 ** appropriate function
 **
@@ -183,7 +115,7 @@ int		process_sections_array64(t_nm_browser *browser, t_list **segments)
 	struct segment_command_64	*seg;
 
 	len = get_total_sections64(*segments);
-	browser->section_arr.size = len; // (len + 1) ?
+	browser->section_arr.size = len;
 	if (!(browser->section_arr.sections = malloc(sizeof(t_section) * (len + 1))))
 	{
 		ft_lstdel_ptr(segments);

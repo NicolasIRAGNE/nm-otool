@@ -123,4 +123,10 @@ int							fill_browser64(t_nm_browser *browser);
 */
 void						nm_print(t_nm_browser *browser);
 
+/*
+** fill_debug.c
+*/
+int     fill_debug64(t_symbol *symbol, t_section_arr section_arr);
+int     fill_debug32(t_symbol *symbol, t_section_arr section_arr);
+
 #endif

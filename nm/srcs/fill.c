@@ -23,7 +23,7 @@ void	get_header(t_nm_browser *browser)
 	}
 	else if (browser->magic == MH_MAGIC || browser->magic == MH_CIGAM)
 	{
-//		ft_printf("Executable 32 bits\n");
+		ft_printf("Executable 32 bits\n");
 		browser->type = E_32;
 		browser->header_union.header32 = (struct mach_header*)browser->ptr;
 	}
