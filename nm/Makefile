@@ -12,7 +12,7 @@
 
 NAME = ft_nm
 
-CC = gcc -m32
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 DEBUG ?= 0

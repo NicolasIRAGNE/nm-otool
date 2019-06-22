@@ -31,7 +31,7 @@ int	init_browser(t_nm_browser *browser, char *filename)
 	if ((browser->ptr = mmap(0, browser->st.st_size,
 		PROT_READ, MAP_PRIVATE, fd, 0)) == MAP_FAILED)
 	{
-		ft_printf("ERROR MMAP\n");
+		ft_dprintf(2, "could not map file %s\n", filename);
 		return (1);
 	}
 	return (0);

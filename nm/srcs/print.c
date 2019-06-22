@@ -16,8 +16,8 @@ void	print_section64(struct section_64 *section64)
 {
 	ft_printf(BLUE);
 	ft_printf("%s, %s\n", section64->segname, section64->sectname);
-	ft_printf("Section type: %d\n", section64->flags & SECTION_TYPE); //en vrai je pense faut aussi regarder les attributes en + du type (pour process_fill_debug)
-	ft_printf("Section attributes: %b\n", section64->flags & SECTION_ATTRIBUTES); //en vrai je pense faut aussi regarder les attributes en + du type (pour process_fill_debug)
+	ft_printf("Section type: %d\n", section64->flags & SECTION_TYPE);
+	ft_printf("Section attributes: %b\n", section64->flags & SECTION_ATTRIBUTES);
 	ft_printf(EOC);
 }
 
@@ -34,24 +34,25 @@ void	debug_symbol_sect64(t_symbol64 symbol64, t_nm_browser *browser)
 
 void	print_symbol64(t_symbol64 symbol64, char debug, t_nm_browser *browser)
 {
-	if (symbol64.nlist->n_value)
+	if (!((symbol64.nlist->n_type & N_TYPE) == N_UNDF))
 	{
 		ft_printf("%016llx %c %s\n", symbol64.nlist->n_value, debug, symbol64.name);
 	}
 	else
 	{
-		ft_printf("%18c %s\n", symbol64.nlist->n_value, symbol64.name);
+		ft_printf("%18s %s\n", "U", symbol64.name);
 	}
 	(void)browser;
 //	debug_symbol_sect64(symbol64, browser);// Uncomment to get the sections info for each symbol
 }
 
-void	print_symbol32(t_symbol32 symbol32, t_nm_browser *browser)
+void	print_symbol32(t_symbol32 symbol32, char debug, t_nm_browser *browser)
 {
 	(void)browser;
-	if (symbol32.nlist->n_value)
+
+	if (!((symbol32.nlist->n_type & N_TYPE) == N_UNDF))
 	{
-		ft_printf("%08llx T %s\n", symbol32.nlist->n_value, symbol32.name);
+		ft_printf("%08llx %c %s\n", symbol32.nlist->n_value, debug, symbol32.name);
 	}
 	else
 	{
@@ -64,7 +65,7 @@ void	print_symbol(t_symbol *symbol, t_nm_browser *browser)
 	if (symbol->symbol_enum == E_SYMBOL_64)
 		print_symbol64(symbol->symbol_union.symbol64, symbol->debug, browser);
 	else
-		print_symbol32(symbol->symbol_union.symbol32, browser);
+		print_symbol32(symbol->symbol_union.symbol32, symbol->debug, browser);
 }
 
 void	print_symbol_tree(t_tree *tree, t_nm_browser *browser)

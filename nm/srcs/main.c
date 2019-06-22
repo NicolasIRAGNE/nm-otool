@@ -18,7 +18,7 @@
 
 int		process_nm(char *filename, t_nm_browser *browser, int nb_args)
 {
-	if(nb_args > 1)
+	if (nb_args > 1)
 		ft_printf("\n%s:\n", filename);
 	if (init_browser(browser, filename))
 		return (1);
@@ -27,7 +27,7 @@ int		process_nm(char *filename, t_nm_browser *browser, int nb_args)
 	nm_print(browser);
 	if (munmap(browser->ptr, browser->st.st_size) < 0)
 	{
-		ft_dprintf(2, "could not map the file %s\n", filename);
+		ft_dprintf(2, "could not munmap the file %s\n", filename);
 		return (1);
 	}
 	return (0);

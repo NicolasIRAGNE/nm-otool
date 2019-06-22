@@ -53,6 +53,7 @@ do
 	then
 		echo -e "${red}diff for file ${file} logged in ${trace_folder}${eoc}"
 		echo $file >> $diff_file_list
+		cp $file ${trace_folder}
 	else
 		echo -e "${green}no diff for file ${file}${eoc}"
 		rm -rf ${trace_folder}

@@ -24,7 +24,8 @@ char	global_case_symbol(uint8_t n_type, char c)
 		return (c);
 }
 
-int		process_fill_debug(t_symbol *symbol, uint8_t n_type, char *sectname)
+int		process_fill_debug_from_section(t_symbol *symbol,
+			uint8_t n_type, char *sectname)
 {
 	if (!ft_strcmp(sectname, SECT_TEXT))
 		symbol->debug = global_case_symbol(n_type, 'T');
@@ -33,7 +34,7 @@ int		process_fill_debug(t_symbol *symbol, uint8_t n_type, char *sectname)
 	else if (!ft_strcmp(sectname, SECT_BSS))
 		symbol->debug = global_case_symbol(n_type, 'B');
 	else if (!ft_strcmp(sectname, SECT_COMMON))
-		symbol->debug = global_case_symbol(n_type, 'C');
+		symbol->debug = global_case_symbol(n_type, 'S');
 	else
 		symbol->debug = global_case_symbol(n_type, 'S');
 	return (0);
@@ -72,9 +73,9 @@ int		fill_debug64(t_symbol *symbol, t_section_arr section_arr)
 	{
 		if (symbol64->nlist->n_sect <= section_arr.size)
 		{
-			process_fill_debug(symbol, symbol64->nlist->n_type,
-					section_arr.sections[symbol64->nlist->n_sect].
-						section_union.section64->sectname);
+			process_fill_debug_from_section(symbol, symbol64->nlist->n_type,
+				section_arr.sections[symbol64->nlist->n_sect].
+					section_union.section64->sectname);
 			return (0);
 		}
 		else
@@ -100,9 +101,9 @@ int		fill_debug32(t_symbol *symbol, t_section_arr section_arr)
 	{
 		if (symbol32->nlist->n_sect <= section_arr.size)
 		{
-			process_fill_debug(symbol, symbol32->nlist->n_type,
-					section_arr.sections[symbol32->nlist->n_sect].
-						section_union.section32->sectname);
+			process_fill_debug_from_section(symbol, symbol32->nlist->n_type,
+				section_arr.sections[symbol32->nlist->n_sect].
+					section_union.section32->sectname);
 			return (0);
 		}
 		else

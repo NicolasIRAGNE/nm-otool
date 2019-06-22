@@ -31,18 +31,21 @@ int		process_fill_symbols64(t_nm_browser *browser,
 	i = 0;
 	while (i < nsyms)
 	{
-		if (!(new_symbol = nm_new_symbol64(&array[i],
-			stringtable + array[i].n_un.n_strx)))
-			return (1);
-		if (fill_debug64(new_symbol, browser->section_arr))
+		if (should_add_symbol(array[i].n_type, browser))
 		{
-			free(new_symbol);
-			return (0);
-		}
-		if (add_symbol_to_browser(browser, new_symbol))
-		{
-			free(new_symbol);
-			return (1);
+			if (!(new_symbol = nm_new_symbol64(&array[i],
+							stringtable + array[i].n_un.n_strx)))
+				return (1);
+			if (fill_debug64(new_symbol, browser->section_arr))
+			{
+				free(new_symbol);
+				return (0);
+			}
+			if (add_symbol_to_browser(browser, new_symbol))
+			{
+				free(new_symbol);
+				return (1);
+			}
 		}
 		i++;
 	}

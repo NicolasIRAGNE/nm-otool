@@ -53,3 +53,11 @@ int nm_perror(char *error_message, t_nm_browser *browser)
 	ft_dprintf(2, "%s: %s\n", browser->filename, error_message);
 	return (0);
 }
+
+int		should_add_symbol(uint8_t n_type, t_nm_browser *browser)
+{
+	(void)browser;
+	if (n_type & N_STAB)
+		return (0);
+	return (1);
+}
