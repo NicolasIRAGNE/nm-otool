@@ -27,6 +27,8 @@ char	global_case_symbol(uint8_t n_type, char c)
 int		process_fill_debug_from_section(t_symbol *symbol,
 			uint8_t n_type, char *sectname)
 {
+//	printf("%s\n", get_symbol_name(symbol));
+//	ft_printf("%s\n", sectname);
 	if (!ft_strcmp(sectname, SECT_TEXT))
 		symbol->debug = global_case_symbol(n_type, 'T');
 	else if (!ft_strcmp(sectname, SECT_DATA))
@@ -101,9 +103,13 @@ int		fill_debug32(t_symbol *symbol, t_section_arr section_arr)
 	{
 		if (symbol32->nlist->n_sect <= section_arr.size)
 		{
+			
 			process_fill_debug_from_section(symbol, symbol32->nlist->n_type,
 				section_arr.sections[symbol32->nlist->n_sect].
 					section_union.section32->sectname);
+		//	if (!ft_strcmp(section_arr.sections[symbol32->nlist->n_sect].
+		//			section_union.section32->sectname, "__class"))
+		//		return (2);
 			return (0);
 		}
 		else

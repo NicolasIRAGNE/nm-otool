@@ -116,8 +116,8 @@ t_symbol					*nm_new_symbol32(struct nlist *nlist,
 								char *symbol_name);
 t_symbol					*nm_new_symbol64(struct nlist_64 *nlist,
 								char *symbol_name);
-int							should_add_symbol(uint8_t n_type,
-								t_nm_browser *browser);
+int							should_add_symbol(uint8_t n_type, uint16_t n_stab,
+								char *name, t_nm_browser *browser);
 /*
 ** fill.c
 */

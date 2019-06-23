@@ -33,7 +33,7 @@ int		process_fill_symbols64(t_header_parser *parser, t_nm_browser *browser,
 	i = 0;
 	while (i < sym->nsyms)
 	{
-		if (should_add_symbol(array[i].n_type, browser))
+		if (should_add_symbol(array[i].n_type, array[i].n_desc,	stringtable + array[i].n_un.n_strx, browser))
 		{
 			if (!(new_symbol = nm_new_symbol64(&array[i],
 							stringtable + array[i].n_un.n_strx)))

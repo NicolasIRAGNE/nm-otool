@@ -55,14 +55,13 @@ int		fill_browser_fat32(t_header_parser *parser, t_nm_browser *browser)
 
 	fat_header = parser->header_union.fat_header;
 	fat_arch = (void *)browser->ptr + sizeof(fat_header);
-	i = 0;
-	while (i < fat_header->nfat_arch)
+	i = fat_header->nfat_arch - 1;
+	while ((int)i >= 0)
 	{
 		swap_fat_arch(&fat_arch[i], parser->should_swap);
 		if (fill_browser_fat_arch32(&fat_arch[i], browser))
 			return (1);
-			return (0);
-		i++;
+		i--;
 	}
 	return (0);
 }

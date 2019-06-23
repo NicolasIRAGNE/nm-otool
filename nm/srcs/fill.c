@@ -35,7 +35,7 @@ void	get_header(t_header_parser *parser)
 	}
 	else if (parser->magic == FAT_MAGIC_64 || parser->magic == FAT_CIGAM_64)
 	{
-		ft_printf("Executable fat 64 bits\n");
+//		ft_printf("Executable fat 64 bits\n");
 		parser->type = E_FAT64;
 		parser->header_union.fat_header = (struct fat_header*)parser->ptr;
 	}

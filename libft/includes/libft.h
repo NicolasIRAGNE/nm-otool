@@ -154,6 +154,8 @@ void				ft_tree_del_value(t_tree **tree);
 void				ft_tree_del_ptr(t_tree **tree);
 int					ft_treelen(t_tree *tree);
 void				*ft_tree_at_infix(t_tree *tree, int index);
+t_tree				*ft_tree_get(t_tree *tree, void *ref,
+						int (*identify)(void*, void *));
 int					get_next_line(const int fd, char **line);
 
 void				ft_free_split(char **split);

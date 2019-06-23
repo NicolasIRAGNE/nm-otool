@@ -28,6 +28,7 @@ int		process_fill_symbols32(t_header_parser *parser,
 	struct nlist		*array;
 	t_symbol			*new_symbol;
 	struct mach_header	*header;
+	int					ret;
 
 	header = parser->header_union.header32;
 	array = (void *)header + sym->symoff;
@@ -35,15 +36,21 @@ int		process_fill_symbols32(t_header_parser *parser,
 	i = 0;
 	while (i < sym->nsyms)
 	{
-		if (should_add_symbol(array[i].n_type, browser))
+		if (should_add_symbol(array[i].n_type, array[i].n_desc, stringtable + array[i].n_un.n_strx, browser))
 		{
+	//		ft_printf("%lld\n", array[i].n_type);
+	//		ft_printf("%lld\n", array[i].n_desc);
+	//		ft_printf("%s\n", stringtable + array[i].n_un.n_strx);
 			if (!(new_symbol = nm_new_symbol32(&array[i],
 							stringtable + array[i].n_un.n_strx)))
 				return (1);
-			if (fill_debug32(new_symbol, parser->section_arr))
+			if ((ret = fill_debug32(new_symbol, parser->section_arr)))
 			{
-				free(new_symbol);
-				return (0); //error
+			//	if (browser->has_64)
+			//	{
+			//		free(new_symbol);
+			//		return (ret == 2 ? 0 : 1);
+			//	}
 			}
 			if (add_symbol_to_browser(browser, new_symbol))
 			{

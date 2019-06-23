@@ -38,14 +38,29 @@ t_symbol	*nm_new_symbol32(struct nlist *nlist, char *symbol_name)
 
 int		add_symbol_to_browser(t_nm_browser *browser, t_symbol *new_symbol)
 {
-	if (browser->sort_func == cmp_symbol_none)
-	{
-		return (ft_tree_add_sorted(&browser->symbols, new_symbol,
-			browser->sort_func));
-	}
-	else
-		return (ft_tree_add_sorted_mul(&browser->symbols, new_symbol,
-			browser->sort_func, browser->sort_mult));
+	t_tree *symbol_tree;
+	(void)symbol_tree;
+
+// Parfois ignore le nouveau symbol existant, parfois non.
+
+//	if ((symbol_tree = ft_tree_get(browser->symbols,
+//			get_symbol_name(new_symbol), is_same_name_symbol)))
+//	{
+//		free(symbol_tree->content);
+//		symbol_tree->content = new_symbol;
+//		return (0);
+//	}
+//	else
+//	{
+		if (browser->sort_func == cmp_symbol_none)
+		{
+			return (ft_tree_add_sorted(&browser->symbols, new_symbol,
+						browser->sort_func));
+		}
+		else
+			return (ft_tree_add_sorted_mul(&browser->symbols, new_symbol,
+						browser->sort_func, browser->sort_mult));
+//	}
 }
 
 int nm_perror(char *error_message, t_nm_browser *browser)
@@ -54,10 +69,23 @@ int nm_perror(char *error_message, t_nm_browser *browser)
 	return (0);
 }
 
-int		should_add_symbol(uint8_t n_type, t_nm_browser *browser)
+int		should_add_symbol(uint8_t n_type, uint16_t n_desc, char *name,
+			t_nm_browser *browser)
 {
 	(void)browser;
-	if (n_type & N_STAB)
+	(void)name;
+	(void)n_desc;
+	/*
+	if (!(ft_strncmp(name, ".objc", ft_strlen(".objc"))))
+	{
+		ft_printf(RED);
+		ft_printf("name: %s\ntype: %u\ndesc:%d\n\n", name, n_type, GET_LIBRARY_ORDINAL(n_desc));
+		ft_printf(EOC);
+	}
+	else
+		ft_printf("name: %s\ntype: %u\ndesc:%d\n\n", name, n_type, GET_LIBRARY_ORDINAL(n_desc));
+	*/
+	if (n_type & N_STAB )//|| GET_LIBRARY_ORDINAL(n_desc))// || n_desc) & N_DESC_DISCARDED)
 		return (0);
 	return (1);
 }

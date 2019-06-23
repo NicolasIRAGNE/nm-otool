@@ -64,7 +64,7 @@ SRCS_NO_PREFIX = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c\
 	   ft_lstdel.c ft_lstdel_ptr.c ft_lstdel_value.c ft_lstdelone.c \
 	   ft_lstiter.c ft_lstlength.c ft_lstmap.c ft_lstnew.c ft_lstnew_ptr.c \
 	   ft_lstpop.c ft_lstpop_ptr.c ft_lstpushback.c ft_add_to_list_back.c \
-	   ft_add_to_list_ptr.c ft_add_to_list_ptr_back.c
+	   ft_add_to_list_ptr.c ft_add_to_list_ptr_back.c ft_tree_get.c
 
 SOURCES = $(addprefix $(SRCDIR)/, $(SRCS_NO_PREFIX))
 OBJECTS = $(addprefix $(OBJDIR)/, $(SRCS_NO_PREFIX:%.c=%.o))

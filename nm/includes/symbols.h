@@ -53,7 +53,7 @@ typedef struct				s_symbol
 */
 char						*get_symbol_name(t_symbol *symbol);
 uint64_t					get_symbol_value(t_symbol *symbol);
-
+int							is_same_name_symbol(void *s, void *str);
 /*
 ** symbols_sort.c
 */

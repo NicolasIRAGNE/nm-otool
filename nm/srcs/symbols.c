@@ -26,3 +26,13 @@ uint64_t get_symbol_value(t_symbol *symbol)
 					: symbol->symbol_union.symbol64.nlist->n_value);
 
 }
+
+int		is_same_name_symbol(void *s, void *str)
+{
+	t_symbol	*symbol;
+	char		*name;
+
+	symbol = (t_symbol *)s;
+	name = (char *)str;
+	return (ft_strcmp(get_symbol_name(symbol), name));
+}
