@@ -12,12 +12,19 @@
 
 #include "ft_nm.h"
 
+void	init_parser(t_header_parser *parser, void *ptr, uint64_t offset)
+{
+	parser->ptr = ptr;
+	parser->offset = offset;
+}
+
 int	init_browser(t_nm_browser *browser, char *filename)
 {
 	int			fd;
 
 	browser->filename = filename;
 	browser->symbols = NULL;
+	browser->has_64 = 0;
 	if ((fd = open(filename, O_RDONLY)) < 0)
 	{
 		ft_dprintf(2, "error opening %s\n", filename);
@@ -29,7 +36,7 @@ int	init_browser(t_nm_browser *browser, char *filename)
 		return (1);
 	}
 	if ((browser->ptr = mmap(0, browser->st.st_size,
-		PROT_READ, MAP_PRIVATE, fd, 0)) == MAP_FAILED)
+		PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0)) == MAP_FAILED)
 	{
 		ft_dprintf(2, "could not map file %s\n", filename);
 		return (1);

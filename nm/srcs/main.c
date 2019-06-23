@@ -15,14 +15,16 @@
 /*
 ** dump obj filename
 */
-
 int		process_nm(char *filename, t_nm_browser *browser, int nb_args)
 {
+	t_header_parser	parser;
+
 	if (nb_args > 1)
 		ft_printf("\n%s:\n", filename);
 	if (init_browser(browser, filename))
 		return (1);
-	if (fill_browser(browser))
+	init_parser(&parser, browser->ptr, 0);
+	if (fill_browser(&parser, browser))
 		return (1);
 	nm_print(browser);
 	if (munmap(browser->ptr, browser->st.st_size) < 0)

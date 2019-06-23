@@ -40,7 +40,7 @@ LIBFT = $(LIBFTDIR)/libft.a
 
 SRCS =	debug.c main.c symbols.c symbols_sort.c options.c options_tools.c \
 		options_func.c fill.c fill_tools.c fill32.c fill64.c fill_debug.c \
-		print.c init.c
+		fill_fat32.c print.c init.c swap.c
 
 SRC	= $(addprefix $(SRCDIR)/, $(SRCS))
 DEP = $(addprefix $(INCLUDES)/, $(DEPS))

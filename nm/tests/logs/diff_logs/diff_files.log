@@ -1,12 +1,6 @@
-harder-tests/appsleepd
 harder-tests/audiodevice
-harder-tests/cfprefsd
-harder-tests/distnoted
 harder-tests/fat_hard
 harder-tests/hello_je_diff
-harder-tests/pboard
 harder-tests/python_returns
 harder-tests/salam_i_like_cum
-harder-tests/sqlite3
-harder-tests/uuidgen
 harder-tests/why_are_you_crashing

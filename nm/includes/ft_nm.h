@@ -48,25 +48,36 @@ typedef union				u_header_union
 	struct fat_header		*fat_header;
 }							t_header_union;
 
-struct						s_nm_browser
+typedef struct						s_header_parser
 {
 	uint32_t				magic;
 	void					*ptr;
+	uint64_t				offset;
 	t_bin_type				type;
 	t_header_union			header_union;
+	int						should_swap : 1;
+	t_section_arr			section_arr;
+}							t_header_parser;
+
+struct						s_nm_browser
+{
+	void					*ptr;
 	struct stat				st;
 	t_tree					*symbols;
-	t_section_arr			section_arr;
 	int						ret;
 	long					(*sort_func)(void *, void *);
 	char					sort_mult;
 	char					*filename;
+	int						has_64 : 1;
 };
 
 typedef struct s_nm_browser	t_nm_browser;
 
-void						nm_print_header(t_nm_browser *browser);
-
+/*
+** debug.c
+*/
+void						nm_print_header(t_header_parser *parser);
+void						debug_mach_header(struct mach_header *ptr);
 
 /*
 ** options_tools.c
@@ -91,7 +102,10 @@ int							parse_options(int *i, int ac,
 */
 void						init_browser_general(t_nm_browser *browser);
 int							init_browser(t_nm_browser *browser, char *filename);
-/*
+void						init_parser(t_header_parser *parser,
+								void *ptr, uint64_t offset);
+
+/*i
 ** fill_tools.c
 */
 int							add_symbol_to_browser(t_nm_browser *browser,
@@ -107,17 +121,25 @@ int							should_add_symbol(uint8_t n_type,
 /*
 ** fill.c
 */
-int							fill_browser(t_nm_browser *browser);
+int							fill_browser(t_header_parser *parser,
+								t_nm_browser *browser);
 
 /*
 ** fill32.c
 */
-int							fill_browser32(t_nm_browser *browser);
-
+int							fill_browser32(t_header_parser *parser,
+									t_nm_browser *browser);
 /*
 ** fill64.c
 */
-int							fill_browser64(t_nm_browser *browser);
+int							fill_browser64(t_header_parser *parser,
+									t_nm_browser *browser);
+/*
+** fill_fat32.c
+*/
+int							fill_browser_fat32(
+								t_header_parser *parser,
+									t_nm_browser *browser);
 
 /*
 ** print.c
@@ -127,7 +149,16 @@ void						nm_print(t_nm_browser *browser);
 /*
 ** fill_debug.c
 */
-int     fill_debug64(t_symbol *symbol, t_section_arr section_arr);
-int     fill_debug32(t_symbol *symbol, t_section_arr section_arr);
+int							fill_debug64(t_symbol *symbol, t_section_arr section_arr);
+int						fill_debug32(t_symbol *symbol, t_section_arr section_arr);
+
+/*
+** swap.c
+*/
+
+void	swap_mach_header64(struct mach_header_64 *header64);
+void	swap_mach_header(struct mach_header *header32, int should_swap);
+void	swap_fat_header(struct fat_header *fat_header);
+void	swap_fat_arch(struct fat_arch *fat_arch, int should_swap);
 
 #endif

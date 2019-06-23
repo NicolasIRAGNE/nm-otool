@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_nm.h"
-
+/*
 void	print_section64(struct section_64 *section64)
 {
 	ft_printf(BLUE);
@@ -31,9 +31,26 @@ void	debug_symbol_sect64(t_symbol64 symbol64, t_nm_browser *browser)
 		}
 	}
 }
+*/
+
+void	print_symbol64_2(char debug, uint8_t n_type,
+			char *name, uint64_t n_value)
+{
+	if (!((n_type & N_TYPE) == N_UNDF))
+	{
+		ft_printf("%016llx %c %s\n", n_value, debug, name);
+	}
+	else
+	{
+		ft_printf("%18s %s\n", "U", name);
+	}
+}
 
 void	print_symbol64(t_symbol64 symbol64, char debug, t_nm_browser *browser)
 {
+	print_symbol64_2(debug, symbol64.nlist->n_type,
+		symbol64.name, symbol64.nlist->n_value);
+/*
 	if (!((symbol64.nlist->n_type & N_TYPE) == N_UNDF))
 	{
 		ft_printf("%016llx %c %s\n", symbol64.nlist->n_value, debug, symbol64.name);
@@ -42,22 +59,28 @@ void	print_symbol64(t_symbol64 symbol64, char debug, t_nm_browser *browser)
 	{
 		ft_printf("%18s %s\n", "U", symbol64.name);
 	}
+*/
 	(void)browser;
-//	debug_symbol_sect64(symbol64, browser);// Uncomment to get the sections info for each symbol
 }
 
 void	print_symbol32(t_symbol32 symbol32, char debug, t_nm_browser *browser)
 {
 	(void)browser;
 
-	if (!((symbol32.nlist->n_type & N_TYPE) == N_UNDF))
+	if (!browser->has_64)
 	{
-		ft_printf("%08llx %c %s\n", symbol32.nlist->n_value, debug, symbol32.name);
+		if (!((symbol32.nlist->n_type & N_TYPE) == N_UNDF))
+		{
+			ft_printf("%08llx %c %s\n", symbol32.nlist->n_value, debug, symbol32.name);
+		}
+		else
+		{
+			ft_printf("%10s %s\n", "U", symbol32.name);
+		}
 	}
 	else
-	{
-		ft_printf("%10s %s\n", "U", symbol32.name);
-	}
+		print_symbol64_2(debug, symbol32.nlist->n_type,
+			symbol32.name, symbol32.nlist->n_value);
 }
 
 void	print_symbol(t_symbol *symbol, t_nm_browser *browser)
@@ -77,7 +100,7 @@ void	print_symbol_tree(t_tree *tree, t_nm_browser *browser)
 		print_symbol_tree(tree->right, browser);
 	}
 }
-
+/*
 void	debug_sections(t_nm_browser *browser)
 {
 	int i;
@@ -90,7 +113,7 @@ void	debug_sections(t_nm_browser *browser)
 		i++;
 	}
 }
-
+*/
 void	nm_print(t_nm_browser *browser)
 {
 	print_symbol_tree(browser->symbols, browser);
