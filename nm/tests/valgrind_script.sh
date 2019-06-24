@@ -43,7 +43,7 @@ do
 	#echo "processing: valgrind --leak-check=full --error-exitcode=$error_exit_code --suppressions=$valgrind_supps --log-file=$tmp_trace ./asm $file > /dev/null 2>&1"
 	valgrind --leak-check=full --error-exitcode=$error_exit_code --suppressions=$valgrind_supps --log-file=$trace ./$nm_dir/$nm_name $file > /dev/null 2>&1
 	ret=$?
-	if [ $ret -eq $error_exit_code ] || [ $ret -ne 1 ] || [ $ret -ne 0 ];
+	if [ $ret -eq $error_exit_code ] || ([ $ret -ne 1 ] && [ $ret -ne 0 ]);
 	then
 		echo -e "${red}valgrind errors for file ${file} logged in ${trace}${eoc}"
 	else
@@ -54,7 +54,7 @@ do
 	j=$((j+1))
 done
 
-if [ ! -f $diff_file_list ]
+if [ $i -eq $j ]
 then
 	echo -e "${green}no valgrind errors at all ! ($i/$j tests passed) !${eoc}"
 else

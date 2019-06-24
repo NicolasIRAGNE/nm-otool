@@ -111,14 +111,26 @@ void	debug_sections(t_nm_browser *browser)
 		i++;
 	}
 }
-*/
-void	nm_print(t_header_parser *parser, t_nm_browser *browser)
+ */
+void	nm_print_header_parser(t_header_parser *parser,
+			t_nm_browser *browser, int len)
 {
-	if (parser->symbols)
+	if (browser->nb_args > 1 || len > 1)
+		print_parser_header_intro(parser);
+	print_symbol_tree(parser->symbols, browser);
+}
+
+void	nm_print(t_nm_browser *browser)
+{
+	t_list	*ptr;
+	int		len;
+
+	len = ft_lstlength(browser->parsers);
+	ptr = browser->parsers;
+	while (ptr != NULL)
 	{
-		if (browser->nb_args > 1)
-			print_parser_header_intro(parser);
-		print_symbol_tree(parser->symbols, browser);
+		nm_print_header_parser(ptr->content, browser, len);
+		ptr = ptr->next;
 	}
 //	debug_sections(browser);
 }

@@ -182,5 +182,8 @@ int		fill_browser64(t_header_parser *parser, t_nm_browser *browser)
 		return (1);
 	if (fill_symbol_table64(parser, browser))
 		return (1);
+	if (ft_add_to_list_back(&browser->parsers, parser,
+		sizeof(t_header_parser)))
+		return (1);
 	return (0);
 }

@@ -14,7 +14,14 @@
 
 void	free_parser(t_header_parser *parser)
 {
-	ft_tree_del_ptr(&parser->symbols);
+	ft_tree_del_value(&parser->symbols);
 	if (parser->section_arr.sections)
 		free(parser->section_arr.sections);
+}
+
+void	free_parser_lst(void *content, size_t dummy)
+{
+	(void)dummy;
+	free_parser((t_header_parser *)content);
+	free(content);
 }

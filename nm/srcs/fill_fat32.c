@@ -37,8 +37,6 @@ int		process_browser_fat_arch32(struct fat_arch *fat_arch,
 	new_parser.cputype = fat_arch->cputype;
 	if (fill_browser(&new_parser, browser))
 		return (1);
-	nm_print(&new_parser, browser);
-	free_parser(&new_parser);
 	return (0);
 }
 

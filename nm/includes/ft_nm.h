@@ -73,6 +73,7 @@ struct						s_nm_browser
 	int						has_64 : 1;
 	int						has_bad_index : 1;
 	int						nb_args;
+	t_list					*parsers;
 };
 
 typedef struct s_nm_browser	t_nm_browser;
@@ -149,8 +150,7 @@ char						*get_cpu_name(cpu_type_t cpu);
 /*
 ** print.c
 */
-void						nm_print(t_header_parser *parser,
-								t_nm_browser *browser);
+void						nm_print(t_nm_browser *browser);
 
 /*
 ** fill_debug.c
@@ -166,7 +166,7 @@ int							fill_debug32(t_symbol *symbol,
 ** free.c
 */
 void						free_parser(t_header_parser *parser);
-
+void						free_parser_lst(void *content, size_t dummy);
 /*
 ** swap.c
 */
