@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 01:46:28 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/22 01:46:28 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/06/24 18:34:06 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		fill_debug_from_type(t_symbol *symbol, uint8_t type,
 		symbol->debug = 'A';
 	else if ((type & N_TYPE) == N_INDR)
 		symbol->debug = 'I';
-	else if ((type & N_TYPE) == N_PBUD)
+	else if ((type & N_TYPE) == N_PBUD && !browser->has_bad_index)
 		symbol->debug = 'u';
 	else
 	{

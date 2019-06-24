@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 02:14:47 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/21 02:14:47 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/06/24 16:54:18 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ int	init_browser(t_nm_browser *browser, char *filename)
 	return (0);
 }
 
-void	init_browser_general(t_nm_browser *browser)
+void	init_browser_general(t_nm_browser *browser, char *progname)
 {
 	browser->ret = 0;
 	browser->has_bad_index = 0;
 	browser->sort_func = cmp_symbol_alpha;
 	browser->sort_mult = 1;
+	browser->progname = progname;
 }

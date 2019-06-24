@@ -6,18 +6,11 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:35:21 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/21 01:35:21 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/06/24 15:12:28 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
-
-int			bad_index(char *name)
-{
-	if (!ft_isascii(name[0]))
-		return (1);
-	return (0);
-}
 
 t_symbol	*nm_new_symbol64(struct nlist_64 *nlist, char *symbol_name,
 				t_nm_browser *browser)

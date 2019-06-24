@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 12:58:24 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/20 19:46:28 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/06/24 18:21:40 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # include "sections.h"
 
 # define DEFAULT_NM_FILE	"a.out"
+
+# define CORRUPTED			3
 
 typedef enum e_bin_type
 {
@@ -73,6 +75,7 @@ struct						s_nm_browser
 //	int						has_64 : 1;
 	int						has_bad_index : 1;
 	int						nb_args;
+	char					*progname;
 	t_list					*parsers;
 };
 
@@ -105,7 +108,8 @@ int							parse_options(int *i, int ac,
 /*
 ** init.c
 */
-void						init_browser_general(t_nm_browser *browser);
+void						init_browser_general(t_nm_browser *browser,
+								char *progname);
 int							init_browser(t_nm_browser *browser, char *filename);
 void						init_parser(t_header_parser *parser,
 								void *ptr, uint64_t offset, char *filename);
@@ -187,4 +191,8 @@ void	swap_nlist(struct nlist *nlist, int should_swap);
 
 int		is_corrupted_string(char *str, t_nm_browser *browser);
 int		is_corrupted_data(void *address, size_t size, t_nm_browser *browser);
+int		is_corrupted_segment_command_64(struct segment_command_64 *seg,
+			uint64_t offset, t_nm_browser *browser);
+int		is_corrupted_offset(uint64_t offset, uint64_t size,
+			t_nm_browser *browser);
 #endif

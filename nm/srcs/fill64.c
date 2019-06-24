@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:29:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/21 01:29:27 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/06/24 18:58:10 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 int		process_fill_symbols64(t_header_parser *parser, t_nm_browser *browser,
 			struct symtab_command *sym)
 {
-	uint32_t		i;
-	char			*stringtable;
-	struct nlist_64	*array;
-	t_symbol		*new_symbol;
-	struct mach_header_64 *header;
+	uint32_t				i;
+	char					*stringtable;
+	struct nlist_64			*array;
+	t_symbol				*new_symbol;
+	struct mach_header_64	*header;
 
 	header = parser->header_union.header64;
 	array = (void *)((void *)header + sym->symoff);
@@ -37,7 +37,7 @@ int		process_fill_symbols64(t_header_parser *parser, t_nm_browser *browser,
 				stringtable + array[i].n_un.n_strx, browser))
 		{
 			if (!(new_symbol = nm_new_symbol64(&array[i],
-							stringtable + array[i].n_un.n_strx, browser)))
+					stringtable + array[i].n_un.n_strx, browser)))
 				return (1);
 			if (fill_debug64(new_symbol, parser->section_arr, browser))
 			{
@@ -144,27 +144,56 @@ int		process_sections_array64(t_header_parser *parser, t_list **segments)
 ** gathers all segments in a linked list in order to iterate over them 
 ** and create an array for every sections
 */
-int		get_sections64(t_header_parser *parser)
+int		get_sections64(t_header_parser *parser, t_nm_browser *browser)
 {
 	struct load_command			*lc;
 	struct segment_command_64	*seg;
 	uint64_t					i;
 	t_list						*segments;
-	struct mach_header_64 *header;
+	struct mach_header_64		*header;
+	int							j;
 
+	j = 0;
 	header = parser->header_union.header64;
 	segments = NULL;
 	i = (uint64_t)((void *)header + sizeof(*header));
 	while (i < (uint64_t)((void *)header + header->sizeofcmds))
 	{
 		lc = (struct load_command*) i;
+		if (is_corrupted_data(lc, sizeof(struct load_command), browser))
+		{
+			ft_printf("OLALALLA\n");
+			return (0);
+		}
+		if (lc->cmdsize % 8)
+		{
+			ft_dprintf(2, "%s: %s truncated or malformed object "
+				"(load command %d fileoff not a multiple of 8)\n",
+					browser->progname, browser->filename, j);
+			return (CORRUPTED);
+		}
 		if (lc->cmd == LC_SEGMENT_64)
 		{
 			seg = (struct segment_command_64 *)lc;
+	//		if (is_corrupted_data(seg, sizeof(struct segment_command_64), browser))
+	//		{
+	//			return (0);
+	//		}
+			//swap_here
+			if (is_corrupted_offset(parser->offset + seg->fileoff,
+				seg->filesize, browser))
+			{
+				ft_dprintf(2, "%s: %s truncated or malformed object "
+					"(load command %d fileoff filed plus filesize "
+						"field in LC_SEGMENT_64 extends past the end of the"
+					  		 "file)\n", browser->progname, browser->filename, j);
+				return (CORRUPTED);
+			}
 			if (ft_add_to_list_ptr_back(&segments, seg, sizeof(seg)))
 				return (1);
 		}
 		i += lc->cmdsize;
+		j++;
 	}
 	return (process_sections_array64(parser, &segments));
 }
@@ -177,10 +206,12 @@ int		get_sections64(t_header_parser *parser)
 
 int		fill_browser64(t_header_parser *parser, t_nm_browser *browser)
 {
-	if (get_sections64(parser))
-		return (1);
-	if (fill_symbol_table64(parser, browser))
-		return (1);
+	int ret;
+
+	if ((ret = get_sections64(parser, browser)))
+		return (ret);
+	if ((ret = fill_symbol_table64(parser, browser)))
+		return (ret);
 	if (ft_add_to_list_back(&browser->parsers, parser,
 		sizeof(t_header_parser)))
 	{

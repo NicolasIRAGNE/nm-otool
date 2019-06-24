@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 19:16:02 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/22 19:16:02 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/06/24 19:19:08 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,76 @@ int		process_browser_fat_arch32(struct fat_arch *fat_arch,
 	return (0);
 }
 
+int		check_all_architectures(struct fat_arch *found,
+			struct fat_arch *fat_arch_array, t_header_parser *parser,
+				t_nm_browser *browser)
+{
+	uint32_t			i;
+	struct fat_header	*fat_header;
+
+	fat_header = parser->header_union.fat_header;	
+	i = 0;
+	while (i < fat_header->nfat_arch)
+	{
+		if (is_corrupted_data(&fat_arch_array[i],
+			sizeof(struct fat_arch), browser))
+		{
+			return (0);
+		}
+		swap_fat_arch(&fat_arch_array[i], parser->should_swap);
+		if (is_corrupted_offset(parser->offset + fat_arch_array[i].offset,
+			fat_arch_array[i].size, browser))
+		{
+			ft_dprintf(2, "%s: %s truncated or malformed fat file (offset plus size"
+				" of cputype (%d) cpusubtype (%d) extends past the end of the f"
+					"ile)\n", browser->progname, browser->filename,
+						fat_arch_array[i].cputype,
+							fat_arch_array[i].cpusubtype);
+			return (0);	
+		}
+		if (!(ft_strcmp(ARCH, get_cpu_name(fat_arch_array[i].cputype))))
+			found = &fat_arch_array[i];
+		i++;
+	}
+	return (0);
+}
+
+/*
 struct fat_arch	*get_fat_arch_from_fat_header32(struct fat_header *fat_header,
-			struct fat_arch *fat_arch_array, int should_swap)
+			struct fat_arch *fat_arch_array, t_header_parser *parser,
+				t_nm_browser *browser)
 {
 	uint32_t			i;
 
 	i = 0;
 	while (i < fat_header->nfat_arch)
 	{
-		swap_fat_arch(&fat_arch_array[i], should_swap);
+		if (is_corrupted_data(&fat_arch_array[i],
+			sizeof(struct fat_arch), browser))
+		{
+			ft_printf("didier\n");
+			return (0);
+		}
+		swap_fat_arch(&fat_arch_array[i], parser->should_swap);
+		
+		ft_printf("%lld + %lld = %lld\n", parser->offset, fat_arch_array[i].offset, parser->offset + fat_arch_array[i].offset);
+		if (is_corrupted_offset(parser->offset + fat_arch_array[i].offset,
+			fat_arch_array[i].size, browser))
+		{
+			ft_dprintf(2, "%s: %s truncated or malformed fat file (offset plus size"
+				" of cputype (%d) cpusubtype (%d) extends past the end of the f"
+					"ile)\n", browser->progname, browser->filename,
+						fat_arch_array[i].cputype,
+							fat_arch_array[i].cpusubtype);
+			return (0);	
+		}
 		if (!(ft_strcmp(ARCH, get_cpu_name(fat_arch_array[i].cputype))))
 			return (&fat_arch_array[i]);
 		i++;
 	}
 	return (NULL);
 }
+*/
 
 int		fill_browser_fat32(t_header_parser *parser, t_nm_browser *browser)
 {
@@ -65,7 +120,10 @@ int		fill_browser_fat32(t_header_parser *parser, t_nm_browser *browser)
 
 	fat_header = parser->header_union.fat_header;
 	fat_arch = (void *)browser->ptr + sizeof(fat_header);
-	if ((found = get_fat_arch_from_fat_header32(fat_header, fat_arch, parser->should_swap)))
+	found = NULL;
+	if (check_all_architectures(found, fat_arch, parser, browser))
+		return (CORRUPTED);
+	if (found)
 		return (process_browser_fat_arch32(found, parser, browser));
 	i = 0;
 	while (i < fat_header->nfat_arch)

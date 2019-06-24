@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 02:25:02 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/22 02:25:02 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/06/24 18:58:23 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,29 +156,49 @@ int		process_sections_array32(t_header_parser *parser, t_list **segments)
 ** gathers all segments in order to iterate over them and create an array for
 ** every sections
 */
-int		get_sections32(t_header_parser *parser)
+int		get_sections32(t_header_parser *parser, t_nm_browser *browser)
 {
 	struct mach_header			*header;
 	struct load_command			*lc;
 	struct segment_command		*seg;
 	uint64_t					i;
 	t_list						*segments;
+	int							j;
 
 	header = parser->header_union.header32;
 	segments = NULL;
 	i = (uint64_t)((void *)header + sizeof(*header));
+	j = 0;
 	while (i < (uint64_t)((void *)header + header->sizeofcmds))
 	{
 		lc = (struct load_command*) i;
+		if (is_corrupted_data(lc, sizeof(struct load_command), browser))
+		{
+			ft_printf("olalala\n");
+			return (0);
+		}
 		swap_load_command(lc, parser->should_swap);
 		if (lc->cmd == LC_SEGMENT)
 		{
 			seg = (struct segment_command *)lc;
+			if (is_corrupted_data(seg, sizeof(struct segment_command), browser))
+			{
+				return (0);
+			}
 			swap_segment_command(seg, parser->should_swap);
+			if (is_corrupted_offset(parser->offset + seg->fileoff, seg->filesize, browser))
+			{
+				ft_dprintf(2, "%s: %s truncated or malformed object "
+					"(load command %d fileoff filed plus filesize "
+						"field in LC_SEGMENT extends past the end of the"
+							"file)\n", browser->progname, browser->filename, j);
+				return (0);
+			}
 			if (ft_add_to_list_ptr_back(&segments, seg, sizeof(seg)))
 				return (1);
 		}
 		i += lc->cmdsize;
+		j++;
 	}
 	return (process_sections_array32(parser, &segments));
 }
@@ -192,10 +212,14 @@ int		get_sections32(t_header_parser *parser)
 int		fill_browser32(t_header_parser *parser,
 			t_nm_browser *browser)
 {
-	if (get_sections32(parser))
+	if (get_sections32(parser, browser))
 		return (1);
+	if (browser->ret)
+		return (0);
 	if (fill_symbol_table32(parser, browser))
 		return (1);
+	if (browser->ret)
+		return (0);
 	if (ft_add_to_list_back(&browser->parsers, parser,
 		sizeof(t_header_parser)))
 	{

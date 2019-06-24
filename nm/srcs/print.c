@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/20 19:45:42 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/06/24 18:51:34 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,15 @@ void	debug_sections(t_nm_browser *browser)
 		i++;
 	}
 }
- */
+*/
+char	get_debug(char debug, int has_bad_index)
+{
+	if (has_bad_index && (debug != 'C' && debug != 'I' && debug != 'A'))
+		return ('?');
+	else
+		return (debug);
+}
+
 void	print_parser_header_intro(t_header_parser *parser)
 {
 	if (parser->cputype == -1)
@@ -61,7 +69,9 @@ void	print_symbol64(t_symbol64 symbol64, char debug, t_nm_browser *browser)
 {
 	if (!((symbol64.nlist->n_type & N_TYPE) == N_UNDF) || browser->has_bad_index)
 	{
-		ft_printf("%016llx %c %s\n", symbol64.nlist->n_value, debug, get_symbol64_name(&symbol64));
+		ft_printf("%016llx %c %s\n", symbol64.nlist->n_value,
+			get_debug(debug, browser->has_bad_index),
+				get_symbol64_name(&symbol64));
 	}
 	else
 	{
@@ -74,7 +84,9 @@ void	print_symbol32(t_symbol32 symbol32, char debug, t_nm_browser *browser)
 	if (!((symbol32.nlist->n_type & N_TYPE) == N_UNDF)
 			|| browser->has_bad_index)
 	{
-		ft_printf("%08llx %c %s\n", symbol32.nlist->n_value, debug, get_symbol32_name(&symbol32));
+		ft_printf("%08llx %c %s\n", symbol32.nlist->n_value,
+			get_debug(debug, browser->has_bad_index),
+				get_symbol32_name(&symbol32));
 	}
 	else
 	{
