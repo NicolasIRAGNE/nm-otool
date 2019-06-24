@@ -50,6 +50,7 @@ typedef union				u_header_union
 
 typedef struct						s_header_parser
 {
+	char					*filename;
 	uint32_t				magic;
 	void					*ptr;
 	uint64_t				offset;
@@ -67,9 +68,9 @@ struct						s_nm_browser
 	int						ret;
 	long					(*sort_func)(void *, void *);
 	char					sort_mult;
-	char					*filename;
 	int						has_64 : 1;
 	int						has_bad_index : 1;
+	t_list					*parsers;
 };
 
 typedef struct s_nm_browser	t_nm_browser;
@@ -102,9 +103,12 @@ int							parse_options(int *i, int ac,
 ** init.c
 */
 void						init_browser_general(t_nm_browser *browser);
-int							init_browser(t_nm_browser *browser, char *filename);
+int							init_browser(t_nm_browser *browser,
+								char *filename);
 void						init_parser(t_header_parser *parser,
-								void *ptr, uint64_t offset);
+								void *ptr, char *filename, uint64_t offset);
+t_header_parser				*new_parser(void *ptr, char *filename,
+								uint64_t offset);
 
 /*i
 ** fill_tools.c
@@ -112,7 +116,7 @@ void						init_parser(t_header_parser *parser,
 int							add_symbol_to_browser(t_header_parser *parser,
 								t_nm_browser *browser, t_symbol *new_symbol);
 int							nm_perror(char *error_message,
-								t_nm_browser *browser);
+								t_header_parser *parser);
 t_symbol					*nm_new_symbol32(struct nlist *nlist,
 								char *symbol_name, t_nm_browser *browser);
 t_symbol					*nm_new_symbol64(struct nlist_64 *nlist,

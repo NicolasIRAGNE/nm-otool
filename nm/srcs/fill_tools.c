@@ -87,9 +87,9 @@ int		add_symbol_to_browser(t_header_parser *parser,
 //	}
 }
 
-int nm_perror(char *error_message, t_nm_browser *browser)
+int nm_perror(char *error_message, t_header_parser *parser)
 {
-	ft_dprintf(2, "%s: %s\n", browser->filename, error_message);
+	ft_dprintf(2, "%s: %s\n", parser->filename, error_message);
 	return (0);
 }
 

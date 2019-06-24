@@ -64,7 +64,7 @@ int	fill_browser(t_header_parser *parser, t_nm_browser *browser)
 {
 	get_header(parser);
 	if (parser->type == E_UNKNOWN)
-		return (nm_perror("unknown magic file", browser));
+		return (nm_perror("unknown magic file", parser));
 	swap_header(parser);
 	if (parser->type == E_64)
 		return (fill_browser64(parser, browser));
