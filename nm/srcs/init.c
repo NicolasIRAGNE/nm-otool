@@ -12,12 +12,15 @@
 
 #include "ft_nm.h"
 
-void	init_parser(t_header_parser *parser, void *ptr, uint64_t offset)
+void	init_parser(t_header_parser *parser, void *ptr,
+			uint64_t offset, char *filename)
 {
 	parser->ptr = ptr;
 	parser->offset = offset;
 	parser->symbols = NULL;
 	parser->section_arr.sections = NULL;
+	parser->filename = filename;
+	parser->cputype = -1;
 }
 
 int	init_browser(t_nm_browser *browser, char *filename)

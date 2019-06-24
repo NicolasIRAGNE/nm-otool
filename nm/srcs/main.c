@@ -15,15 +15,13 @@
 /*
 ** dump obj filename
 */
-int		process_nm(char *filename, t_nm_browser *browser, int nb_args)
+int		process_nm(char *filename, t_nm_browser *browser)
 {
 	t_header_parser	parser;
 
-	if (nb_args > 1)
-		ft_printf("\n%s:\n", filename);
 	if (init_browser(browser, filename))
 		return (1);
-	init_parser(&parser, browser->ptr, 0);
+	init_parser(&parser, browser->ptr, 0, filename);
 	if (fill_browser(&parser, browser))
 		return (1);
 	nm_print(&parser, browser);
@@ -40,7 +38,6 @@ int		main(int ac, char **av)
 	t_nm_browser	browser;
 	int				i;
 	int				ret;
-	int				nb_args;
 
 	init_browser_general(&browser);
 	if ((ret = parse_options(&i, ac, av, &browser)))
@@ -49,14 +46,15 @@ int		main(int ac, char **av)
 		return (browser.ret);
 	if (i == ac)
 	{
-		if (process_nm(DEFAULT_NM_FILE, &browser, 1))
+		browser.nb_args = 1;
+		if (process_nm(DEFAULT_NM_FILE, &browser))
 			return (EXIT_FAILURE);
 		return (browser.ret);
 	}
-	nb_args = ac - i;
+	browser.nb_args = ac - i;
 	while (i < ac)
 	{
-		if (process_nm(av[i++], &browser, nb_args))
+		if (process_nm(av[i++], &browser))
 			return (EXIT_FAILURE);
 	}
 	return (browser.ret);

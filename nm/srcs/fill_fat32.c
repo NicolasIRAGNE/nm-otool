@@ -29,11 +29,12 @@ char	*get_cpu_name(cpu_type_t cpu)
 }
 
 int		process_browser_fat_arch32(struct fat_arch *fat_arch,
-			t_nm_browser *browser)
+			t_header_parser *parser, t_nm_browser *browser)
 {
 	t_header_parser new_parser;
 	init_parser(&new_parser, (void *)browser->ptr + fat_arch->offset,
-		fat_arch->offset);
+		fat_arch->offset, parser->filename);
+	new_parser.cputype = fat_arch->cputype;
 	if (fill_browser(&new_parser, browser))
 		return (1);
 	nm_print(&new_parser, browser);
@@ -67,11 +68,12 @@ int		fill_browser_fat32(t_header_parser *parser, t_nm_browser *browser)
 	fat_header = parser->header_union.fat_header;
 	fat_arch = (void *)browser->ptr + sizeof(fat_header);
 	if ((found = get_fat_arch_from_fat_header32(fat_header, fat_arch, parser->should_swap)))
-		return (process_browser_fat_arch32(found, browser));
+		return (process_browser_fat_arch32(found, parser, browser));
 	i = 0;
+	browser->nb_args += (int)fat_header->nfat_arch - 1;
 	while (i < fat_header->nfat_arch)
 	{
-		if (process_browser_fat_arch32(&fat_arch[i], browser))
+		if (process_browser_fat_arch32(&fat_arch[i], parser, browser))
 			return (1);
 		i++;
 	}

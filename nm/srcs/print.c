@@ -11,6 +11,16 @@
 /* ************************************************************************** */
 
 #include "ft_nm.h"
+
+void	print_parser_header_intro(t_header_parser *parser)
+{
+	if (parser->cputype == -1)
+		ft_printf("\n%s:\n", parser->filename);
+	else
+		ft_printf("\n%s (for architecture %s):\n",
+			parser->filename, get_cpu_name(parser->cputype));
+}
+
 /*
 void	print_section64(struct section_64 *section64)
 {
@@ -104,6 +114,11 @@ void	debug_sections(t_nm_browser *browser)
 */
 void	nm_print(t_header_parser *parser, t_nm_browser *browser)
 {
-	print_symbol_tree(parser->symbols, browser);
+	if (parser->symbols)
+	{
+		if (browser->nb_args > 1)
+			print_parser_header_intro(parser);
+		print_symbol_tree(parser->symbols, browser);
+	}
 //	debug_sections(browser);
 }

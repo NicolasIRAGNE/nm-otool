@@ -48,8 +48,9 @@ typedef union				u_header_union
 	struct fat_header		*fat_header;
 }							t_header_union;
 
-typedef struct						s_header_parser
+typedef struct				s_header_parser
 {
+	char					*filename;
 	uint32_t				magic;
 	void					*ptr;
 	uint64_t				offset;
@@ -58,6 +59,7 @@ typedef struct						s_header_parser
 	int						should_swap : 1;
 	t_section_arr			section_arr;
 	t_tree					*symbols;
+	cpu_type_t				cputype;
 }							t_header_parser;
 
 struct						s_nm_browser
@@ -70,6 +72,7 @@ struct						s_nm_browser
 	char					*filename;
 	int						has_64 : 1;
 	int						has_bad_index : 1;
+	int						nb_args;
 };
 
 typedef struct s_nm_browser	t_nm_browser;
@@ -104,7 +107,8 @@ int							parse_options(int *i, int ac,
 void						init_browser_general(t_nm_browser *browser);
 int							init_browser(t_nm_browser *browser, char *filename);
 void						init_parser(t_header_parser *parser,
-								void *ptr, uint64_t offset);
+								void *ptr, uint64_t offset, char *filename);
+
 
 /*i
 ** fill_tools.c
