@@ -28,7 +28,6 @@ int	init_browser(t_nm_browser *browser, char *filename)
 	int			fd;
 
 	browser->filename = filename;
-	browser->has_64 = 0;
 	browser->parsers = NULL;
 	if ((fd = open(filename, O_RDONLY)) < 0)
 	{

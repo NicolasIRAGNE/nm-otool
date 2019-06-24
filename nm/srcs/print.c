@@ -12,15 +12,6 @@
 
 #include "ft_nm.h"
 
-void	print_parser_header_intro(t_header_parser *parser)
-{
-	if (parser->cputype == -1)
-		ft_printf("\n%s:\n", parser->filename);
-	else
-		ft_printf("\n%s (for architecture %s):\n",
-			parser->filename, get_cpu_name(parser->cputype));
-}
-
 /*
 void	print_section64(struct section_64 *section64)
 {
@@ -43,10 +34,28 @@ void	debug_symbol_sect64(t_symbol64 symbol64, t_nm_browser *browser)
 }
 */
 
-//void	print_symbol64_2(char debug, uint8_t n_type,
-//			char *name, t_nm_browser *browser)
-//{
-//}
+/*
+void	debug_sections(t_nm_browser *browser)
+{
+	int i;
+
+	i = 1;
+	while (i <= browser->section_arr.size)
+	{
+		ft_printf("section #%d\n", i);
+		print_section64(browser->section_arr.sections[i].section_union.section64);
+		i++;
+	}
+}
+ */
+void	print_parser_header_intro(t_header_parser *parser)
+{
+	if (parser->cputype == -1)
+		ft_printf("\n%s:\n", parser->filename);
+	else
+		ft_printf("\n%s (for architecture %s):\n",
+			parser->filename, get_cpu_name(parser->cputype));
+}
 
 void	print_symbol64(t_symbol64 symbol64, char debug, t_nm_browser *browser)
 {
@@ -62,23 +71,15 @@ void	print_symbol64(t_symbol64 symbol64, char debug, t_nm_browser *browser)
 
 void	print_symbol32(t_symbol32 symbol32, char debug, t_nm_browser *browser)
 {
-	(void)browser;
-
-	if (!browser->has_64 || 1)
-	{
-		if (!((symbol32.nlist->n_type & N_TYPE) == N_UNDF)
+	if (!((symbol32.nlist->n_type & N_TYPE) == N_UNDF)
 			|| browser->has_bad_index)
-		{
-			ft_printf("%08llx %c %s\n", symbol32.nlist->n_value, debug, get_symbol32_name(&symbol32));
-		}
-		else
-		{
-			ft_printf("%10s %s\n", "U", get_symbol32_name(&symbol32));
-		}
+	{
+		ft_printf("%08llx %c %s\n", symbol32.nlist->n_value, debug, get_symbol32_name(&symbol32));
 	}
-//	else
-//		print_symbol64_2(debug, symbol32.nlist->n_type,
-//			symbol32.name, browser);
+	else
+	{
+		ft_printf("%10s %s\n", "U", get_symbol32_name(&symbol32));
+	}
 }
 
 void	print_symbol(t_symbol *symbol, t_nm_browser *browser)
@@ -98,20 +99,7 @@ void	print_symbol_tree(t_tree *tree, t_nm_browser *browser)
 		print_symbol_tree(tree->right, browser);
 	}
 }
-/*
-void	debug_sections(t_nm_browser *browser)
-{
-	int i;
 
-	i = 1;
-	while (i <= browser->section_arr.size)
-	{
-		ft_printf("section #%d\n", i);
-		print_section64(browser->section_arr.sections[i].section_union.section64);
-		i++;
-	}
-}
- */
 void	nm_print_header_parser(t_header_parser *parser,
 			t_nm_browser *browser, int len)
 {
@@ -132,5 +120,4 @@ void	nm_print(t_nm_browser *browser)
 		nm_print_header_parser(ptr->content, browser, len);
 		ptr = ptr->next;
 	}
-//	debug_sections(browser);
 }

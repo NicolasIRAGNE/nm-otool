@@ -43,6 +43,9 @@ void	get_header(t_header_parser *parser)
 		parser->type = E_UNKNOWN;
 }
 
+/*
+** update the should_swap field and swap the header of the file if necessary
+*/
 void	swap_header(t_header_parser *parser)
 {
 	if (parser->magic == MH_CIGAM_64 || parser->magic == MH_CIGAM
@@ -59,6 +62,17 @@ void	swap_header(t_header_parser *parser)
 	else
 		parser->should_swap = 0;
 }
+
+/*
+** fill the parser symbols given an address (parser->ptr) and a mapped file
+** in the browser
+**
+** will also append the parser to the end of the t_list if it contains
+** any symbols
+**
+** in the case of fat_headers, this function will call itself
+** recursively for all theheaders found in the fat_header
+*/
 
 int	fill_browser(t_header_parser *parser, t_nm_browser *browser)
 {

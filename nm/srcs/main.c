@@ -13,7 +13,8 @@
 #include "ft_nm.h"
 
 /*
-** dump obj filename
+** dump obj filename by creating a list of the parsed architectures
+** in fill_browser, then printing it one by one in nm_print
 */
 int		process_nm(char *filename, t_nm_browser *browser)
 {

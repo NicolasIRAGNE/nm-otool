@@ -49,7 +49,6 @@ int		process_fill_symbols64(t_header_parser *parser, t_nm_browser *browser,
 				free(new_symbol);
 				return (1);
 			}
-			browser->has_64 = 1;
 		}
 		i++;
 	}
@@ -112,7 +111,7 @@ int		fill_sections_from_segment64(t_section *sections, int *index,
 }
 
 /*
-** map all sections into a single array starting at index 1
+** map all sections into a single array starting at index 1 from a linked list
 */
 int		process_sections_array64(t_header_parser *parser, t_list **segments)
 {
@@ -142,8 +141,8 @@ int		process_sections_array64(t_header_parser *parser, t_list **segments)
 }
 
 /*
-** gathers all segments in order to iterate over them and create an array for
-** every sections
+** gathers all segments in a linked list in order to iterate over them 
+** and create an array for every sections
 */
 int		get_sections64(t_header_parser *parser)
 {
@@ -173,7 +172,7 @@ int		get_sections64(t_header_parser *parser)
 /*
 ** store sections by index of apparition and symbol tables sorted 
 ** in a tree structure (stocks the debug Character (T, U, ...) by peeking
-** at the matching section)
+** at the matching section (mainly)
 */
 
 int		fill_browser64(t_header_parser *parser, t_nm_browser *browser)
@@ -184,6 +183,8 @@ int		fill_browser64(t_header_parser *parser, t_nm_browser *browser)
 		return (1);
 	if (ft_add_to_list_back(&browser->parsers, parser,
 		sizeof(t_header_parser)))
+	{
 		return (1);
+	}
 	return (0);
 }

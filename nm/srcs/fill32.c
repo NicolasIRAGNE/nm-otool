@@ -192,13 +192,14 @@ int		get_sections32(t_header_parser *parser)
 int		fill_browser32(t_header_parser *parser,
 			t_nm_browser *browser)
 {
-//	nm_print_header(parser);
 	if (get_sections32(parser))
 		return (1);
 	if (fill_symbol_table32(parser, browser))
 		return (1);
 	if (ft_add_to_list_back(&browser->parsers, parser,
 		sizeof(t_header_parser)))
+	{
 		return (1);
+	}
 	return (0);
 }

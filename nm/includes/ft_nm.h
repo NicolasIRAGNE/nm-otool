@@ -70,7 +70,7 @@ struct						s_nm_browser
 	long					(*sort_func)(void *, void *);
 	char					sort_mult;
 	char					*filename;
-	int						has_64 : 1;
+//	int						has_64 : 1;
 	int						has_bad_index : 1;
 	int						nb_args;
 	t_list					*parsers;
