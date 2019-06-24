@@ -68,7 +68,6 @@ int		fill_browser_fat32(t_header_parser *parser, t_nm_browser *browser)
 	if ((found = get_fat_arch_from_fat_header32(fat_header, fat_arch, parser->should_swap)))
 		return (process_browser_fat_arch32(found, parser, browser));
 	i = 0;
-	browser->nb_args += (int)fat_header->nfat_arch - 1;
 	while (i < fat_header->nfat_arch)
 	{
 		if (process_browser_fat_arch32(&fat_arch[i], parser, browser))
