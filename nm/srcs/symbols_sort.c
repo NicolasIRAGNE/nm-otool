@@ -18,12 +18,16 @@ long	cmp_symbol_alpha(void *s1, void *s2)
 	t_symbol *symbol2;
 	char	*name1;
 	char	*name2;
+	int		ret;
 
 	symbol1 = (t_symbol *)s1;
 	symbol2 = (t_symbol *)s2;
 	name1 = get_symbol_name(symbol1);
 	name2 = get_symbol_name(symbol2);
-	return (ft_strcmp(name1, name2));
+	if (!(ret = (ft_strcmp(name1, name2))))
+		return (cmp_symbol_numerical(s1, s2));
+	else
+		return (ret);
 }
 
 long	cmp_symbol_numerical(void *s1, void *s2)
@@ -38,7 +42,7 @@ long	cmp_symbol_numerical(void *s1, void *s2)
 	value1 = get_symbol_value(symbol1);
 	value2 = get_symbol_value(symbol2);
 	if (value1 == value2)
-		return (cmp_symbol_alpha(s1, s2));
+		return (-ft_strcmp(get_symbol_name(symbol1), get_symbol_name(symbol2)));
 	else
 	{
 //		ft_printf("%lld - %lld = %lld\n", value1, value2 , value1 - value2);

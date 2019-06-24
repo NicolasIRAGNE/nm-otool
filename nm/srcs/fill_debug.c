@@ -45,7 +45,7 @@ int		process_fill_debug_from_section(t_symbol *symbol,
 int		fill_debug_from_type(t_symbol *symbol, uint8_t type,
 			t_nm_browser *browser)
 {
-	if (type == N_UNDF && !browser->has_bad_index)
+	if (type == N_UNDF)// && !browser->has_bad_index)
 		symbol->debug = 'U';
 	else if ((type & N_TYPE) == N_ABS)
 		symbol->debug = 'A';

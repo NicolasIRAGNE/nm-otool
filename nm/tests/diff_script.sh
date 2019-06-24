@@ -33,7 +33,7 @@ make -C $nm_dir >/dev/null 2>&1
 
 mkdir -p $log_dir
 rm -rf ${log_dir}/*
-rm $diff_file_list
+rm $diff_file_list 2>/dev/null
 
 ((i=0))
 ((j=0))
