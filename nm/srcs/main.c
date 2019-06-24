@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/24 19:00:06 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/06/24 20:22:44 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,5 @@ int		main(int ac, char **av)
 		if (process_nm(av[i++], &browser))
 			return (EXIT_FAILURE);
 	}
-	ft_dprintf(0, "ret: %d\n", browser.ret);
 	return (browser.ret);
 }
