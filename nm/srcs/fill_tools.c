@@ -23,11 +23,7 @@ t_symbol	*nm_new_symbol64(struct nlist_64 *nlist, char *symbol_name,
 	symbol->symbol_union.symbol64.name = symbol_name;
 	if ((symbol->symbol_union.symbol64.bad_index =
 		is_corrupted_string(symbol_name, browser)))
-	{
-//		if (browser->sort_func == cmp_symbol_alpha)
-//			browser->sort_func = cmp_symbol_numerical;
 		browser->has_bad_index = 1;
-	}
 	symbol->symbol_enum = E_SYMBOL_64;
 	return (symbol);
 }
