@@ -12,6 +12,13 @@ else
 	exit 1
 fi
 
+if [ ! -z $2 ];
+then
+	opts=$2
+else
+	opts=""
+fi
+
 green="\033[32m"
 red="\033[91m"
 eoc="\033[39m"
@@ -44,8 +51,8 @@ do
 	my_err="${trace_folder}/my_err"
 	nm_err="${trace_folder}/nm_err"
 
-	./$nm_dir/$nm_name $file > $my_trace 2>$my_err
-	nm $file > $nm_trace 2>$nm_err
+	./$nm_dir/$nm_name $opts $file > $my_trace 2>$my_err
+	nm $opts $file > $nm_trace 2>$nm_err
 
 	diff_trace=${trace_folder}/diff_trace
 	diff $my_trace $nm_trace > $diff_trace

@@ -36,15 +36,17 @@ int		process_fill_symbols32(t_header_parser *parser,
 	i = 0;
 	while (i < sym->nsyms)
 	{
-		if (should_add_symbol(array[i].n_type, array[i].n_desc, stringtable + array[i].n_un.n_strx, browser))
+		swap_nlist(&array[i], parser->should_swap);
+		if (should_add_symbol(array[i].n_type, array[i].n_desc,
+			stringtable + array[i].n_un.n_strx, browser))
 		{
 	//		ft_printf("%lld\n", array[i].n_type);
 	//		ft_printf("%lld\n", array[i].n_desc);
 	//		ft_printf("%s\n", stringtable + array[i].n_un.n_strx);
 			if (!(new_symbol = nm_new_symbol32(&array[i],
-							stringtable + array[i].n_un.n_strx)))
+							stringtable + array[i].n_un.n_strx, browser)))
 				return (1);
-			if ((ret = fill_debug32(new_symbol, parser->section_arr)))
+			if ((ret = fill_debug32(new_symbol, parser->section_arr, browser)))
 			{
 			//	if (browser->has_64)
 			//	{
@@ -52,7 +54,7 @@ int		process_fill_symbols32(t_header_parser *parser,
 			//		return (ret == 2 ? 0 : 1);
 			//	}
 			}
-			if (add_symbol_to_browser(browser, new_symbol))
+			if (add_symbol_to_browser(parser, browser, new_symbol))
 			{
 				free(new_symbol);
 				return (1);
@@ -74,10 +76,11 @@ int		fill_symbol_table32(t_header_parser *parser, t_nm_browser *browser)
 	i = (uint64_t)((void *)header + sizeof(*header));
 	while (i < (uint64_t)((void *)header + header->sizeofcmds))
 	{
-		lc = (struct load_command*) i;
+		lc = (struct load_command*)i;
 		if (lc->cmd == LC_SYMTAB)
 		{
 			sym = (struct symtab_command *)lc;
+			swap_symtab_command(sym, parser->should_swap);
 			if (process_fill_symbols32(parser, browser, sym))
 				return (1);
 		}
@@ -119,7 +122,8 @@ int		fill_sections_from_segment32(t_section *sections, int *index,
 }
 
 /*
-** map all sections into a single array starting at index 1
+** map all sections into a single array starting at index 1, storing it in
+** parser->section_arr.sections
 */
 int		process_sections_array32(t_header_parser *parser, t_list **segments)
 {
@@ -166,9 +170,11 @@ int		get_sections32(t_header_parser *parser)
 	while (i < (uint64_t)((void *)header + header->sizeofcmds))
 	{
 		lc = (struct load_command*) i;
+		swap_load_command(lc, parser->should_swap);
 		if (lc->cmd == LC_SEGMENT)
 		{
 			seg = (struct segment_command *)lc;
+			swap_segment_command(seg, parser->should_swap);
 			if (ft_add_to_list_ptr_back(&segments, seg, sizeof(seg)))
 				return (1);
 		}
@@ -186,6 +192,7 @@ int		get_sections32(t_header_parser *parser)
 int		fill_browser32(t_header_parser *parser,
 			t_nm_browser *browser)
 {
+//	nm_print_header(parser);
 	if (get_sections32(parser))
 		return (1);
 	if (fill_symbol_table32(parser, browser))

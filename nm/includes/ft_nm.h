@@ -57,18 +57,19 @@ typedef struct						s_header_parser
 	t_header_union			header_union;
 	int						should_swap : 1;
 	t_section_arr			section_arr;
+	t_tree					*symbols;
 }							t_header_parser;
 
 struct						s_nm_browser
 {
 	void					*ptr;
 	struct stat				st;
-	t_tree					*symbols;
 	int						ret;
 	long					(*sort_func)(void *, void *);
 	char					sort_mult;
 	char					*filename;
 	int						has_64 : 1;
+	int						has_bad_index : 1;
 };
 
 typedef struct s_nm_browser	t_nm_browser;
@@ -78,7 +79,7 @@ typedef struct s_nm_browser	t_nm_browser;
 */
 void						nm_print_header(t_header_parser *parser);
 void						debug_mach_header(struct mach_header *ptr);
-
+void						print_arch32(struct fat_arch *fat_arch);
 /*
 ** options_tools.c
 */
@@ -108,14 +109,14 @@ void						init_parser(t_header_parser *parser,
 /*i
 ** fill_tools.c
 */
-int							add_symbol_to_browser(t_nm_browser *browser,
-								t_symbol *new_symbol);
+int							add_symbol_to_browser(t_header_parser *parser,
+								t_nm_browser *browser, t_symbol *new_symbol);
 int							nm_perror(char *error_message,
 								t_nm_browser *browser);
 t_symbol					*nm_new_symbol32(struct nlist *nlist,
-								char *symbol_name);
+								char *symbol_name, t_nm_browser *browser);
 t_symbol					*nm_new_symbol64(struct nlist_64 *nlist,
-								char *symbol_name);
+								char *symbol_name, t_nm_browser *browser);
 int							should_add_symbol(uint8_t n_type, uint16_t n_stab,
 								char *name, t_nm_browser *browser);
 /*
@@ -140,17 +141,27 @@ int							fill_browser64(t_header_parser *parser,
 int							fill_browser_fat32(
 								t_header_parser *parser,
 									t_nm_browser *browser);
-
+char						*get_cpu_name(cpu_type_t cpu);
 /*
 ** print.c
 */
-void						nm_print(t_nm_browser *browser);
+void						nm_print(t_header_parser *parser,
+								t_nm_browser *browser);
 
 /*
 ** fill_debug.c
 */
-int							fill_debug64(t_symbol *symbol, t_section_arr section_arr);
-int						fill_debug32(t_symbol *symbol, t_section_arr section_arr);
+int							fill_debug64(t_symbol *symbol,
+								t_section_arr section_arr,
+									t_nm_browser *browser);
+int							fill_debug32(t_symbol *symbol,
+								t_section_arr section_arr,
+									t_nm_browser *browser);
+
+/*
+** free.c
+*/
+void						free_parser(t_header_parser *parser);
 
 /*
 ** swap.c
@@ -160,5 +171,16 @@ void	swap_mach_header64(struct mach_header_64 *header64);
 void	swap_mach_header(struct mach_header *header32, int should_swap);
 void	swap_fat_header(struct fat_header *fat_header);
 void	swap_fat_arch(struct fat_arch *fat_arch, int should_swap);
+void	swap_load_command(struct load_command *lc, int should_swap);
+void	swap_segment_command(struct segment_command *seg, int should_swap);
+void	swap_segment_command_64(struct segment_command_64 *seg,
+			int should_swap);
+void	swap_symtab_command(struct symtab_command *sym, int should_swap);
+void	swap_nlist(struct nlist *nlist, int should_swap);
+/*
+** corrupted.c
+*/
 
+int		is_corrupted_string(char *str, t_nm_browser *browser);
+int		is_corrupted_data(void *address, size_t size, t_nm_browser *browser);
 #endif

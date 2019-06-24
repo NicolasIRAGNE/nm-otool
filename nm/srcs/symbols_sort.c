@@ -40,7 +40,12 @@ long	cmp_symbol_numerical(void *s1, void *s2)
 	if (value1 == value2)
 		return (cmp_symbol_alpha(s1, s2));
 	else
-		return (value1 - value2);
+	{
+//		ft_printf("%lld - %lld = %lld\n", value1, value2 , value1 - value2);
+//		ft_printf("%llx - %llx = %llx\n", value1, value2 , value1 - value2);
+		return (value1 > value2 ? 1 : -1);
+//		return ((long)value1 - (long)value2);
+	}
 }
 
 long	cmp_symbol_none(void *s1, void *s2)

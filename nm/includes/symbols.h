@@ -27,12 +27,14 @@ typedef struct				s_symbol64
 {
 	struct nlist_64			*nlist;
 	char					*name;
+	int						bad_index: 1;
 }							t_symbol64;
 
 typedef struct				s_symbol32
 {
 	struct nlist			*nlist;
 	char					*name;
+	int						bad_index: 1;
 }							t_symbol32;
 
 typedef union				u_symbol_union
@@ -51,8 +53,11 @@ typedef struct				s_symbol
 /*
 ** symbols.c
 */
+char						*get_symbol32_name(t_symbol32 *symbol32);
+char						*get_symbol64_name(t_symbol64 *symbol64);
 char						*get_symbol_name(t_symbol *symbol);
 uint64_t					get_symbol_value(t_symbol *symbol);
+int							has_bad_index(t_symbol *symbol);
 int							is_same_name_symbol(void *s, void *str);
 /*
 ** symbols_sort.c

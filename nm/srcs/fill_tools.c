@@ -12,7 +12,15 @@
 
 #include "ft_nm.h"
 
-t_symbol	*nm_new_symbol64(struct nlist_64 *nlist, char *symbol_name)
+int			bad_index(char *name)
+{
+	if (!ft_isascii(name[0]))
+		return (1);
+	return (0);
+}
+
+t_symbol	*nm_new_symbol64(struct nlist_64 *nlist, char *symbol_name,
+				t_nm_browser *browser)
 {
 	t_symbol *symbol;
 
@@ -20,11 +28,19 @@ t_symbol	*nm_new_symbol64(struct nlist_64 *nlist, char *symbol_name)
 		return (NULL);
 	symbol->symbol_union.symbol64.nlist = nlist;
 	symbol->symbol_union.symbol64.name = symbol_name;
+	if ((symbol->symbol_union.symbol64.bad_index =
+		is_corrupted_string(symbol_name, browser)))
+	{
+		if (browser->sort_func == cmp_symbol_alpha)
+			browser->sort_func = cmp_symbol_numerical;
+		browser->has_bad_index = 1;
+	}
 	symbol->symbol_enum = E_SYMBOL_64;
 	return (symbol);
 }
 
-t_symbol	*nm_new_symbol32(struct nlist *nlist, char *symbol_name)
+t_symbol	*nm_new_symbol32(struct nlist *nlist, char *symbol_name,
+				t_nm_browser *browser)
 {
 	t_symbol *symbol;
 
@@ -32,11 +48,19 @@ t_symbol	*nm_new_symbol32(struct nlist *nlist, char *symbol_name)
 		return (NULL);
 	symbol->symbol_union.symbol32.nlist = nlist;
 	symbol->symbol_union.symbol32.name = symbol_name;
+	if ((symbol->symbol_union.symbol32.bad_index =
+		is_corrupted_string(symbol_name, browser)))
+	{
+		if (browser->sort_func == cmp_symbol_alpha)
+			browser->sort_func = cmp_symbol_numerical;
+		browser->has_bad_index = 1;
+	}
 	symbol->symbol_enum = E_SYMBOL_32;
 	return (symbol);
 }
 
-int		add_symbol_to_browser(t_nm_browser *browser, t_symbol *new_symbol)
+int		add_symbol_to_browser(t_header_parser *parser,
+			t_nm_browser *browser, t_symbol *new_symbol)
 {
 	t_tree *symbol_tree;
 	(void)symbol_tree;
@@ -54,11 +78,11 @@ int		add_symbol_to_browser(t_nm_browser *browser, t_symbol *new_symbol)
 //	{
 		if (browser->sort_func == cmp_symbol_none)
 		{
-			return (ft_tree_add_sorted(&browser->symbols, new_symbol,
+			return (ft_tree_add_sorted(&parser->symbols, new_symbol,
 						browser->sort_func));
 		}
 		else
-			return (ft_tree_add_sorted_mul(&browser->symbols, new_symbol,
+			return (ft_tree_add_sorted_mul(&parser->symbols, new_symbol,
 						browser->sort_func, browser->sort_mult));
 //	}
 }

@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tree_del_ptr.c                                  :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 22:16:04 by ldedier           #+#    #+#             */
-/*   Updated: 2018/11/27 22:17:08 by ldedier          ###   ########.fr       */
+/*   Created: 2019/06/24 01:32:45 by ldedier           #+#    #+#             */
+/*   Updated: 2019/06/24 01:32:45 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_nm.h"
 
-void	ft_tree_del_ptr(t_tree **tree)
+void	free_parser(t_header_parser *parser)
 {
-	if (*tree)
-	{
-		ft_tree_del_ptr(&((*tree)->left));
-		ft_tree_del_ptr(&((*tree)->right));
-		free(*tree);
-	}
-	*tree = NULL;
+	ft_tree_del_ptr(&parser->symbols);
+	if (parser->section_arr.sections)
+		free(parser->section_arr.sections);
 }

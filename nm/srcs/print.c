@@ -33,54 +33,42 @@ void	debug_symbol_sect64(t_symbol64 symbol64, t_nm_browser *browser)
 }
 */
 
-void	print_symbol64_2(char debug, uint8_t n_type,
-			char *name, uint64_t n_value)
-{
-	if (!((n_type & N_TYPE) == N_UNDF))
-	{
-		ft_printf("%016llx %c %s\n", n_value, debug, name);
-	}
-	else
-	{
-		ft_printf("%18s %s\n", "U", name);
-	}
-}
+//void	print_symbol64_2(char debug, uint8_t n_type,
+//			char *name, t_nm_browser *browser)
+//{
+//}
 
 void	print_symbol64(t_symbol64 symbol64, char debug, t_nm_browser *browser)
 {
-	print_symbol64_2(debug, symbol64.nlist->n_type,
-		symbol64.name, symbol64.nlist->n_value);
-/*
-	if (!((symbol64.nlist->n_type & N_TYPE) == N_UNDF))
+	if (!((symbol64.nlist->n_type & N_TYPE) == N_UNDF) || browser->has_bad_index)
 	{
-		ft_printf("%016llx %c %s\n", symbol64.nlist->n_value, debug, symbol64.name);
+		ft_printf("%016llx %c %s\n", symbol64.nlist->n_value, debug, get_symbol64_name(&symbol64));
 	}
 	else
 	{
 		ft_printf("%18s %s\n", "U", symbol64.name);
 	}
-*/
-	(void)browser;
 }
 
 void	print_symbol32(t_symbol32 symbol32, char debug, t_nm_browser *browser)
 {
 	(void)browser;
 
-	if (!browser->has_64)
+	if (!browser->has_64 || 1)
 	{
-		if (!((symbol32.nlist->n_type & N_TYPE) == N_UNDF))
+		if (!((symbol32.nlist->n_type & N_TYPE) == N_UNDF)
+			|| browser->has_bad_index)
 		{
-			ft_printf("%08llx %c %s\n", symbol32.nlist->n_value, debug, symbol32.name);
+			ft_printf("%08llx %c %s\n", symbol32.nlist->n_value, debug, get_symbol32_name(&symbol32));
 		}
 		else
 		{
-			ft_printf("%10s %s\n", "U", symbol32.name);
+			ft_printf("%10s %s\n", "U", get_symbol32_name(&symbol32));
 		}
 	}
-	else
-		print_symbol64_2(debug, symbol32.nlist->n_type,
-			symbol32.name, symbol32.nlist->n_value);
+//	else
+//		print_symbol64_2(debug, symbol32.nlist->n_type,
+//			symbol32.name, browser);
 }
 
 void	print_symbol(t_symbol *symbol, t_nm_browser *browser)
@@ -114,8 +102,8 @@ void	debug_sections(t_nm_browser *browser)
 	}
 }
 */
-void	nm_print(t_nm_browser *browser)
+void	nm_print(t_header_parser *parser, t_nm_browser *browser)
 {
-	print_symbol_tree(browser->symbols, browser);
+	print_symbol_tree(parser->symbols, browser);
 //	debug_sections(browser);
 }

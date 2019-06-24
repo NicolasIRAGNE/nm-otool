@@ -42,18 +42,24 @@ int		process_fill_debug_from_section(t_symbol *symbol,
 	return (0);
 }
 
-int		fill_debug_from_type(t_symbol *symbol, uint64_t type)
+int		fill_debug_from_type(t_symbol *symbol, uint8_t type,
+			t_nm_browser *browser)
 {
-	if (type == N_UNDF)
+	if (type == N_UNDF && !browser->has_bad_index)
 		symbol->debug = 'U';
-	else if (type == N_ABS)
+	else if ((type & N_TYPE) == N_ABS)
 		symbol->debug = 'A';
-	else if (type == N_INDR)
+	else if ((type & N_TYPE) == N_INDR)
 		symbol->debug = 'I';
-	else if (type == N_PBUD)
+	else if ((type & N_TYPE) == N_PBUD)
 		symbol->debug = 'u';
 	else
-		symbol->debug = '?';
+	{
+		if (type & N_EXT && ((type & N_TYPE) == N_UNDF))
+			symbol->debug = 'C';
+		else
+			symbol->debug = '?';
+	}
 	return (0);
 }
 
@@ -62,7 +68,8 @@ int		fill_debug_from_type(t_symbol *symbol, uint64_t type)
 ** at its corresponding section
 */
 
-int		fill_debug64(t_symbol *symbol, t_section_arr section_arr)
+int		fill_debug64(t_symbol *symbol, t_section_arr section_arr,
+			t_nm_browser *browser)
 {
 	int			nsect;
 	t_symbol64	*symbol64;
@@ -87,10 +94,11 @@ int		fill_debug64(t_symbol *symbol, t_section_arr section_arr)
 		}
 	}
 	else
-		return (fill_debug_from_type(symbol, type));
+		return (fill_debug_from_type(symbol, symbol64->nlist->n_type, browser));
 }
 
-int		fill_debug32(t_symbol *symbol, t_section_arr section_arr)
+int		fill_debug32(t_symbol *symbol, t_section_arr section_arr,
+			t_nm_browser *browser)
 {
 	int			nsect;
 	t_symbol32	*symbol32;
@@ -119,5 +127,5 @@ int		fill_debug32(t_symbol *symbol, t_section_arr section_arr)
 		}
 	}
 	else
-		return (fill_debug_from_type(symbol, type));
+		return (fill_debug_from_type(symbol, symbol32->nlist->n_type, browser));
 }

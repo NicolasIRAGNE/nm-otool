@@ -33,17 +33,18 @@ int		process_fill_symbols64(t_header_parser *parser, t_nm_browser *browser,
 	i = 0;
 	while (i < sym->nsyms)
 	{
-		if (should_add_symbol(array[i].n_type, array[i].n_desc,	stringtable + array[i].n_un.n_strx, browser))
+		if (should_add_symbol(array[i].n_type, array[i].n_desc,
+				stringtable + array[i].n_un.n_strx, browser))
 		{
 			if (!(new_symbol = nm_new_symbol64(&array[i],
-							stringtable + array[i].n_un.n_strx)))
+							stringtable + array[i].n_un.n_strx, browser)))
 				return (1);
-			if (fill_debug64(new_symbol, parser->section_arr))
+			if (fill_debug64(new_symbol, parser->section_arr, browser))
 			{
 				free(new_symbol);
 				return (0);
 			}
-			if (add_symbol_to_browser(browser, new_symbol))
+			if (add_symbol_to_browser(parser, browser, new_symbol))
 			{
 				free(new_symbol);
 				return (1);

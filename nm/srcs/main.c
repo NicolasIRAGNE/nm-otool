@@ -26,7 +26,7 @@ int		process_nm(char *filename, t_nm_browser *browser, int nb_args)
 	init_parser(&parser, browser->ptr, 0);
 	if (fill_browser(&parser, browser))
 		return (1);
-	nm_print(browser);
+	nm_print(&parser, browser);
 	if (munmap(browser->ptr, browser->st.st_size) < 0)
 	{
 		ft_dprintf(2, "could not munmap the file %s\n", filename);

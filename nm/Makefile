@@ -13,11 +13,15 @@
 NAME = ft_nm
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+
+UNAME = $(shell uname -m)
 
 DEBUG ?= 0
 OK_COLOR = \x1b[32;01m
 EOC = \033[0m
+
+
+CFLAGS = -DARCH=\"$(UNAME)\" -Wall -Wextra -Werror
 
 ifeq ($(DEBUG), 1)
 	LFLAGS += -fsanitize=address
@@ -40,10 +44,10 @@ LIBFT = $(LIBFTDIR)/libft.a
 
 SRCS =	debug.c main.c symbols.c symbols_sort.c options.c options_tools.c \
 		options_func.c fill.c fill_tools.c fill32.c fill64.c fill_debug.c \
-		fill_fat32.c print.c init.c swap.c
+		fill_fat32.c print.c init.c swap.c corrupted.c free.c
 
 SRC	= $(addprefix $(SRCDIR)/, $(SRCS))
-DEP = $(addprefix $(INCLUDES)/, $(DEPS))
+DEP = $(addprefix $(INCLUDES)/,$(DEPS))
 
 all:
 	@make -C $(LIBFTDIR) all
