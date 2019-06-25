@@ -29,7 +29,9 @@ int		process_fill_debug_from_section(t_symbol *symbol,
 {
 //	printf("%s\n", get_symbol_name(symbol));
 //	ft_printf("%s\n", sectname);
-	if (!ft_strcmp(sectname, SECT_TEXT))
+	if (!sectname)
+		symbol->debug = global_case_symbol(n_type, 'S');
+	else if (!ft_strcmp(sectname, SECT_TEXT))
 		symbol->debug = global_case_symbol(n_type, 'T');
 	else if (!ft_strcmp(sectname, SECT_DATA))
 		symbol->debug = global_case_symbol(n_type, 'D');
@@ -48,9 +50,9 @@ int		fill_debug_from_type(t_symbol *symbol, uint8_t type,
 	if (type == N_UNDF)// && !browser->has_bad_index)
 		symbol->debug = 'U';
 	else if ((type & N_TYPE) == N_ABS)
-		symbol->debug = 'A';
+		symbol->debug = global_case_symbol(type, 'A');
 	else if ((type & N_TYPE) == N_INDR)
-		symbol->debug = 'I';
+		symbol->debug = global_case_symbol(type, 'I');
 	else if ((type & N_TYPE) == N_PBUD && !browser->has_bad_index)
 		symbol->debug = 'u';
 	else
@@ -115,9 +117,6 @@ int		fill_debug32(t_symbol *symbol, t_section_arr section_arr,
 			process_fill_debug_from_section(symbol, symbol32->nlist->n_type,
 				section_arr.sections[symbol32->nlist->n_sect].
 					section_union.section32->sectname);
-		//	if (!ft_strcmp(section_arr.sections[symbol32->nlist->n_sect].
-		//			section_union.section32->sectname, "__class"))
-		//		return (2);
 			return (0);
 		}
 		else

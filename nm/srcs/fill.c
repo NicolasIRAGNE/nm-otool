@@ -39,6 +39,10 @@ void	get_header(t_header_parser *parser)
 		parser->type = E_FAT64;
 		parser->header_union.fat_header = (struct fat_header*)parser->ptr;
 	}
+	else if (parser->magic == DYLIB_MAGIC)
+	{
+		parser->type = E_ARCHIVE;
+	}
 	else
 		parser->type = E_UNKNOWN;
 }
@@ -86,6 +90,8 @@ int	fill_browser(t_header_parser *parser, t_nm_browser *browser)
 		return (fill_browser32(parser, browser));
 	else if (parser->type == E_FAT32)
 		return (fill_browser_fat32(parser, browser));
+	else if (parser->type == E_ARCHIVE)
+		return (fill_browser_archive(parser, browser));
 //	else
 //		return (fill_parser_fat64(parser, browser));
 	return (0);

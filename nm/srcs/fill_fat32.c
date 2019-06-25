@@ -39,6 +39,25 @@ int		process_browser_fat_arch32(struct fat_arch *fat_arch,
 		return (1);
 	return (0);
 }
+int			fat_corrupted_print_error_alignment(struct fat_arch *fat_arch,
+				t_nm_browser *browser)
+{
+	ft_dprintf(2, "%s: %s truncated or malformed "
+		"fat file (offset: %d for cputype (%d) cpusubtype (%d) "
+			"not aligned on its alignment (2^%d))\n\n", browser->progname,
+				browser->filename, fat_arch->offset, fat_arch->cputype,
+					fat_arch->cpusubtype, fat_arch->align);
+	return (CORRUPTED);
+}
+
+
+int		fat_corrupted_print_error(char *str, struct fat_arch *fat_arch,
+			t_nm_browser *browser)
+{
+	ft_dprintf(2, str, browser->progname, browser->filename,
+		fat_arch->cputype, fat_arch->cpusubtype);
+	return (CORRUPTED);
+}
 
 int		check_all_architectures(struct fat_arch **found,
 			struct fat_arch *fat_arch_array, t_header_parser *parser,
@@ -54,20 +73,24 @@ int		check_all_architectures(struct fat_arch **found,
 		if (is_corrupted_data(&fat_arch_array[i],
 			sizeof(struct fat_arch), browser))
 		{
-			return (0);
+			ft_dprintf(2, "ddd\n");
+			return (1);
 		}
 		swap_fat_arch(&fat_arch_array[i], parser->should_swap);
+		if (fat_arch_array[i].offset % (1 << fat_arch_array[i].align))
+		{
+			return (fat_corrupted_print_error_alignment(&fat_arch_array[i],
+				browser));
+		}
 		if (is_corrupted_offset(parser->offset + fat_arch_array[i].offset,
 			fat_arch_array[i].size, browser))
 		{
-			ft_dprintf(2, "%s: %s truncated or malformed fat file (offset plus size"
-				" of cputype (%d) cpusubtype (%d) extends past the end of the f"
-					"ile)\n", browser->progname, browser->filename,
-						fat_arch_array[i].cputype,
-							fat_arch_array[i].cpusubtype);
+			return (fat_corrupted_print_error("%s: %s truncated or malformed "
+			"fat file (offset plus size of cputype (%d) cpusubtype (%d) extends"
+				"past the end of the file)\n\n", &fat_arch_array[i], browser));
 			return (1);
 		}
-		if (!(ft_strcmp(ARCH, get_cpu_name(fat_arch_array[i].cputype))))
+		if (!*found && (!ft_strcmp(ARCH, get_cpu_name(fat_arch_array[i].cputype))))
 			*found = &fat_arch_array[i];
 		i++;
 	}

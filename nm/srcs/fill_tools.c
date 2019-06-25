@@ -40,8 +40,8 @@ t_symbol	*nm_new_symbol32(struct nlist *nlist, char *symbol_name,
 	if ((symbol->symbol_union.symbol32.bad_index =
 		is_corrupted_string(symbol_name, browser)))
 	{
-		if (browser->sort_func == cmp_symbol_alpha)
-			browser->sort_func = cmp_symbol_numerical;
+//		if (browser->sort_func == cmp_symbol_alpha)
+//			browser->sort_func = cmp_symbol_numerical;
 		browser->has_bad_index = 1;
 	}
 	symbol->symbol_enum = E_SYMBOL_32;
@@ -51,29 +51,22 @@ t_symbol	*nm_new_symbol32(struct nlist *nlist, char *symbol_name,
 int		add_symbol_to_browser(t_header_parser *parser,
 			t_nm_browser *browser, t_symbol *new_symbol)
 {
-	t_tree *symbol_tree;
-	(void)symbol_tree;
+	if (browser->sort_func == cmp_symbol_none)
+	{
+		return (ft_tree_add_sorted(&parser->symbols, new_symbol,
+					browser->sort_func));
+	}
+	else
+		return (ft_tree_add_sorted_mul(&parser->symbols, new_symbol,
+					browser->sort_func, browser->sort_mult));
+}
 
-// Parfois ignore le nouveau symbol existant, parfois non.
-
-//	if ((symbol_tree = ft_tree_get(browser->symbols,
-//			get_symbol_name(new_symbol), is_same_name_symbol)))
-//	{
-//		free(symbol_tree->content);
-//		symbol_tree->content = new_symbol;
-//		return (0);
-//	}
-//	else
-//	{
-		if (browser->sort_func == cmp_symbol_none)
-		{
-			return (ft_tree_add_sorted(&parser->symbols, new_symbol,
-						browser->sort_func));
-		}
-		else
-			return (ft_tree_add_sorted_mul(&parser->symbols, new_symbol,
-						browser->sort_func, browser->sort_mult));
-//	}
+uint32_t max_uint32(uint32_t a, uint32_t b)
+{
+	if (a > b)
+		return (a);
+	else
+		return (b);
 }
 
 int nm_perror(char *error_message, t_nm_browser *browser)

@@ -12,6 +12,20 @@
 
 #include "ft_nm.h"
 
+int		overlaps_symtab_command(struct symtab_command *sym)
+{
+	uint32_t symbol_table_size;
+
+	symbol_table_size = sym->nsyms * sizeof(struct nlist_64);
+	if ((sym->symoff + symbol_table_size > sym->stroff
+		&& sym->symoff < sym->stroff)
+			|| (sym->stroff + sym->strsize > symbol_table_size
+				&& sym->stroff < sym->symoff))
+		return (1);
+	else
+		return (0);
+}
+
 /*
 ** create and append a new symbol to the symbol tree as it is sorted by the
 ** appropriate function
@@ -30,6 +44,15 @@ int		process_fill_symbols64(t_header_parser *parser, t_nm_browser *browser,
 	header = parser->header_union.header64;
 	array = (void *)((void *)header + sym->symoff);
 	stringtable = (void *)((void *)header + sym->stroff);
+	if (overlaps_symtab_command(sym))
+	{
+		ft_dprintf(2, "%s: %s truncated or malformed object (string table at"
+		"offset %d with a size of %d, overlaps symbol table at offset %d with "
+			"a size of %d)\n\n", browser->progname, browser->filename,
+				sym->stroff, sym->strsize, sym->symoff,
+					sym->nsyms * sizeof(struct nlist_64));
+		return (CORRUPTED);
+	}
 	i = 0;
 	while (i < sym->nsyms)
 	{
@@ -104,8 +127,10 @@ int		fill_sections_from_segment64(t_section *sections, int *index,
 	while (i < seg->nsects)
 	{
 		sections[*index].section_enum = E_SECTION_64;
-		sections[(*index)++].section_union.section64 = (void *)seg + 
+		sections[*index].section_union.section64 = (void *)seg + 
 			sizeof(*seg) + i++ * sizeof(struct section_64);
+		//swap_here
+		(*index)++;
 	}
 	return (0);
 }
@@ -151,49 +176,61 @@ int		get_sections64(t_header_parser *parser, t_nm_browser *browser)
 	uint64_t					i;
 	t_list						*segments;
 	struct mach_header_64		*header;
-	int							j;
+	uint32_t					j;
 
 	j = 0;
 	header = parser->header_union.header64;
 	segments = NULL;
 	i = (uint64_t)((void *)header + sizeof(*header));
-	while (i < (uint64_t)((void *)header + header->sizeofcmds))
+	while (j < header->ncmds)
 	{
 		lc = (struct load_command*) i;
-		if (is_corrupted_data(lc, sizeof(struct load_command), browser))
+		swap_load_command(lc, parser->should_swap);
+		if (is_corrupted_data(lc, lc->cmdsize, browser)
+			|| (void *)lc + max_uint32(lc->cmdsize, 1) > (void *)header + sizeof(*header) + header->sizeofcmds)
 		{
-			ft_printf("OLALALLA\n");
-			return (0);
+			ft_dprintf(2, "%s: %s truncated or malformed object "
+				"(load command %d extends past the end of all load commands in the file)\n\n",
+					browser->progname, browser->filename, j);
+			return (CORRUPTED);
 		}
 		if (lc->cmdsize % 8)
 		{
 			ft_dprintf(2, "%s: %s truncated or malformed object "
-				"(load command %d fileoff not a multiple of 8)\n",
+				"(load command %d fileoff not a multiple of 8)\n\n",
 					browser->progname, browser->filename, j);
 			return (CORRUPTED);
 		}
 		if (lc->cmd == LC_SEGMENT_64)
 		{
 			seg = (struct segment_command_64 *)lc;
-	//		if (is_corrupted_data(seg, sizeof(struct segment_command_64), browser))
-	//		{
-	//			return (0);
-	//		}
-			//swap_here
+			if (is_corrupted_data(seg, sizeof(struct segment_command_64), browser))
+			{
+				return (CORRUPTED);
+			}
+			swap_segment_command_64(seg, parser->should_swap);
+			
+			if (seg->cmdsize != sizeof(*seg) + sizeof(struct section_64) * seg->nsects)
+			{
+				ft_dprintf(2, "%s: %s truncated or malformed object "
+					"(load command %d inconsistent cmdsize in LC_SEGMENT_64 for the number of sections)\n\n",
+						browser->progname, browser->filename, j);
+				return (CORRUPTED);
+			}
 			if (is_corrupted_offset(parser->offset + seg->fileoff,
 				seg->filesize, browser))
 			{
 				ft_dprintf(2, "%s: %s truncated or malformed object "
 					"(load command %d fileoff filed plus filesize "
 						"field in LC_SEGMENT_64 extends past the end of the"
-					  		 "file)\n", browser->progname, browser->filename, j);
+					  		 "file)\n\n", browser->progname, browser->filename, j);
 				return (CORRUPTED);
 			}
 			if (ft_add_to_list_ptr_back(&segments, seg, sizeof(seg)))
 				return (1);
 		}
-		i += lc->cmdsize;
 		j++;
+		i += lc->cmdsize;
 	}
 	return (process_sections_array64(parser, &segments));
 }

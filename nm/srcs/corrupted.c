@@ -26,7 +26,7 @@ int		is_corrupted_string(char *str, t_nm_browser *browser)
 		|| (void *)str < browser->ptr)
 		return (1);
 	i = 0;
-	while (str[i] && (void *)str + i < browser->ptr + browser->st.st_size)
+	while ((void *)str + i < browser->ptr + browser->st.st_size && str[i])
 		i++;
 	if (str[i])
 		return (1);

@@ -46,9 +46,21 @@ void	swap_uint32(uint32_t *value, int should_swap)
 				| (((*value) & 0xff) << 24));
 }
 
+void	swap_uint64(uint64_t *value, int should_swap)
+{
+	swap_bytes(value, sizeof(*value), should_swap);
+}
+
 void	swap_mach_header64(struct mach_header_64 *header64)
 {
-	(void)header64;
+	swap_bytes(&header64->cputype, sizeof(header64->cputype), 1);
+	swap_bytes(&header64->cpusubtype,
+		sizeof(header64->cpusubtype), 1);
+	swap_uint32(&header64->filetype, 1);
+	swap_uint32(&header64->ncmds, 1);
+	swap_uint32(&header64->sizeofcmds, 1);
+	swap_uint32(&header64->flags, 1);
+	swap_uint32(&header64->reserved, 1);
 }
 
 void	swap_mach_header(struct mach_header *header32, int should_swap)
@@ -73,6 +85,18 @@ void	swap_load_command(struct load_command *load_command, int should_swap)
 	swap_uint32(&load_command->cmdsize, should_swap);
 }
 
+void	swap_segment_command_64(struct segment_command_64 *seg, int should_swap)
+{
+	swap_bytes(&seg->segname, sizeof(seg->segname), should_swap);
+	swap_uint64(&seg->vmaddr, should_swap);
+	swap_uint64(&seg->vmsize, should_swap);
+	swap_uint64(&seg->fileoff, should_swap);
+	swap_uint64(&seg->filesize, should_swap);
+	swap_bytes(&seg->maxprot, sizeof(vm_prot_t), should_swap);
+	swap_bytes(&seg->initprot, sizeof(vm_prot_t), should_swap);
+	swap_uint32(&seg->nsects, should_swap);
+	swap_uint32(&seg->flags, should_swap);
+}
 
 void	swap_segment_command(struct segment_command *seg, int should_swap)
 {

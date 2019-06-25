@@ -21,6 +21,7 @@ void	init_parser(t_header_parser *parser, void *ptr,
 	parser->section_arr.sections = NULL;
 	parser->filename = filename;
 	parser->cputype = -1;
+	parser->should_swap = 0;
 }
 
 int	init_browser(t_nm_browser *browser, char *filename)

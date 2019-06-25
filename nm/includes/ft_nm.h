@@ -32,6 +32,7 @@
 # define DEFAULT_NM_FILE	"a.out"
 
 # define CORRUPTED			3
+# define DYLIB_MAGIC		0x72613c21
 
 typedef enum e_bin_type
 {
@@ -115,7 +116,7 @@ void						init_parser(t_header_parser *parser,
 								void *ptr, uint64_t offset, char *filename);
 
 
-/*i
+/*
 ** fill_tools.c
 */
 int							add_symbol_to_browser(t_header_parser *parser,
@@ -128,6 +129,7 @@ t_symbol					*nm_new_symbol64(struct nlist_64 *nlist,
 								char *symbol_name, t_nm_browser *browser);
 int							should_add_symbol(uint8_t n_type, uint16_t n_stab,
 								char *name, t_nm_browser *browser);
+uint32_t					max_uint32(uint32_t a, uint32_t b);
 /*
 ** fill.c
 */
@@ -171,10 +173,10 @@ int							fill_debug32(t_symbol *symbol,
 */
 void						free_parser(t_header_parser *parser);
 void						free_parser_lst(void *content, size_t dummy);
+
 /*
 ** swap.c
 */
-
 void	swap_mach_header64(struct mach_header_64 *header64);
 void	swap_mach_header(struct mach_header *header32, int should_swap);
 void	swap_fat_header(struct fat_header *fat_header);
@@ -185,14 +187,20 @@ void	swap_segment_command_64(struct segment_command_64 *seg,
 			int should_swap);
 void	swap_symtab_command(struct symtab_command *sym, int should_swap);
 void	swap_nlist(struct nlist *nlist, int should_swap);
+
 /*
 ** corrupted.c
 */
-
 int		is_corrupted_string(char *str, t_nm_browser *browser);
 int		is_corrupted_data(void *address, size_t size, t_nm_browser *browser);
 int		is_corrupted_segment_command_64(struct segment_command_64 *seg,
 			uint64_t offset, t_nm_browser *browser);
 int		is_corrupted_offset(uint64_t offset, uint64_t size,
 			t_nm_browser *browser);
+
+/*
+** fill_archive.c
+*/
+int							fill_browser_archive(t_header_parser *parser,
+								t_nm_browser *browser);
 #endif

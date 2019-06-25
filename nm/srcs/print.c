@@ -50,7 +50,8 @@ void	debug_sections(t_nm_browser *browser)
 */
 char	get_debug(char debug, int has_bad_index)
 {
-	if (has_bad_index && (debug != 'C' && debug != 'I' && debug != 'A'))
+	(void)has_bad_index;
+	if (has_bad_index && (debug == 'U'))//debug != 'C' && debug != 'I' && debug != 'A'))
 		return ('?');
 	else
 		return (debug);

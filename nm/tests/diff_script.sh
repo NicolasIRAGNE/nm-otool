@@ -23,6 +23,7 @@ green="\033[32m"
 red="\033[91m"
 eoc="\033[39m"
 
+make -C .. -j8
 nm_dir=..
 nm_name=ft_nm
 
