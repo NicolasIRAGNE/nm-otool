@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:50 by niragne           #+#    #+#              #
-#    Updated: 2019/06/20 15:51:22 by niragne          ###   ########.fr        #
+#    Updated: 2019/07/01 16:29:44 by niragne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,10 @@ SPEED = -j8
 LIBFT_INCLUDEDIR = includes
 LIBFT = $(LIBFTDIR)/libft.a
 
+SHAREDLIB = shared
+SHAREDLIB_INCLUDEDIR = includes
+SHARED = $(SHAREDLIB)/shared.a
+
 INCLUDES_NO_PREFIX	=	nm.h otool.h
 
 SOURCES = $(addprefix $(SRCDIR)/, $(SRCS_NO_PREFIX))
@@ -56,7 +60,7 @@ endif
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(NM_NAME) $(OTOOL_NAME)
+$(NAME): $(LIBFT) $(SHARED) $(NM_NAME) $(OTOOL_NAME)
 
 debug:
 	make all DEBUG=1

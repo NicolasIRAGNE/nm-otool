@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:41 by niragne           #+#    #+#              #
-#    Updated: 2019/06/20 18:37:09 by ldedier          ###   ########.fr        #
+#    Updated: 2019/07/01 14:22:40 by niragne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ $(NAME): $(LIBFT) $(OBJECTS) $(DEP)
 	$(CC) -o $(NAME) $(OBJECTS) $(LIBFT) $(LFLAGS)
 	@echo "$(OK_COLOR)$(NAME) compiled with success$(EOC)"
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDES)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDES) $(DEP)
 	@mkdir -p $(OBJDIR)
 	$(CC) -o $@ -c $< $(CFLAGS) -I $(INCLUDES) -I $(LIBFT_INCLUDEDIR)
 

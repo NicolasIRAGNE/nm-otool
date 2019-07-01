@@ -1,0 +1,86 @@
+is_corrupted_data	./srcs/corrupted.c	/^int		is_corrupted_data(void *address, size_t size,/
+is_corrupted_string	./srcs/corrupted.c	/^int		is_corrupted_string(char *str, t_nm_browser */
+debug_mach_header	./srcs/debug.c	/^void	debug_mach_header(struct mach_header *ptr)$/
+nm_print_header	./srcs/debug.c	/^void    nm_print_header(t_header_parser *parser)$/
+print_arch32	./srcs/debug.c	/^void    print_arch32(struct fat_arch *fat_arch)$/
+print_cpu	./srcs/debug.c	/^void    print_cpu(cpu_type_t cpu)$/
+fill_browser	./srcs/fill.c	/^int	fill_browser(t_header_parser *parser, t_nm_bro/
+get_header	./srcs/fill.c	/^void	get_header(t_header_parser *parser)$/
+swap_header	./srcs/fill.c	/^void	swap_header(t_header_parser *parser)$/
+fill_browser32	./srcs/fill32.c	/^int		fill_browser32(t_header_parser *parser,$/
+fill_sections_from_segment32	./srcs/fill32.c	/^int		fill_sections_from_segment32(t_section *secti/
+fill_symbol_table32	./srcs/fill32.c	/^int		fill_symbol_table32(t_header_parser *parser, /
+get_sections32	./srcs/fill32.c	/^int		get_sections32(t_header_parser *parser)$/
+get_total_sections32	./srcs/fill32.c	/^int		get_total_sections32(t_list *segments32)$/
+process_fill_symbols32	./srcs/fill32.c	/^int		process_fill_symbols32(t_header_parser *parse/
+process_sections_array32	./srcs/fill32.c	/^int		process_sections_array32(t_header_parser *par/
+fill_browser64	./srcs/fill64.c	/^int		fill_browser64(t_header_parser *parser, t_nm_/
+fill_sections_from_segment64	./srcs/fill64.c	/^int		fill_sections_from_segment64(t_section *secti/
+fill_symbol_table64	./srcs/fill64.c	/^int		fill_symbol_table64(t_header_parser *parser, /
+get_sections64	./srcs/fill64.c	/^int		get_sections64(t_header_parser *parser)$/
+get_total_sections64	./srcs/fill64.c	/^int		get_total_sections64(t_list *segments64)$/
+process_fill_symbols64	./srcs/fill64.c	/^int		process_fill_symbols64(t_header_parser *parse/
+process_sections_array64	./srcs/fill64.c	/^int		process_sections_array64(t_header_parser *par/
+fill_debug32	./srcs/fill_debug.c	/^int		fill_debug32(t_symbol *symbol, t_section_arr /
+fill_debug64	./srcs/fill_debug.c	/^int		fill_debug64(t_symbol *symbol, t_section_arr /
+fill_debug_from_type	./srcs/fill_debug.c	/^int		fill_debug_from_type(t_symbol *symbol, uint8_/
+global_case_symbol	./srcs/fill_debug.c	/^char	global_case_symbol(uint8_t n_type, char c)$/
+process_fill_debug_from_section	./srcs/fill_debug.c	/^int		process_fill_debug_from_section(t_symbol *sym/
+fill_browser_fat32	./srcs/fill_fat32.c	/^int		fill_browser_fat32(t_header_parser *parser, t/
+get_cpu_name	./srcs/fill_fat32.c	/^char	*get_cpu_name(cpu_type_t cpu)$/
+get_fat_arch_from_fat_header32	./srcs/fill_fat32.c	/^struct fat_arch	*get_fat_arch_from_fat_header32(st/
+process_browser_fat_arch32	./srcs/fill_fat32.c	/^int		process_browser_fat_arch32(struct fat_arch *f/
+add_symbol_to_browser	./srcs/fill_tools.c	/^int		add_symbol_to_browser(t_header_parser *parser/
+bad_index	./srcs/fill_tools.c	/^int			bad_index(char *name)$/
+nm_new_symbol32	./srcs/fill_tools.c	/^t_symbol	*nm_new_symbol32(struct nlist *nlist, cha/
+nm_new_symbol64	./srcs/fill_tools.c	/^t_symbol	*nm_new_symbol64(struct nlist_64 *nlist, /
+nm_perror	./srcs/fill_tools.c	/^int nm_perror(char *error_message, t_nm_browser *b/
+should_add_symbol	./srcs/fill_tools.c	/^int		should_add_symbol(uint8_t n_type, uint16_t n_/
+free_parser	./srcs/free.c	/^void	free_parser(t_header_parser *parser)$/
+free_parser_lst	./srcs/free.c	/^void	free_parser_lst(void *content, size_t dummy)$/
+init_browser	./srcs/init.c	/^int	init_browser(t_nm_browser *browser, char *file/
+init_browser_general	./srcs/init.c	/^void	init_browser_general(t_nm_browser *browser)$/
+init_parser	./srcs/init.c	/^void	init_parser(t_header_parser *parser, void *pt/
+Mmain	./srcs/main.c	/^int		main(int ac, char **av)$/
+process_nm	./srcs/main.c	/^int		process_nm(char *filename, t_nm_browser *brow/
+nm_found_option	./srcs/options.c	/^static int	nm_found_option(char c, t_nm_browser *b/
+parse_options	./srcs/options.c	/^int			parse_options(int *i, int ac, char **av, t_n/
+process_parse_options	./srcs/options.c	/^int			process_parse_options(char *str, t_nm_browse/
+nm_opt_n	./srcs/options_func.c	/^void	nm_opt_n(t_nm_browser *browser, int *options)/
+nm_opt_p	./srcs/options_func.c	/^void	nm_opt_p(t_nm_browser *browser, int *options)/
+nm_opt_r	./srcs/options_func.c	/^void	nm_opt_r(t_nm_browser *browser, int *options)/
+describe_option	./srcs/options_tools.c	/^int		describe_option(char *str)$/
+nm_option_error	./srcs/options_tools.c	/^void	nm_option_error(char *str, t_nm_browser *brow/
+print_help	./srcs/options_tools.c	/^void	print_help(void)$/
+nm_print	./srcs/print.c	/^void	nm_print(t_nm_browser *browser)$/
+nm_print_header_parser	./srcs/print.c	/^void	nm_print_header_parser(t_header_parser *parse/
+print_parser_header_intro	./srcs/print.c	/^void	print_parser_header_intro(t_header_parser *pa/
+print_symbol	./srcs/print.c	/^void	print_symbol(t_symbol *symbol, t_nm_browser */
+print_symbol32	./srcs/print.c	/^void	print_symbol32(t_symbol32 symbol32, char debu/
+print_symbol64	./srcs/print.c	/^void	print_symbol64(t_symbol64 symbol64, char debu/
+print_symbol_tree	./srcs/print.c	/^void	print_symbol_tree(t_tree *tree, t_nm_browser /
+swap_bytes	./srcs/swap.c	/^void	swap_bytes(void *to_swap, size_t size, int sh/
+swap_fat_arch	./srcs/swap.c	/^void	swap_fat_arch(struct fat_arch *fat_arch, int /
+swap_fat_header	./srcs/swap.c	/^void	swap_fat_header(struct fat_header *fat_header/
+swap_load_command	./srcs/swap.c	/^void	swap_load_command(struct load_command *load_c/
+swap_mach_header	./srcs/swap.c	/^void	swap_mach_header(struct mach_header *header32/
+swap_mach_header64	./srcs/swap.c	/^void	swap_mach_header64(struct mach_header_64 *hea/
+swap_nlist	./srcs/swap.c	/^void	swap_nlist(struct nlist *nlist, int should_sw/
+swap_segment_command	./srcs/swap.c	/^void	swap_segment_command(struct segment_command */
+swap_symtab_command	./srcs/swap.c	/^void	swap_symtab_command(struct symtab_command *sy/
+swap_uint16	./srcs/swap.c	/^void	swap_uint16(uint16_t *value, int should_swap)/
+swap_uint32	./srcs/swap.c	/^void	swap_uint32(uint32_t *value, int should_swap)/
+get_symbol32_name	./srcs/symbols.c	/^char	*get_symbol32_name(t_symbol32 *symbol32)$/
+get_symbol64_name	./srcs/symbols.c	/^char	*get_symbol64_name(t_symbol64 *symbol64)$/
+get_symbol_name	./srcs/symbols.c	/^char	*get_symbol_name(t_symbol *symbol)$/
+get_symbol_value	./srcs/symbols.c	/^uint64_t get_symbol_value(t_symbol *symbol)$/
+has_bad_index	./srcs/symbols.c	/^int		 has_bad_index(t_symbol *symbol)$/
+is_same_name_symbol	./srcs/symbols.c	/^int		is_same_name_symbol(void *s, void *str)$/
+cmp_symbol_alpha	./srcs/symbols_sort.c	/^long	cmp_symbol_alpha(void *s1, void *s2)$/
+cmp_symbol_none	./srcs/symbols_sort.c	/^long	cmp_symbol_none(void *s1, void *s2)$/
+cmp_symbol_numerical	./srcs/symbols_sort.c	/^long	cmp_symbol_numerical(void *s1, void *s2)$/
+Mcount	./tests/own_tests/srcs/count.c	/^int main(int ac, char **av)$/
+banane	./tests/own_tests/srcs/count.c	/^int banane()$/
+Mhello	./tests/own_tests/srcs/hello.c	/^int main(void)$/
+Mnumbers	./tests/own_tests/srcs/numbers.c	/^int main()$/
+Mtest	./tests/own_tests/srcs/test.c	/^int main()$/
