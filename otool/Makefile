@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:41 by niragne           #+#    #+#              #
-#    Updated: 2019/07/01 16:38:44 by niragne          ###   ########.fr        #
+#    Updated: 2019/07/01 16:49:19 by niragne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,6 @@ CC = gcc
 DEBUG ?= 0
 OK_COLOR = \x1b[32;01m
 EOC = \033[0m
-
-
-CFLAGS = -DARCH=\"$(UNAME)\" -Wall -Wextra -Werror
 
 ifeq ($(DEBUG), 1)
 	LFLAGS += -fsanitize=address
@@ -44,7 +41,7 @@ SHAREDLIB = ../shared
 SHAREDLIB_INCLUDEDIR = $(SHAREDLIB)/includes
 SHARED = $(SHAREDLIB)/shared.a
 
-SRCS =	main.c print.c
+SRCS =	main.c print.c tools.c
 
 SRC	= $(addprefix $(SRCDIR)/, $(SRCS))
 DEP = $(addprefix $(INCLUDES)/,$(DEPS))

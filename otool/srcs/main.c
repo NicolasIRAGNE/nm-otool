@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 14:08:14 by niragne           #+#    #+#             */
-/*   Updated: 2019/07/01 16:35:35 by niragne          ###   ########.fr       */
+/*   Updated: 2019/07/01 16:52:32 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int main(int ac, char **av)
 	int i;
 
 	i = 1;
+	if (ac == 1)
+		print_usage(av[0]);
 	while (i < ac)
 	{
 		process_otool(av[i]);
