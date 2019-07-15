@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/24 18:51:34 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/15 17:40:05 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ void	print_symbol64(t_symbol64 symbol64, char debug, t_nm_browser *browser)
 	}
 	else
 	{
-		ft_printf("%18s %s\n", "U", symbol64.name);
+		ft_printf("%18s %*s\n", "U", (symbol64.length != -1 ? symbol64.length
+			: ft_strlen(get_symbol64_name(&symbol64))),
+				get_symbol64_name(&symbol64));
 	}
 }
 

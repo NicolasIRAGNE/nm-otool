@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 21:11:46 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/20 21:11:46 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/15 13:45:13 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct				s_symbol64
 {
 	struct nlist_64			*nlist;
 	char					*name;
+	int						length;
 	int						bad_index: 1;
 }							t_symbol64;
 
@@ -34,6 +35,7 @@ typedef struct				s_symbol32
 {
 	struct nlist			*nlist;
 	char					*name;
+	int						length;
 	int						bad_index: 1;
 }							t_symbol32;
 

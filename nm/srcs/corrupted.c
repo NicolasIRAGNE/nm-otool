@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 19:10:30 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/24 19:07:43 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/15 18:00:24 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,22 @@ int		ret_corr(t_nm_browser *browser)
 	return (1);
 }
 
-int		is_corrupted_string(char *str, t_nm_browser *browser)
+int		is_corrupted_string(char *str, t_nm_browser *browser, int *len)
 {
 	int		i;
-
+	
+	*len = -1;
 	if ((void *)str >= browser->ptr + browser->st.st_size
 		|| (void *)str < browser->ptr)
 		return (1);
 	i = 0;
-	while ((void *)str + i < browser->ptr + browser->st.st_size && str[i])
+	while ((void *)str + i < browser->ptr + browser->st.st_size - 1 && str[i])
 		i++;
 	if (str[i])
+	{
+		*len = i + 1;
 		return (1);
+	}
 	return (0);
 }
 

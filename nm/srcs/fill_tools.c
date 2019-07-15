@@ -6,24 +6,68 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:35:21 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/24 15:12:28 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/15 17:57:00 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
+char		*get_new_str_from_buffer(char *ptr, size_t n)
+{
+	char *res;
+
+	if (!(res = malloc(sizeof(char) * n + 1)))
+		return (NULL);
+	ft_memcpy(res, ptr, n);
+	res[n] = '\0';
+	return (res);
+}
+
+char		*compute_symbol64_name(t_symbol64 *symbol, char *symbol_name)
+{
+	if (symbol->bad_index)
+	{
+		if (symbol->length == -1)
+			return (ft_strdup("bad index"));
+		else
+			return (get_new_str_from_buffer(symbol_name, symbol->length));
+	}
+	return (ft_strdup(symbol_name));
+}
+
+char		*compute_symbol32_name(t_symbol32 *symbol, char *symbol_name)
+{
+	if (symbol->bad_index)
+	{
+		if (symbol->length == -1)
+			return (ft_strdup("bad index"));
+		else
+			return (get_new_str_from_buffer(symbol_name, symbol->length));
+	}
+	return (ft_strdup(symbol_name));
+}
+
 t_symbol	*nm_new_symbol64(struct nlist_64 *nlist, char *symbol_name,
 				t_nm_browser *browser)
 {
-	t_symbol *symbol;
+	t_symbol	*symbol;
 
 	if (!(symbol = (t_symbol *)malloc(sizeof(t_symbol))))
 		return (NULL);
 	symbol->symbol_union.symbol64.nlist = nlist;
-	symbol->symbol_union.symbol64.name = symbol_name;
 	if ((symbol->symbol_union.symbol64.bad_index =
-		is_corrupted_string(symbol_name, browser)))
+		is_corrupted_string(symbol_name, browser,
+			&symbol->symbol_union.symbol64.length))
+				&& symbol->symbol_union.symbol64.length == -1)
+	{
 		browser->has_bad_index = 1;
+	}
+	if (!(symbol->symbol_union.symbol64.name
+		= compute_symbol64_name(&symbol->symbol_union.symbol64, symbol_name)))
+	{
+		free(symbol);
+		return (NULL);
+	}
 	symbol->symbol_enum = E_SYMBOL_64;
 	return (symbol);
 }
@@ -38,11 +82,17 @@ t_symbol	*nm_new_symbol32(struct nlist *nlist, char *symbol_name,
 	symbol->symbol_union.symbol32.nlist = nlist;
 	symbol->symbol_union.symbol32.name = symbol_name;
 	if ((symbol->symbol_union.symbol32.bad_index =
-		is_corrupted_string(symbol_name, browser)))
+		is_corrupted_string(symbol_name, browser,
+			&symbol->symbol_union.symbol32.length))
+				&& symbol->symbol_union.symbol32.length == -1)
 	{
-//		if (browser->sort_func == cmp_symbol_alpha)
-//			browser->sort_func = cmp_symbol_numerical;
 		browser->has_bad_index = 1;
+	}
+	if (!(symbol->symbol_union.symbol32.name
+		= compute_symbol32_name(&symbol->symbol_union.symbol32, symbol_name)))
+	{
+		free(symbol);
+		return (NULL);
 	}
 	symbol->symbol_enum = E_SYMBOL_32;
 	return (symbol);

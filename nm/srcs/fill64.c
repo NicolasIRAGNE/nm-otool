@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:29:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/24 18:58:10 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/15 13:30:55 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int		process_fill_symbols64(t_header_parser *parser, t_nm_browser *browser,
 	header = parser->header_union.header64;
 	array = (void *)((void *)header + sym->symoff);
 	stringtable = (void *)((void *)header + sym->stroff);
+	if (is_corrupted_data(stringtable, sym->strsize, browser))
+		return (CORRUPTED);
 	if (overlaps_symtab_command(sym))
 	{
 		ft_dprintf(2, "%s: %s truncated or malformed object (string table at"

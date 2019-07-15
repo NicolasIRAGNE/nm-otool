@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 19:16:02 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/24 20:22:56 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/15 10:51:24 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_cpu_name(cpu_type_t cpu)
 	else if (cpu == CPU_TYPE_ARM64)
 		return ("arm_64");
 	else if (cpu == CPU_TYPE_POWERPC)
-		return ("ppc");
+		return ("");
 	else
 		return ("undefined");
 }

@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 12:58:24 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/24 18:21:40 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/15 13:45:35 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ void	swap_nlist(struct nlist *nlist, int should_swap);
 /*
 ** corrupted.c
 */
-int		is_corrupted_string(char *str, t_nm_browser *browser);
+int		is_corrupted_string(char *str, t_nm_browser *browser, int *len);
 int		is_corrupted_data(void *address, size_t size, t_nm_browser *browser);
 int		is_corrupted_segment_command_64(struct segment_command_64 *seg,
 			uint64_t offset, t_nm_browser *browser);
