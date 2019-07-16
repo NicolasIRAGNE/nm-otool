@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 21:11:46 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/15 13:45:13 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 09:29:41 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,16 @@ char						*get_symbol32_name(t_symbol32 *symbol32);
 char						*get_symbol64_name(t_symbol64 *symbol64);
 char						*get_symbol_name(t_symbol *symbol);
 uint64_t					get_symbol_value(t_symbol *symbol);
+int							has_relevant_value(t_symbol *symbol);
 int							has_bad_index(t_symbol *symbol);
 int							is_same_name_symbol(void *s, void *str);
 /*
 ** symbols_sort.c
 */
-long						cmp_symbol_alpha(void *s1, void *s2);
-long						cmp_symbol_numerical(void *s1, void *s2);
-long						cmp_symbol_none(void *s1, void *s2);
-
+long						cmp_symbol_alpha(void *s1, void *s2, void *env);
+long						cmp_symbol_numerical(void *s1, void *s2, void *env);
+long						cmp_symbol_none(void *s1, void *s2, void *env);
+long						cmp_symbol_alpha_inv(void *s1, void *s2, void *env);
+long						cmp_symbol_numerical_inv(void *s1,
+								void *s2, void *env);
 #endif

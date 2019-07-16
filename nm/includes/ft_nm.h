@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 12:58:24 by niragne           #+#    #+#             */
-/*   Updated: 2019/07/15 13:45:35 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 09:18:21 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include "sections.h"
 
 # define DEFAULT_NM_FILE	"a.out"
+# define BAD_INDEX_STR		"bad string index"
 
 # define CORRUPTED			3
 # define DYLIB_MAGIC		0x72613c21
@@ -63,6 +64,7 @@ typedef struct				s_header_parser
 	t_section_arr			section_arr;
 	t_tree					*symbols;
 	cpu_type_t				cputype;
+	cpu_subtype_t			cpusubtype;
 }							t_header_parser;
 
 struct						s_nm_browser
@@ -70,7 +72,7 @@ struct						s_nm_browser
 	void					*ptr;
 	struct stat				st;
 	int						ret;
-	long					(*sort_func)(void *, void *);
+	long					(*sort_func)(void *, void *, void *);
 	char					sort_mult;
 	char					*filename;
 //	int						has_64 : 1;
@@ -152,7 +154,7 @@ int							fill_browser64(t_header_parser *parser,
 int							fill_browser_fat32(
 								t_header_parser *parser,
 									t_nm_browser *browser);
-char						*get_cpu_name(cpu_type_t cpu);
+char						*get_cpu_name(cpu_type_t cpu, cpu_subtype_t sub);
 /*
 ** print.c
 */

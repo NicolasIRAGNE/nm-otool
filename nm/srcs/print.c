@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/07/15 17:40:05 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 09:06:54 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	print_parser_header_intro(t_header_parser *parser)
 		ft_printf("\n%s:\n", parser->filename);
 	else
 		ft_printf("\n%s (for architecture %s):\n",
-			parser->filename, get_cpu_name(parser->cputype));
+			parser->filename, get_cpu_name(parser->cputype, parser->cpusubtype));
 }
 
 void	print_symbol64(t_symbol64 symbol64, char debug, t_nm_browser *browser)
@@ -103,6 +103,7 @@ void	print_symbol(t_symbol *symbol, t_nm_browser *browser)
 		print_symbol64(symbol->symbol_union.symbol64, symbol->debug, browser);
 	else
 		print_symbol32(symbol->symbol_union.symbol32, symbol->debug, browser);
+//	ft_printf("%sRELEVANT\n",has_relevant_value(symbol) ? "": "IR");
 }
 
 void	print_symbol_tree(t_tree *tree, t_nm_browser *browser)

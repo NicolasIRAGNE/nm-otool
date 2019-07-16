@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:45:37 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/21 01:45:37 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 09:41:00 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ void	nm_opt_n(t_nm_browser *browser, int *options)
 {
 	if (*options & SORT_NUMERICAL)
 		nm_option_error("-numeric-sort", browser);
-	browser->sort_func = cmp_symbol_numerical;
+	if (*options & SORT_REVERSE)
+		browser->sort_func = cmp_symbol_numerical_inv;
+	else
+		browser->sort_func = cmp_symbol_numerical;
 	*options |= SORT_NUMERICAL;
 }
 
@@ -34,4 +37,8 @@ void	nm_opt_r(t_nm_browser *browser, int *options)
 		nm_option_error("-reverse-sort", browser);
 	browser->sort_mult = -1;
 	*options |= SORT_REVERSE;
+	if (*options & SORT_NUMERICAL)
+		browser->sort_func = cmp_symbol_numerical_inv;
+	else
+		browser->sort_func = cmp_symbol_alpha_inv;
 }

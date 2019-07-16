@@ -6,14 +6,14 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 20:09:23 by ldedier           #+#    #+#             */
-/*   Updated: 2018/11/27 20:11:57 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 09:13:45 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_tree_add_sorted(t_tree **tree, void *content,
-			long (*sort)(void*, void *))
+int		ft_tree_add_sorted(t_tree **tree, void *content, void *env,
+			long (*sort)(void *, void *, void *))
 {
 	if (*tree == NULL)
 	{
@@ -24,9 +24,9 @@ int		ft_tree_add_sorted(t_tree **tree, void *content,
 	}
 	else
 	{
-		if (sort((*tree)->content, content) > 0)
-			return (ft_tree_add_sorted(&((*tree)->left), content, sort));
+		if (sort((*tree)->content, content, env) > 0)
+			return (ft_tree_add_sorted(&((*tree)->left), content, env, sort));
 		else
-			return (ft_tree_add_sorted(&((*tree)->right), content, sort));
+			return (ft_tree_add_sorted(&((*tree)->right), content, env, sort));
 	}
 }

@@ -6,13 +6,13 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 19:16:02 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/15 10:51:24 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 07:57:34 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-char	*get_cpu_name(cpu_type_t cpu)
+char	*get_cpu_name(cpu_type_t cpu, cpu_subtype_t sub)
 {
 	if (cpu == CPU_TYPE_I386)
 		return ("i386");
@@ -22,10 +22,10 @@ char	*get_cpu_name(cpu_type_t cpu)
 		return ("arm");
 	else if (cpu == CPU_TYPE_ARM64)
 		return ("arm_64");
-	else if (cpu == CPU_TYPE_POWERPC)
-		return ("");
+	else if (cpu == CPU_TYPE_POWERPC && (sub == 0))
+		return ("ppc");
 	else
-		return ("undefined");
+		return ("");
 }
 
 int		process_browser_fat_arch32(struct fat_arch *fat_arch,
@@ -35,6 +35,7 @@ int		process_browser_fat_arch32(struct fat_arch *fat_arch,
 	init_parser(&new_parser, (void *)browser->ptr + fat_arch->offset,
 		fat_arch->offset, parser->filename);
 	new_parser.cputype = fat_arch->cputype;
+	new_parser.cpusubtype = fat_arch->cpusubtype;
 	if (fill_browser(&new_parser, browser))
 		return (1);
 	return (0);
@@ -73,7 +74,6 @@ int		check_all_architectures(struct fat_arch **found,
 		if (is_corrupted_data(&fat_arch_array[i],
 			sizeof(struct fat_arch), browser))
 		{
-			ft_dprintf(2, "ddd\n");
 			return (1);
 		}
 		swap_fat_arch(&fat_arch_array[i], parser->should_swap);
@@ -90,7 +90,7 @@ int		check_all_architectures(struct fat_arch **found,
 				"past the end of the file)\n\n", &fat_arch_array[i], browser));
 			return (1);
 		}
-		if (!*found && (!ft_strcmp(ARCH, get_cpu_name(fat_arch_array[i].cputype))))
+		if (!*found && (!ft_strcmp(ARCH, get_cpu_name(fat_arch_array[i].cputype, fat_arch_array[i].cpusubtype))))
 			*found = &fat_arch_array[i];
 		i++;
 	}

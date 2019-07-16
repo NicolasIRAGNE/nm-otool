@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 18:21:30 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/17 17:19:44 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 09:13:03 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,8 +147,8 @@ void				ft_prefix(t_tree *tree, void (*f)(t_tree *));
 void				ft_postfix(t_tree *tree, void (*f)(t_tree *));
 int					ft_tree_add_sorted_mul(t_tree **tree, void *content,
 		long (*sort)(void *, void *), int mul);
-int					ft_tree_add_sorted(t_tree **tree, void *content,
-		long (*sort)(void *, void *));
+int					ft_tree_add_sorted(t_tree **tree, void *content, void *env,
+		long (*sort)(void *, void *, void *));
 void				ft_tree_del(t_tree **tree, void (*free_func)(void *));
 void				ft_tree_del_value(t_tree **tree);
 void				ft_tree_del_ptr(t_tree **tree);

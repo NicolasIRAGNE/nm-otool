@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:35:21 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/15 17:57:00 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 09:32:47 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char		*compute_symbol64_name(t_symbol64 *symbol, char *symbol_name)
 	if (symbol->bad_index)
 	{
 		if (symbol->length == -1)
-			return (ft_strdup("bad index"));
+			return (ft_strdup(BAD_INDEX_STR));
 		else
 			return (get_new_str_from_buffer(symbol_name, symbol->length));
 	}
@@ -40,7 +40,7 @@ char		*compute_symbol32_name(t_symbol32 *symbol, char *symbol_name)
 	if (symbol->bad_index)
 	{
 		if (symbol->length == -1)
-			return (ft_strdup("bad index"));
+			return (ft_strdup(BAD_INDEX_STR));
 		else
 			return (get_new_str_from_buffer(symbol_name, symbol->length));
 	}
@@ -101,14 +101,8 @@ t_symbol	*nm_new_symbol32(struct nlist *nlist, char *symbol_name,
 int		add_symbol_to_browser(t_header_parser *parser,
 			t_nm_browser *browser, t_symbol *new_symbol)
 {
-	if (browser->sort_func == cmp_symbol_none)
-	{
-		return (ft_tree_add_sorted(&parser->symbols, new_symbol,
-					browser->sort_func));
-	}
-	else
-		return (ft_tree_add_sorted_mul(&parser->symbols, new_symbol,
-					browser->sort_func, browser->sort_mult));
+	return (ft_tree_add_sorted(&parser->symbols, new_symbol,
+				browser, browser->sort_func));
 }
 
 uint32_t max_uint32(uint32_t a, uint32_t b)

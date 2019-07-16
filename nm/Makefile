@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:41 by niragne           #+#    #+#              #
-#    Updated: 2019/06/20 18:37:09 by ldedier          ###   ########.fr        #
+#    Updated: 2019/07/16 09:33:34 by ldedier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ LIBFT = $(LIBFTDIR)/libft.a
 
 SRCS =	debug.c main.c symbols.c symbols_sort.c options.c options_tools.c \
 		options_func.c fill.c fill_tools.c fill32.c fill64.c fill_debug.c \
-		fill_fat32.c print.c init.c swap.c corrupted.c free.c fill_archive.c
+		fill_fat32.c print.c init.c swap.c corrupted.c free.c fill_archive.c \
+		symbols_sort_inv.c
 
 SRC	= $(addprefix $(SRCDIR)/, $(SRCS))
 DEP = $(addprefix $(INCLUDES)/,$(DEPS))

@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 17:45:01 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/15 17:57:59 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 09:03:10 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,13 @@ uint64_t get_symbol_value(t_symbol *symbol)
 	return (symbol->symbol_enum == E_SYMBOL_32
 				? symbol->symbol_union.symbol32.nlist->n_value
 					: symbol->symbol_union.symbol64.nlist->n_value);
+}
 
+int		has_relevant_value(t_symbol *symbol)
+{
+	return ((symbol->symbol_enum == E_SYMBOL_32
+		? (symbol->symbol_union.symbol32.nlist->n_type & N_TYPE) != N_UNDF || symbol->symbol_union.symbol32.bad_index
+			: (symbol->symbol_union.symbol64.nlist->n_type & N_TYPE) != N_UNDF || symbol->symbol_union.symbol64.bad_index));
 }
 
 int		is_same_name_symbol(void *s, void *str)

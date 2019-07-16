@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:59:56 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/20 15:42:47 by niragne          ###   ########.fr       */
+/*   Updated: 2019/07/16 07:44:32 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void    nm_print_header(t_header_parser *parser)
 		ft_dprintf(2, "Unknown file type\n");
 	}
 }
-void    print_cpu(cpu_type_t cpu)
+void    print_cpu(struct fat_arch *fat_arch)
 {
-	ft_printf("%s\n", get_cpu_name(cpu));
+	ft_printf("%s\n", get_cpu_name(fat_arch->cputype, fat_arch->cpusubtype));
 }
 
 void    print_arch32(struct fat_arch *fat_arch)
@@ -63,7 +63,7 @@ void    print_arch32(struct fat_arch *fat_arch)
 	ft_printf("fat_arch size: %u\n", fat_arch->size);
 	ft_printf("fat_arch align: %u\n", fat_arch->align);
 	ft_printf("fat_arch cpu: ");
-	print_cpu(fat_arch->cputype);
+	print_cpu(fat_arch);
 	ft_printf("\n");
 	ft_printf("\n");
 }
