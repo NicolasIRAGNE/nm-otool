@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 02:14:47 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/24 16:54:18 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 15:10:10 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	init_browser(t_nm_browser *browser, char *filename)
 {
 	int			fd;
 
+	browser->force = 0;
 	browser->filename = filename;
 	browser->parsers = NULL;
 	if ((fd = open(filename, O_RDONLY)) < 0)

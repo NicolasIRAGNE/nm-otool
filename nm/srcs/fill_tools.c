@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:35:21 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/16 09:32:47 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 17:56:55 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char		*get_new_str_from_buffer(char *ptr, size_t n)
 {
 	char *res;
 
-	if (!(res = malloc(sizeof(char) * n + 1)))
+	if (!(res = (char *)malloc(sizeof(char) * n + 1)))
 		return (NULL);
 	ft_memcpy(res, ptr, n);
 	res[n] = '\0';
@@ -48,13 +48,15 @@ char		*compute_symbol32_name(t_symbol32 *symbol, char *symbol_name)
 }
 
 t_symbol	*nm_new_symbol64(struct nlist_64 *nlist, char *symbol_name,
-				t_nm_browser *browser)
+				int index, t_nm_browser *browser)
 {
 	t_symbol	*symbol;
 
+	(void)nlist;
 	if (!(symbol = (t_symbol *)malloc(sizeof(t_symbol))))
 		return (NULL);
 	symbol->symbol_union.symbol64.nlist = nlist;
+	symbol->symbol_union.symbol64.index = index;
 	if ((symbol->symbol_union.symbol64.bad_index =
 		is_corrupted_string(symbol_name, browser,
 			&symbol->symbol_union.symbol64.length))
@@ -73,14 +75,14 @@ t_symbol	*nm_new_symbol64(struct nlist_64 *nlist, char *symbol_name,
 }
 
 t_symbol	*nm_new_symbol32(struct nlist *nlist, char *symbol_name,
-				t_nm_browser *browser)
+				int index, t_nm_browser *browser)
 {
 	t_symbol *symbol;
 
 	if (!(symbol = (t_symbol *)malloc(sizeof(t_symbol))))
 		return (NULL);
 	symbol->symbol_union.symbol32.nlist = nlist;
-	symbol->symbol_union.symbol32.name = symbol_name;
+	symbol->symbol_union.symbol32.index = index;
 	if ((symbol->symbol_union.symbol32.bad_index =
 		is_corrupted_string(symbol_name, browser,
 			&symbol->symbol_union.symbol32.length))

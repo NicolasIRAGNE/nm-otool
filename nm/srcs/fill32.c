@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 02:25:02 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/16 13:32:51 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 17:45:40 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		process_fill_symbols32(t_header_parser *parser,
 	header = parser->header_union.header32;
 	array = (void *)header + sym->symoff;
 	stringtable = (void *)header + sym->stroff;
+	browser->strsize = sym->strsize;
 	i = 0;
 	while (i < sym->nsyms)
 	{
@@ -44,7 +45,8 @@ int		process_fill_symbols32(t_header_parser *parser,
 	//		ft_printf("%lld\n", array[i].n_desc);
 	//		ft_printf("%s\n", stringtable + array[i].n_un.n_strx);
 			if (!(new_symbol = nm_new_symbol32(&array[i],
-							stringtable + array[i].n_un.n_strx, browser)))
+				stringtable + array[i].n_un.n_strx,
+					array[i].n_un.n_strx, browser)))
 				return (1);
 			if ((ret = fill_debug32(new_symbol, parser->section_arr, browser)))
 			{
@@ -176,6 +178,7 @@ int		get_sections32(t_header_parser *parser, t_nm_browser *browser)
 		if (is_corrupted_data(lc, lc->cmdsize, browser)
 				|| (void *)lc + max_uint32(lc->cmdsize, 1) > (void *)header + sizeof(*header) + header->sizeofcmds)
 		{
+			nm_print(browser, 1);
 			ft_dprintf(2, "%s: %s truncated or malformed object "
 				"(load command %d extends past the end of all load commands in the file)\n\n",
 					browser->progname, browser->filename, j);
@@ -198,6 +201,7 @@ int		get_sections32(t_header_parser *parser, t_nm_browser *browser)
 			swap_segment_command(seg, parser->should_swap);
 			if (is_corrupted_offset(parser->offset + seg->fileoff, seg->filesize, browser))
 			{
+				nm_print(browser, 1);
 				ft_dprintf(2, "%s: %s truncated or malformed object "
 					"(load command %d fileoff filed plus filesize "
 						"field in LC_SEGMENT extends past the end of the"
@@ -222,12 +226,14 @@ int		get_sections32(t_header_parser *parser, t_nm_browser *browser)
 int		fill_browser32(t_header_parser *parser,
 			t_nm_browser *browser)
 {
-	if (get_sections32(parser, browser))
-		return (1);
+	int ret;
+
+	if ((ret = get_sections32(parser, browser)))
+		return (ret);
 	if (browser->ret)
 		return (0);
-	if (fill_symbol_table32(parser, browser))
-		return (1);
+	if ((ret = fill_symbol_table32(parser, browser)))
+		return (ret);
 	if (browser->ret)
 		return (0);
 	if (ft_add_to_list_back(&browser->parsers, parser,

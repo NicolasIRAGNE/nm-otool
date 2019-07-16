@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 19:16:02 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/16 13:34:27 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 14:26:15 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 char	*get_cpu_name(cpu_type_t cpu, cpu_subtype_t sub)
 {
+	ft_printf("");
 	if (cpu == CPU_TYPE_I386)
 		return ("i386");
 	else if (cpu == CPU_TYPE_X86_64)
@@ -21,11 +22,13 @@ char	*get_cpu_name(cpu_type_t cpu, cpu_subtype_t sub)
 	else if (cpu == CPU_TYPE_ARM)
 	{
 		if (sub == CPU_SUBTYPE_ARM_V6)
-			return ("armV6");
+			return ("armv6");
 		else if (sub == CPU_SUBTYPE_ARM_V7)
-			return ("armV7");
+			return ("armv7");
+		else if (sub == CPU_SUBTYPE_ARM_V7S)
+			return ("armv7s");
 		else if (sub == CPU_SUBTYPE_ARM_V8)
-			return ("armV8");
+			return ("armv8");
 		else 
 			return ("arm");
 	}
@@ -46,7 +49,7 @@ int		process_browser_fat_arch32(struct fat_arch *fat_arch,
 		fat_arch->offset, parser->filename);
 	new_parser.cputype = fat_arch->cputype;
 	new_parser.cpusubtype = fat_arch->cpusubtype;
-	if (fill_browser(&new_parser, browser))
+	if (fill_browser(&new_parser, browser) == CORRUPTED)
 		return (0);
 	return (0);
 }
@@ -98,6 +101,17 @@ int		check_all_architectures(struct fat_arch **found,
 			return (fat_corrupted_print_error("%s: %s truncated or malformed "
 			"fat file (offset plus size of cputype (%d) cpusubtype (%d) extends"
 				"past the end of the file)\n\n", &fat_arch_array[i], browser));
+			return (1);
+		}
+		if (fat_arch_array[i].offset < sizeof(fat_header))
+		{
+			ft_dprintf(2, "%s: %s truncated or malformed fat file "
+				"(cputype (%d) cpusubtype (%d) offset %d "
+					"overlaps universal headers)\n\n",
+						browser->progname, browser->filename,
+							fat_arch_array[i].cputype,
+								fat_arch_array[i].cpusubtype, 
+									fat_arch_array[i].offset);
 			return (1);
 		}
 		if (!*found && (!ft_strcmp(ARCH, get_cpu_name(fat_arch_array[i].cputype, fat_arch_array[i].cpusubtype))))

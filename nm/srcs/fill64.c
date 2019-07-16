@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:29:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/15 13:30:55 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 17:46:23 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int		process_fill_symbols64(t_header_parser *parser, t_nm_browser *browser,
 	header = parser->header_union.header64;
 	array = (void *)((void *)header + sym->symoff);
 	stringtable = (void *)((void *)header + sym->stroff);
+	browser->strsize = sym->strsize;
 	if (is_corrupted_data(stringtable, sym->strsize, browser))
 		return (CORRUPTED);
 	if (overlaps_symtab_command(sym))
@@ -62,7 +63,8 @@ int		process_fill_symbols64(t_header_parser *parser, t_nm_browser *browser,
 				stringtable + array[i].n_un.n_strx, browser))
 		{
 			if (!(new_symbol = nm_new_symbol64(&array[i],
-					stringtable + array[i].n_un.n_strx, browser)))
+				stringtable + array[i].n_un.n_strx,
+					array[i].n_un.n_strx, browser)))
 				return (1);
 			if (fill_debug64(new_symbol, parser->section_arr, browser))
 			{

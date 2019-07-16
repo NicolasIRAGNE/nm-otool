@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 21:11:46 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/16 09:29:41 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 17:55:47 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct				s_symbol64
 	char					*name;
 	int						length;
 	int						bad_index: 1;
+	int						index;
 }							t_symbol64;
 
 typedef struct				s_symbol32
@@ -37,6 +38,7 @@ typedef struct				s_symbol32
 	char					*name;
 	int						length;
 	int						bad_index: 1;
+	int						index;
 }							t_symbol32;
 
 typedef union				u_symbol_union
@@ -61,6 +63,7 @@ char						*get_symbol_name(t_symbol *symbol);
 uint64_t					get_symbol_value(t_symbol *symbol);
 int							has_relevant_value(t_symbol *symbol);
 int							has_bad_index(t_symbol *symbol);
+int							get_symbol_index(t_symbol* symbol);
 int							is_same_name_symbol(void *s, void *str);
 /*
 ** symbols_sort.c

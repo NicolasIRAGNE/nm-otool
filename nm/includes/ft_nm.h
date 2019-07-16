@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 12:58:24 by niragne           #+#    #+#             */
-/*   Updated: 2019/07/16 09:18:21 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 17:46:42 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,11 @@ struct						s_nm_browser
 	long					(*sort_func)(void *, void *, void *);
 	char					sort_mult;
 	char					*filename;
-//	int						has_64 : 1;
 	int						has_bad_index : 1;
 	int						nb_args;
 	char					*progname;
+	int						force;
+	int						strsize;
 	t_list					*parsers;
 };
 
@@ -126,9 +127,11 @@ int							add_symbol_to_browser(t_header_parser *parser,
 int							nm_perror(char *error_message,
 								t_nm_browser *browser);
 t_symbol					*nm_new_symbol32(struct nlist *nlist,
-								char *symbol_name, t_nm_browser *browser);
+								char *symbol_name, int index,
+									t_nm_browser *browser);
 t_symbol					*nm_new_symbol64(struct nlist_64 *nlist,
-								char *symbol_name, t_nm_browser *browser);
+								char *symbol_name, int index,
+									t_nm_browser *browser);
 int							should_add_symbol(uint8_t n_type, uint16_t n_stab,
 								char *name, t_nm_browser *browser);
 uint32_t					max_uint32(uint32_t a, uint32_t b);
@@ -158,7 +161,7 @@ char						*get_cpu_name(cpu_type_t cpu, cpu_subtype_t sub);
 /*
 ** print.c
 */
-void						nm_print(t_nm_browser *browser);
+void						nm_print(t_nm_browser *browser, int force);
 
 /*
 ** fill_debug.c

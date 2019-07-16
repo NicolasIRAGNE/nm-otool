@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/24 20:22:44 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 15:08:14 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		process_nm(char *filename, t_nm_browser *browser)
 	init_parser(&parser, browser->ptr, 0, filename);
 	if (fill_browser(&parser, browser))
 		return (1);
-	nm_print(browser);
+	nm_print(browser, 0);
 	ft_lstdel(&browser->parsers, free_parser_lst);
 	if (munmap(browser->ptr, browser->st.st_size) < 0)
 	{
