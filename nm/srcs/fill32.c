@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 02:25:02 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/24 18:58:23 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 13:32:51 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,15 +169,25 @@ int		get_sections32(t_header_parser *parser, t_nm_browser *browser)
 	segments = NULL;
 	i = (uint64_t)((void *)header + sizeof(*header));
 	j = 0;
-	while (i < (uint64_t)((void *)header + header->sizeofcmds))
+	while (j < (int)header->ncmds)
 	{
 		lc = (struct load_command*) i;
-		if (is_corrupted_data(lc, sizeof(struct load_command), browser))
-		{
-			ft_printf("olalala\n");
-			return (0);
-		}
 		swap_load_command(lc, parser->should_swap);
+		if (is_corrupted_data(lc, lc->cmdsize, browser)
+				|| (void *)lc + max_uint32(lc->cmdsize, 1) > (void *)header + sizeof(*header) + header->sizeofcmds)
+		{
+			ft_dprintf(2, "%s: %s truncated or malformed object "
+				"(load command %d extends past the end of all load commands in the file)\n\n",
+					browser->progname, browser->filename, j);
+			return (CORRUPTED);
+		}
+		if (lc->cmdsize % 4)
+		{
+			ft_dprintf(2, "%s: %s truncated or malformed object "
+					"(load command %d fileoff not a multiple of 4)\n\n",
+					browser->progname, browser->filename, j);
+			return (CORRUPTED);
+		}
 		if (lc->cmd == LC_SEGMENT)
 		{
 			seg = (struct segment_command *)lc;
@@ -192,7 +202,7 @@ int		get_sections32(t_header_parser *parser, t_nm_browser *browser)
 					"(load command %d fileoff filed plus filesize "
 						"field in LC_SEGMENT extends past the end of the"
 							"file)\n", browser->progname, browser->filename, j);
-				return (0);
+				return (CORRUPTED);
 			}
 			if (ft_add_to_list_ptr_back(&segments, seg, sizeof(seg)))
 				return (1);

@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/06/20 19:45:42 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 13:27:17 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,13 @@ int	fill_browser(t_header_parser *parser, t_nm_browser *browser)
 		return (nm_perror("unknown magic file", browser));
 	swap_header(parser);
 	if (parser->type == E_64)
+	{
 		return (fill_browser64(parser, browser));
+	}
 	else if (parser->type == E_32)
+	{
 		return (fill_browser32(parser, browser));
+	}
 	else if (parser->type == E_FAT32)
 		return (fill_browser_fat32(parser, browser));
 	else if (parser->type == E_ARCHIVE)

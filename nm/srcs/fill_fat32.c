@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 19:16:02 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/16 07:57:34 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 13:34:27 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,18 @@ char	*get_cpu_name(cpu_type_t cpu, cpu_subtype_t sub)
 	else if (cpu == CPU_TYPE_X86_64)
 		return ("x86_64");
 	else if (cpu == CPU_TYPE_ARM)
-		return ("arm");
+	{
+		if (sub == CPU_SUBTYPE_ARM_V6)
+			return ("armV6");
+		else if (sub == CPU_SUBTYPE_ARM_V7)
+			return ("armV7");
+		else if (sub == CPU_SUBTYPE_ARM_V8)
+			return ("armV8");
+		else 
+			return ("arm");
+	}
 	else if (cpu == CPU_TYPE_ARM64)
-		return ("arm_64");
+		return ("arm64");
 	else if (cpu == CPU_TYPE_POWERPC && (sub == 0))
 		return ("ppc");
 	else
@@ -32,12 +41,13 @@ int		process_browser_fat_arch32(struct fat_arch *fat_arch,
 			t_header_parser *parser, t_nm_browser *browser)
 {
 	t_header_parser new_parser;
+
 	init_parser(&new_parser, (void *)browser->ptr + fat_arch->offset,
 		fat_arch->offset, parser->filename);
 	new_parser.cputype = fat_arch->cputype;
 	new_parser.cpusubtype = fat_arch->cpusubtype;
 	if (fill_browser(&new_parser, browser))
-		return (1);
+		return (0);
 	return (0);
 }
 int			fat_corrupted_print_error_alignment(struct fat_arch *fat_arch,

@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:42:29 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/21 01:42:29 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/16 11:21:11 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	nm_option_error(char *str, t_nm_browser *browser)
 {
-	ft_printf("nm: for the %s option: may only occur zero or one times!\n",
+	ft_dprintf(2, "nm: for the %s option: may only occur zero or one times!\n",
 		str);
 	browser->ret = 1;
 }
