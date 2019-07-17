@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 18:21:30 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/16 09:13:03 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/17 17:28:48 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ int					ft_add_to_list_sorted(t_list **list, void *content,
 						size_t size, int (*sort)(void *, void *));
 void				ft_sort_tab(int *tab, size_t size);
 t_tree				*ft_tree_new_ptr(void *content);
+t_tree				*ft_tree_new(void *content, size_t size);
 void				ft_infix(t_tree *tree, void (*f)(t_tree *));
 void				ft_prefix(t_tree *tree, void (*f)(t_tree *));
 void				ft_postfix(t_tree *tree, void (*f)(t_tree *));
@@ -156,6 +157,11 @@ int					ft_treelen(t_tree *tree);
 void				*ft_tree_at_infix(t_tree *tree, int index);
 t_tree				*ft_tree_get(t_tree *tree, void *ref,
 						int (*identify)(void*, void *));
+int					ft_add_to_tree_back(t_tree **tree,
+						void *content, size_t size);
+int					ft_tree_add_sorted_value_no_doubles(t_tree **tree,
+						void *content, size_t size,
+							long (*sort)(void *, void *));
 int					get_next_line(const int fd, char **line);
 
 void				ft_free_split(char **split);

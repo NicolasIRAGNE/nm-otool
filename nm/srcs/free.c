@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 01:32:45 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/15 18:06:43 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/17 16:26:45 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ void	free_parser(t_header_parser *parser)
 		free(parser->section_arr.sections);
 }
 
-void	free_parser_lst(void *content, size_t dummy)
+void	free_parser_tree(void *content)
 {
-	(void)dummy;
 	free_parser((t_header_parser *)content);
 	free(content);
 }

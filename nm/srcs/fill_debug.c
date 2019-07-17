@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 01:46:28 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/24 18:34:06 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/17 17:51:57 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ int		process_fill_debug_from_section(t_symbol *symbol,
 	return (0);
 }
 
-int		fill_debug_from_type(t_symbol *symbol, uint8_t type,
+int		fill_debug_from_type(t_symbol *symbol, uint8_t type, uint64_t value,
 			t_nm_browser *browser)
 {
-	if (type == N_UNDF)// && !browser->has_bad_index)
+	if (type == N_UNDF && value != 0)// && !browser->has_bad_index)
 		symbol->debug = 'U';
 	else if ((type & N_TYPE) == N_ABS)
 		symbol->debug = global_case_symbol(type, 'A');
@@ -96,7 +96,8 @@ int		fill_debug64(t_symbol *symbol, t_section_arr section_arr,
 		}
 	}
 	else
-		return (fill_debug_from_type(symbol, symbol64->nlist->n_type, browser));
+		return (fill_debug_from_type(symbol, symbol64->nlist->n_type,
+			symbol64->nlist->n_value, browser));
 }
 
 int		fill_debug32(t_symbol *symbol, t_section_arr section_arr,
@@ -126,5 +127,5 @@ int		fill_debug32(t_symbol *symbol, t_section_arr section_arr,
 		}
 	}
 	else
-		return (fill_debug_from_type(symbol, symbol32->nlist->n_type, browser));
+		return (fill_debug_from_type(symbol, symbol32->nlist->n_type, symbol32->nlist->n_value, browser));
 }

@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 02:25:02 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/16 17:45:40 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/17 17:36:29 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,10 +236,7 @@ int		fill_browser32(t_header_parser *parser,
 		return (ret);
 	if (browser->ret)
 		return (0);
-	if (ft_add_to_list_back(&browser->parsers, parser,
-		sizeof(t_header_parser)))
-	{
+	if (add_parser(browser, parser))
 		return (1);
-	}
 	return (0);
 }

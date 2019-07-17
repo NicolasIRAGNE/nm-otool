@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 19:16:02 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/16 14:26:15 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/17 15:25:28 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ int		process_browser_fat_arch32(struct fat_arch *fat_arch,
 
 	init_parser(&new_parser, (void *)browser->ptr + fat_arch->offset,
 		fat_arch->offset, parser->filename);
-	new_parser.cputype = fat_arch->cputype;
-	new_parser.cpusubtype = fat_arch->cpusubtype;
+	new_parser.parser_enum = PARSER_ENUM_ARCHI;
+	new_parser.parser_union.arch.cputype = fat_arch->cputype;
+	new_parser.parser_union.arch.cpusubtype = fat_arch->cpusubtype;
 	if (fill_browser(&new_parser, browser) == CORRUPTED)
 		return (0);
 	return (0);

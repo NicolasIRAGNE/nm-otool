@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 12:58:24 by niragne           #+#    #+#             */
-/*   Updated: 2019/07/16 17:46:42 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/17 17:36:00 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <mach/machine.h>
 # include <mach/vm_prot.h>
 # include <mach-o/nlist.h>
+# include <mach-o/ranlib.h>
 # include <fcntl.h>
 # include <sys/stat.h>
 # include <stdlib.h>
@@ -33,7 +34,7 @@
 # define BAD_INDEX_STR		"bad string index"
 
 # define CORRUPTED			3
-# define DYLIB_MAGIC		0x72613c21
+# define ARCHIVE_IDENTIFIER	"!<arch>\n"
 
 typedef enum e_bin_type
 {
@@ -52,6 +53,31 @@ typedef union				u_header_union
 	struct fat_header		*fat_header;
 }							t_header_union;
 
+typedef enum				e_parser_enum
+{
+	PARSER_ENUM_OBJECT,
+	PARSER_ENUM_ARCHI,
+	PARSER_ENUM_NONE
+}							t_parser_enum;
+
+typedef struct				s_arch
+{
+	cpu_type_t				cputype;
+	cpu_subtype_t			cpusubtype;
+}							t_arch;
+
+typedef struct				s_object
+{
+	char					*name;
+	uint32_t				ran_off;
+}							t_object;
+
+typedef union				u_parser_union
+{
+	t_arch					arch;
+	t_object				object;
+}							t_parser_union;
+
 typedef struct				s_header_parser
 {
 	char					*filename;
@@ -63,8 +89,8 @@ typedef struct				s_header_parser
 	int						should_swap : 1;
 	t_section_arr			section_arr;
 	t_tree					*symbols;
-	cpu_type_t				cputype;
-	cpu_subtype_t			cpusubtype;
+	t_parser_enum			parser_enum;
+	t_parser_union			parser_union;
 }							t_header_parser;
 
 struct						s_nm_browser
@@ -80,7 +106,7 @@ struct						s_nm_browser
 	char					*progname;
 	int						force;
 	int						strsize;
-	t_list					*parsers;
+	t_tree					*parsers;
 };
 
 typedef struct s_nm_browser	t_nm_browser;
@@ -177,7 +203,7 @@ int							fill_debug32(t_symbol *symbol,
 ** free.c
 */
 void						free_parser(t_header_parser *parser);
-void						free_parser_lst(void *content, size_t dummy);
+void						free_parser_tree(void *content);
 
 /*
 ** swap.c
@@ -192,7 +218,7 @@ void	swap_segment_command_64(struct segment_command_64 *seg,
 			int should_swap);
 void	swap_symtab_command(struct symtab_command *sym, int should_swap);
 void	swap_nlist(struct nlist *nlist, int should_swap);
-
+void	swap_bytes(void *to_swap, size_t size, int should_swap);
 /*
 ** corrupted.c
 */
@@ -206,6 +232,23 @@ int		is_corrupted_offset(uint64_t offset, uint64_t size,
 /*
 ** fill_archive.c
 */
-int							fill_browser_archive(t_header_parser *parser,
-								t_nm_browser *browser);
+int		fill_browser_archive(t_header_parser *parser,
+			t_nm_browser *browser);
+
+/*
+** fill_archive_member.c
+*/
+int		fill_archive_member(t_nm_browser *browser,
+			t_header_parser *parser, uint32_t offset, char *str);
+
+/*
+** tools.c
+*/
+size_t	align(size_t value, size_t alignment);
+
+/*
+** tomove
+*/
+long	cmp_parser_ran_off(void *p1, void *p2);
+int		add_parser(t_nm_browser *browser, t_header_parser *parser);
 #endif

@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:29:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/16 17:46:23 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/17 17:35:43 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,6 +239,20 @@ int		get_sections64(t_header_parser *parser, t_nm_browser *browser)
 	return (process_sections_array64(parser, &segments));
 }
 
+int		add_parser(t_nm_browser *browser, t_header_parser *parser)
+{
+	if (parser->parser_enum == PARSER_ENUM_OBJECT)
+	{
+		return (ft_tree_add_sorted_value_no_doubles(&browser->parsers, parser,
+			sizeof(t_header_parser), cmp_parser_ran_off));
+	}
+	else
+	{
+		return (ft_add_to_tree_back(&browser->parsers, parser,
+			sizeof(t_header_parser)));
+	}
+}
+
 /*
 ** store sections by index of apparition and symbol tables sorted 
 ** in a tree structure (stocks the debug Character (T, U, ...) by peeking
@@ -253,10 +267,7 @@ int		fill_browser64(t_header_parser *parser, t_nm_browser *browser)
 		return (ret);
 	if ((ret = fill_symbol_table64(parser, browser)))
 		return (ret);
-	if (ft_add_to_list_back(&browser->parsers, parser,
-		sizeof(t_header_parser)))
-	{
+	if(add_parser(browser, parser))
 		return (1);
-	}
 	return (0);
 }
