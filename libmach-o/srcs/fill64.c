@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:29:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/17 17:35:43 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/18 17:03:47 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		get_total_sections64(t_list *segments64)
 }
 
 int		fill_sections_from_segment64(t_section *sections, int *index,
-			struct segment_command_64 *seg)
+			struct segment_command_64 *seg, t_header_parser *parser)
 {
 	uint32_t i;
 
@@ -133,7 +133,12 @@ int		fill_sections_from_segment64(t_section *sections, int *index,
 		sections[*index].section_enum = E_SECTION_64;
 		sections[*index].section_union.section64 = (void *)seg + 
 			sizeof(*seg) + i++ * sizeof(struct section_64);
-		//swap_here
+		if (!ft_strcmp(sections[*index].section_union.section64->sectname,
+				SECT_TEXT)
+					&& !ft_strcmp(sections[*index]
+						.section_union.section64->segname, SEG_TEXT))
+			parser->text_section = &sections[*index];
+		//swap_here ?? 
 		(*index)++;
 	}
 	return (0);
@@ -163,7 +168,8 @@ int		process_sections_array64(t_header_parser *parser, t_list **segments)
 		while (*segments != NULL)
 		{
 			seg = (struct segment_command_64 *)ft_lstpop_ptr(segments);
-			fill_sections_from_segment64(parser->section_arr.sections, &i, seg);
+			fill_sections_from_segment64(parser->section_arr.sections, &i,
+				seg, parser);
 		}
 	}
 	return (0);

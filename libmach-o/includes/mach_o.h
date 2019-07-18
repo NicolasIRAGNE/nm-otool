@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 11:40:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/18 11:49:29 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/18 17:47:18 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct				s_header_parser
 	t_header_union			header_union;
 	int						should_swap : 1;
 	t_section_arr			section_arr;
+	t_section				*text_section;
 	t_tree					*symbols;
 	t_parser_enum			parser_enum;
 	t_parser_union			parser_union;
@@ -251,4 +252,5 @@ size_t	align(size_t value, size_t alignment);
 */
 long	cmp_parser_ran_off(void *p1, void *p2);
 int		add_parser(t_browser *browser, t_header_parser *parser);
+
 #endif

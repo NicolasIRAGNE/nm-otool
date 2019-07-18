@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 02:14:47 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/17 15:28:01 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/18 16:58:05 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_parser(t_header_parser *parser, void *ptr,
 	parser->offset = offset;
 	parser->symbols = NULL;
 	parser->section_arr.sections = NULL;
+	parser->text_section = NULL;
 	parser->filename = filename;
 	parser->parser_enum = PARSER_ENUM_NONE;
 	parser->should_swap = 0;

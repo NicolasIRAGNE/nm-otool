@@ -6,7 +6,7 @@
 #    By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/18 11:31:28 by ldedier           #+#    #+#              #
-#    Updated: 2019/07/18 12:19:26 by ldedier          ###   ########.fr        #
+#    Updated: 2019/07/18 17:45:50 by ldedier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ EOC = \033[0m
 SRCS_NO_PREFIX = corrupted.c debug.c fill.c fill32.c fill64.c fill_archive.c \
 				 fill_archive_member.c fill_debug.c fill_fat32.c fill_tools.c \
 				 free.c init.c options.c options_func.c options_tools.c swap.c \
-				 symbols.c symbols_sort.c symbols_sort_inv.c tools.c
+				 symbols.c symbols_sort.c symbols_sort_inv.c tools.c sections.c
 
 INCLUDES_NO_PREFIX = mach_o.h
 

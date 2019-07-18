@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 02:25:02 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/17 17:36:29 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/18 18:18:45 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int		get_total_sections32(t_list *segments32)
 }
 
 int		fill_sections_from_segment32(t_section *sections, int *index,
-			struct segment_command *seg)
+			struct segment_command *seg, t_header_parser *parser)
 {
 	uint32_t i;
 
@@ -117,8 +117,14 @@ int		fill_sections_from_segment32(t_section *sections, int *index,
 	while (i < seg->nsects)
 	{
 		sections[*index].section_enum = E_SECTION_32;
-		sections[(*index)++].section_union.section32 = (void *)seg + 
+		sections[*index].section_union.section32 = (void *)seg + 
 			sizeof(*seg) + i++ * sizeof(struct section);
+		if (!ft_strcmp(sections[*index].section_union.section32->sectname,
+				SECT_TEXT)
+				&& !ft_strcmp(sections[*index]
+					.section_union.section32->segname, SEG_TEXT))
+			parser->text_section = &sections[*index];
+		(*index) += 1;
 	}
 	return (0);
 }
@@ -148,7 +154,8 @@ int		process_sections_array32(t_header_parser *parser, t_list **segments)
 		while (*segments != NULL)
 		{
 			seg = (struct segment_command *)ft_lstpop_ptr(segments);
-			fill_sections_from_segment32(parser->section_arr.sections, &i, seg);
+			fill_sections_from_segment32(parser->section_arr.sections, &i,
+				seg, parser);
 		}
 	}
 	return (0);
@@ -178,7 +185,7 @@ int		get_sections32(t_header_parser *parser, t_browser *browser)
 		if (is_corrupted_data(lc, lc->cmdsize, browser)
 				|| (void *)lc + max_uint32(lc->cmdsize, 1) > (void *)header + sizeof(*header) + header->sizeofcmds)
 		{
-			nm_print(browser, 1);
+		//	nm_print(browser, 1);
 			ft_dprintf(2, "%s: %s truncated or malformed object "
 				"(load command %d extends past the end of all load commands in the file)\n\n",
 					browser->progname, browser->filename, j);
@@ -201,7 +208,7 @@ int		get_sections32(t_header_parser *parser, t_browser *browser)
 			swap_segment_command(seg, parser->should_swap);
 			if (is_corrupted_offset(parser->offset + seg->fileoff, seg->filesize, browser))
 			{
-				nm_print(browser, 1);
+			//	nm_print(browser, 1);
 				ft_dprintf(2, "%s: %s truncated or malformed object "
 					"(load command %d fileoff filed plus filesize "
 						"field in LC_SEGMENT extends past the end of the"

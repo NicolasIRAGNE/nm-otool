@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:41 by niragne           #+#    #+#              #
-#    Updated: 2019/07/18 11:25:40 by ldedier          ###   ########.fr        #
+#    Updated: 2019/07/18 13:26:05 by ldedier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,35 +42,48 @@ LIBFTDIR = ../libft
 LIBFT_INCLUDEDIR = $(LIBFTDIR)/includes
 LIBFT = $(LIBFTDIR)/libft.a
 
-SRCS =	main.c
+
+LIBMACHODIR = ../libmach-o
+LIBMACHO_INCLUDEDIR = $(LIBMACHODIR)/includes
+LIBMACHO = $(LIBMACHODIR)/libmach-o.a
+
+SRCS =	main.c print.c
 
 SRC	= $(addprefix $(SRCDIR)/, $(SRCS))
 DEP = $(addprefix $(INCLUDES)/,$(DEPS))
 
+INC = -I $(INCLUDES) -I $(LIBFT_INCLUDEDIR) -I $(LIBMACHO_INCLUDEDIR)
+
 all:
 	@make -C $(LIBFTDIR) all
+	@make -C $(LIBMACHODIR) all
 	@make $(NAME)
 
 debug:
 	make all DEBUG=1
 
-$(NAME): $(LIBFT) $(OBJECTS) $(DEP)
-	$(CC) -o $(NAME) $(OBJECTS) $(LIBFT) $(LFLAGS)
+$(NAME): $(LIBFT) $(LIBMACHO) $(OBJECTS) $(DEP)
+	$(CC) -o $(NAME) $(OBJECTS) $(LIBFT) $(LIBMACHO) $(LFLAGS)
 	@echo "$(OK_COLOR)$(NAME) compiled with success$(EOC)"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDES)
 	@mkdir -p $(OBJDIR)
-	$(CC) -o $@ -c $< $(CFLAGS) -I $(INCLUDES) -I $(LIBFT_INCLUDEDIR)
+	$(CC) -o $@ -c $< $(CFLAGS) $(INC)
 
 $(LIBFT):
-	make -C $(LIBFTDIR)
+	@make -C $(LIBFTDIR)
+
+$(LIBMACHO):
+	@make -C $(LIBMACHODIR)
 
 clean:
-	make clean -C $(LIBFTDIR)
-	rm -rf $(NAME)
+	@make clean -C $(LIBFTDIR)
+	@make clean -C $(LIBMACHODIR)
+	@rm -rf $(NAME)
 
 fclean: clean
-	make fclean -C $(LIBFTDIR)
-	rm -rf $(OBJECTS)
+	@make fclean -C $(LIBFTDIR)
+	@make fclean -C $(LIBMACHODIR)
+	@rm -rf $(OBJECTS)
 
 re: fclean all
