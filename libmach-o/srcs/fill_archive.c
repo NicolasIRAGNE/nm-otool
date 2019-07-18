@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "mach_o.h"
 
 int		process_fill_identifier(t_header_parser *parser,
-			t_nm_browser *browser, char *identifier, int *address)
+			t_browser *browser, char *identifier, int *address)
 {
 	int len;
 
@@ -32,7 +32,7 @@ int		process_fill_identifier(t_header_parser *parser,
 	return (1);
 }
 
-int		fill_identifier(t_header_parser *parser, t_nm_browser *browser,
+int		fill_identifier(t_header_parser *parser, t_browser *browser,
 			int *address)
 {
 	int ret;
@@ -54,7 +54,7 @@ int		fill_identifier(t_header_parser *parser, t_nm_browser *browser,
 	return (0);
 }
 
-void	print_ranlib(t_header_parser *parser, t_nm_browser *browser,
+void	print_ranlib(t_header_parser *parser, t_browser *browser,
 			struct ranlib ranlib, char *stringtable, int strsize)
 {
 	(void)strsize;
@@ -67,7 +67,7 @@ void	print_ranlib(t_header_parser *parser, t_nm_browser *browser,
 		stringtable + ranlib.ran_un.ran_strx);
 }
 
-int		fill_browser_archive(t_header_parser *parser, t_nm_browser *browser)
+int		fill_browser_archive(t_header_parser *parser, t_browser *browser)
 {
 	int				address;
 	uint32_t		ranlib_array_len;

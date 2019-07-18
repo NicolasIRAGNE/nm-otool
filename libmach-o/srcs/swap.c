@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "mach_o.h"
 
 void	swap_bytes(void *to_swap, size_t size, int should_swap)
 {

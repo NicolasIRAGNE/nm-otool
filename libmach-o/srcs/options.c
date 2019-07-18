@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "mach_o.h"
 
 static int	nm_found_option(char c, t_browser *browser, int *options)
 {

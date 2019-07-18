@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "mach_o.h"
 
 void	debug_mach_header(struct mach_header *ptr)
 {

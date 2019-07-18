@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 
-#include "ft_nm.h"
+#include "mach_o.h"
 
 /*
 ** create and append a new symbol to the symbol tree as it is sorted by the
@@ -20,7 +20,7 @@
 ** also fill its debug character by peeking at its corresponding section
 */
 int		process_fill_symbols32(t_header_parser *parser,
-			t_nm_browser *browser,
+			t_browser *browser,
 				struct symtab_command *sym)
 {
 	uint32_t			i;
@@ -67,7 +67,7 @@ int		process_fill_symbols32(t_header_parser *parser,
 	return (0);
 }
 
-int		fill_symbol_table32(t_header_parser *parser, t_nm_browser *browser)
+int		fill_symbol_table32(t_header_parser *parser, t_browser *browser)
 {
 	struct load_command 	*lc;
 	struct symtab_command	*sym;
@@ -158,7 +158,7 @@ int		process_sections_array32(t_header_parser *parser, t_list **segments)
 ** gathers all segments in order to iterate over them and create an array for
 ** every sections
 */
-int		get_sections32(t_header_parser *parser, t_nm_browser *browser)
+int		get_sections32(t_header_parser *parser, t_browser *browser)
 {
 	struct mach_header			*header;
 	struct load_command			*lc;
@@ -224,7 +224,7 @@ int		get_sections32(t_header_parser *parser, t_nm_browser *browser)
 */
 
 int		fill_browser32(t_header_parser *parser,
-			t_nm_browser *browser)
+			t_browser *browser)
 {
 	int ret;
 

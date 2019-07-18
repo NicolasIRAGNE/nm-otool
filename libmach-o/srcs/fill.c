@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "mach_o.h"
 
-int		identify_as_archive(t_header_parser *parser, t_nm_browser *browser)
+int		identify_as_archive(t_header_parser *parser, t_browser *browser)
 {
 	int identifier_len;
 
@@ -22,7 +22,7 @@ int		identify_as_archive(t_header_parser *parser, t_nm_browser *browser)
 			(char *)parser->ptr, identifier_len));
 }
 
-void	get_header(t_header_parser *parser, t_nm_browser *browser)
+void	get_header(t_header_parser *parser, t_browser *browser)
 {
 	int verbose = 0;
 	parser->magic = *(uint32_t*)parser->ptr;
@@ -96,7 +96,7 @@ void	swap_header(t_header_parser *parser)
 ** recursively for all theheaders found in the fat_header
 */
 
-int	fill_browser(t_header_parser *parser, t_nm_browser *browser)
+int	fill_browser(t_header_parser *parser, t_browser *browser)
 {
 	get_header(parser, browser);
 	if (parser->type == E_UNKNOWN)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "mach_o.h"
 
 char		*get_new_str_from_buffer(char *ptr, size_t n)
 {
@@ -48,7 +48,7 @@ char		*compute_symbol32_name(t_symbol32 *symbol, char *symbol_name)
 }
 
 t_symbol	*nm_new_symbol64(struct nlist_64 *nlist, char *symbol_name,
-				int index, t_nm_browser *browser)
+				int index, t_browser *browser)
 {
 	t_symbol	*symbol;
 
@@ -75,7 +75,7 @@ t_symbol	*nm_new_symbol64(struct nlist_64 *nlist, char *symbol_name,
 }
 
 t_symbol	*nm_new_symbol32(struct nlist *nlist, char *symbol_name,
-				int index, t_nm_browser *browser)
+				int index, t_browser *browser)
 {
 	t_symbol *symbol;
 
@@ -101,7 +101,7 @@ t_symbol	*nm_new_symbol32(struct nlist *nlist, char *symbol_name,
 }
 
 int		add_symbol_to_browser(t_header_parser *parser,
-			t_nm_browser *browser, t_symbol *new_symbol)
+			t_browser *browser, t_symbol *new_symbol)
 {
 	return (ft_tree_add_sorted(&parser->symbols, new_symbol,
 				browser, browser->sort_func));
@@ -115,14 +115,14 @@ uint32_t max_uint32(uint32_t a, uint32_t b)
 		return (b);
 }
 
-int nm_perror(char *error_message, t_nm_browser *browser)
+int nm_perror(char *error_message, t_browser *browser)
 {
 	ft_dprintf(2, "%s: %s\n", browser->filename, error_message);
 	return (0);
 }
 
 int		should_add_symbol(uint8_t n_type, uint16_t n_desc, char *name,
-			t_nm_browser *browser)
+			t_browser *browser)
 {
 	(void)browser;
 	(void)name;

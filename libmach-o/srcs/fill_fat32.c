@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "mach_o.h"
 
 char	*get_cpu_name(cpu_type_t cpu, cpu_subtype_t sub)
 {
@@ -41,7 +41,7 @@ char	*get_cpu_name(cpu_type_t cpu, cpu_subtype_t sub)
 }
 
 int		process_browser_fat_arch32(struct fat_arch *fat_arch,
-			t_header_parser *parser, t_nm_browser *browser)
+			t_header_parser *parser, t_browser *browser)
 {
 	t_header_parser new_parser;
 
@@ -55,7 +55,7 @@ int		process_browser_fat_arch32(struct fat_arch *fat_arch,
 	return (0);
 }
 int			fat_corrupted_print_error_alignment(struct fat_arch *fat_arch,
-				t_nm_browser *browser)
+				t_browser *browser)
 {
 	ft_dprintf(2, "%s: %s truncated or malformed "
 		"fat file (offset: %d for cputype (%d) cpusubtype (%d) "
@@ -67,7 +67,7 @@ int			fat_corrupted_print_error_alignment(struct fat_arch *fat_arch,
 
 
 int		fat_corrupted_print_error(char *str, struct fat_arch *fat_arch,
-			t_nm_browser *browser)
+			t_browser *browser)
 {
 	ft_dprintf(2, str, browser->progname, browser->filename,
 		fat_arch->cputype, fat_arch->cpusubtype);
@@ -76,7 +76,7 @@ int		fat_corrupted_print_error(char *str, struct fat_arch *fat_arch,
 
 int		check_all_architectures(struct fat_arch **found,
 			struct fat_arch *fat_arch_array, t_header_parser *parser,
-				t_nm_browser *browser)
+				t_browser *browser)
 {
 	uint32_t			i;
 	struct fat_header	*fat_header;
@@ -122,7 +122,7 @@ int		check_all_architectures(struct fat_arch **found,
 	return (0);
 }
 
-int		fill_browser_fat32(t_header_parser *parser, t_nm_browser *browser)
+int		fill_browser_fat32(t_header_parser *parser, t_browser *browser)
 {
 	uint32_t			i;
 	struct fat_arch		*fat_arch;

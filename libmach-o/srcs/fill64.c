@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "mach_o.h"
 
 int		overlaps_symtab_command(struct symtab_command *sym)
 {
@@ -32,7 +32,7 @@ int		overlaps_symtab_command(struct symtab_command *sym)
 **
 ** also fill its debug character by peeking at its corresponding section
 */
-int		process_fill_symbols64(t_header_parser *parser, t_nm_browser *browser,
+int		process_fill_symbols64(t_header_parser *parser, t_browser *browser,
 			struct symtab_command *sym)
 {
 	uint32_t				i;
@@ -82,7 +82,7 @@ int		process_fill_symbols64(t_header_parser *parser, t_nm_browser *browser,
 	return (0);
 }
 
-int		fill_symbol_table64(t_header_parser *parser, t_nm_browser *browser)
+int		fill_symbol_table64(t_header_parser *parser, t_browser *browser)
 {
 	struct load_command *lc;
 	struct symtab_command *sym;
@@ -173,7 +173,7 @@ int		process_sections_array64(t_header_parser *parser, t_list **segments)
 ** gathers all segments in a linked list in order to iterate over them 
 ** and create an array for every sections
 */
-int		get_sections64(t_header_parser *parser, t_nm_browser *browser)
+int		get_sections64(t_header_parser *parser, t_browser *browser)
 {
 	struct load_command			*lc;
 	struct segment_command_64	*seg;
@@ -239,7 +239,7 @@ int		get_sections64(t_header_parser *parser, t_nm_browser *browser)
 	return (process_sections_array64(parser, &segments));
 }
 
-int		add_parser(t_nm_browser *browser, t_header_parser *parser)
+int		add_parser(t_browser *browser, t_header_parser *parser)
 {
 	if (parser->parser_enum == PARSER_ENUM_OBJECT)
 	{
@@ -259,7 +259,7 @@ int		add_parser(t_nm_browser *browser, t_header_parser *parser)
 ** at the matching section (mainly)
 */
 
-int		fill_browser64(t_header_parser *parser, t_nm_browser *browser)
+int		fill_browser64(t_header_parser *parser, t_browser *browser)
 {
 	int ret;
 

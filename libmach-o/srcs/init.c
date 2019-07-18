@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "mach_o.h"
 
 void	init_parser(t_header_parser *parser, void *ptr,
 			uint64_t offset, char *filename)
@@ -24,7 +24,7 @@ void	init_parser(t_header_parser *parser, void *ptr,
 	parser->should_swap = 0;
 }
 
-int	init_browser(t_nm_browser *browser, char *filename)
+int	init_browser(t_browser *browser, char *filename)
 {
 	int			fd;
 
@@ -50,7 +50,7 @@ int	init_browser(t_nm_browser *browser, char *filename)
 	return (0);
 }
 
-void	init_browser_general(t_nm_browser *browser, char *progname)
+void	init_browser_general(t_browser *browser, char *progname)
 {
 	browser->ret = 0;
 	browser->has_bad_index = 0;

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
-int		fill_archive_member(t_nm_browser *browser,
+#include "mach_o.h"
+int		fill_archive_member(t_browser *browser,
 		t_header_parser *parser, uint32_t offset, char *object_file)
 {
 	void				*archive_member;

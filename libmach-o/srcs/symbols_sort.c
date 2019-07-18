@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "mach_o.h"
 
 long	cmp_symbol_numerical2(void *s1, void *s2, void *env)
 {
@@ -18,9 +18,9 @@ long	cmp_symbol_numerical2(void *s1, void *s2, void *env)
 	t_symbol		*symbol2;
 	uint64_t		value1;
 	uint64_t		value2;
-	t_nm_browser	*browser;
+	t_browser	*browser;
 
-	browser = (t_nm_browser *)env;
+	browser = (t_browser *)env;
 	symbol1 = (t_symbol *)s1;
 	symbol2 = (t_symbol *)s2;
 	value1 = get_symbol_value(symbol1);
@@ -63,9 +63,9 @@ long	cmp_symbol_numerical(void *s1, void *s2, void *env)
 	t_symbol *symbol2;
 	uint64_t	value1;
 	uint64_t	value2;
-	t_nm_browser	*browser;
+	t_browser	*browser;
 
-	browser = (t_nm_browser *)env;
+	browser = (t_browser *)env;
 	symbol1 = (t_symbol *)s1;
 	symbol2 = (t_symbol *)s2;
 	value1 = get_symbol_value(symbol1);

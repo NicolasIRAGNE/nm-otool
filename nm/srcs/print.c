@@ -38,7 +38,7 @@ void	print_parser_header_intro(t_header_parser *parser)
 }
 
 void	print_symbol64(t_header_parser *parser, t_symbol64 symbol64,
-			char debug, t_nm_browser *browser)
+			char debug, t_browser *browser)
 {
 	(void)parser;
 	if ((!((symbol64.nlist->n_type & N_TYPE) == N_UNDF) ||
@@ -58,7 +58,7 @@ void	print_symbol64(t_header_parser *parser, t_symbol64 symbol64,
 	}
 }
 
-void	print_symbol32(t_symbol32 symbol32, char debug, t_nm_browser *browser)
+void	print_symbol32(t_symbol32 symbol32, char debug, t_browser *browser)
 {
 	if (!((symbol32.nlist->n_type & N_TYPE) == N_UNDF)
 			|| browser->has_bad_index)
@@ -73,7 +73,7 @@ void	print_symbol32(t_symbol32 symbol32, char debug, t_nm_browser *browser)
 	}
 }
 
-void	print_symbol(t_header_parser *parser, t_symbol *symbol, t_nm_browser *browser)
+void	print_symbol(t_header_parser *parser, t_symbol *symbol, t_browser *browser)
 {
 	if (symbol->symbol_enum == E_SYMBOL_64)
 		print_symbol64(parser, symbol->symbol_union.symbol64, symbol->debug, browser);
@@ -81,7 +81,7 @@ void	print_symbol(t_header_parser *parser, t_symbol *symbol, t_nm_browser *brows
 		print_symbol32(symbol->symbol_union.symbol32, symbol->debug, browser);
 }
 
-void	print_symbol_tree(t_header_parser *parser, t_tree *tree, t_nm_browser *browser)
+void	print_symbol_tree(t_header_parser *parser, t_tree *tree, t_browser *browser)
 {
 	if (tree)
 	{
@@ -92,14 +92,14 @@ void	print_symbol_tree(t_header_parser *parser, t_tree *tree, t_nm_browser *brow
 }
 
 void	nm_print_header_parser(t_header_parser *parser,
-			t_nm_browser *browser, int len, int force)
+			t_browser *browser, int len, int force)
 {
 	if (browser->nb_args > 1 || len > 1 || force)
 		print_parser_header_intro(parser);
 	print_symbol_tree(parser, parser->symbols, browser);
 }
 
-void	process_nm_print_tree(t_nm_browser *browser, t_tree *tree, int len)
+void	process_nm_print_tree(t_browser *browser, t_tree *tree, int len)
 {
 	t_header_parser *parser;
 
@@ -112,7 +112,7 @@ void	process_nm_print_tree(t_nm_browser *browser, t_tree *tree, int len)
 	}
 }
 
-void	nm_print(t_nm_browser *browser, int force)
+void	nm_print(t_browser *browser, int force)
 {
 	int				len;
 

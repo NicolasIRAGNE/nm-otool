@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "mach_o.h"
 
 /*
 ** if the symbol is global (ie (n_type & N_EXT)) then nm 
@@ -45,7 +45,7 @@ int		process_fill_debug_from_section(t_symbol *symbol,
 }
 
 int		fill_debug_from_type(t_symbol *symbol, uint8_t type, uint64_t value,
-			t_nm_browser *browser)
+			t_browser *browser)
 {
 	if (type == N_UNDF && value != 0)// && !browser->has_bad_index)
 		symbol->debug = 'U';
@@ -71,7 +71,7 @@ int		fill_debug_from_type(t_symbol *symbol, uint8_t type, uint64_t value,
 */
 
 int		fill_debug64(t_symbol *symbol, t_section_arr section_arr,
-			t_nm_browser *browser)
+			t_browser *browser)
 {
 	int			nsect;
 	t_symbol64	*symbol64;
@@ -101,7 +101,7 @@ int		fill_debug64(t_symbol *symbol, t_section_arr section_arr,
 }
 
 int		fill_debug32(t_symbol *symbol, t_section_arr section_arr,
-			t_nm_browser *browser)
+			t_browser *browser)
 {
 	int			nsect;
 	t_symbol32	*symbol32;
