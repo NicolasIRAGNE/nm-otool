@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 11:43:14 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/17 19:03:12 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/18 09:45:52 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int		fill_archive_member(t_nm_browser *browser,
 
 	(void)object_file;
 	archive_member = parser->ptr + offset;
-	ft_printf("%s\n", archive_member);
 	if ((off_t)(offset + 60) > browser->st.st_size)
 	{
 		return (1);
@@ -36,8 +35,8 @@ int		fill_archive_member(t_nm_browser *browser,
 			offset + 60 + name_size, parser->filename);
 		new_parser.parser_enum = PARSER_ENUM_OBJECT;
 
-		ft_printf("%s\n", parser->ptr + offset + 60);
-		ft_printf("%s\n\n", object_file);
+//		ft_printf("%s\n", parser->ptr + offset + 60);
+//		ft_printf("%s\n\n", object_file);
 		new_parser.parser_union.object.name = parser->ptr + offset + 60;
 //		new_parser.parser_union.object.name = object_file;
 		new_parser.parser_union.object.ran_off = offset;

@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 18:21:30 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/17 17:28:48 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/18 09:43:52 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,4 +215,5 @@ int					ft_nb_words_whitespace(char const *s);
 int					ft_substitute_dy_str(t_dy_str *d_str, char *to_inject,
 						int index_to_inject, int len);
 int					ft_strichr_last(const char *s, int c);
+void	test_very_very_very_very_very_very_very_very_very_very_very_long(void);
 #endif

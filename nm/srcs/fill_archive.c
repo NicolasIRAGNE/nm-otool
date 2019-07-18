@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 18:19:32 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/17 19:13:03 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/18 09:45:20 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ void	print_ranlib(t_header_parser *parser, t_nm_browser *browser,
 //	ft_printf("%s\n", stringtable + ranlib.ran_un.ran_strx);
 	fill_archive_member(browser, parser, ranlib.ran_off,
 		stringtable + ranlib.ran_un.ran_strx);
-//	ft_printf("%s\n", stringtable + ranlib.ran_off);
 }
 
 int		fill_browser_archive(t_header_parser *parser, t_nm_browser *browser)
 {
 	int				address;
 	uint32_t		ranlib_array_len;
+	uint32_t		ranlib_array_size;
 	uint32_t		string_array_size;
 	struct ranlib	*ranlib_array;
 	char			*stringtable;
@@ -84,6 +84,7 @@ int		fill_browser_archive(t_header_parser *parser, t_nm_browser *browser)
 //		return (1);
 //	}
 	address = ft_strlen(ARCHIVE_IDENTIFIER) + 60 + name_size;
+	ranlib_array_size = *(uint32_t *)(parser->ptr + address);
 	ranlib_array_len = *(uint32_t *)(parser->ptr + address) /
 		sizeof(struct ranlib);
 	address += 4;
@@ -105,10 +106,14 @@ int		fill_browser_archive(t_header_parser *parser, t_nm_browser *browser)
    	stringtable = parser->ptr + address;
 	int i;
 	i = 0;
-	while ((uint32_t)i < ranlib_array_len )
+	while ((uint32_t)i < ranlib_array_len)
 	{
 		print_ranlib(parser, browser, ranlib_array[i], stringtable, string_array_size);
 		i++;
 	}
+//	
+//	ft_printf("string array size: %d\n", string_array_size);
+//	ft_printf("%s\n", parser->ptr + address + string_array_size);
+//	exit(1);
 	return (0);
 }
