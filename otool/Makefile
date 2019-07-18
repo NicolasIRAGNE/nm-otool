@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:41 by niragne           #+#    #+#              #
-#    Updated: 2019/06/19 13:05:10 by niragne          ###   ########.fr        #
+#    Updated: 2019/07/18 11:21:49 by ldedier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ endif
 SRCDIR = srcs
 
 OBJDIR   = objs
-OBJECTS	= $(addprefix $(OBJDIR)/, $(SRCS:%.c=%.o))
 
 INCLUDES = includes
 
@@ -36,6 +35,7 @@ LIBFT = $(LIBFTDIR)/libft.a
 
 SRCS = main.c
 
+OBJECTS	= $(addprefix $(OBJDIR)/, $(SRCS:%.c=%.o))
 SRC	= $(addprefix $(SRCDIR)/, $(SRCS))
 
 all: $(NAME)
