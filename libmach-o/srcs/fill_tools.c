@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:35:21 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/16 17:56:55 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/22 15:47:09 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ char		*compute_symbol32_name(t_symbol32 *symbol, char *symbol_name)
 	return (ft_strdup(symbol_name));
 }
 
+void		fill_bad_index(t_browser *browser, int index)
+{
+	browser->has_bad_index = 1;
+	browser->bad_string_index = index;
+	browser->bad_symbol_index = 1;
+}
+
 t_symbol	*nm_new_symbol64(struct nlist_64 *nlist, char *symbol_name,
 				int index, t_browser *browser)
 {
@@ -60,9 +67,10 @@ t_symbol	*nm_new_symbol64(struct nlist_64 *nlist, char *symbol_name,
 	if ((symbol->symbol_union.symbol64.bad_index =
 		is_corrupted_string(symbol_name, browser,
 			&symbol->symbol_union.symbol64.length))
-				&& symbol->symbol_union.symbol64.length == -1)
+				&& symbol->symbol_union.symbol64.length == -1
+					&& !browser->has_bad_index)
 	{
-		browser->has_bad_index = 1;
+		fill_bad_index(browser, index);
 	}
 	if (!(symbol->symbol_union.symbol64.name
 		= compute_symbol64_name(&symbol->symbol_union.symbol64, symbol_name)))

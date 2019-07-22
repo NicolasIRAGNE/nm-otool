@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/07/18 16:51:26 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/22 18:09:30 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int	fill_browser(t_header_parser *parser, t_browser *browser)
 		return (1);
 	}
 	swap_header(parser);
+//	ft_printf("should swap: %d\n", parser->should_swap);
 	if (parser->type == E_64)
 	{
 		return (fill_browser64(parser, browser));

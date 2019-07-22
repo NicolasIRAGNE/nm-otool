@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:50 by niragne           #+#    #+#              #
-#    Updated: 2019/07/18 18:42:29 by ldedier          ###   ########.fr        #
+#    Updated: 2019/07/22 13:38:04 by ldedier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,9 +58,9 @@ endif
 
 all:
 	@make -C $(LIBFTDIR)
-	@make -C $(LIBMACHODIR)
-	@make -C $(OTOOL_DIR)
-	@make -C $(NM_DIR)
+	@make -C $(LIBMACHODIR) libcompiled
+	@make -C $(OTOOL_DIR) libcompiled
+	@make -C $(NM_DIR) libcompiled
 	@cp $(NM_DIR)/$(NM_NAME) .
 	@cp $(OTOOL_DIR)/$(OTOOL_NAME) .
 

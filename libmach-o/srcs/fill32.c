@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 02:25:02 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/18 18:18:45 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/22 16:48:50 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,8 @@ int		fill_sections_from_segment32(t_section *sections, int *index,
 				&& !ft_strcmp(sections[*index]
 					.section_union.section32->segname, SEG_TEXT))
 			parser->text_section = &sections[*index];
-		(*index) += 1;
+		swap_section(sections[*index].section_union.section32, parser->should_swap);
+		(*index)++;
 	}
 	return (0);
 }

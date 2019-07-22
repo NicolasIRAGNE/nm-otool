@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 22:46:21 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/20 22:46:21 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/22 14:25:09 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	nm_found_option(char c, t_browser *browser, int *options)
 }
 
 int			process_parse_options(char *str, t_browser *browser,
-				int *options, char **argv)
+		int *options, char **argv)
 {
 	int i;
 

@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/07/18 16:52:27 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/22 14:16:43 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@
 int		process_otool(char *filename, t_browser *browser)
 {
 	t_header_parser	parser;
+	int ret;
 
 	if (init_browser(browser, filename))
 		return (1);
 	init_parser(&parser, browser->ptr, 0, filename);
-	if (fill_browser(&parser, browser))
+	if ((ret = fill_browser(&parser, browser)))
 		return (1);
 	otool_print(browser);
 	ft_tree_del(&browser->parsers, free_parser_tree);

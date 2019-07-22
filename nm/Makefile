@@ -6,7 +6,7 @@
 #    By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/18 12:01:42 by ldedier           #+#    #+#              #
-#    Updated: 2019/07/18 12:18:15 by ldedier          ###   ########.fr        #
+#    Updated: 2019/07/22 13:36:27 by ldedier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,12 +53,15 @@ INC = -I $(INCLUDES) -I $(LIBFT_INCLUDEDIR) -I $(LIBMACHO_INCLUDEDIR)
 
 
 all:
-	@make -C $(LIBFTDIR) all
-	@make -C $(LIBMACHODIR) all
+	@make all -C $(LIBFTDIR)
+	@make all -C $(LIBMACHODIR)
+	@make $(NAME)
+
+libcompiled:
 	@make $(NAME)
 
 debug:
-	make all DEBUG=1
+	@make all DEBUG=1
 
 $(NAME): $(LIBFT) $(LIBMACHO) $(OBJECTS) $(DEP)
 	$(CC) -o $(NAME) $(OBJECTS) $(LIBFT) $(LIBMACHO) $(LFLAGS) 

@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 21:07:18 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/22 21:07:18 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/22 16:52:37 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,4 +134,32 @@ void	swap_nlist(struct nlist *nlist, int should_swap)
 	swap_uint32(&nlist->n_value, should_swap);
 	swap_uint32(&nlist->n_un.n_strx, should_swap);
 	swap_bytes(&nlist->n_desc, sizeof(int16_t), should_swap);
+}
+
+void	swap_section(struct section *section , int should_swap)
+{
+	swap_uint32(&section->addr, should_swap);
+	swap_uint32(&section->size, should_swap);
+	swap_uint32(&section->offset, should_swap);
+	swap_uint32(&section->align, should_swap);
+	swap_uint32(&section->reloff, should_swap);
+	swap_uint32(&section->reloff, should_swap);
+	swap_uint32(&section->nreloc, should_swap);
+	swap_uint32(&section->flags, should_swap);
+	swap_uint32(&section->reserved1, should_swap);
+	swap_uint32(&section->reserved2, should_swap);
+}
+
+void	swap_section_64(struct section_64 *section , int should_swap)
+{
+	swap_uint64(&section->addr, should_swap);
+	swap_uint64(&section->size, should_swap);
+	swap_uint32(&section->offset, should_swap);
+	swap_uint32(&section->align, should_swap);
+	swap_uint32(&section->reloff, should_swap);
+	swap_uint32(&section->reloff, should_swap);
+	swap_uint32(&section->nreloc, should_swap);
+	swap_uint32(&section->flags, should_swap);
+	swap_uint32(&section->reserved1, should_swap);
+	swap_uint32(&section->reserved2, should_swap);
 }

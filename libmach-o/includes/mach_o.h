@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 11:40:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/18 17:47:18 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/22 16:53:13 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ typedef struct				s_header_parser
 	uint64_t				offset;
 	t_bin_type				type;
 	t_header_union			header_union;
-	int						should_swap : 1;
+	int						should_swap;
 	t_section_arr			section_arr;
 	t_section				*text_section;
 	t_tree					*symbols;
@@ -103,6 +103,8 @@ struct						s_browser
 	char					sort_mult;
 	char					*filename;
 	int						has_bad_index : 1;
+	int						bad_string_index;
+	int						bad_symbol_index;
 	int						nb_args;
 	char					*progname;
 	int						force;
@@ -219,6 +221,9 @@ void	swap_segment_command_64(struct segment_command_64 *seg,
 			int should_swap);
 void	swap_symtab_command(struct symtab_command *sym, int should_swap);
 void	swap_nlist(struct nlist *nlist, int should_swap);
+void	swap_nlist(struct nlist *nlist, int should_swap);
+void	swap_section(struct section *section, int should_swap);
+void	swap_section_64(struct section_64 *section, int should_swap);
 void	swap_bytes(void *to_swap, size_t size, int should_swap);
 /*
 ** corrupted.c

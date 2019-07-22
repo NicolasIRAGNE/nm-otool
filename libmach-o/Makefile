@@ -6,7 +6,7 @@
 #    By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/18 11:31:28 by ldedier           #+#    #+#              #
-#    Updated: 2019/07/18 17:45:50 by ldedier          ###   ########.fr        #
+#    Updated: 2019/07/22 13:33:56 by ldedier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,9 @@ opti:
 
 all:
 	@make -C $(LIBFTDIR)
+	@make $(BINDIR)/$(NAME)
+
+libcompiled:
 	@make $(BINDIR)/$(NAME)
 
 $(LIBFT):

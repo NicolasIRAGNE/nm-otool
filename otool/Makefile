@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:41 by niragne           #+#    #+#              #
-#    Updated: 2019/07/18 13:26:05 by ldedier          ###   ########.fr        #
+#    Updated: 2019/07/22 13:36:39 by ldedier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,8 +59,11 @@ all:
 	@make -C $(LIBMACHODIR) all
 	@make $(NAME)
 
+libcompiled:
+	@make $(NAME)
+
 debug:
-	make all DEBUG=1
+	@make all DEBUG=1
 
 $(NAME): $(LIBFT) $(LIBMACHO) $(OBJECTS) $(DEP)
 	$(CC) -o $(NAME) $(OBJECTS) $(LIBFT) $(LIBMACHO) $(LFLAGS)
