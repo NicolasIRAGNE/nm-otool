@@ -68,6 +68,7 @@ typedef struct				s_arch
 {
 	cpu_type_t				cputype;
 	cpu_subtype_t			cpusubtype;
+	int						relevant;
 }							t_arch;
 
 typedef struct				s_object

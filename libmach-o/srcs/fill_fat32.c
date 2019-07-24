@@ -51,6 +51,7 @@ int		process_browser_fat_arch32(struct fat_arch *fat_arch,
 	new_parser.parser_enum = PARSER_ENUM_ARCHI;
 	new_parser.parser_union.arch.cputype = fat_arch->cputype;
 	new_parser.parser_union.arch.cpusubtype = fat_arch->cpusubtype;
+	new_parser.parser_union.arch.relevant = 1;
 	if ((ret = fill_browser(&new_parser, browser)) == CORRUPTED)
 		return (0);
 	else if (ret)

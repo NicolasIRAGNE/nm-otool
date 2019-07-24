@@ -23,7 +23,8 @@ void	init_parser(t_header_parser *parser, void *ptr,
 	parser->filename = filename;
 	parser->parser_enum = PARSER_ENUM_NONE;
 	parser->should_swap = 0;
-	parser->parser_union.arch.cputype = 0xdead;
+	parser->parser_union.arch.cputype = -1;
+	parser->parser_union.arch.relevant = 0;
 }
 
 int	init_browser(t_browser *browser, char *filename)

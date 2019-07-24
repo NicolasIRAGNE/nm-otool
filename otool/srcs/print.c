@@ -32,7 +32,8 @@ void	print_parser_header_intro(t_header_parser *parser)
 	if (parser->parser_enum == PARSER_ENUM_NONE || !ft_strcmp(str, ARCH) ||
 			!ft_strcmp("", str))
 		ft_printf("%s:\n", parser->filename);
-	else if (parser->parser_enum == PARSER_ENUM_ARCHI)
+	else if (parser->parser_enum == PARSER_ENUM_ARCHI
+		&& parser->parser_union.arch.relevant)
 	{
 		ft_printf("%s (architecture %s):\n",
 				parser->filename, get_cpu_name(parser->parser_union.
@@ -110,6 +111,7 @@ void	print_text_section_4_by_4(t_section *section, t_header_parser *parser)
 void	otool_process_print_header_parser(t_header_parser *parser,
 			cpu_type_t cputype, t_section *section)
 {
+	//ft_printf("CPU: %d\n", cputype);
 	ft_printf("Contents of (%s,%s) section\n", get_section_segname(section),
 		get_section_sectname(section));
 	if (cputype == CPU_TYPE_I386 || cputype == CPU_TYPE_X86_64)
