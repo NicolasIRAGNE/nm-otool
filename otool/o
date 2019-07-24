@@ -1,5 +1,4 @@
 gcc-6-ppc_7400:
-CPU: -1
 Contents of (__TEXT,__text) section
 00002398	7c3a0b78 3821fffc 54210034 38000000 
 000023a8	90010000 9421ffc0 807a0000 389a0004 

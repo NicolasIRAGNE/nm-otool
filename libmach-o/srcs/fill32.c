@@ -176,6 +176,8 @@ int		get_sections32(t_header_parser *parser, t_browser *browser)
 	int							j;
 
 	header = parser->header_union.header32;
+	parser->parser_union.arch.cputype = header->cputype;
+	parser->parser_union.arch.cpusubtype = header->cpusubtype;
 	segments = NULL;
 	i = (uint64_t)((void *)header + sizeof(*header));
 	j = 0;

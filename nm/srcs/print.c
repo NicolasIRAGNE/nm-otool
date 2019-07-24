@@ -23,18 +23,21 @@ char	get_debug(char debug, int has_bad_index)
 
 void	print_parser_header_intro(t_header_parser *parser)
 {
-		if (parser->parser_enum == PARSER_ENUM_NONE)
-			ft_printf("\n%s:\n", parser->filename);
-		else if (parser->parser_enum == PARSER_ENUM_ARCHI)
-			ft_printf("\n%s (for architecture %s):\n",
+	if (parser->parser_enum == PARSER_ENUM_NONE)
+		ft_printf("\n%s:\n", parser->filename);
+	else if (parser->parser_enum == PARSER_ENUM_ARCHI
+			&& parser->parser_union.arch.relevant)
+	{
+		ft_printf("\n%s (for architecture %s):\n",
 				parser->filename,
-					get_cpu_name(parser->parser_union.arch.cputype,
-						parser->parser_union.arch.cpusubtype));
-		else if (parser->parser_enum == PARSER_ENUM_OBJECT)
-		{
-			ft_printf("\n%s(%s):\n",
+				get_cpu_name(parser->parser_union.arch.cputype,
+					parser->parser_union.arch.cpusubtype));
+	}
+	else if (parser->parser_enum == PARSER_ENUM_OBJECT)
+	{
+		ft_printf("\n%s(%s):\n",
 				parser->filename, parser->parser_union.object.name);
-		}
+	}
 }
 
 void	print_symbol64(t_header_parser *parser, t_symbol64 symbol64,

@@ -43,6 +43,8 @@ int		main(int ac, char **av)
 
 	init_browser_general(&browser, av[0]);
 	i = 1;
+	if (ac <= 1)
+		ft_dprintf(2, "%s: at least one file must be specified\n", browser.progname);
 	while (i < ac)
 	{
 		if (process_otool(av[i++], &browser))

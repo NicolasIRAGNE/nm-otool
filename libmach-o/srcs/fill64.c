@@ -190,6 +190,8 @@ int		get_sections64(t_header_parser *parser, t_browser *browser)
 
 	j = 0;
 	header = parser->header_union.header64;
+	parser->parser_union.arch.cputype = header->cputype;
+	parser->parser_union.arch.cpusubtype = header->cpusubtype;
 	segments = NULL;
 	i = (uint64_t)((void *)header + sizeof(*header));
 	while (j < header->ncmds)
