@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/07/24 19:03:27 by niragne          ###   ########.fr       */
+/*   Updated: 2019/07/24 19:28:38 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int		main(int ac, char **av)
     t_arg_parser parser;
 
 	opt_init_parser(&parser);
-    opt_add_to_parser(&parser, (t_arg_option){"reverse", 'r', 0, 0, 0, 0, 1, NULL});
-    opt_add_to_parser(&parser, (t_arg_option){"banane", 'b', 0, 0, 0, 0, 2, NULL});
-    opt_add_to_parser(&parser, (t_arg_option){"pute", 'p', 0, 0, 0, 0, 2, NULL});
+    opt_add_to_parser(&parser, (t_arg_option){"reverse", 'r', 0, 0, 0, 0, 1});
+    opt_add_to_parser(&parser, (t_arg_option){"banane", 'b', 0, 0, 0, 0, 2});
+    opt_add_to_parser(&parser, (t_arg_option){"pute", 'p', 0, 0, 0, 0, 2});
 	opt_print_parser(&parser);
 	//parse_args(&parser, av + 1);
 	

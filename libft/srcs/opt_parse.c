@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 13:49:12 by niragne           #+#    #+#             */
-/*   Updated: 2019/07/24 19:00:41 by niragne          ###   ########.fr       */
+/*   Updated: 2019/07/24 19:24:23 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void    opt_print_parser(t_arg_parser *parser)
     {
         t_arg_option *test;
         test = (t_arg_option*)lst->content;
-        ft_printf("long_name = %s, short_name = %c, value = %d, index = %d\n",
-        test->long_name, test->short_name, test->value, test->flag_index);
+        ft_printf("long_name = %s, short_name = %c, set = %d, value = %d, index = %d\n",
+        test->long_name, test->short_name, test->set, test->value, test->flag_index);
         lst = lst->next;
     }
 }

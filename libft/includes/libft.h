@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 18:21:30 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/24 18:59:33 by niragne          ###   ########.fr       */
+/*   Updated: 2019/07/24 19:23:43 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef struct		s_arg_option
 	int     set;
 	int		value;
 	uint8_t	flag_index;
-	t_list	*current;
 }					t_arg_option;
 
 typedef struct		s_arg_parser
