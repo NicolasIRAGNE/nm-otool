@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 18:21:30 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/18 09:43:52 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/24 18:59:33 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,24 @@ typedef struct		s_dy_str
 	size_t			current_index;
 	size_t			nb_chars;
 }					t_dy_str;
+
+typedef struct		s_arg_option
+{
+	char *long_name;
+	unsigned char short_name;
+	int 	arg : 1;
+	int		multiple_args : 1;
+	int     set;
+	int		value;
+	uint8_t	flag_index;
+	t_list	*current;
+}					t_arg_option;
+
+typedef struct		s_arg_parser
+{
+	t_list			*lst;
+}					t_arg_parser;
+
 
 void				*ft_memset(void *s, int c, size_t n);
 void				ft_bzero(void *s, size_t n);
@@ -216,4 +234,10 @@ int					ft_substitute_dy_str(t_dy_str *d_str, char *to_inject,
 						int index_to_inject, int len);
 int					ft_strichr_last(const char *s, int c);
 void	test_very_very_very_very_very_very_very_very_very_very_very_long(void);
+void	opt_parse_args(t_arg_parser *parser, char **av);
+void	opt_parse_str(t_arg_parser *parser, char *str);
+void	opt_init_parser(t_arg_parser *parser);
+void	opt_add_to_parser(t_arg_parser *parser, t_arg_option opt);
+void    opt_print_parser(t_arg_parser *parser);
+
 #endif

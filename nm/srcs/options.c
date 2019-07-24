@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   options.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 22:46:21 by ldedier           #+#    #+#             */
-/*   Updated: 2019/06/20 22:46:21 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/24 13:48:20 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
+
 
 static int	nm_found_option(char c, t_browser *browser, int *options)
 {
@@ -30,7 +31,7 @@ int			process_parse_options(char *str, t_browser *browser,
 {
 	int i;
 
-	if (!ft_strcmp(str, "-help"))
+	if (!ft_strcmp(str, "--help"))
 	{
 		print_help();
 		return (2);
