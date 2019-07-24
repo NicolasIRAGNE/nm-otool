@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 02:14:47 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/18 16:58:05 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/24 12:37:27 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_parser(t_header_parser *parser, void *ptr,
 	parser->filename = filename;
 	parser->parser_enum = PARSER_ENUM_NONE;
 	parser->should_swap = 0;
+	parser->parser_union.arch.cputype = 0xdead;
 }
 
 int	init_browser(t_browser *browser, char *filename)
@@ -39,7 +40,7 @@ int	init_browser(t_browser *browser, char *filename)
 	}
 	if ((fstat(fd, &browser->st)) < 0)
 	{
-		ft_printf("error fstat\n");
+		ft_dprintf(2, "error fstat on file %s\n", filename);
 		return (1);
 	}
 	if ((browser->ptr = mmap(0, browser->st.st_size,

@@ -1,29 +1,95 @@
-==29143== Memcheck, a memory error detector
-==29143== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==29143== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==29143== Command: ./../ft_nm all/64_exe_hard
-==29143== Parent PID: 29077
-==29143== 
-==29143== 
-==29143== Process terminating with default action of signal 2 (SIGINT)
-==29143==    at 0x10010D7F8: dyld::loadPhase5(char const*, char const*, dyld::LoadContext const&, unsigned int&, std::__1::vector<char const*, std::__1::allocator<char const*> >*) (in /usr/lib/dyld)
-==29143==    by 0x10010D68E: dyld::loadPhase4(char const*, char const*, dyld::LoadContext const&, unsigned int&, std::__1::vector<char const*, std::__1::allocator<char const*> >*) (in /usr/lib/dyld)
-==29143==    by 0x10010D3FE: dyld::loadPhase3(char const*, char const*, dyld::LoadContext const&, unsigned int&, std::__1::vector<char const*, std::__1::allocator<char const*> >*) (in /usr/lib/dyld)
-==29143==    by 0x10010CB82: dyld::loadPhase1(char const*, char const*, dyld::LoadContext const&, unsigned int&, std::__1::vector<char const*, std::__1::allocator<char const*> >*) (in /usr/lib/dyld)
-==29143==    by 0x1001078FE: dyld::loadPhase0(char const*, char const*, dyld::LoadContext const&, unsigned int&, std::__1::vector<char const*, std::__1::allocator<char const*> >*) (in /usr/lib/dyld)
-==29143==    by 0x100107530: dyld::load(char const*, dyld::LoadContext const&, unsigned int&) (in /usr/lib/dyld)
-==29143==    by 0x10010DFEF: dyld::libraryLocator(char const*, bool, char const*, ImageLoader::RPathChain const*, unsigned int&) (in /usr/lib/dyld)
-==29143==    by 0x100114A45: ImageLoader::recursiveLoadLibraries(ImageLoader::LinkContext const&, bool, ImageLoader::RPathChain const&, char const*) (in /usr/lib/dyld)
-==29143==    by 0x100114C15: ImageLoader::recursiveLoadLibraries(ImageLoader::LinkContext const&, bool, ImageLoader::RPathChain const&, char const*) (in /usr/lib/dyld)
-==29143==    by 0x100114C15: ImageLoader::recursiveLoadLibraries(ImageLoader::LinkContext const&, bool, ImageLoader::RPathChain const&, char const*) (in /usr/lib/dyld)
-==29143==    by 0x100114C15: ImageLoader::recursiveLoadLibraries(ImageLoader::LinkContext const&, bool, ImageLoader::RPathChain const&, char const*) (in /usr/lib/dyld)
-==29143==    by 0x100114C15: ImageLoader::recursiveLoadLibraries(ImageLoader::LinkContext const&, bool, ImageLoader::RPathChain const&, char const*) (in /usr/lib/dyld)
-==29143== 
-==29143== HEAP SUMMARY:
-==29143==     in use at exit: 0 bytes in 0 blocks
-==29143==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==29143== 
-==29143== All heap blocks were freed -- no leaks are possible
-==29143== 
-==29143== For counts of detected and suppressed errors, rerun with: -v
-==29143== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 4 from 4)
+==52273== Memcheck, a memory error detector
+==52273== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==52273== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==52273== Command: ./../ft_otool all/64_exe_hard
+==52273== Parent PID: 52178
+==52273== 
+==52273== Conditional jump or move depends on uninitialised value(s)
+==52273==    at 0x1000089C6: get_cpu_name (in ./../ft_otool)
+==52273==    by 0x100000DAE: print_parser_header_intro (in ./../ft_otool)
+==52273==    by 0x1000012BB: otool_print_header_parser (in ./../ft_otool)
+==52273==    by 0x1000013AC: process_otool_print_tree (in ./../ft_otool)
+==52273==    by 0x100001405: otool_print (in ./../ft_otool)
+==52273==    by 0x100000C43: process_otool (in ./../ft_otool)
+==52273==    by 0x100000D2F: main (in ./../ft_otool)
+==52273== 
+==52273== Conditional jump or move depends on uninitialised value(s)
+==52273==    at 0x1000089E3: get_cpu_name (in ./../ft_otool)
+==52273==    by 0x100000DAE: print_parser_header_intro (in ./../ft_otool)
+==52273==    by 0x1000012BB: otool_print_header_parser (in ./../ft_otool)
+==52273==    by 0x1000013AC: process_otool_print_tree (in ./../ft_otool)
+==52273==    by 0x100001405: otool_print (in ./../ft_otool)
+==52273==    by 0x100000C43: process_otool (in ./../ft_otool)
+==52273==    by 0x100000D2F: main (in ./../ft_otool)
+==52273== 
+==52273== Conditional jump or move depends on uninitialised value(s)
+==52273==    at 0x1000089FD: get_cpu_name (in ./../ft_otool)
+==52273==    by 0x100000DAE: print_parser_header_intro (in ./../ft_otool)
+==52273==    by 0x1000012BB: otool_print_header_parser (in ./../ft_otool)
+==52273==    by 0x1000013AC: process_otool_print_tree (in ./../ft_otool)
+==52273==    by 0x100001405: otool_print (in ./../ft_otool)
+==52273==    by 0x100000C43: process_otool (in ./../ft_otool)
+==52273==    by 0x100000D2F: main (in ./../ft_otool)
+==52273== 
+==52273== Conditional jump or move depends on uninitialised value(s)
+==52273==    at 0x100008A82: get_cpu_name (in ./../ft_otool)
+==52273==    by 0x100000DAE: print_parser_header_intro (in ./../ft_otool)
+==52273==    by 0x1000012BB: otool_print_header_parser (in ./../ft_otool)
+==52273==    by 0x1000013AC: process_otool_print_tree (in ./../ft_otool)
+==52273==    by 0x100001405: otool_print (in ./../ft_otool)
+==52273==    by 0x100000C43: process_otool (in ./../ft_otool)
+==52273==    by 0x100000D2F: main (in ./../ft_otool)
+==52273== 
+==52273== Conditional jump or move depends on uninitialised value(s)
+==52273==    at 0x100008A9C: get_cpu_name (in ./../ft_otool)
+==52273==    by 0x100000DAE: print_parser_header_intro (in ./../ft_otool)
+==52273==    by 0x1000012BB: otool_print_header_parser (in ./../ft_otool)
+==52273==    by 0x1000013AC: process_otool_print_tree (in ./../ft_otool)
+==52273==    by 0x100001405: otool_print (in ./../ft_otool)
+==52273==    by 0x100000C43: process_otool (in ./../ft_otool)
+==52273==    by 0x100000D2F: main (in ./../ft_otool)
+==52273== 
+==52273== Conditional jump or move depends on uninitialised value(s)
+==52273==    at 0x100001215: otool_process_print_header_parser (in ./../ft_otool)
+==52273==    by 0x100001348: otool_print_header_parser (in ./../ft_otool)
+==52273==    by 0x1000013AC: process_otool_print_tree (in ./../ft_otool)
+==52273==    by 0x100001405: otool_print (in ./../ft_otool)
+==52273==    by 0x100000C43: process_otool (in ./../ft_otool)
+==52273==    by 0x100000D2F: main (in ./../ft_otool)
+==52273== 
+==52273== Conditional jump or move depends on uninitialised value(s)
+==52273==    at 0x100001222: otool_process_print_header_parser (in ./../ft_otool)
+==52273==    by 0x100001348: otool_print_header_parser (in ./../ft_otool)
+==52273==    by 0x1000013AC: process_otool_print_tree (in ./../ft_otool)
+==52273==    by 0x100001405: otool_print (in ./../ft_otool)
+==52273==    by 0x100000C43: process_otool (in ./../ft_otool)
+==52273==    by 0x100000D2F: main (in ./../ft_otool)
+==52273== 
+==52273== 
+==52273== Process terminating with default action of signal 2 (SIGINT)
+==52273==    at 0x100002000: ft_init_pf (in ./../ft_otool)
+==52273==    by 0x100001EA1: ft_printf (in ./../ft_otool)
+==52273==    by 0x100001140: print_text_section_4_by_4 (in ./../ft_otool)
+==52273==    by 0x100001299: otool_process_print_header_parser (in ./../ft_otool)
+==52273==    by 0x100001348: otool_print_header_parser (in ./../ft_otool)
+==52273==    by 0x1000013AC: process_otool_print_tree (in ./../ft_otool)
+==52273==    by 0x100001405: otool_print (in ./../ft_otool)
+==52273==    by 0x100000C43: process_otool (in ./../ft_otool)
+==52273==    by 0x100000D2F: main (in ./../ft_otool)
+==52273== 
+==52273== HEAP SUMMARY:
+==52273==     in use at exit: 39,921 bytes in 986 blocks
+==52273==   total heap usage: 1,006 allocs, 20 frees, 46,161 bytes allocated
+==52273== 
+==52273== LEAK SUMMARY:
+==52273==    definitely lost: 0 bytes in 0 blocks
+==52273==    indirectly lost: 0 bytes in 0 blocks
+==52273==      possibly lost: 0 bytes in 0 blocks
+==52273==    still reachable: 21,949 bytes in 831 blocks
+==52273==         suppressed: 17,972 bytes in 155 blocks
+==52273== Reachable blocks (those to which a pointer was found) are not shown.
+==52273== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==52273== 
+==52273== For counts of detected and suppressed errors, rerun with: -v
+==52273== Use --track-origins=yes to see where uninitialised values come from
+==52273== ERROR SUMMARY: 7 errors from 7 contexts (suppressed: 12 from 12)

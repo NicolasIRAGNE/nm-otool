@@ -1,4 +1,4 @@
-custom_tests/32/32_exe_hard:
+all/32_exe_hard:
 Contents of (__TEXT,__text) section
 000029a0	55 89 e5 53 57 56 81 ec 5c 02 00 00 e8 00 00 00 
 000029b0	00 5e 8b 86 4f c6 00 00 8b 8e a7 c6 00 00 89 4c 

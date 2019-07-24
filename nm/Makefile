@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+         #
+#    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/18 12:01:42 by ldedier           #+#    #+#              #
-#    Updated: 2019/07/22 13:36:27 by ldedier          ###   ########.fr        #
+#    Updated: 2019/07/24 09:49:14 by niragne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,6 @@ $(NAME): $(LIBFT) $(LIBMACHO) $(OBJECTS) $(DEP)
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDES)
 	@mkdir -p $(OBJDIR)
 	$(CC) -o $@ -c $< $(CFLAGS) $(INC)
-	make -C $(LIBFTDIR)
 
 $(LIBMACHO):
 	make -C $(LIBMACHODIR)

@@ -1,0 +1,84 @@
+==52241== Memcheck, a memory error detector
+==52241== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==52241== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==52241== Command: ./../ft_otool all/32_exe_hard
+==52241== Parent PID: 52178
+==52241== 
+==52241== Conditional jump or move depends on uninitialised value(s)
+==52241==    at 0x1000089C6: get_cpu_name (in ./../ft_otool)
+==52241==    by 0x100000DAE: print_parser_header_intro (in ./../ft_otool)
+==52241==    by 0x1000012BB: otool_print_header_parser (in ./../ft_otool)
+==52241==    by 0x1000013AC: process_otool_print_tree (in ./../ft_otool)
+==52241==    by 0x100001405: otool_print (in ./../ft_otool)
+==52241==    by 0x100000C43: process_otool (in ./../ft_otool)
+==52241==    by 0x100000D2F: main (in ./../ft_otool)
+==52241== 
+==52241== Conditional jump or move depends on uninitialised value(s)
+==52241==    at 0x1000089E3: get_cpu_name (in ./../ft_otool)
+==52241==    by 0x100000DAE: print_parser_header_intro (in ./../ft_otool)
+==52241==    by 0x1000012BB: otool_print_header_parser (in ./../ft_otool)
+==52241==    by 0x1000013AC: process_otool_print_tree (in ./../ft_otool)
+==52241==    by 0x100001405: otool_print (in ./../ft_otool)
+==52241==    by 0x100000C43: process_otool (in ./../ft_otool)
+==52241==    by 0x100000D2F: main (in ./../ft_otool)
+==52241== 
+==52241== Conditional jump or move depends on uninitialised value(s)
+==52241==    at 0x1000089FD: get_cpu_name (in ./../ft_otool)
+==52241==    by 0x100000DAE: print_parser_header_intro (in ./../ft_otool)
+==52241==    by 0x1000012BB: otool_print_header_parser (in ./../ft_otool)
+==52241==    by 0x1000013AC: process_otool_print_tree (in ./../ft_otool)
+==52241==    by 0x100001405: otool_print (in ./../ft_otool)
+==52241==    by 0x100000C43: process_otool (in ./../ft_otool)
+==52241==    by 0x100000D2F: main (in ./../ft_otool)
+==52241== 
+==52241== Conditional jump or move depends on uninitialised value(s)
+==52241==    at 0x100008A82: get_cpu_name (in ./../ft_otool)
+==52241==    by 0x100000DAE: print_parser_header_intro (in ./../ft_otool)
+==52241==    by 0x1000012BB: otool_print_header_parser (in ./../ft_otool)
+==52241==    by 0x1000013AC: process_otool_print_tree (in ./../ft_otool)
+==52241==    by 0x100001405: otool_print (in ./../ft_otool)
+==52241==    by 0x100000C43: process_otool (in ./../ft_otool)
+==52241==    by 0x100000D2F: main (in ./../ft_otool)
+==52241== 
+==52241== Conditional jump or move depends on uninitialised value(s)
+==52241==    at 0x100008A9C: get_cpu_name (in ./../ft_otool)
+==52241==    by 0x100000DAE: print_parser_header_intro (in ./../ft_otool)
+==52241==    by 0x1000012BB: otool_print_header_parser (in ./../ft_otool)
+==52241==    by 0x1000013AC: process_otool_print_tree (in ./../ft_otool)
+==52241==    by 0x100001405: otool_print (in ./../ft_otool)
+==52241==    by 0x100000C43: process_otool (in ./../ft_otool)
+==52241==    by 0x100000D2F: main (in ./../ft_otool)
+==52241== 
+==52241== Conditional jump or move depends on uninitialised value(s)
+==52241==    at 0x100001215: otool_process_print_header_parser (in ./../ft_otool)
+==52241==    by 0x100001348: otool_print_header_parser (in ./../ft_otool)
+==52241==    by 0x1000013AC: process_otool_print_tree (in ./../ft_otool)
+==52241==    by 0x100001405: otool_print (in ./../ft_otool)
+==52241==    by 0x100000C43: process_otool (in ./../ft_otool)
+==52241==    by 0x100000D2F: main (in ./../ft_otool)
+==52241== 
+==52241== Conditional jump or move depends on uninitialised value(s)
+==52241==    at 0x100001222: otool_process_print_header_parser (in ./../ft_otool)
+==52241==    by 0x100001348: otool_print_header_parser (in ./../ft_otool)
+==52241==    by 0x1000013AC: process_otool_print_tree (in ./../ft_otool)
+==52241==    by 0x100001405: otool_print (in ./../ft_otool)
+==52241==    by 0x100000C43: process_otool (in ./../ft_otool)
+==52241==    by 0x100000D2F: main (in ./../ft_otool)
+==52241== 
+==52241== 
+==52241== HEAP SUMMARY:
+==52241==     in use at exit: 18,172 bytes in 161 blocks
+==52241==   total heap usage: 1,232 allocs, 1,071 frees, 55,054 bytes allocated
+==52241== 
+==52241== LEAK SUMMARY:
+==52241==    definitely lost: 0 bytes in 0 blocks
+==52241==    indirectly lost: 0 bytes in 0 blocks
+==52241==      possibly lost: 0 bytes in 0 blocks
+==52241==    still reachable: 200 bytes in 6 blocks
+==52241==         suppressed: 17,972 bytes in 155 blocks
+==52241== Reachable blocks (those to which a pointer was found) are not shown.
+==52241== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==52241== 
+==52241== For counts of detected and suppressed errors, rerun with: -v
+==52241== Use --track-origins=yes to see where uninitialised values come from
+==52241== ERROR SUMMARY: 7 errors from 7 contexts (suppressed: 12 from 12)

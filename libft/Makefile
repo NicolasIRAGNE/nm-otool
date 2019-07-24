@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ldedier <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/06 18:20:16 by ldedier           #+#    #+#              #
-#    Updated: 2019/07/18 09:44:15 by ldedier          ###   ########.fr        #
+#    Updated: 2019/07/24 09:59:56 by niragne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ SRCDIR   = srcs
 OBJDIR   = objs
 BINDIR   = .
 INCLUDESDIR = includes
+
+SPEED = -j8
 
 OK_COLOR = \x1b[32;01m
 EOC = \033[0m
@@ -77,7 +79,8 @@ INCLUDES = $(addprefix $(INCLUDESDIR)/, $(INCLUDES_NO_PREFIX))
 CFLAGS = -Wall -Wextra -Werror $(INC)
 
 ifeq ($(DEBUG), 1)
-	CFLAGS += -DDEBUG
+	CFLAGS += -DDEBUG -fsanitize=address
+	LFLAGS += -fsanitize=address
 	CC += -g3
 endif
 
@@ -88,8 +91,8 @@ $(OBJDIR)/%.o : $(SRCDIR)/%.c $(INCLUDES)
 	$(CC) -c $< -o $@ $(CFLAGS)
 
 $(BINDIR)/$(NAME): $(OBJECTS)
-	@ar rc $@ $^
-	@ranlib $(NAME)
+	ar rc $@ $^
+	ranlib $(NAME)
 	@echo "$(OK_COLOR)$(NAME) linked with success !$(EOC)"
 clean:
 	@rm -f $(OBJECTS)

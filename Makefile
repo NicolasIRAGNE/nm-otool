@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:50 by niragne           #+#    #+#              #
-#    Updated: 2019/07/22 13:38:04 by ldedier          ###   ########.fr        #
+#    Updated: 2019/07/24 09:52:45 by niragne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ INCLUDES = $(addprefix $(INCLUDESDIR)/, $(INCLUDES_NO_PREFIX))
 
 INC = -I $(INCLUDESDIR) -I $(LIBFTDIR)/$(LIBFT_INCLUDEDIR) -I $(LIBMACHO_INCLUDEDIR)
 
-CFLAGS = -DPATH=$(PWD) -Wall -Wextra -Werror $(INC)
+CFLAGS = -DPATH=$(PWD) -Wall -Wextra -Werror -Weverything $(INC)
 LFLAGS = -L $(LIBFTDIR)
 
 ifeq ($(DEBUG), 1)
@@ -57,12 +57,12 @@ ifeq ($(DEBUG), 1)
 endif
 
 all:
-	@make -C $(LIBFTDIR)
-	@make -C $(LIBMACHODIR) libcompiled
-	@make -C $(OTOOL_DIR) libcompiled
-	@make -C $(NM_DIR) libcompiled
-	@cp $(NM_DIR)/$(NM_NAME) .
-	@cp $(OTOOL_DIR)/$(OTOOL_NAME) .
+	make -C $(LIBFTDIR)
+	make -C $(LIBMACHODIR) libcompiled
+	make -C $(OTOOL_DIR) libcompiled
+	make -C $(NM_DIR) libcompiled
+	rsync -u $(NM_DIR)/$(NM_NAME) .
+	rsync -u $(OTOOL_DIR)/$(OTOOL_NAME) .
 
 $(NAME):
 	make $(NAME)
@@ -71,10 +71,10 @@ debug:
 	make all DEBUG=1
 
 $(NM_NAME): $(NM_DIR)/$(NM_NAME)
-	@make -C $(NM_DIR) DEBUG=$(DEBUG)
+	make -C $(NM_DIR) DEBUG=$(DEBUG)
 
 $(OTOOL_NAME): $(OTOOL_DIR)/$(OTOOL_NAME)
-	@make -C $(OTOOL_DIR) DEBUG=$(DEBUG)
+	make -C $(OTOOL_DIR) DEBUG=$(DEBUG)
 
 $(LIBFT):
 	make -C $(LIBFTDIR) DEBUG=$(DEBUG)

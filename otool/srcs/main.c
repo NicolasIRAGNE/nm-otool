@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/07/22 14:16:43 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/24 12:28:21 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		process_otool(char *filename, t_browser *browser)
 		return (1);
 	otool_print(browser);
 	ft_tree_del(&browser->parsers, free_parser_tree);
-	if (munmap(browser->ptr, browser->st.st_size) < 0)
+	if (munmap(browser->ptr, browser->st.st_size) != 0)
 	{
 		ft_dprintf(2, "could not munmap the file %s\n", filename);
 		return (1);

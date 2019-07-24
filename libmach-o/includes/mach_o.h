@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   mach_o.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 11:40:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/22 16:53:13 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/07/24 12:23:41 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MACH_O
-# define MACH_O
+#ifndef MACH_O_H
+# define MACH_O_H
 
 # include "libft.h"
 # include <stdio.h>
@@ -35,6 +35,10 @@
 
 # define CORRUPTED			3
 # define ARCHIVE_IDENTIFIER	"!<arch>\n"
+
+# ifndef ARCH 
+#  define ARCH "unknown"
+# endif
 
 typedef enum e_bin_type
 {

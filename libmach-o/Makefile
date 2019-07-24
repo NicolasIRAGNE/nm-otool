@@ -3,17 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+         #
+#    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/18 11:31:28 by ldedier           #+#    #+#              #
-#    Updated: 2019/07/22 13:33:56 by ldedier          ###   ########.fr        #
+#    Updated: 2019/07/24 10:01:31 by niragne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libmach-o.a
 CC      = gcc
 
-DEBUG ?= 0
 UNAME = $(shell uname -m)
 BINDIR		= .
 SRCDIR		= srcs
@@ -45,7 +44,8 @@ INC = -I $(INCLUDESDIR) -I $(LIBFTDIR)/$(LIBFT_INCLUDEDIR)
 CFLAGS = -DARCH=\"$(UNAME)\" -Wall -Wextra -Werror $(INC)
 
 ifeq ($(DEBUG), 1)
-	CFLAGS += -DDEBUG
+	CFLAGS += -DDEBUG -fsanitize=address
+	LFLAGS += -fsanitize=address
 	CC += -g3
 endif
 
@@ -67,8 +67,8 @@ $(OBJDIR)/%.o : $(SRCDIR)/%.c $(INCLUDES)
 	$(CC) -c $< -o $@ $(CFLAGS)
 
 $(BINDIR)/$(NAME): $(OBJECTS)
-	@ar rc $@ $^
-	@ranlib $(NAME)
+	ar rc $@ $^
+	ranlib $(NAME)
 	@echo "$(OK_COLOR)$(NAME) linked with success !$(EOC)"
 clean:
 	@make -C $(LIBFTDIR) clean

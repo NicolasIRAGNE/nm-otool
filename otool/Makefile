@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:41 by niragne           #+#    #+#              #
-#    Updated: 2019/07/22 13:36:39 by ldedier          ###   ########.fr        #
+#    Updated: 2019/07/24 12:20:43 by niragne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,14 @@ OK_COLOR = \x1b[32;01m
 EOC = \033[0m
 
 
-CFLAGS = -DARCH=\"$(UNAME)\" -Wall -Wextra -Werror
+CFLAGS = -DARCH=\"$(UNAME)\" -Wall -Wextra 
 
 ifeq ($(DEBUG), 1)
 	LFLAGS += -fsanitize=address
 	CFLAGS += -DDEBUG -fsanitize=address
 	CC += -g3
+else
+	CFLAGS += -Werror
 endif
 
 SRCDIR = srcs

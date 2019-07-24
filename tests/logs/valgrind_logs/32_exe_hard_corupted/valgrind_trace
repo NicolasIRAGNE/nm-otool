@@ -1,32 +1,32 @@
-==29130== Memcheck, a memory error detector
-==29130== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==29130== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==29130== Command: ./../ft_nm all/32_exe_hard_corupted
-==29130== Parent PID: 29077
-==29130== 
-==29130== 
-==29130== HEAP SUMMARY:
-==29130==     in use at exit: 18,207 bytes in 162 blocks
-==29130==   total heap usage: 178 allocs, 16 frees, 24,351 bytes allocated
-==29130== 
-==29130== 24 bytes in 1 blocks are definitely lost in loss record 7 of 42
-==29130==    at 0x10019A626: malloc (in /Users/ldedier/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==29130==    by 0x1000064CE: ft_lstnew_ptr (in ./../ft_nm)
-==29130==    by 0x100006650: ft_add_to_list_ptr_back (in ./../ft_nm)
-==29130==    by 0x1000076A2: get_sections32 (in ./../ft_nm)
-==29130==    by 0x10000771C: fill_browser32 (in ./../ft_nm)
-==29130==    by 0x100006EF9: fill_browser (in ./../ft_nm)
-==29130==    by 0x10000095F: process_nm (in ./../ft_nm)
-==29130==    by 0x100000B03: main (in ./../ft_nm)
-==29130== 
-==29130== LEAK SUMMARY:
-==29130==    definitely lost: 24 bytes in 1 blocks
-==29130==    indirectly lost: 0 bytes in 0 blocks
-==29130==      possibly lost: 0 bytes in 0 blocks
-==29130==    still reachable: 200 bytes in 6 blocks
-==29130==         suppressed: 17,983 bytes in 155 blocks
-==29130== Reachable blocks (those to which a pointer was found) are not shown.
-==29130== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==29130== 
-==29130== For counts of detected and suppressed errors, rerun with: -v
-==29130== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==52244== Memcheck, a memory error detector
+==52244== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==52244== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==52244== Command: ./../ft_otool all/32_exe_hard_corupted
+==52244== Parent PID: 52178
+==52244== 
+==52244== 
+==52244== HEAP SUMMARY:
+==52244==     in use at exit: 18,196 bytes in 162 blocks
+==52244==   total heap usage: 178 allocs, 16 frees, 24,340 bytes allocated
+==52244== 
+==52244== 24 bytes in 1 blocks are definitely lost in loss record 7 of 42
+==52244==    at 0x10019A626: malloc (in /Users/niragne/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==52244==    by 0x10000630E: ft_lstnew_ptr (in ./../ft_otool)
+==52244==    by 0x100006490: ft_add_to_list_ptr_back (in ./../ft_otool)
+==52244==    by 0x1000074D0: get_sections32 (in ./../ft_otool)
+==52244==    by 0x10000754C: fill_browser32 (in ./../ft_otool)
+==52244==    by 0x100006D29: fill_browser (in ./../ft_otool)
+==52244==    by 0x100000C1F: process_otool (in ./../ft_otool)
+==52244==    by 0x100000D2F: main (in ./../ft_otool)
+==52244== 
+==52244== LEAK SUMMARY:
+==52244==    definitely lost: 24 bytes in 1 blocks
+==52244==    indirectly lost: 0 bytes in 0 blocks
+==52244==      possibly lost: 0 bytes in 0 blocks
+==52244==    still reachable: 200 bytes in 6 blocks
+==52244==         suppressed: 17,972 bytes in 155 blocks
+==52244== Reachable blocks (those to which a pointer was found) are not shown.
+==52244== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==52244== 
+==52244== For counts of detected and suppressed errors, rerun with: -v
+==52244== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
