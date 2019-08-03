@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/07/24 19:28:38 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/01 16:40:22 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,12 @@ int		main(int ac, char **av)
     opt_add_to_parser(&parser, (t_arg_option){"reverse", 'r', 0, 0, 0, 0, 1});
     opt_add_to_parser(&parser, (t_arg_option){"banane", 'b', 0, 0, 0, 0, 2});
     opt_add_to_parser(&parser, (t_arg_option){"pute", 'p', 0, 0, 0, 0, 2});
-	opt_print_parser(&parser);
-	//parse_args(&parser, av + 1);
+	opt_print_parser_opt(&parser);
+	opt_parse_args(&parser, av);
+	opt_print_parsed(&parser);
 	
 	
-
+/*
 	init_browser_general(&browser, av[0]);
 	i = 1;
 	if (ac <= 1)
@@ -61,5 +62,5 @@ int		main(int ac, char **av)
 		if (process_otool(av[i++], &browser))
 			return (EXIT_FAILURE);
 	}
-	return (browser.ret);
+	return (browser.ret);*/
 }

@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 18:21:30 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/24 19:23:43 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/01 16:49:40 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 # include "get_next_line.h"
 
 # define MAX_INT 	2147483647
+
+typedef enum E_OPT_TYPE
+{
+	E_ARG,
+	E_VALUE,
+	E_OPT
+}			opt_enum;
 
 typedef struct		s_list
 {
@@ -58,13 +65,24 @@ typedef struct		s_arg_option
 	int 	arg : 1;
 	int		multiple_args : 1;
 	int     set;
-	int		value;
+	char   *value;
 	uint8_t	flag_index;
 }					t_arg_option;
+
+typedef struct		s_arg_parsed
+{
+	uint8_t		short_name;
+	char		*long_name;
+	opt_enum	type;
+}					t_arg_parsed;
+
 
 typedef struct		s_arg_parser
 {
 	t_list			*lst;
+	t_list			*parsed;
+	int				parsing;
+	char			*value_ptr;
 }					t_arg_parser;
 
 
@@ -233,10 +251,15 @@ int					ft_substitute_dy_str(t_dy_str *d_str, char *to_inject,
 						int index_to_inject, int len);
 int					ft_strichr_last(const char *s, int c);
 void	test_very_very_very_very_very_very_very_very_very_very_very_long(void);
-void	opt_parse_args(t_arg_parser *parser, char **av);
-void	opt_parse_str(t_arg_parser *parser, char *str);
+int		opt_add_to_parser(t_arg_parser *parser, t_arg_option opt);
+int		opt_add_arg(t_arg_parser *parser, t_arg_parsed opt);
 void	opt_init_parser(t_arg_parser *parser);
-void	opt_add_to_parser(t_arg_parser *parser, t_arg_option opt);
-void    opt_print_parser(t_arg_parser *parser);
+void    opt_print_parser_opt(t_arg_parser *parser);
+void    opt_print_parsed(t_arg_parser *parser);
+t_arg_option		*find_opt_by_short(t_arg_parser *parser, char c);
+int		opt_parse_short(t_arg_parser *parser, char *str);
+int		opt_parse_long(t_arg_parser *parser, char *str);
+int		opt_parse_str(t_arg_parser *parser, char *str);
+int		opt_parse_args(t_arg_parser *parser, char **av);
 
 #endif
