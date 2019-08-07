@@ -6,21 +6,51 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/01 16:40:22 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/07 17:13:25 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_otool.h"
 
+t_arg_option g_opts[] = 
+{
+	{"mach-header", 'h', flag_h, "print the mach headers"},
+	{"text", 't', flag_t, "print the text section (default)"}
+};
+
 /*
 ** dump obj filename by creating a list of the parsed architectures
 ** in fill_browser, then printing it one by one in nm_print
 */
-int		process_otool(char *filename, t_browser *browser)
+
+void    process_opt(t_arg_parser *parser, t_otool_flags *flags)
+{
+    t_list  *lst;
+	t_arg_option *opt;
+
+    lst = parser->parsed;
+    while (lst)
+    {
+        t_arg_parsed *test;
+        test = (t_arg_parsed*)lst->content;
+		parser->current = test;
+		if (test->type & (E_OPT_LONG & E_OPT_SHORT))
+		{
+			if ((opt = find_opt(parser, test)))
+				opt->f(parser, flags);
+			else
+				parser->invalid(parser, flags);
+		}
+        lst = lst->next;
+    }
+}
+
+int		process_otool(char *filename, t_browser *browser, t_otool_flags *flags)
 {
 	t_header_parser	parser;
 	int ret;
 
+	(void)flags;
 	if (init_browser(browser, filename))
 		return (1);
 	init_parser(&parser, browser->ptr, 0, filename);
@@ -36,31 +66,47 @@ int		process_otool(char *filename, t_browser *browser)
 	return (0);
 }
 
+int		process_args(t_arg_parser *parser, t_otool_flags *flags, t_browser *browser)
+{
+	t_list  *lst;
+	int i;
+
+	i = 0;
+    lst = parser->parsed;
+	while (lst)
+    {
+        t_arg_parsed *test;
+        test = (t_arg_parsed*)lst->content;
+		if (test->type == E_ARG)
+		{
+			i++;
+			if (process_otool(test->long_name, browser, flags))
+				return (1);
+		}
+        lst = lst->next;
+    }
+	if (i == 0)
+	{
+		print_usage(parser);
+		return (1);
+	}
+	return (0);
+}
+
 int		main(int ac, char **av)
 {
 	t_browser	browser;
-	int				i;
-
+	t_otool_flags flags;
     t_arg_parser parser;
 
-	opt_init_parser(&parser);
-    opt_add_to_parser(&parser, (t_arg_option){"reverse", 'r', 0, 0, 0, 0, 1});
-    opt_add_to_parser(&parser, (t_arg_option){"banane", 'b', 0, 0, 0, 0, 2});
-    opt_add_to_parser(&parser, (t_arg_option){"pute", 'p', 0, 0, 0, 0, 2});
-	opt_print_parser_opt(&parser);
-	opt_parse_args(&parser, av);
-	opt_print_parsed(&parser);
-	
-	
-/*
+	(void)ac;
+	ft_bzero(&flags, sizeof(flags));
+	opt_init_parser(&parser, flag_invalid, av[0]);
+    opt_add_to_parser(&parser, g_opts, sizeof(g_opts));
+	opt_parse_args(&parser, av + 1);
+	process_opt(&parser, &flags);
 	init_browser_general(&browser, av[0]);
-	i = 1;
-	if (ac <= 1)
-		ft_dprintf(2, "%s: at least one file must be specified\n", browser.progname);
-	while (i < ac)
-	{
-		if (process_otool(av[i++], &browser))
-			return (EXIT_FAILURE);
-	}
-	return (browser.ret);*/
+	opt_print_parsed(&parser);
+	process_args(&parser, &flags, &browser);
+	return (browser.ret);
 }

@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 18:21:30 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/01 16:49:40 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/07 17:15:26 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ typedef enum E_OPT_TYPE
 {
 	E_ARG,
 	E_VALUE,
-	E_OPT
+	E_OPT_SHORT,
+	E_OPT_LONG
 }			opt_enum;
 
 typedef struct		s_list
@@ -58,32 +59,35 @@ typedef struct		s_dy_str
 	size_t			nb_chars;
 }					t_dy_str;
 
-typedef struct		s_arg_option
-{
-	char *long_name;
-	unsigned char short_name;
-	int 	arg : 1;
-	int		multiple_args : 1;
-	int     set;
-	char   *value;
-	uint8_t	flag_index;
-}					t_arg_option;
-
 typedef struct		s_arg_parsed
 {
-	uint8_t		short_name;
+	char		short_name;
 	char		*long_name;
 	opt_enum	type;
 }					t_arg_parsed;
 
+typedef struct s_arg_parser t_arg_parser;
 
-typedef struct		s_arg_parser
+
+typedef struct		s_arg_option
 {
-	t_list			*lst;
+	char			*long_name;
+	unsigned char	short_name;
+	void			(*f)(t_arg_parser *, void *);
+	char			*description;
+}					t_arg_option;
+
+struct		s_arg_parser
+{
+	char			*prog_name;
+	t_arg_option	*opts;
+	size_t			opts_size;
 	t_list			*parsed;
+	t_arg_parsed	*current;
 	int				parsing;
 	char			*value_ptr;
-}					t_arg_parser;
+	void			(*invalid)(struct s_arg_parser *, void *);
+};
 
 
 void				*ft_memset(void *s, int c, size_t n);
@@ -251,9 +255,9 @@ int					ft_substitute_dy_str(t_dy_str *d_str, char *to_inject,
 						int index_to_inject, int len);
 int					ft_strichr_last(const char *s, int c);
 void	test_very_very_very_very_very_very_very_very_very_very_very_long(void);
-int		opt_add_to_parser(t_arg_parser *parser, t_arg_option opt);
+void	opt_add_to_parser(t_arg_parser *parser, t_arg_option *opt, size_t size);
 int		opt_add_arg(t_arg_parser *parser, t_arg_parsed opt);
-void	opt_init_parser(t_arg_parser *parser);
+void	opt_init_parser(t_arg_parser *parser, void (*f)(t_arg_parser *parser, void *), char *progname);
 void    opt_print_parser_opt(t_arg_parser *parser);
 void    opt_print_parsed(t_arg_parser *parser);
 t_arg_option		*find_opt_by_short(t_arg_parser *parser, char c);
@@ -261,5 +265,7 @@ int		opt_parse_short(t_arg_parser *parser, char *str);
 int		opt_parse_long(t_arg_parser *parser, char *str);
 int		opt_parse_str(t_arg_parser *parser, char *str);
 int		opt_parse_args(t_arg_parser *parser, char **av);
+t_arg_option		*find_opt(t_arg_parser *parser, t_arg_parsed *opt);
+void    print_usage(t_arg_parser *parser);
 
 #endif

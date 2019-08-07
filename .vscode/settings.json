@@ -3,6 +3,7 @@
         "ft_nm.h": "c",
         "nlist.h": "c",
         "ft_otool.h": "c",
-        "mach_o.h": "c"
+        "mach_o.h": "c",
+        "libft.h": "c"
     }
 }

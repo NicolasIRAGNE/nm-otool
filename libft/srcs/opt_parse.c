@@ -6,18 +6,16 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 13:49:12 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/01 16:56:09 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/07 16:08:47 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		opt_add_to_parser(t_arg_parser *parser, t_arg_option opt)
+void	opt_add_to_parser(t_arg_parser *parser, t_arg_option *opt, size_t size)
 {
-    if (ft_add_to_list_back(&parser->lst, (void*)&opt, sizeof(opt)))
-		return (1);
-	else
-		return (0);
+	parser->opts = opt;
+	parser->opts_size = size;
 }
 
 int		opt_add_arg(t_arg_parser *parser, t_arg_parsed opt)
@@ -28,23 +26,23 @@ int		opt_add_arg(t_arg_parser *parser, t_arg_parsed opt)
 		return (0);
 }
 
-void	opt_init_parser(t_arg_parser *parser)
+void	opt_init_parser(t_arg_parser *parser, void (*f)(t_arg_parser *, void *), char *progname)
 {
 	ft_bzero(parser, sizeof(*parser));
+	parser->invalid = f;
+	parser->prog_name = progname;
 }
 
 void    opt_print_parser_opt(t_arg_parser *parser)
 {
-    t_list  *lst;
+	size_t i;
 
-    lst = parser->lst;
-    while (lst)
+	i = 0;
+	while (i * sizeof(t_arg_option) < parser->opts_size)
     {
-        t_arg_option *test;
-        test = (t_arg_option*)lst->content;
-        ft_printf("long_name = %s, short_name = %c, set = %d, value = %s, index = %d\n",
-        test->long_name, test->short_name, test->set, test->value, test->flag_index);
-        lst = lst->next;
+        ft_printf("long_name = %s, short_name = %c\n",
+        parser->opts[i].long_name,parser->opts[i].short_name);
+		i++;
     }
 }
 
@@ -65,19 +63,43 @@ void    opt_print_parsed(t_arg_parser *parser)
 
 t_arg_option		*find_opt_by_short(t_arg_parser *parser, char c)
 {
-	t_list  *lst;
+	size_t i;
 
-    lst = parser->lst;
-    while (lst)
+	i = 0;
+	while (i * sizeof(t_arg_option) < parser->opts_size)
     {
-        t_arg_option *test;
-        test = (t_arg_option*)lst->content;
-        if (test->short_name == c)
+        if (parser->opts[i].short_name == c)
 		{
-			return (test);
+			return (parser->opts + i);
 		}
-        lst = lst->next;
+		i++;
     }
+	return (NULL);
+}
+
+t_arg_option		*find_opt_by_long(t_arg_parser *parser, char *str)
+{
+
+	size_t i;
+
+	i = 0;
+	while (i * sizeof(t_arg_option) < parser->opts_size)
+    {
+        if (ft_strcmp(parser->opts[i].long_name, str + 2) == 0)
+		{
+			return (parser->opts + i);
+		}
+		i++;
+    }
+	return (NULL);
+}
+
+t_arg_option		*find_opt(t_arg_parser *parser, t_arg_parsed *opt)
+{
+	if (opt->type == E_OPT_SHORT)
+		return (find_opt_by_short(parser, opt->short_name));
+	if (opt->type == E_OPT_LONG)
+		return (find_opt_by_long(parser, opt->long_name));
 	return (NULL);
 }
 
@@ -85,10 +107,10 @@ int		opt_parse_short(t_arg_parser *parser, char *str)
 {
 	int i;
 
-	i = 0;
+	i = 1;
 	while (str[i])
 	{
-		if (opt_add_arg(parser, (t_arg_parsed){str[i], 0, E_OPT}))
+		if (opt_add_arg(parser, (t_arg_parsed){str[i], str, E_OPT_SHORT}))
 			return (1);
 		i++;
 	}
@@ -97,12 +119,12 @@ int		opt_parse_short(t_arg_parser *parser, char *str)
 
 int		opt_parse_long(t_arg_parser *parser, char *str)
 {
-	if (!*str)
+	if (!*(str + 2))
 	{
 		parser->parsing = 0;
 		return (0);
 	}
-	if (opt_add_arg(parser, (t_arg_parsed){0, str, E_OPT}))
+	if (opt_add_arg(parser, (t_arg_parsed){0, str, E_OPT_LONG}))
 		return (1);
 	return (0);
 }
@@ -114,16 +136,17 @@ int		opt_parse_str(t_arg_parser *parser, char *str)
 	{
 		if (str[1] == '-')
 		{
-			if (opt_parse_long(parser, str + 2))
+			if (opt_parse_long(parser, str))
 				return (1);
 		}
 		else
 		{
-			if (opt_parse_short(parser, str + 1))
+			if (opt_parse_short(parser, str))
 				return (1);
 		}
 	}
-	opt_add_arg(parser, (t_arg_parsed){0, str, E_ARG});
+	else
+		opt_add_arg(parser, (t_arg_parsed){0, str, E_ARG});
 	return (0);
 }
 
@@ -133,10 +156,16 @@ int		opt_parse_args(t_arg_parser *parser, char **av)
 	int i = 0;
 	parser->parsing = 1;
 
-	while (av[i] && parser->parsing)
+	while (av[i])
 	{
-		if (opt_parse_str(parser, av[i]))
-			return (1);
+		if  (parser->parsing)
+		{
+			if (opt_parse_str(parser, av[i]))
+				return (1);
+		}
+		else
+			opt_add_arg(parser, (t_arg_parsed){0, av[i], E_ARG});
+		
 		i++;
 	}
 	return (0);

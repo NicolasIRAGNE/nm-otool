@@ -1,0 +1,1 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/objdump: 'custom_tests/corrupt/fat_not_fail_except_one' (for architecture armv7s): truncated or malformed object (load command 24 extends past the end all load commands in the file)

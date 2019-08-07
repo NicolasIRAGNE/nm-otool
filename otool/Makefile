@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:41 by niragne           #+#    #+#              #
-#    Updated: 2019/07/24 12:20:43 by niragne          ###   ########.fr        #
+#    Updated: 2019/08/06 14:30:04 by niragne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ LIBMACHODIR = ../libmach-o
 LIBMACHO_INCLUDEDIR = $(LIBMACHODIR)/includes
 LIBMACHO = $(LIBMACHODIR)/libmach-o.a
 
-SRCS =	main.c print.c
+SRCS =	main.c print.c flags_1.c
 
 SRC	= $(addprefix $(SRCDIR)/, $(SRCS))
 DEP = $(addprefix $(INCLUDES)/,$(DEPS))
@@ -71,7 +71,7 @@ $(NAME): $(LIBFT) $(LIBMACHO) $(OBJECTS) $(DEP)
 	$(CC) -o $(NAME) $(OBJECTS) $(LIBFT) $(LIBMACHO) $(LFLAGS)
 	@echo "$(OK_COLOR)$(NAME) compiled with success$(EOC)"
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDES)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c $(DEP)
 	@mkdir -p $(OBJDIR)
 	$(CC) -o $@ -c $< $(CFLAGS) $(INC)
 
