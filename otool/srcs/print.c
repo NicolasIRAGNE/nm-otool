@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:24:40 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/08 17:24:50 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 17:40:59 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,12 +146,12 @@ void	otool_print_header_parser(t_header_parser *parser,
 						browser->bad_symbol_index);
 		return ;
 	}
-	if ((section = parser->text_section))
+	if (flags->flag_t && (section = parser->text_section))
 	{
 		otool_process_print_header_parser(parser,
 			parser->parser_union.arch.cputype, section);
 	}
-	if (flags->flag_h && (section = parser->data_section))
+	if (flags->flag_d && (section = parser->data_section))
 	{
 		otool_process_print_header_parser(parser,
 			parser->parser_union.arch.cputype, section);

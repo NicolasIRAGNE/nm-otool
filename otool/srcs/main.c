@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/08 17:27:51 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 17:53:04 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_arg_option g_opts[] = 
 {
 	{"mach-header", 'h', flag_h, "print the mach headers"},
-	{"text", 't', flag_t, "print the text section (default)"},
+	{"text", 't', flag_t, "print the text section"},
 	{"data", 'd', flag_d, "print the data section"}
 };
 
@@ -67,17 +67,32 @@ int		process_otool(char *filename, t_browser *browser, t_otool_flags *flags)
 	return (0);
 }
 
-int		process_args(t_arg_parser *parser, t_otool_flags *flags, t_browser *browser)
+int		check_valid(t_arg_parser *parser, t_otool_flags *flags)
 {
-	t_list  *lst;
+	char *shorts;
 
-    lst = parser->parsed;
-	
 	if (parser->nb_args == 0)
 	{
 		print_usage(parser);
 		return (1);
 	}
+	if (!flags->valid)
+	{
+		shorts = get_shorts(parser);
+		ft_dprintf(2, "error: %s: one of -%s must be specified\n", parser->prog_name, shorts);
+		free(shorts);
+		return (1);
+	}
+	return (0);
+}
+
+int		process_args(t_arg_parser *parser, t_otool_flags *flags, t_browser *browser)
+{
+	t_list  *lst;
+
+    lst = parser->parsed;
+	if (check_valid(parser, flags))
+		return (1);
 	while (lst)
     {
         t_arg_parsed *test;
@@ -105,7 +120,6 @@ int		main(int ac, char **av)
 	opt_parse_args(&parser, av + 1);
 	process_opt(&parser, &flags);
 	init_browser_general(&browser, av[0]);
-	opt_print_parsed(&parser);
 	process_args(&parser, &flags, &browser);
 	return (browser.ret);
 }

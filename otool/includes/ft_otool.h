@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 11:26:01 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/08 17:26:10 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 17:40:22 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ typedef struct		s_text_printer
 
 typedef struct		s_otool_flags
 {
+	int			valid : 1;
 	int			flag_h : 1;
+	int			flag_t : 1;
 	int			flag_d : 1;
 }					t_otool_flags;
 
