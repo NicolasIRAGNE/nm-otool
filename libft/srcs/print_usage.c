@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:30:16 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/08 17:56:05 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 18:11:41 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void    print_usage(t_arg_parser *parser)
     char *shorts;
 
     shorts = get_shorts(parser);
-    ft_printf("Usage: %s [-%s] <object file>\n", parser->prog_name, shorts);
+    ft_printf("Usage: %s [-%s] <object file> ...\n", parser->prog_name, shorts);
     free(shorts);
 	i = 0;
 	while (i * sizeof(t_arg_option) < parser->opts_size)

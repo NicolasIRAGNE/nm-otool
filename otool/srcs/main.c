@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/08 17:53:04 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 18:04:41 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int		check_valid(t_arg_parser *parser, t_otool_flags *flags)
 		shorts = get_shorts(parser);
 		ft_dprintf(2, "error: %s: one of -%s must be specified\n", parser->prog_name, shorts);
 		free(shorts);
+		print_usage(parser);
 		return (1);
 	}
 	return (0);
