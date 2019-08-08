@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 02:14:47 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/24 12:37:27 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 17:16:39 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_parser(t_header_parser *parser, void *ptr,
 	parser->symbols = NULL;
 	parser->section_arr.sections = NULL;
 	parser->text_section = NULL;
+	parser->data_section = NULL;
 	parser->filename = filename;
 	parser->parser_enum = PARSER_ENUM_NONE;
 	parser->should_swap = 0;
@@ -36,18 +37,18 @@ int	init_browser(t_browser *browser, char *filename)
 	browser->parsers = NULL;
 	if ((fd = open(filename, O_RDONLY)) < 0)
 	{
-		ft_dprintf(2, "error opening %s\n", filename);
+		ft_dprintf(2, "error opening '%s'\n", filename);
 		return (1);
 	}
 	if ((fstat(fd, &browser->st)) < 0)
 	{
-		ft_dprintf(2, "error fstat on file %s\n", filename);
+		ft_dprintf(2, "error fstat on file '%s'\n", filename);
 		return (1);
 	}
 	if ((browser->ptr = mmap(0, browser->st.st_size,
 		PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0)) == MAP_FAILED)
 	{
-		ft_dprintf(2, "could not map file %s\n", filename);
+		ft_dprintf(2, "could not map file '%s'\n", filename);
 		return (1);
 	}
 	return (0);

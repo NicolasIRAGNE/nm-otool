@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 18:21:30 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/07 17:15:26 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 16:57:33 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct		s_arg_option
 struct		s_arg_parser
 {
 	char			*prog_name;
+	size_t			nb_args;
 	t_arg_option	*opts;
 	size_t			opts_size;
 	t_list			*parsed;

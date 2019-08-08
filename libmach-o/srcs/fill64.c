@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:29:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/24 13:14:48 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 17:19:10 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,11 @@ int		fill_sections_from_segment64(t_section *sections, int *index,
 					&& !ft_strcmp(sections[*index]
 						.section_union.section64->segname, SEG_TEXT))
 			parser->text_section = &sections[*index];
+		else if (!ft_strcmp(sections[*index].section_union.section32->sectname,
+				SECT_DATA)
+				&& !ft_strcmp(sections[*index]
+					.section_union.section32->segname, SEG_DATA))
+			parser->data_section = &sections[*index];
 		swap_section_64(sections[*index].section_union.section64, parser->should_swap);
 		(*index)++;
 	}

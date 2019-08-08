@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 11:26:01 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/07 16:07:40 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 17:26:10 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,20 @@ typedef struct		s_text_printer
 typedef struct		s_otool_flags
 {
 	int			flag_h : 1;
+	int			flag_d : 1;
 }					t_otool_flags;
 
 /*
 ** print.c
 */
-void	otool_print(t_browser *browser);
+void	otool_print(t_browser *browser, t_otool_flags *flags);
 
 /*
 ** flags
 */
 void	flag_h(t_arg_parser *parser, void *flags);
 void	flag_t(t_arg_parser *parser, void *flags);
+void	flag_d(t_arg_parser *parser, void *flags);
 void	flag_invalid(t_arg_parser *parser, void *flags);
 
 #endif

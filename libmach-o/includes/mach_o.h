@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 11:40:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/05 14:19:16 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 17:17:08 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct				s_header_parser
 	int						should_swap;
 	t_section_arr			section_arr;
 	t_section				*text_section;
+	t_section				*data_section;
 	t_tree					*symbols;
 	t_parser_enum			parser_enum;
 	t_parser_union			parser_union;

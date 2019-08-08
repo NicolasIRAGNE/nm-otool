@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:24:40 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/24 13:24:40 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 17:24:50 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	otool_process_print_header_parser(t_header_parser *parser,
 }
 
 void	otool_print_header_parser(t_header_parser *parser,
-			t_browser *browser, int len)
+			t_browser *browser, int len, t_otool_flags *flags)
 {
 	t_section *section;
 
@@ -146,31 +146,36 @@ void	otool_print_header_parser(t_header_parser *parser,
 						browser->bad_symbol_index);
 		return ;
 	}
-	else if ((section = parser->text_section))
+	if ((section = parser->text_section))
+	{
+		otool_process_print_header_parser(parser,
+			parser->parser_union.arch.cputype, section);
+	}
+	if (flags->flag_h && (section = parser->data_section))
 	{
 		otool_process_print_header_parser(parser,
 			parser->parser_union.arch.cputype, section);
 	}
 }
 
-void	process_otool_print_tree(t_browser *browser, t_tree *tree, int len)
+void	process_otool_print_tree(t_browser *browser, t_tree *tree, int len, t_otool_flags *flags)
 {
 	t_header_parser *parser;
 
 	if (tree)
 	{
-		process_otool_print_tree(browser, tree->left, len);
+		process_otool_print_tree(browser, tree->left, len, flags);
 		parser = (t_header_parser *)tree->content;
-		otool_print_header_parser(parser, browser, len);
-		process_otool_print_tree(browser, tree->right, len);
+		otool_print_header_parser(parser, browser, len, flags);
+		process_otool_print_tree(browser, tree->right, len, flags);
 	}
 }
 
-void	otool_print(t_browser *browser)
+void	otool_print(t_browser *browser, t_otool_flags *flags)
 {
 	int len;
 
 	len = ft_treelen(browser->parsers);
 //	ft_printf("%s:\n", browser->filename);
-	process_otool_print_tree(browser, browser->parsers, len);
+	process_otool_print_tree(browser, browser->parsers, len, flags);
 }

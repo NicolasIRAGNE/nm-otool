@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/07 17:13:25 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 17:27:51 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 t_arg_option g_opts[] = 
 {
 	{"mach-header", 'h', flag_h, "print the mach headers"},
-	{"text", 't', flag_t, "print the text section (default)"}
+	{"text", 't', flag_t, "print the text section (default)"},
+	{"data", 'd', flag_d, "print the data section"}
 };
 
 /*
@@ -56,11 +57,11 @@ int		process_otool(char *filename, t_browser *browser, t_otool_flags *flags)
 	init_parser(&parser, browser->ptr, 0, filename);
 	if ((ret = fill_browser(&parser, browser)))
 		return (1);
-	otool_print(browser);
+	otool_print(browser, flags);
 	ft_tree_del(&browser->parsers, free_parser_tree);
 	if (munmap(browser->ptr, browser->st.st_size) != 0)
 	{
-		ft_dprintf(2, "could not munmap the file %s\n", filename);
+		ft_dprintf(2, "could not unmap '%s'\n", filename);
 		return (1);
 	}
 	return (0);
@@ -69,27 +70,25 @@ int		process_otool(char *filename, t_browser *browser, t_otool_flags *flags)
 int		process_args(t_arg_parser *parser, t_otool_flags *flags, t_browser *browser)
 {
 	t_list  *lst;
-	int i;
 
-	i = 0;
     lst = parser->parsed;
+	
+	if (parser->nb_args == 0)
+	{
+		print_usage(parser);
+		return (1);
+	}
 	while (lst)
     {
         t_arg_parsed *test;
         test = (t_arg_parsed*)lst->content;
 		if (test->type == E_ARG)
 		{
-			i++;
 			if (process_otool(test->long_name, browser, flags))
 				return (1);
 		}
         lst = lst->next;
     }
-	if (i == 0)
-	{
-		print_usage(parser);
-		return (1);
-	}
 	return (0);
 }
 
