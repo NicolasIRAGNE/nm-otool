@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/08 18:04:41 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 19:14:58 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,6 @@ t_arg_option g_opts[] =
 ** dump obj filename by creating a list of the parsed architectures
 ** in fill_browser, then printing it one by one in nm_print
 */
-
-void    process_opt(t_arg_parser *parser, t_otool_flags *flags)
-{
-    t_list  *lst;
-	t_arg_option *opt;
-
-    lst = parser->parsed;
-    while (lst)
-    {
-        t_arg_parsed *test;
-        test = (t_arg_parsed*)lst->content;
-		parser->current = test;
-		if (test->type & (E_OPT_LONG & E_OPT_SHORT))
-		{
-			if ((opt = find_opt(parser, test)))
-				opt->f(parser, flags);
-			else
-				parser->invalid(parser, flags);
-		}
-        lst = lst->next;
-    }
-}
 
 int		process_otool(char *filename, t_browser *browser, t_otool_flags *flags)
 {

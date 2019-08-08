@@ -6,11 +6,18 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/07 13:18:33 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 19:34:41 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
+
+t_arg_option g_opts[] = 
+{
+	{"no-sort", 'p', nm_opt_p, "Don't sort; display in symbol-table order"},
+	{"numeric-sort", 'n', nm_opt_n, "Sort numerically rather than alphabetically"},
+	{"reverse-sort", 'r', nm_opt_r, "Sort in reverse order"}
+};
 
 /*
 ** dump obj filename by creating a list of the parsed architectures
@@ -35,29 +42,49 @@ int		process_nm(char *filename, t_browser *browser)
 	return (0);
 }
 
+int		process_args(t_arg_parser *parser, t_browser *browser)
+{
+	t_list  *lst;
+
+    lst = parser->parsed;
+	while (lst)
+    {
+        t_arg_parsed *test;
+        test = (t_arg_parsed*)lst->content;
+		if (test->type == E_ARG)
+		{
+			if (process_nm(test->long_name, browser))
+				return (1);
+		}
+        lst = lst->next;
+    }
+	return (0);
+}
+
 int		main(int ac, char **av)
 {
-	t_browser	browser;
-	int				i;
-	int				ret;
+	t_nm_wrapper	wrapper;
+	t_browser		browser;
+	t_nm_flags		flags;
+	t_arg_parser	parser;
 
+	(void)ac;
+	wrapper.flags = &flags;
+	wrapper.browser = &browser;
 	init_browser_general(&browser, av[0]);
-	if ((ret = parse_options(&i, ac, av, &browser)))
-		return (ret == 1 ? 1 : 0);
+	opt_init_parser(&parser, flag_invalid, av[0]);
+	opt_add_to_parser(&parser, g_opts, sizeof(g_opts));
+	opt_parse_args(&parser, av + 1);
+	process_opt(&parser, &wrapper);
 	if (browser.ret)
 		return (browser.ret);
-	if (i == ac)
+	process_args(&parser, &browser);
+	if (parser.nb_args == 0)
 	{
 		browser.nb_args = 1;
 		if (process_nm(DEFAULT_NM_FILE, &browser))
 			return (EXIT_FAILURE);
 		return (browser.ret);
-	}
-	browser.nb_args = ac - i;
-	while (i < ac)
-	{
-		if (process_nm(av[i++], &browser))
-			return (EXIT_FAILURE);
 	}
 	return (browser.ret);
 }

@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 11:26:01 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/08 17:40:22 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 19:05:17 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct		s_otool_flags
 	int			flag_t : 1;
 	int			flag_d : 1;
 }					t_otool_flags;
+
 
 /*
 ** print.c

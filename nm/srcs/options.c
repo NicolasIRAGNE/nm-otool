@@ -6,67 +6,20 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 22:46:21 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/24 13:48:20 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 19:34:39 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-
-static int	nm_found_option(char c, t_browser *browser, int *options)
+void	flag_invalid(t_arg_parser *parser, void *flags)
 {
-	if (c == 'p')
-		nm_opt_p(browser, options);
-	else if (c == 'n')
-		nm_opt_n(browser , options);
-	else if (c == 'r')
-		nm_opt_r(browser, options);
-	else
-		return (0);
-	return (1);
-}
+	t_nm_wrapper *ptr;
 
-int			process_parse_options(char *str, t_browser *browser,
-				int *options, char **argv)
-{
-	int i;
-
-	if (!ft_strcmp(str, "--help"))
-	{
-		print_help();
-		return (2);
-	}
-	i = 1;
-	while (str[i])
-	{
-		if (!nm_found_option(str[i], browser, options))
-		{
-			ft_dprintf(2, "nm: Unknown command line argument '%s'.\n", str);
-			ft_dprintf(2, "Try: '%s -help'\n", argv[0]);
-			return (1);
-		}
-		i++;
-	}
-	return (0);
-}
-
-int			parse_options(int *i, int ac, char **av, t_browser *browser)
-{
-	int options;
-	int ret;
-
-	*i = 1;
-	options = 0;
-	while (*i < ac && describe_option(av[*i]))
-	{
-		if (!ft_strcmp("--", av[*i]))
-		{
-			(*i)++;
-			break ;
-		}
-		if ((ret = process_parse_options(av[*i], browser, &options, av)))
-			return (ret);
-		(*i)++;
-	}
-	return (0);
+	(void)parser;
+	ptr = (t_nm_wrapper*)flags;
+	if (ptr->browser->ret)
+		return;
+	ptr->browser->ret = 1;
+	ft_dprintf(2, "%s: Unknown command line argument '%s'.\n", parser->prog_name, parser->current->long_name);
 }

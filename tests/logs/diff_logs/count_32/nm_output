@@ -1,0 +1,9 @@
+
+all/count_32:
+00001ee0 T _main
+00001ed0 T _banane
+00001000 T __mh_execute_header
+         U dyld_stub_binder
+         U _strlen
+         U _puts
+         U _printf

@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 13:49:12 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/08 16:57:56 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 19:33:27 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,4 +172,26 @@ int		opt_parse_args(t_arg_parser *parser, char **av)
 		i++;
 	}
 	return (0);
+}
+
+void    process_opt(t_arg_parser *parser, void *flags)
+{
+    t_list  *lst;
+	t_arg_option *opt;
+
+    lst = parser->parsed;
+    while (lst)
+    {
+        t_arg_parsed *test;
+        test = (t_arg_parsed*)lst->content;
+		parser->current = test;
+		if (test->type & (E_OPT_LONG & E_OPT_SHORT))
+		{
+			if ((opt = find_opt(parser, test)))
+				opt->f(parser, flags);
+			else
+				parser->invalid(parser, flags);
+		}
+        lst = lst->next;
+    }
 }

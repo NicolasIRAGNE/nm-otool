@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ((index=2))
-nm_options=""
+nm_options="rn"
 while [ $index -lt $(($# + 1)) ];
 do
 	nm_options="$nm_options ${!index}"
@@ -54,7 +54,7 @@ do
 	nm_err="${trace_folder}/nm_err"
 
 	./$nm_dir/$nm_name $nm_options $file > $my_trace 2>$my_err
-	nm $nm_options $file > $nm_trace 2>$nm_err
+	nm -rn $nm_options $file > $nm_trace 2>$nm_err
 
 	diff_trace=${trace_folder}/diff_trace
 	diff $my_trace $nm_trace > $diff_trace

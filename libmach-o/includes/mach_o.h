@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 11:40:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/08 17:17:08 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/08 19:13:40 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,24 +126,7 @@ typedef struct s_browser	t_browser;
 void						nm_print_header(t_header_parser *parser);
 void						debug_mach_header(struct mach_header *ptr);
 void						print_arch32(struct fat_arch *fat_arch);
-/*
-** options_tools.c
-*/
-void						nm_option_error(char *str, t_browser *browser);
-int							describe_option(char *str);
-void						print_help(void);
 
-/*
-** options_func.c
-*/
-void						nm_opt_n(t_browser *browser, int *options);
-void						nm_opt_p(t_browser *browser, int *options);
-void						nm_opt_r(t_browser *browser, int *options);
-/*
-** options.c
-*/
-int							parse_options(int *i, int ac,
-								char **av, t_browser *browser);
 /*
 ** init.c
 */
