@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ((index=2))
-otool_options="td"
+otool_options="-t"
 while [ $index -lt $(($# + 1)) ];
 do
 	otool_options="$otool_options ${!index}"
@@ -54,7 +54,7 @@ do
 	otool_err="${trace_folder}/otool_err"
 
 	./$otool_dir/$otool_name $otool_options $file > $my_trace 2>$my_err
-	otool -td $otool_options $file 2>$otool_err \
+	otool $otool_options $file 2>$otool_err \
 		| sed '/^.*: is not an object file$/d' > $otool_trace 
 
 	diff_trace=${trace_folder}/diff_trace

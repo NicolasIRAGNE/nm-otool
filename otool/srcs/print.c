@@ -6,16 +6,16 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:24:40 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/08 17:40:59 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/09 15:09:01 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_otool.h"
 
-int is_little_endian(void)
+int		is_little_endian(void)
 {
-	int num;
-  
+	int	num;
+
 	num = 1;
 	if (*(char *)&num == 1)
 		return (1);
@@ -46,10 +46,10 @@ void	print_parser_header_intro(t_header_parser *parser)
 	}
 }
 
-void    print_text_section(unsigned char *data, uint64_t data_size,
+void	print_text_section(unsigned char *data, uint64_t data_size,
 		uint64_t addr, int alignment)
 {
-	size_t          i;
+	size_t			i;
 	int				j;
 
 	i = 0;
@@ -67,7 +67,8 @@ void    print_text_section(unsigned char *data, uint64_t data_size,
 	}
 }
 
-void	fill_text_printer(t_section *section, t_header_parser *parser, t_text_printer *printer)
+void	fill_text_printer(t_section *section, t_header_parser *parser,
+t_text_printer *printer)
 {
 	printer->alignment = section->section_enum == E_SECTION_32 ? 8 : 16;
 	printer->addr = get_section_addr(section);
@@ -78,7 +79,7 @@ void	fill_text_printer(t_section *section, t_header_parser *parser, t_text_print
 
 void	print_text_section_4_by_4(t_section *section, t_header_parser *parser)
 {
-	size_t          i;
+	size_t			i;
 	int				j;
 	int				k;
 	t_text_printer	p;
@@ -111,7 +112,6 @@ void	print_text_section_4_by_4(t_section *section, t_header_parser *parser)
 void	otool_process_print_header_parser(t_header_parser *parser,
 			cpu_type_t cputype, t_section *section)
 {
-	//ft_printf("CPU: %d\n", cputype);
 	ft_printf("Contents of (%s,%s) section\n", get_section_segname(section),
 		get_section_sectname(section));
 	if (cputype == CPU_TYPE_I386 || cputype == CPU_TYPE_X86_64)
@@ -119,10 +119,6 @@ void	otool_process_print_header_parser(t_header_parser *parser,
 		print_text_section((void *)(parser->ptr) + get_section_offset(section),
 			get_section_size(section), get_section_addr(section),
 				section->section_enum == E_SECTION_32 ? 8 : 16);
-	}
-	else if (0)
-	{
-
 	}
 	else
 	{
@@ -141,7 +137,7 @@ void	otool_print_header_parser(t_header_parser *parser,
 	{
 		ft_dprintf(2, "%s: '%s': truncated or malformed object ("
 			"bad string table index: %d past the end of"
-				" string table, for symbol at index %d)\n", browser->progname, 
+				" string table, for symbol at index %d)\n", browser->progname,
 					browser->filename, browser->bad_string_index,
 						browser->bad_symbol_index);
 		return ;
@@ -158,7 +154,8 @@ void	otool_print_header_parser(t_header_parser *parser,
 	}
 }
 
-void	process_otool_print_tree(t_browser *browser, t_tree *tree, int len, t_otool_flags *flags)
+void	process_otool_print_tree(t_browser *browser, t_tree *tree, int len,
+t_otool_flags *flags)
 {
 	t_header_parser *parser;
 
@@ -176,6 +173,5 @@ void	otool_print(t_browser *browser, t_otool_flags *flags)
 	int len;
 
 	len = ft_treelen(browser->parsers);
-//	ft_printf("%s:\n", browser->filename);
 	process_otool_print_tree(browser, browser->parsers, len, flags);
 }
