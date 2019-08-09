@@ -196,6 +196,8 @@ int							fill_debug32(t_symbol *symbol,
 */
 void						free_parser(t_header_parser *parser);
 void						free_parser_tree(void *content);
+int							free_browser(t_browser *browser);
+void						free_symbol(t_symbol *symbol);
 
 /*
 ** swap.c

@@ -171,6 +171,7 @@ int					ft_add_to_list_ptr_back(t_list **list, void *content,
 int					ft_add_to_list_back(t_list **list, void *content,
 		size_t size);
 void				ft_lstdel_ptr(t_list **list);
+int					ft_lstdel_ptr_ret(t_list **list, int ret);
 void				ft_lstdel_value(t_list **list);
 int					ft_delete_node(t_list **prev, t_list **ptr, t_list **vs);
 int					ft_delete_node_ptr(t_list **prv, t_list **ptr, t_list **vs);
@@ -270,5 +271,6 @@ t_arg_option		*find_opt(t_arg_parser *parser, t_arg_parsed *opt);
 char    *get_shorts(t_arg_parser *parser);
 void    print_usage(t_arg_parser *parser);
 void    process_opt(t_arg_parser *parser, void *flags);
+int		opt_free(t_arg_parser *parser, int ret);
 
 #endif

@@ -39,24 +39,24 @@ void    print_usage(t_arg_parser *parser)
     char *shorts;
 
     shorts = get_shorts(parser);
-    ft_printf("Usage: %s [-%s] <object file> ...\n", parser->prog_name, shorts);
+    ft_dprintf(2, "Usage: %s [-%s] <object file> ...\n", parser->prog_name, shorts);
     free(shorts);
 	i = 0;
 	while (i * sizeof(t_arg_option) < parser->opts_size)
     {
         if (parser->opts[i].short_name)
         {
-            ft_printf("		-%c",  parser->opts[i].short_name);
+            ft_dprintf(2, "		-%c",  parser->opts[i].short_name);
             if (parser->opts[i].long_name)
             {
-                ft_printf(", --%s",  parser->opts[i].long_name);
+                ft_dprintf(2, ", --%s",  parser->opts[i].long_name);
             }
         }
         else if (parser->opts[i].long_name)
         {
-            ft_printf("		--%s",  parser->opts[i].long_name);
+            ft_dprintf(2, "		--%s",  parser->opts[i].long_name);
         }
-        ft_printf(": %s\n", parser->opts[i].description);
+        ft_dprintf(2, ": %s\n", parser->opts[i].description);
 		i++;
     }
 

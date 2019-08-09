@@ -50,15 +50,12 @@ int		process_fill_symbols32(t_header_parser *parser,
 				return (1);
 			if ((ret = fill_debug32(new_symbol, parser->section_arr, browser)))
 			{
-			//	if (browser->has_64)
-			//	{
-			//		free(new_symbol);
-			//		return (ret == 2 ? 0 : 1);
-			//	}
+				free_symbol(new_symbol);
+				return (1);
 			}
 			if (add_symbol_to_browser(parser, browser, new_symbol))
 			{
-				free(new_symbol);
+				free_symbol(new_symbol);
 				return (1);
 			}
 		}
@@ -197,21 +194,21 @@ int		get_sections32(t_header_parser *parser, t_browser *browser)
 			ft_dprintf(2, "%s: %s truncated or malformed object "
 				"(load command %d extends past the end of all load commands in the file)\n\n",
 					browser->progname, browser->filename, j);
-			return (CORRUPTED);
+			return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
 		}
 		if (lc->cmdsize % 4)
 		{
 			ft_dprintf(2, "%s: %s truncated or malformed object "
 					"(load command %d fileoff not a multiple of 4)\n\n",
 					browser->progname, browser->filename, j);
-			return (CORRUPTED);
+			return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
 		}
 		if (lc->cmd == LC_SEGMENT)
 		{
 			seg = (struct segment_command *)lc;
 			if (is_corrupted_data(seg, sizeof(struct segment_command), browser))
 			{
-				return (0);
+				return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
 			}
 			swap_segment_command(seg, parser->should_swap);
 			if (is_corrupted_offset(parser->offset + seg->fileoff, seg->filesize, browser))
@@ -221,10 +218,10 @@ int		get_sections32(t_header_parser *parser, t_browser *browser)
 					"(load command %d fileoff filed plus filesize "
 						"field in LC_SEGMENT extends past the end of the"
 							"file)\n", browser->progname, browser->filename, j);
-				return (CORRUPTED);
+				return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
 			}
 			if (ft_add_to_list_ptr_back(&segments, seg, sizeof(seg)))
-				return (1);
+				return (ft_lstdel_ptr_ret(&segments, 1));
 		}
 		i += lc->cmdsize;
 		j++;

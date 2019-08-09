@@ -31,14 +31,16 @@ int		process_nm(char *filename, t_browser *browser)
 		return (1);
 	init_parser(&parser, browser->ptr, 0, filename);
 	if (fill_browser(&parser, browser))
-		return (1);
-	nm_print(browser, 0);
-	ft_tree_del(&browser->parsers, free_parser_tree);
-	if (munmap(browser->ptr, browser->st.st_size) < 0)
 	{
-		ft_dprintf(2, "could not munmap the file %s\n", filename);
+		if (free_browser(browser))
+			return (1);
+		free_parser(&parser);
 		return (1);
 	}
+	nm_print(browser, 0);
+	ft_tree_del(&browser->parsers, free_parser_tree);
+	if (free_browser(browser))
+		return (1);
 	return (0);
 }
 
@@ -74,17 +76,18 @@ int		main(int ac, char **av)
 	init_browser_general(&browser, av[0]);
 	opt_init_parser(&parser, flag_invalid, av[0]);
 	opt_add_to_parser(&parser, g_opts, sizeof(g_opts));
-	opt_parse_args(&parser, av + 1);
+	if (opt_parse_args(&parser, av + 1))
+		return (opt_free(&parser, EXIT_FAILURE));
 	process_opt(&parser, &wrapper);
 	if (browser.ret)
-		return (browser.ret);
+		return (opt_free(&parser, browser.ret));
 	process_args(&parser, &browser);
 	if (parser.nb_args == 0)
 	{
 		browser.nb_args = 1;
 		if (process_nm(DEFAULT_NM_FILE, &browser))
-			return (EXIT_FAILURE);
-		return (browser.ret);
+			return (opt_free(&parser, EXIT_FAILURE));
+		return (opt_free(&parser, browser.ret));
 	}
-	return (browser.ret);
+	return (opt_free(&parser, browser.ret));
 }

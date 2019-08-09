@@ -12,6 +12,12 @@
 
 #include "libft.h"
 
+int		opt_free(t_arg_parser *parser, int ret)
+{
+	ft_lstdel_value(&parser->parsed);
+	return (ret);
+}
+
 void	opt_add_to_parser(t_arg_parser *parser, t_arg_option *opt, size_t size)
 {
 	parser->opts = opt;
@@ -195,3 +201,4 @@ void    process_opt(t_arg_parser *parser, void *flags)
         lst = lst->next;
     }
 }
+

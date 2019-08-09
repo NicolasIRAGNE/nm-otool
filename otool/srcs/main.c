@@ -99,6 +99,7 @@ int		main(int ac, char **av)
 	opt_parse_args(&parser, av + 1);
 	process_opt(&parser, &flags);
 	init_browser_general(&browser, av[0]);
-	process_args(&parser, &flags, &browser);
-	return (browser.ret);
+	if (process_args(&parser, &flags, &browser))
+		return (opt_free(&parser, EXIT_FAILURE));
+	return (opt_free(&parser, browser.ret));
 }

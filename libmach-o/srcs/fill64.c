@@ -68,12 +68,12 @@ int		process_fill_symbols64(t_header_parser *parser, t_browser *browser,
 				return (1);
 			if (fill_debug64(new_symbol, parser->section_arr, browser))
 			{
-				free(new_symbol);
+				free_symbol(new_symbol);
 				return (0);
 			}
 			if (add_symbol_to_browser(parser, browser, new_symbol))
 			{
-				free(new_symbol);
+				free_symbol(new_symbol);
 				return (1);
 			}
 		}
@@ -209,21 +209,21 @@ int		get_sections64(t_header_parser *parser, t_browser *browser)
 			ft_dprintf(2, "%s: %s truncated or malformed object "
 				"(load command %d extends past the end of all load commands in the file)\n\n",
 					browser->progname, browser->filename, j);
-			return (CORRUPTED);
+			return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
 		}
 		if (lc->cmdsize % 8)
 		{
 			ft_dprintf(2, "%s: %s truncated or malformed object "
 				"(load command %d fileoff not a multiple of 8)\n\n",
 					browser->progname, browser->filename, j);
-			return (CORRUPTED);
+			return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
 		}
 		if (lc->cmd == LC_SEGMENT_64)
 		{
 			seg = (struct segment_command_64 *)lc;
 			if (is_corrupted_data(seg, sizeof(struct segment_command_64), browser))
 			{
-				return (CORRUPTED);
+				return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
 			}
 			swap_segment_command_64(seg, parser->should_swap);
 			
@@ -232,7 +232,7 @@ int		get_sections64(t_header_parser *parser, t_browser *browser)
 				ft_dprintf(2, "%s: %s truncated or malformed object "
 					"(load command %d inconsistent cmdsize in LC_SEGMENT_64 for the number of sections)\n\n",
 						browser->progname, browser->filename, j);
-				return (CORRUPTED);
+				return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
 			}
 			if (is_corrupted_offset(parser->offset + seg->fileoff,
 				seg->filesize, browser))
@@ -241,10 +241,10 @@ int		get_sections64(t_header_parser *parser, t_browser *browser)
 					"(load command %d fileoff filed plus filesize "
 						"field in LC_SEGMENT_64 extends past the end of the"
 					  		 "file)\n\n", browser->progname, browser->filename, j);
-				return (CORRUPTED);
+				return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
 			}
 			if (ft_add_to_list_ptr_back(&segments, seg, sizeof(seg)))
-				return (1);
+				return (ft_lstdel_ptr_ret(&segments, 1));
 		}
 		j++;
 		i += lc->cmdsize;

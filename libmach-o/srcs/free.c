@@ -18,12 +18,12 @@ void	free_symbol(t_symbol *symbol)
 		free(symbol->symbol_union.symbol64.name);
 	else
 		free(symbol->symbol_union.symbol32.name);
+	free(symbol);
 }
 
 void	free_symbol_tree(void *content)
 {
 	free_symbol((t_symbol *)content);
-	free(content);
 }
 
 void	free_parser(t_header_parser *parser)
@@ -37,4 +37,14 @@ void	free_parser_tree(void *content)
 {
 	free_parser((t_header_parser *)content);
 	free(content);
+}
+
+int		free_browser(t_browser *browser)
+{
+	if (munmap(browser->ptr, browser->st.st_size) < 0)
+	{
+		ft_dprintf(2, "could not munmap the file %s\n", browser->filename);
+		return (1);
+	}
+	return (0);
 }
