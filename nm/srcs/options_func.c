@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:45:37 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/08 19:33:52 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/09 14:28:03 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	nm_opt_n(t_arg_parser *parser, void *flags)
 	(void)parser;
 	if (ptr->flags->flag_n)
 		nm_option_error("-numeric-sort", ptr->browser);
-	ptr->browser->sort_func = cmp_symbol_numerical;
+	if (ptr->flags->flag_r)
+		ptr->browser->sort_func = cmp_symbol_numerical_inv;
+	else
+		ptr->browser->sort_func = cmp_symbol_numerical;
 	ptr->flags->flag_n = 1;
 }
 

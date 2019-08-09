@@ -1,7 +1,0 @@
-0a1,6
-> 
-> all/64_exe_medium:
-> 0000000100000f50 T _main
-> 0000000100000000 T __mh_execute_header
->                  U dyld_stub_binder
->                  U _printf

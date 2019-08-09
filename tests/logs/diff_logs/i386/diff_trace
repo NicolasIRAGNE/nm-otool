@@ -1,6 +1,0 @@
-0a1,5
-> 
-> all/i386:
-> 00001fb0 T _main
-> 00001000 T __mh_execute_header
->          U dyld_stub_binder

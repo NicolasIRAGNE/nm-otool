@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/07/24 12:28:24 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/09 14:08:33 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	fill_browser(t_header_parser *parser, t_browser *browser)
 	if (parser->type == E_UNKNOWN)
 	{
 		ft_dprintf(2, "%s: %s The file was not recognised"
-			" as a valid object file\n", browser->progname, browser->filename);
+			" as a valid object file\n\n", browser->progname, browser->filename);
 		return (1);
 	}
 	swap_header(parser);

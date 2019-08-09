@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/08 19:34:41 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/09 14:15:25 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int		process_args(t_arg_parser *parser, t_browser *browser)
 {
 	t_list  *lst;
 
+	browser->nb_args = parser->nb_args;
     lst = parser->parsed;
 	while (lst)
     {
@@ -53,8 +54,7 @@ int		process_args(t_arg_parser *parser, t_browser *browser)
         test = (t_arg_parsed*)lst->content;
 		if (test->type == E_ARG)
 		{
-			if (process_nm(test->long_name, browser))
-				return (1);
+			process_nm(test->long_name, browser);
 		}
         lst = lst->next;
     }

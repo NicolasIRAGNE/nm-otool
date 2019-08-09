@@ -1,5 +1,3 @@
-
-all/hello_je_diff:
 fe0000000100004b C bad string index
 fe0000000100000f C bad string index
 fa00000001000045 C bad string index
