@@ -77,7 +77,7 @@ typedef struct				s_object
 	uint32_t				ran_off;
 }							t_object;
 
-typedef union				u_parser_union
+typedef struct				u_parser_union
 {
 	t_arch					arch;
 	t_object				object;

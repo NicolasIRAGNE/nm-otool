@@ -35,6 +35,7 @@ int		process_nm(char *filename, t_browser *browser)
 		if (free_browser(browser))
 			return (1);
 		free_parser(&parser);
+		ft_tree_del(&browser->parsers, free_parser_tree);
 		return (1);
 	}
 	nm_print(browser, 0);

@@ -31,6 +31,6 @@ int		ft_tree_add_sorted_value_no_doubles(t_tree **tree,
 			return (ft_tree_add_sorted_value_no_doubles(&((*tree)->right),
 				content, size, sort));
 		else
-		   return (0);
+		   return (2);
 	}
 }

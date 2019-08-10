@@ -23,6 +23,9 @@ char	get_debug(char debug, int has_bad_index)
 
 void	print_parser_header_intro(t_header_parser *parser)
 {
+//	ft_printf("%d %d\n", parser->parser_enum, PARSER_ENUM_OBJECT);
+//	ft_printf("%s\n", parser->filename);
+//	ft_printf("%s\n", parser->parser_union.object.name);
 	if (parser->parser_enum == PARSER_ENUM_NONE)
 		ft_printf("\n%s:\n", parser->filename);
 	else if (parser->parser_enum == PARSER_ENUM_ARCHI
@@ -35,8 +38,7 @@ void	print_parser_header_intro(t_header_parser *parser)
 	}
 	else if (parser->parser_enum == PARSER_ENUM_OBJECT)
 	{
-		ft_printf("\n%s(%s):\n",
-				parser->filename, parser->parser_union.object.name);
+		ft_printf("\n%s(%s):\n", parser->filename, parser->parser_union.object.name);
 	}
 }
 

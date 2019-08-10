@@ -57,7 +57,7 @@ void	get_header(t_header_parser *parser, t_browser *browser)
 	else if (identify_as_archive(parser, browser))
 	{
 
-		if(verbose)
+		if (verbose)
 			ft_printf("ARCHIVE\n");
 		parser->type = E_ARCHIVE;
 	}

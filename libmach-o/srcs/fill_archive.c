@@ -54,7 +54,7 @@ int		fill_identifier(t_header_parser *parser, t_browser *browser,
 	return (0);
 }
 
-void	print_ranlib(t_header_parser *parser, t_browser *browser,
+void	fill_ranlib(t_header_parser *parser, t_browser *browser,
 			struct ranlib ranlib, char *stringtable, int strsize)
 {
 	(void)strsize;
@@ -108,7 +108,16 @@ int		fill_browser_archive(t_header_parser *parser, t_browser *browser)
 	i = 0;
 	while ((uint32_t)i < ranlib_array_len)
 	{
-		print_ranlib(parser, browser, ranlib_array[i], stringtable, string_array_size);
+		fill_ranlib(parser, browser, ranlib_array[i], stringtable, string_array_size);
+		/*
+		if (i == 60)
+		{
+			while(1)
+			{
+
+			}
+		}
+		*/
 		i++;
 	}
 //	

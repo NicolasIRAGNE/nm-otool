@@ -254,10 +254,17 @@ int		get_sections64(t_header_parser *parser, t_browser *browser)
 
 int		add_parser(t_browser *browser, t_header_parser *parser)
 {
+	int ret;
+
 	if (parser->parser_enum == PARSER_ENUM_OBJECT)
 	{
-		return (ft_tree_add_sorted_value_no_doubles(&browser->parsers, parser,
-			sizeof(t_header_parser), cmp_parser_ran_off));
+		if ((ret = (ft_tree_add_sorted_value_no_doubles(&browser->parsers, parser,
+			sizeof(t_header_parser), cmp_parser_ran_off))) == 1)
+			return (1);
+		else if (ret == 2)
+			free_parser(parser);
+		return (0);
+		
 	}
 	else
 	{
@@ -280,7 +287,7 @@ int		fill_browser64(t_header_parser *parser, t_browser *browser)
 		return (ret);
 	if ((ret = fill_symbol_table64(parser, browser)))
 		return (ret);
-	if(add_parser(browser, parser))
+	if (add_parser(browser, parser))
 		return (1);
 	return (0);
 }
