@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 01:32:45 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/17 16:26:45 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/12 16:49:28 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	free_parser(t_header_parser *parser)
 {
 	ft_tree_del(&parser->symbols, &free_symbol_tree);
 	if (parser->section_arr.sections)
+	{
 		free(parser->section_arr.sections);
+		parser->section_arr.sections = NULL;
+	}
 }
 
 void	free_parser_tree(void *content)

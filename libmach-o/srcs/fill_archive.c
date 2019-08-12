@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 18:19:32 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/22 14:12:22 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/12 18:22:54 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		fill_identifier(t_header_parser *parser, t_browser *browser,
 	return (0);
 }
 
-void	fill_ranlib(t_header_parser *parser, t_browser *browser,
+int		fill_ranlib(t_header_parser *parser, t_browser *browser,
 			struct ranlib ranlib, char *stringtable, int strsize)
 {
 	(void)strsize;
@@ -63,8 +63,8 @@ void	fill_ranlib(t_header_parser *parser, t_browser *browser,
 //	ft_printf("library member offset: %d\n", ranlib.ran_off);
 //	ft_printf("%s\n", parser->ptr + ranlib.ran_off);
 //	ft_printf("%s\n", stringtable + ranlib.ran_un.ran_strx);
-	fill_archive_member(browser, parser, ranlib.ran_off,
-		stringtable + ranlib.ran_un.ran_strx);
+	return (fill_archive_member(browser, parser, ranlib.ran_off,
+		stringtable + ranlib.ran_un.ran_strx));
 }
 
 int		fill_browser_archive(t_header_parser *parser, t_browser *browser)
@@ -76,6 +76,7 @@ int		fill_browser_archive(t_header_parser *parser, t_browser *browser)
 	struct ranlib	*ranlib_array;
 	char			*stringtable;
 	int name_size;
+	int				ret;
 
 	name_size = ft_atoi(parser->ptr + ft_strlen(ARCHIVE_IDENTIFIER) + 3);
 	address = ft_strlen(ARCHIVE_IDENTIFIER) + 60;
@@ -108,16 +109,11 @@ int		fill_browser_archive(t_header_parser *parser, t_browser *browser)
 	i = 0;
 	while ((uint32_t)i < ranlib_array_len)
 	{
-		fill_ranlib(parser, browser, ranlib_array[i], stringtable, string_array_size);
-		/*
-		if (i == 60)
+		if ((ret = fill_ranlib(parser, browser, ranlib_array[i], stringtable, string_array_size)))
 		{
-			while(1)
-			{
-
-			}
+			if (ret == 1)
+				return (ret);
 		}
-		*/
 		i++;
 	}
 //	

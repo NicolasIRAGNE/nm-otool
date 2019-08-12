@@ -1,5 +1,13 @@
 #!/bin/bash
 
+((index=2))
+otool_options="-t"
+while [ $index -lt $(($# + 1)) ];
+do
+	otool_options="$otool_options ${!index}"
+	index=$((index+1))
+done;
+
 if [ -z $1 ];
 then
 	echo usage: $0 binaries_directory
@@ -15,7 +23,6 @@ fi
 ./compute_valgrind_supps.sh
 valgrind_supps=my_supp.supp
 error_exit_code=23
-
 
 green="\033[32m"
 red="\033[91m"
@@ -41,7 +48,7 @@ do
 	mkdir -p $trace_folder
 	trace=$trace_folder/valgrind_trace
 	#echo "processing: valgrind --leak-check=full --error-exitcode=$error_exit_code --suppressions=$valgrind_supps --log-file=$tmp_trace ./asm $file > /dev/null 2>&1"
-	valgrind --leak-check=full --error-exitcode=$error_exit_code --suppressions=$valgrind_supps --log-file=$trace ./$otool_dir/$otool_name $file > /dev/null 2>&1
+	valgrind --leak-check=full --error-exitcode=$error_exit_code --suppressions=$valgrind_supps --log-file=$trace ./$otool_dir/$otool_name  $otool_options $file > /dev/null 2>&1
 	ret=$?
 	if [ $ret -eq $error_exit_code ] || ([ $ret -ne 1 ] && [ $ret -ne 0 ]);
 	then

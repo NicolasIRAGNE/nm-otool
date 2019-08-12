@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/09 15:35:16 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/12 15:03:21 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		process_nm(char *filename, t_browser *browser)
 	if (init_browser(browser, filename))
 		return (1);
 	init_parser(&parser, browser->ptr, 0, filename);
-	if (fill_browser(&parser, browser))
+	if (fill_browser(&parser, browser, 1))
 	{
 		if (free_browser(browser))
 			return (1);

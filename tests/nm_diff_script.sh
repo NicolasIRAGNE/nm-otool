@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ((index=2))
-nm_options="-nr"
+nm_options=""
 while [ $index -lt $(($# + 1)) ];
 do
 	nm_options="$nm_options ${!index}"

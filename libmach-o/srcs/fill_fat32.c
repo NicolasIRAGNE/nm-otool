@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 19:16:02 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/24 12:26:03 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/12 15:02:31 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		process_browser_fat_arch32(struct fat_arch *fat_arch,
 	new_parser.parser_union.arch.cputype = fat_arch->cputype;
 	new_parser.parser_union.arch.cpusubtype = fat_arch->cpusubtype;
 	new_parser.parser_union.arch.relevant = 1;
-	if ((ret = fill_browser(&new_parser, browser)) == CORRUPTED)
+	if ((ret = fill_browser(&new_parser, browser, 0)) == CORRUPTED)
 		return (0);
 	else if (ret)
 		return (1);

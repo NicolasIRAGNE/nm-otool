@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:29:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/08 17:19:10 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/12 18:36:02 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,19 @@ int		process_fill_symbols64(t_header_parser *parser, t_browser *browser,
 	stringtable = (void *)((void *)header + sym->stroff);
 	browser->strsize = sym->strsize;
 	if (is_corrupted_data(stringtable, sym->strsize, browser))
+	{
+		ft_dprintf(2, "%s: %s: stringtable size (%u) exceeds end of file\n",
+			browser->progname, browser->filename, sym->strsize);
 		return (CORRUPTED);
+	}
 	if (overlaps_symtab_command(sym))
 	{
-		ft_dprintf(2, "%s: %s truncated or malformed object (string table at"
-		"offset %d with a size of %d, overlaps symbol table at offset %d with "
-			"a size of %d)\n\n", browser->progname, browser->filename,
-				sym->stroff, sym->strsize, sym->symoff,
-					sym->nsyms * sizeof(struct nlist_64));
-		return (CORRUPTED);
+		ft_dprintf(2, "%s: %s truncated or malformed object (string table at "
+			"offset %d with a size of %d, overlaps symbol table at offset %d "
+				"with a size of %d)\n\n", browser->progname, browser->filename,
+					sym->stroff, sym->strsize, sym->symoff,
+						sym->nsyms * sizeof(struct nlist_64));
+		return (1);
 	}
 	i = 0;
 	while (i < sym->nsyms)
@@ -84,10 +88,11 @@ int		process_fill_symbols64(t_header_parser *parser, t_browser *browser,
 
 int		fill_symbol_table64(t_header_parser *parser, t_browser *browser)
 {
-	struct load_command *lc;
-	struct symtab_command *sym;
-	uint64_t i;
-	struct mach_header_64 *header;
+	struct		load_command *lc;
+	struct		symtab_command *sym;
+	uint64_t	i;
+	struct 		mach_header_64 *header;
+	int			ret;
 
 	header = parser->header_union.header64;
 	i = (uint64_t)((void *)header + sizeof(*header));
@@ -97,8 +102,8 @@ int		fill_symbol_table64(t_header_parser *parser, t_browser *browser)
 		if (lc->cmd == LC_SYMTAB)
 		{
 			sym = (struct symtab_command *)lc;
-			if (process_fill_symbols64(parser, browser, sym))
-				return (1);
+			if ((ret = process_fill_symbols64(parser, browser, sym)))
+				return (ret);
 		}
 		i += lc->cmdsize;
 	}
@@ -286,8 +291,22 @@ int		fill_browser64(t_header_parser *parser, t_browser *browser)
 	if ((ret = get_sections64(parser, browser)))
 		return (ret);
 	if ((ret = fill_symbol_table64(parser, browser)))
+	{
+		if (ret == CORRUPTED)
+		{
+			if (add_parser(browser, parser))
+			{
+				free_parser(parser);
+				return (1);
+			}
+		}
+		//free_parser(parser);
 		return (ret);
+	}
 	if (add_parser(browser, parser))
+	{
+		free_parser(parser);
 		return (1);
+	}
 	return (0);
 }

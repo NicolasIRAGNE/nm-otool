@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/09 14:08:33 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/12 15:01:51 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		identify_as_archive(t_header_parser *parser, t_browser *browser)
 			(char *)parser->ptr, identifier_len));
 }
 
-void	get_header(t_header_parser *parser, t_browser *browser)
+void	get_header(t_header_parser *parser, t_browser *browser, int first)
 {
 	int verbose = 0;
 	parser->magic = *(uint32_t*)parser->ptr;
@@ -63,6 +63,8 @@ void	get_header(t_header_parser *parser, t_browser *browser)
 	}
 	else
 		parser->type = E_UNKNOWN;
+	if (first)
+		browser->from = parser->type;
 }
 
 /*
@@ -96,9 +98,9 @@ void	swap_header(t_header_parser *parser)
 ** recursively for all theheaders found in the fat_header
 */
 
-int	fill_browser(t_header_parser *parser, t_browser *browser)
+int	fill_browser(t_header_parser *parser, t_browser *browser, int first)
 {
-	get_header(parser, browser);
+	get_header(parser, browser, first);
 	if (parser->type == E_UNKNOWN)
 	{
 		ft_dprintf(2, "%s: %s The file was not recognised"

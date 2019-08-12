@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/08 19:14:58 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/12 18:53:15 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,21 @@ int		process_otool(char *filename, t_browser *browser, t_otool_flags *flags)
 	if (init_browser(browser, filename))
 		return (1);
 	init_parser(&parser, browser->ptr, 0, filename);
-	if ((ret = fill_browser(&parser, browser)))
-		return (1);
-	otool_print(browser, flags);
-	ft_tree_del(&browser->parsers, free_parser_tree);
-	if (munmap(browser->ptr, browser->st.st_size) != 0)
+	if ((ret = fill_browser(&parser, browser, 1)))
 	{
-		ft_dprintf(2, "could not unmap '%s'\n", filename);
+		if (ret == CORRUPTED)
+		{
+			otool_print(browser, flags);
+		}
+		free_parser(&parser);
+		ft_tree_del(&browser->parsers, free_parser_tree);
+		free_browser(browser);
 		return (1);
 	}
+	otool_print(browser, flags);
+	ft_tree_del(&browser->parsers, free_parser_tree);
+	if (free_browser(browser))
+		return (1);
 	return (0);
 }
 

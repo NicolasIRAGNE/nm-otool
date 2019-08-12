@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:24:40 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/09 15:09:01 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/12 17:12:58 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	print_parser_header_intro(t_header_parser *parser)
 
 	str = get_cpu_name(parser->parser_union.arch.cputype,
 			parser->parser_union.arch.cpusubtype);
-	if (parser->parser_enum == PARSER_ENUM_NONE || !ft_strcmp(str, ARCH) ||
-			!ft_strcmp("", str))
+	if ((parser->parser_enum == PARSER_ENUM_NONE || !ft_strcmp(str, ARCH) ||
+			!ft_strcmp("", str)) && parser->parser_enum != PARSER_ENUM_OBJECT)
 		ft_printf("%s:\n", parser->filename);
 	else if (parser->parser_enum == PARSER_ENUM_ARCHI
-		&& parser->parser_union.arch.relevant)
+			&& parser->parser_union.arch.relevant)
 	{
 		ft_printf("%s (architecture %s):\n",
 				parser->filename, get_cpu_name(parser->parser_union.
@@ -172,6 +172,8 @@ void	otool_print(t_browser *browser, t_otool_flags *flags)
 {
 	int len;
 
+	if (browser->from == E_ARCHIVE)
+		ft_printf("Archive : %s\n", browser->filename);
 	len = ft_treelen(browser->parsers);
 	process_otool_print_tree(browser, browser->parsers, len, flags);
 }

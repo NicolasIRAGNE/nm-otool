@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 11:40:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/08 19:13:40 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/12 15:30:29 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct				s_header_parser
 struct						s_browser
 {
 	void					*ptr;
+	t_bin_type				from;
 	struct stat				st;
 	int						ret;
 	long					(*sort_func)(void *, void *, void *);
@@ -115,6 +116,7 @@ struct						s_browser
 	char					*progname;
 	int						force;
 	int						strsize;
+	char					*last_member_name;
 	t_tree					*parsers;
 };
 
@@ -157,7 +159,7 @@ uint32_t					max_uint32(uint32_t a, uint32_t b);
 ** fill.c
 */
 int							fill_browser(t_header_parser *parser,
-								t_browser *browser);
+								t_browser *browser, int first);
 
 /*
 ** fill32.c

@@ -1,5 +1,13 @@
 #!/bin/bash
 
+((index=2))
+nm_options=""
+while [ $index -lt $(($# + 1)) ];
+do
+	nm_options="$nm_options ${!index}"
+	index=$((index+1))
+done;
+
 if [ -z $1 ];
 then
 	echo usage: $0 binaries_directory
@@ -41,7 +49,7 @@ do
 	mkdir -p $trace_folder
 	trace=$trace_folder/valgrind_trace
 	#echo "processing: valgrind --leak-check=full --error-exitcode=$error_exit_code --suppressions=$valgrind_supps --log-file=$tmp_trace ./asm $file > /dev/null 2>&1"
-	valgrind --leak-check=full --error-exitcode=$error_exit_code --suppressions=$valgrind_supps --log-file=$trace ./$nm_dir/$nm_name $file > /dev/null 2>&1
+	valgrind --leak-check=full --error-exitcode=$error_exit_code --suppressions=$valgrind_supps --log-file=$trace ./$nm_dir/$nm_name $nm_options $file > /dev/null 2>&1
 	ret=$?
 	if [ $ret -eq $error_exit_code ] || ([ $ret -ne 1 ] && [ $ret -ne 0 ]);
 	then

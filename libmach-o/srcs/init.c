@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 02:14:47 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/08 17:16:39 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/12 15:30:05 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ int	init_browser(t_browser *browser, char *filename)
 
 	browser->force = 0;
 	browser->filename = filename;
+	browser->last_member_name = NULL;
 	browser->parsers = NULL;
+	browser->from = -1;
 	if ((fd = open(filename, O_RDONLY)) < 0)
 	{
 		ft_dprintf(2, "error opening '%s'\n", filename);
