@@ -1,1 +1,0 @@
-.././hard-tests/test_otool.sh

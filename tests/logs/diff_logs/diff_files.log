@@ -1,5 +1,2 @@
-all/bad_string_index
-all/hello_je_diff
-all/indirect_bad_string
-all/python_returns
-all/strtable_past_eof
+all//lib_long_name.a
+all//libmlx_corupted.a

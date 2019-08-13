@@ -11,7 +11,7 @@ eoc=\\033[0m
 
 all_dir="all"
 black_list_dirs=(logs all srcs)
-black_list_files=(compile.sh)
+black_list_files=(test_nm.sh test_otool.sh)
 
 appendsymboliclinks()
 {
@@ -29,6 +29,7 @@ appendsymboliclinks()
 	done
 }
 
+rm $all_dir/*
 for file in ./*;
 do
 	if [ -d $file ] && [[ ! " ${black_list_dirs[@]} " =~ " $(basename $file) " ]];

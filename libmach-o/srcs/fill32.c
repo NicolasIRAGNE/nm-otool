@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 02:25:02 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/08 17:16:53 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/13 12:50:42 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,13 @@ int		fill_symbol_table32(t_header_parser *parser, t_browser *browser)
 	while (i < (uint64_t)((void *)header + header->sizeofcmds))
 	{
 		lc = (struct load_command*)i;
+		if (lc->cmdsize == 0)
+		{
+			ft_dprintf(2,"%s: %s: truncated or malformed object (load commands"
+				" extend past the end of the file)\n", browser->progname,
+					browser->filename);
+			return (CORRUPTED);
+		}
 		if (lc->cmd == LC_SYMTAB)
 		{
 			sym = (struct symtab_command *)lc;
@@ -187,6 +194,13 @@ int		get_sections32(t_header_parser *parser, t_browser *browser)
 	{
 		lc = (struct load_command*) i;
 		swap_load_command(lc, parser->should_swap);
+		if (lc->cmdsize == 0)
+		{
+			ft_dprintf(2,"%s: %s: truncated or malformed object (load commands"
+				" extend past the end of the file)\n", browser->progname,
+					browser->filename);
+			return (CORRUPTED);
+		}
 		if (is_corrupted_data(lc, lc->cmdsize, browser)
 				|| (void *)lc + max_uint32(lc->cmdsize, 1) > (void *)header + sizeof(*header) + header->sizeofcmds)
 		{

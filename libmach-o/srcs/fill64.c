@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:29:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/12 18:36:02 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/13 12:48:49 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,13 @@ int		get_sections64(t_header_parser *parser, t_browser *browser)
 	{
 		lc = (struct load_command*) i;
 		swap_load_command(lc, parser->should_swap);
+		if (lc->cmdsize == 0)
+		{
+			ft_dprintf(2,"%s: %s: truncated or malformed object (load commands"
+				" extend past the end of the file)\n", browser->progname,
+					browser->filename);
+			return (CORRUPTED);
+		}
 		if (is_corrupted_data(lc, lc->cmdsize, browser)
 			|| (void *)lc + max_uint32(lc->cmdsize, 1) > (void *)header + sizeof(*header) + header->sizeofcmds)
 		{
