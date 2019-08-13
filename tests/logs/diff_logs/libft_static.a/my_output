@@ -1,0 +1,1476 @@
+name size: 20
+ranlib length: 153
+ranlib array size: 1224
+string array size: 1896
+
+all/libft_static.a(error.o):
+0000000000000160 s _.str
+00000000000001a0 s _.str.1
+0000000000000008 C ____asan_globals_registered
+0000000000000310 s ___asan_binder_.str
+0000000000000320 s ___asan_binder_.str.1
+0000000000000290 s ___asan_global_.str
+00000000000002d0 s ___asan_global_.str.1
+                 U ___asan_handle_no_return
+                 U ___asan_init
+                 U ___asan_register_image_globals
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000120 t _asan.module_ctor
+0000000000000140 t _asan.module_dtor
+0000000000000000 T _basicerror
+0000000000000050 T _basicerror_out
+                 U _exit
+0000000000000090 T _exit_error
+                 U _ft_putendl_fd
+                 U _ft_putstr_fd
+                 U _kill
+                 U _perror
+00000000000001e0 s l___asan_gen_
+0000000000000268 s l___asan_gen_.4
+0000000000000278 s l___asan_gen_.7
+
+all/libft_static.a(over_p_str.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000060 t _asan.module_ctor
+                 U _ft_putchar_fd
+                 U _ft_putstr_fd
+0000000000000000 T _over_p_str
+
+all/libft_static.a(over_p.o):
+00000000000000a0 s _.str
+0000000000000008 C ____asan_globals_registered
+0000000000000190 s ___asan_binder_.str
+0000000000000150 s ___asan_global_.str
+                 U ___asan_init
+                 U ___asan_register_image_globals
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000060 t _asan.module_ctor
+0000000000000080 t _asan.module_dtor
+                 U _ft_putendl_fd
+                 U _ft_putstr_fd
+0000000000000000 T _over_p
+00000000000000e0 s l___asan_gen_
+0000000000000138 s l___asan_gen_.3
+
+all/libft_static.a(over_str.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000020 t _asan.module_ctor
+                 U _ft_putendl
+0000000000000000 T _over_str
+
+all/libft_static.a(over.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000030 t _asan.module_ctor
+                 U _ft_putendl_fd
+0000000000000000 T _over
+
+all/libft_static.a(ft_lstadd.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_report_store8
+                 U ___asan_version_mismatch_check_apple_902
+00000000000000f0 t _asan.module_ctor
+0000000000000000 T _ft_lstadd
+
+all/libft_static.a(ft_lstdel.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_report_store8
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000160 t _asan.module_ctor
+0000000000000000 T _ft_lstdel
+                 U _ft_lstdelone
+
+all/libft_static.a(ft_lstdelone.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000120 t _asan.module_ctor
+0000000000000000 T _ft_lstdelone
+                 U _ft_memdel
+
+all/libft_static.a(ft_lstfree.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_report_store8
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000260 t _asan.module_ctor
+                 U _free
+0000000000000000 T _ft_lstaddnew
+                 U _ft_lstnew
+0000000000000170 T _ft_lstsuppress
+
+all/libft_static.a(ft_lstiter.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000090 t _asan.module_ctor
+0000000000000000 T _ft_lstiter
+
+all/libft_static.a(ft_lstmap.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_report_store8
+                 U ___asan_version_mismatch_check_apple_902
+00000000000001a0 t _asan.module_ctor
+0000000000000000 T _ft_lstmap
+
+all/libft_static.a(ft_lstnew.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_report_store8
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000250 t _asan.module_ctor
+0000000000000000 T _ft_lstnew
+                 U _ft_memcpy
+                 U _malloc
+
+all/libft_static.a(ft_lstpush.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_report_store8
+                 U ___asan_version_mismatch_check_apple_902
+00000000000001d0 t _asan.module_ctor
+                 U _ft_lstnew
+0000000000000000 T _ft_lstpush
+0000000000000190 T _ft_lstpush_new
+
+all/libft_static.a(ft_atoi_base.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000550 t _asan.module_ctor
+0000000000000000 T _ft_atoi_base
+00000000000004a0 t _ft_inbase
+
+all/libft_static.a(ft_atoi.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_version_mismatch_check_apple_902
+00000000000004b0 t _asan.module_ctor
+0000000000000000 T _ft_atoi
+                 U _ft_isdigit
+
+all/libft_static.a(ft_strcat.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_report_store1
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000220 t _asan.module_ctor
+0000000000000000 T _ft_strcat
+
+all/libft_static.a(ft_strchr.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000270 t _asan.module_ctor
+0000000000000140 T _ft_indexchr
+0000000000000000 T _ft_strchr
+
+all/libft_static.a(ft_strcpy.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_report_store1
+                 U ___asan_version_mismatch_check_apple_902
+00000000000001a0 t _asan.module_ctor
+0000000000000000 T _ft_strcpy
+
+all/libft_static.a(ft_striter.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_version_mismatch_check_apple_902
+00000000000000c0 t _asan.module_ctor
+0000000000000000 T _ft_striter
+
+all/libft_static.a(ft_striteri.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_version_mismatch_check_apple_902
+00000000000000d0 t _asan.module_ctor
+0000000000000000 T _ft_striteri
+
+all/libft_static.a(ft_strlcat.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_report_store1
+                 U ___asan_version_mismatch_check_apple_902
+00000000000002b0 t _asan.module_ctor
+0000000000000000 T _ft_strlcat
+                 U _ft_strlen
+
+all/libft_static.a(ft_strlen.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_version_mismatch_check_apple_902
+00000000000000b0 t _asan.module_ctor
+0000000000000000 T _ft_strlen
+
+all/libft_static.a(ft_strmap.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_report_store1
+                 U ___asan_version_mismatch_check_apple_902
+00000000000001d0 t _asan.module_ctor
+                 U _ft_strdup
+0000000000000000 T _ft_strmap
+
+all/libft_static.a(ft_strmapi.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_report_store1
+                 U ___asan_version_mismatch_check_apple_902
+00000000000001d0 t _asan.module_ctor
+                 U _ft_strdup
+0000000000000000 T _ft_strmapi
+
+all/libft_static.a(ft_strncat.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_report_store1
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000260 t _asan.module_ctor
+0000000000000000 T _ft_strncat
+
+all/libft_static.a(ft_strncpy.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_report_store1
+                 U ___asan_version_mismatch_check_apple_902
+00000000000001f0 t _asan.module_ctor
+0000000000000000 T _ft_strncpy
+
+all/libft_static.a(ft_strnstr.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000360 t _asan.module_ctor
+0000000000000000 T _ft_strnstr
+
+all/libft_static.a(ft_strrchr.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_version_mismatch_check_apple_902
+00000000000000d0 t _asan.module_ctor
+                 U _ft_strlen
+0000000000000000 T _ft_strrchr
+
+all/libft_static.a(ft_strsplit.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_report_store8
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000570 t _asan.module_ctor
+00000000000002c0 t _ft_split_cut
+                 U _ft_strdblnew
+0000000000000000 T _ft_strsplit
+                 U _ft_strsub
+00000000000000c0 t _nb_word
+
+all/libft_static.a(ft_strstr.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_version_mismatch_check_apple_902
+00000000000003b0 t _asan.module_ctor
+0000000000000000 T _ft_strstr
+
+all/libft_static.a(ft_strsub.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+00000000000000a0 t _asan.module_ctor
+                 U _ft_strncpy
+                 U _ft_strnew
+0000000000000000 T _ft_strsub
+
+all/libft_static.a(ft_strtolower.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_report_store1
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000150 t _asan.module_ctor
+0000000000000000 T _ft_strtolower
+                 U _ft_tolower
+
+all/libft_static.a(ft_tolower.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000040 t _asan.module_ctor
+0000000000000000 T _ft_tolower
+
+all/libft_static.a(ft_toupper.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000040 t _asan.module_ctor
+0000000000000000 T _ft_toupper
+
+all/libft_static.a(ft_strcmpa.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_version_mismatch_check_apple_902
+00000000000007c0 t _asan.module_ctor
+                 U _free
+                 U _ft_isalpha
+0000000000000000 T _ft_strcmpa
+                 U _ft_strdup
+                 U _ft_strtolower
+0000000000000790 t _lines_free
+
+all/libft_static.a(ft_strcmp.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_version_mismatch_check_apple_902
+00000000000002e0 t _asan.module_ctor
+0000000000000000 T _ft_strcmp
+
+all/libft_static.a(ft_strequ.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000050 t _asan.module_ctor
+                 U _ft_strcmp
+0000000000000000 T _ft_strequ
+
+all/libft_static.a(ft_strncmp.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000320 t _asan.module_ctor
+0000000000000000 T _ft_strncmp
+
+all/libft_static.a(ft_strnequ.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000050 t _asan.module_ctor
+                 U _ft_strncmp
+0000000000000000 T _ft_strnequ
+
+all/libft_static.a(ft_fri.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_report_store8
+                 U ___asan_version_mismatch_check_apple_902
+00000000000000e0 t _asan.module_ctor
+                 U _free
+0000000000000000 T _ft_fri
+
+all/libft_static.a(ft_strclr.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000040 t _asan.module_ctor
+                 U _ft_bzero
+0000000000000000 T _ft_strclr
+                 U _ft_strlen
+
+all/libft_static.a(ft_strdel.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000020 t _asan.module_ctor
+                 U _ft_memdel
+0000000000000000 T _ft_strdel
+
+all/libft_static.a(ft_isalnum.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000080 t _asan.module_ctor
+0000000000000000 T _ft_isalnum
+
+all/libft_static.a(ft_isalpha.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000060 t _asan.module_ctor
+0000000000000000 T _ft_isalpha
+
+all/libft_static.a(ft_isascii.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000040 t _asan.module_ctor
+0000000000000000 T _ft_isascii
+
+all/libft_static.a(ft_isdigit.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000040 t _asan.module_ctor
+0000000000000000 T _ft_isdigit
+
+all/libft_static.a(ft_isprint.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000040 t _asan.module_ctor
+0000000000000000 T _ft_isprint
+
+all/libft_static.a(ft_str_isdigit.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000140 t _asan.module_ctor
+                 U _ft_isdigit
+0000000000000000 T _ft_str_isdigit
+
+all/libft_static.a(ft_str_isprint.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_version_mismatch_check_apple_902
+00000000000001a0 t _asan.module_ctor
+                 U _ft_isprint
+0000000000000000 T _ft_str_isprint
+
+all/libft_static.a(ft_str_isvalue.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000140 t _asan.module_ctor
+                 U _ft_str_isdigit
+0000000000000000 T _ft_str_isvalue
+
+all/libft_static.a(ft_putchar.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000030 t _asan.module_ctor
+0000000000000000 T _ft_putchar
+                 U _ft_putchar_fd
+
+all/libft_static.a(ft_putchar_fd.o):
+                 U ___asan_init
+                 U ___asan_option_detect_stack_use_after_return
+                 U ___asan_report_store1
+                 U ___asan_stack_malloc_0
+                 U ___asan_version_mismatch_check_apple_902
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+00000000000001a0 t _asan.module_ctor
+0000000000000000 T _ft_putchar_fd
+                 U _write
+
+all/libft_static.a(ft_putendl.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000020 t _asan.module_ctor
+0000000000000000 T _ft_putendl
+                 U _ft_putendl_fd
+
+all/libft_static.a(ft_putendl_fd.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000030 t _asan.module_ctor
+                 U _ft_putchar_fd
+0000000000000000 T _ft_putendl_fd
+                 U _ft_putstr_fd
+
+all/libft_static.a(ft_putnbr.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+00000000000000a0 t _asan.module_ctor
+                 U _ft_putchar
+0000000000000000 T _ft_putnbr
+
+all/libft_static.a(ft_putnbr_fd.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+00000000000000b0 t _asan.module_ctor
+                 U _ft_putchar_fd
+0000000000000000 T _ft_putnbr_fd
+
+all/libft_static.a(ft_putstr.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000020 t _asan.module_ctor
+0000000000000000 T _ft_putstr
+                 U _ft_putstr_fd
+
+all/libft_static.a(ft_putstr_fd.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000050 t _asan.module_ctor
+0000000000000000 T _ft_putstr_fd
+                 U _ft_strlen
+                 U _write
+
+all/libft_static.a(ft_putsize_t_base_fd.o):
+0000000000000008 C ____asan_globals_registered
+0000000000000250 s ___asan_binder_base_ref
+0000000000000210 s ___asan_global_base_ref
+                 U ___asan_init
+                 U ___asan_register_image_globals
+                 U ___asan_report_load1
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000100 t _asan.module_ctor
+0000000000000120 t _asan.module_dtor
+0000000000000140 d _base_ref
+                 U _ft_putchar_fd
+0000000000000000 T _ft_putsize_t_base_fd
+0000000000000180 s l___asan_gen_
+00000000000001f8 s l___asan_gen_.3
+
+all/libft_static.a(ft_putnbr_base.o):
+0000000000000008 C ____asan_globals_registered
+0000000000000220 s ___asan_binder_base_ref
+00000000000001e0 s ___asan_global_base_ref
+                 U ___asan_init
+                 U ___asan_register_image_globals
+                 U ___asan_report_load1
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+00000000000000f0 t _asan.module_ctor
+0000000000000110 t _asan.module_dtor
+0000000000000120 d _base_ref
+                 U _ft_putchar_fd
+0000000000000000 T _ft_putnbr_base_fd
+                 U _ft_putsize_t_base_fd
+0000000000000160 s l___asan_gen_
+00000000000001c8 s l___asan_gen_.3
+
+all/libft_static.a(ft_itoa_base.o):
+0000000000000a80 s _.str
+0000000000000ac0 s _.str.1
+0000000000000008 C ____asan_globals_registered
+0000000000000c80 s ___asan_binder_.str
+0000000000000c90 s ___asan_binder_.str.1
+0000000000000c00 s ___asan_global_.str
+0000000000000c40 s ___asan_global_.str.1
+                 U ___asan_init
+                 U ___asan_option_detect_stack_use_after_return
+                 U ___asan_register_image_globals
+                 U ___asan_report_load1
+                 U ___asan_report_load4
+                 U ___asan_report_store1
+                 U ___asan_report_store4
+                 U ___asan_stack_malloc_0
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+0000000000000a50 t _asan.module_ctor
+0000000000000a70 t _asan.module_dtor
+0000000000000270 T _ft_itoa_base
+00000000000006d0 T _ft_itoa_plusbase
+                 U _ft_strdup
+                 U _ft_strnew
+                 U _nb_of_figure
+                 U _rev
+0000000000000000 T _win_linesitoa
+0000000000000ba4 s l___asan_gen_.3
+0000000000000bd8 s l___asan_gen_.6
+0000000000000be8 s l___asan_gen_.9
+
+all/libft_static.a(ft_itoa.o):
+                 U ___asan_init
+                 U ___asan_report_store1
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000540 t _asan.module_ctor
+0000000000000000 T _ft_itoa
+0000000000000240 t _ft_number_of_figures
+00000000000004c0 t _ft_number_of_ufigures
+00000000000002f0 T _ft_uitoa
+                 U _malloc
+
+all/libft_static.a(ft_replace.o):
+                 U ___asan_init
+                 U ___asan_option_detect_stack_use_after_return
+                 U ___asan_report_load8
+                 U ___asan_report_store8
+                 U ___asan_stack_malloc_1
+                 U ___asan_version_mismatch_check_apple_902
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+00000000000004f0 t _asan.module_ctor
+                 U _ft_fri
+0000000000000080 T _ft_replace
+0000000000000000 T _ft_replace_init
+                 U _ft_strjoin
+                 U _ft_strlen
+                 U _ft_strncpy
+                 U _ft_strnew
+
+all/libft_static.a(ft_strdup.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000070 t _asan.module_ctor
+                 U _ft_strcpy
+0000000000000000 T _ft_strdup
+                 U _ft_strlen
+                 U _ft_strnew
+
+all/libft_static.a(ft_strjoin.o):
+                 U ___asan_init
+                 U ___asan_option_detect_stack_use_after_return
+                 U ___asan_report_load8
+                 U ___asan_report_store8
+                 U ___asan_stack_malloc_1
+                 U ___asan_version_mismatch_check_apple_902
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+00000000000003b0 t _asan.module_ctor
+                 U _ft_fri
+                 U _ft_strcat
+0000000000000000 T _ft_strjoin
+00000000000000b0 T _ft_strjoincl
+                 U _ft_strlen
+                 U _ft_strnew
+
+all/libft_static.a(ft_strnew.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000070 t _asan.module_ctor
+                 U _ft_bzero
+0000000000000000 T _ft_strnew
+                 U _malloc
+
+all/libft_static.a(ft_strtrim.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_report_store1
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000680 t _asan.module_ctor
+                 U _ft_strlen
+                 U _ft_strnew
+0000000000000000 T _ft_strtrim
+0000000000000320 t _ft_trimlen
+
+all/libft_static.a(pf_itoa_base.o):
+0000000000000b80 s _.str
+0000000000000bc0 s _.str.1
+0000000000000008 C ____asan_globals_registered
+0000000000000d90 s ___asan_binder_.str
+0000000000000da0 s ___asan_binder_.str.1
+0000000000000d10 s ___asan_global_.str
+0000000000000d50 s ___asan_global_.str.1
+                 U ___asan_init
+                 U ___asan_option_detect_stack_use_after_return
+                 U ___asan_register_image_globals
+                 U ___asan_report_load1
+                 U ___asan_report_load4
+                 U ___asan_report_store1
+                 U ___asan_report_store4
+                 U ___asan_stack_malloc_0
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+0000000000000b50 t _asan.module_ctor
+0000000000000b70 t _asan.module_dtor
+                 U _free
+                 U _ft_strdup
+                 U _ft_strlen
+                 U _ft_strnew
+0000000000000000 T _nb_of_figure
+0000000000000200 T _pf_itoa_base
+00000000000007b0 T _pf_itoa_plusbase
+00000000000005a0 T _pf_uitoa_base
+0000000000000080 T _rev
+                 U _win_linesitoa
+0000000000000cf8 s l___asan_gen_.10
+0000000000000cb2 s l___asan_gen_.4
+0000000000000ce8 s l___asan_gen_.7
+
+all/libft_static.a(ft_getchar.o):
+00000000000006a0 s _.str
+0000000000000008 C ____asan_globals_registered
+00000000000007a0 s ___asan_binder_.str
+0000000000000760 s ___asan_global_.str
+                 U ___asan_init
+                 U ___asan_register_image_globals
+                 U ___asan_report_load4
+                 U ___asan_report_store1
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000660 t _asan.module_ctor
+0000000000000680 t _asan.module_dtor
+                 U _free
+0000000000000000 T _ft_getchar
+00000000000004f0 T _ft_getwstr
+                 U _ft_strdup
+                 U _ft_strjoin
+                 U _ft_strnew
+0000000000000300 t _win_lines
+00000000000006e0 s l___asan_gen_
+0000000000000750 s l___asan_gen_.3
+
+all/libft_static.a(ft_putwchar.o):
+                 U ___asan_init
+                 U ___asan_report_load4
+                 U ___asan_version_mismatch_check_apple_902
+00000000000002a0 t _asan.module_ctor
+                 U _ft_putchar_fd
+0000000000000260 T _ft_putwchar
+0000000000000000 T _ft_putwchar_fd
+0000000000000280 T _ft_putwstr
+0000000000000160 T _ft_putwstr_fd
+
+all/libft_static.a(ft_strwlen.o):
+                 U ___asan_init
+                 U ___asan_report_load4
+                 U ___asan_version_mismatch_check_apple_902
+00000000000000c0 t _asan.module_ctor
+0000000000000000 T _ft_strwlen
+
+all/libft_static.a(ft_strdbldup.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_report_store8
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000210 t _asan.module_ctor
+0000000000000000 T _ft_strdbldup
+                 U _ft_strdblnew
+                 U _ft_strdup
+
+all/libft_static.a(ft_strdblfree.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000160 t _asan.module_ctor
+                 U _free
+0000000000000000 T _ft_strdblfree
+
+all/libft_static.a(ft_strdblnew.o):
+                 U ___asan_init
+                 U ___asan_report_store8
+                 U ___asan_version_mismatch_check_apple_902
+00000000000000f0 t _asan.module_ctor
+0000000000000000 T _ft_strdblnew
+                 U _malloc
+
+all/libft_static.a(ft_strdblprint.o):
+0000000000000160 s _.str
+00000000000001a0 s _.str.1
+00000000000001e0 s _.str.2
+0000000000000008 C ____asan_globals_registered
+00000000000003f0 s ___asan_binder_.str
+0000000000000400 s ___asan_binder_.str.1
+0000000000000410 s ___asan_binder_.str.2
+0000000000000330 s ___asan_global_.str
+0000000000000370 s ___asan_global_.str.1
+00000000000003b0 s ___asan_global_.str.2
+                 U ___asan_init
+                 U ___asan_register_image_globals
+                 U ___asan_report_load8
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000120 t _asan.module_ctor
+0000000000000140 t _asan.module_dtor
+                 U _ft_printf
+                 U _ft_putstr
+0000000000000000 T _ft_strdblprint
+0000000000000220 s l___asan_gen_
+0000000000000318 s l___asan_gen_.11
+00000000000002f8 s l___asan_gen_.5
+0000000000000308 s l___asan_gen_.8
+
+all/libft_static.a(tri.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_report_store8
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000520 t _asan.module_ctor
+                 U _ft_strcmp
+0000000000000290 T _tri_strdbl
+0000000000000000 T _tri_strdbl_r
+
+all/libft_static.a(ft_bzero.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000030 t _asan.module_ctor
+0000000000000000 T _ft_bzero
+                 U _ft_memset
+
+all/libft_static.a(ft_memalloc.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000080 t _asan.module_ctor
+                 U _ft_bzero
+0000000000000000 T _ft_memalloc
+                 U _malloc
+
+all/libft_static.a(ft_memccpy.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_report_store1
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000190 t _asan.module_ctor
+0000000000000000 T _ft_memccpy
+
+all/libft_static.a(ft_memchr.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_version_mismatch_check_apple_902
+00000000000000e0 t _asan.module_ctor
+0000000000000000 T _ft_memchr
+
+all/libft_static.a(ft_memcmp.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000240 t _asan.module_ctor
+0000000000000000 T _ft_memcmp
+
+all/libft_static.a(ft_memcpy.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_report_store1
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000140 t _asan.module_ctor
+0000000000000000 T _ft_memcpy
+
+all/libft_static.a(ft_memdel.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_report_store8
+                 U ___asan_version_mismatch_check_apple_902
+00000000000000e0 t _asan.module_ctor
+                 U _free
+0000000000000000 T _ft_memdel
+
+all/libft_static.a(ft_memmove.o):
+                 U ___asan_init
+                 U ___asan_report_load1
+                 U ___asan_report_store1
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000130 t _asan.module_ctor
+                 U _ft_memcpy
+0000000000000000 T _ft_memmove
+
+all/libft_static.a(ft_memset.o):
+                 U ___asan_init
+                 U ___asan_report_store1
+                 U ___asan_version_mismatch_check_apple_902
+00000000000000f0 t _asan.module_ctor
+0000000000000000 T _ft_memset
+
+all/libft_static.a(get_next_line.o):
+0000000000000008 C ____asan_globals_registered
+0000000000000bb0 s ___asan_binder_get_next_line.stock
+0000000000000b70 s ___asan_global_get_next_line.stock
+                 U ___asan_init
+                 U ___asan_option_detect_stack_use_after_return
+                 U ___asan_register_image_globals
+                 U ___asan_report_load1
+                 U ___asan_report_load8
+                 U ___asan_report_store1
+                 U ___asan_report_store8
+                 U ___asan_stack_malloc_1
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+0000000000000ac0 t _asan.module_ctor
+0000000000000ae0 t _asan.module_dtor
+0000000000000420 t _exist_stock
+                 U _free
+                 U _ft_fri
+                 U _ft_strchr
+                 U _ft_strdup
+                 U _ft_strjoin
+                 U _ft_strnew
+0000000000000000 T _get_next_line
+0000000000001520 b _get_next_line.stock
+                 U _read
+00000000000005d0 t _read_gnl
+0000000000000880 t _win_lines_return
+0000000000000b37 s l___asan_gen_.1
+0000000000000b60 s l___asan_gen_.4
+
+all/libft_static.a(ft_next_multiple.o):
+                 U ___asan_init
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000070 t _asan.module_ctor
+0000000000000000 T _ft_next_multiple
+
+all/libft_static.a(ft_getopt.o):
+0000000000000c20 s _.str
+0000000000000c60 s _.str.1
+0000000000000cc0 s _.str.2
+0000000000000008 C ____asan_globals_registered
+00000000000010e0 s ___asan_binder_.str
+00000000000010f0 s ___asan_binder_.str.1
+0000000000001100 s ___asan_binder_.str.2
+00000000000010d0 s ___asan_binder_ft_getopt.next
+00000000000010c0 s ___asan_binder_g_optarg
+00000000000010b0 s ___asan_binder_g_opterr
+00000000000010a0 s ___asan_binder_g_optind
+0000000000000fe0 s ___asan_global_.str
+0000000000001020 s ___asan_global_.str.1
+0000000000001060 s ___asan_global_.str.2
+0000000000000fa0 s ___asan_global_ft_getopt.next
+0000000000000f60 s ___asan_global_g_optarg
+0000000000000f20 s ___asan_global_g_opterr
+0000000000000ee0 s ___asan_global_g_optind
+                 U ___asan_init
+                 U ___asan_option_detect_stack_use_after_return
+                 U ___asan_register_image_globals
+                 U ___asan_report_load1
+                 U ___asan_report_load4
+                 U ___asan_report_load8
+                 U ___asan_report_store1
+                 U ___asan_report_store4
+                 U ___asan_report_store8
+                 U ___asan_stack_malloc_0
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+0000000000000b70 t _asan.module_ctor
+0000000000000b90 t _asan.module_dtor
+0000000000000000 T _ft_getopt
+0000000000001d00 b _ft_getopt.next
+0000000000000740 t _ft_getopt_check
+00000000000003f0 t _ft_getopt_current
+00000000000008e0 t _ft_getopt_error
+00000000000002c0 t _ft_getopt_init
+                 U _ft_isalnum
+                 U _ft_putstr_fd
+                 U _ft_strequ
+0000000000001cc0 S _g_optarg
+0000000000000be0 D _g_opterr
+0000000000000ba0 D _g_optind
+0000000000000004 C _g_optopt
+                 U _over_p_str
+0000000000000e88 s l___asan_gen_.12
+0000000000000e98 s l___asan_gen_.15
+0000000000000ea8 s l___asan_gen_.18
+0000000000000eb8 s l___asan_gen_.21
+0000000000000ec8 s l___asan_gen_.24
+0000000000000e45 s l___asan_gen_.3
+0000000000000e68 s l___asan_gen_.6
+0000000000000e78 s l___asan_gen_.9
+
+all/libft_static.a(convers.o):
+0000000000002280 s _.str
+00000000000022e0 s _.str.1
+0000000000002320 s _.str.2
+0000000000000008 C ____asan_globals_registered
+0000000000002560 s ___asan_binder_.str
+0000000000002570 s ___asan_binder_.str.1
+0000000000002580 s ___asan_binder_.str.2
+00000000000024a0 s ___asan_global_.str
+00000000000024e0 s ___asan_global_.str.1
+0000000000002520 s ___asan_global_.str.2
+                 U ___asan_init
+                 U ___asan_memcpy
+                 U ___asan_option_detect_stack_use_after_return
+                 U ___asan_register_image_globals
+                 U ___asan_report_load1
+                 U ___asan_report_load4
+                 U ___asan_report_load8
+                 U ___asan_report_store1
+                 U ___asan_report_store4
+                 U ___asan_report_store8
+                 U ___asan_stack_malloc_1
+                 U ___asan_stack_malloc_2
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+0000000000002240 t _asan.module_ctor
+0000000000002260 t _asan.module_dtor
+                 U _free
+                 U _ft_atoi
+                 U _ft_c
+0000000000001550 T _ft_convers
+0000000000000000 T _ft_d
+0000000000001040 T _ft_hs
+                 U _ft_o
+                 U _ft_replace
+                 U _ft_s
+                 U _ft_strdup
+                 U _ft_strlen
+                 U _ft_tnum
+00000000000008b0 T _ft_u
+                 U _ft_upc
+                 U _ft_ups
+                 U _ft_utnum
+                 U _ft_x
+                 U _minus
+                 U _pf_itoa_base
+                 U _pf_itoa_plusbase
+                 U _pf_uitoa_base
+                 U _preci
+                 U _width
+0000000000002478 s l___asan_gen_.12
+0000000000002488 s l___asan_gen_.15
+00000000000022c0 s l___asan_gen_.6
+0000000000002468 s l___asan_gen_.9
+
+all/libft_static.a(display_flags.o):
+                 U ___asan_init
+                 U ___asan_option_detect_stack_use_after_return
+                 U ___asan_report_load1
+                 U ___asan_report_load4
+                 U ___asan_report_store1
+                 U ___asan_stack_malloc_1
+                 U ___asan_version_mismatch_check_apple_902
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+0000000000001830 t _asan.module_ctor
+                 U _free
+                 U _ft_strcpy
+                 U _ft_strdup
+                 U _ft_strjoin
+                 U _ft_strlen
+                 U _ft_strnew
+0000000000001460 T _minus
+0000000000000000 T _preci
+0000000000000730 T _width
+
+all/libft_static.a(ft_cs.o):
+0000000000002820 s _.str
+00000000000028c0 s _.str.1
+0000000000002860 s _.str.2
+0000000000000008 C ____asan_globals_registered
+0000000000002ad0 s ___asan_binder_.str
+0000000000002ae0 s ___asan_binder_.str.1
+0000000000002af0 s ___asan_binder_.str.2
+0000000000002a10 s ___asan_global_.str
+0000000000002a50 s ___asan_global_.str.1
+0000000000002a90 s ___asan_global_.str.2
+                 U ___asan_init
+                 U ___asan_memcpy
+                 U ___asan_option_detect_stack_use_after_return
+                 U ___asan_register_image_globals
+                 U ___asan_report_load4
+                 U ___asan_report_load8
+                 U ___asan_report_store1
+                 U ___asan_report_store4
+                 U ___asan_stack_malloc_1
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+00000000000027e0 t _asan.module_ctor
+0000000000002800 t _asan.module_dtor
+                 U _free
+0000000000000a20 T _ft_c
+                 U _ft_getchar
+                 U _ft_getwstr
+                 U _ft_replace
+0000000000000000 T _ft_s
+                 U _ft_strcmp
+                 U _ft_strdup
+                 U _ft_strlen
+                 U _ft_strnew
+0000000000001410 T _ft_upc
+0000000000001e00 T _ft_ups
+                 U _minus
+                 U _preci
+                 U _width
+00000000000029e8 s l___asan_gen_.12
+00000000000029f8 s l___asan_gen_.15
+00000000000028a0 s l___asan_gen_.6
+00000000000029d8 s l___asan_gen_.9
+
+all/libft_static.a(ft_o.o):
+0000000000000fa0 s _.str
+0000000000000fe0 s _.str.1
+0000000000000008 C ____asan_globals_registered
+0000000000001160 s ___asan_binder_.str
+0000000000001170 s ___asan_binder_.str.1
+00000000000010e0 s ___asan_global_.str
+0000000000001120 s ___asan_global_.str.1
+                 U ___asan_init
+                 U ___asan_option_detect_stack_use_after_return
+                 U ___asan_register_image_globals
+                 U ___asan_report_load1
+                 U ___asan_report_load4
+                 U ___asan_report_load8
+                 U ___asan_report_store1
+                 U ___asan_report_store4
+                 U ___asan_stack_malloc_1
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+0000000000000f60 t _asan.module_ctor
+0000000000000f80 t _asan.module_dtor
+                 U _free
+                 U _ft_atoi
+                 U _ft_itoa_base
+0000000000000780 T _ft_o
+                 U _ft_replace
+                 U _ft_strdup
+                 U _ft_strlen
+                 U _ft_strnew
+                 U _ft_strtolower
+                 U _ft_tnum
+                 U _minus
+                 U _nb_of_figure
+0000000000000350 T _o_itoa
+                 U _pf_itoa_base
+00000000000001a0 T _pfoitoa_char
+0000000000000000 T _pfoitoa_short
+                 U _preci
+                 U _rev
+                 U _width
+0000000000001020 s l___asan_gen_.3
+00000000000010c0 s l___asan_gen_.6
+00000000000010d0 s l___asan_gen_.9
+
+all/libft_static.a(ft_printf.o):
+                 U ___asan_init
+                 U ___asan_option_detect_stack_use_after_return
+                 U ___asan_stack_malloc_1
+                 U ___asan_version_mismatch_check_apple_902
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+0000000000000300 t _asan.module_ctor
+0000000000000000 T _ft_printf
+                 U _print
+
+all/libft_static.a(ft_x.o):
+0000000000000cc0 s _.str
+0000000000000d00 s _.str.1
+0000000000000008 C ____asan_globals_registered
+0000000000000e80 s ___asan_binder_.str
+0000000000000e90 s ___asan_binder_.str.1
+0000000000000e00 s ___asan_global_.str
+0000000000000e40 s ___asan_global_.str.1
+                 U ___asan_init
+                 U ___asan_option_detect_stack_use_after_return
+                 U ___asan_register_image_globals
+                 U ___asan_report_load1
+                 U ___asan_report_load4
+                 U ___asan_report_load8
+                 U ___asan_report_store4
+                 U ___asan_stack_malloc_1
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+0000000000000c90 t _asan.module_ctor
+0000000000000cb0 t _asan.module_dtor
+                 U _free
+                 U _ft_atoi
+                 U _ft_atoi_base
+                 U _ft_replace
+                 U _ft_strlen
+                 U _ft_strtolower
+                 U _ft_tnum
+0000000000000000 T _ft_x
+                 U _minus
+00000000000007a0 t _next_x
+                 U _pf_itoa_base
+                 U _preci
+                 U _width
+0000000000000d40 s l___asan_gen_.3
+0000000000000de0 s l___asan_gen_.6
+0000000000000df0 s l___asan_gen_.9
+
+all/libft_static.a(get.o):
+0000000000002740 s _.str
+0000000000000008 C ____asan_globals_registered
+0000000000002890 s ___asan_binder_.str
+0000000000002850 s ___asan_global_.str
+                 U ___asan_init
+                 U ___asan_memcpy
+                 U ___asan_option_detect_stack_use_after_return
+                 U ___asan_register_image_globals
+                 U ___asan_report_load1
+                 U ___asan_report_load4
+                 U ___asan_report_store1
+                 U ___asan_report_store4
+                 U ___asan_stack_malloc_1
+                 U ___asan_stack_malloc_2
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+0000000000002700 t _asan.module_ctor
+0000000000002720 t _asan.module_dtor
+                 U _free
+                 U _ft_atoi
+                 U _ft_isdigit
+                 U _ft_strdup
+0000000000000000 T _get_conver
+0000000000000c20 T _get_flags
+0000000000001260 T _get_struct
+0000000000000140 T _get_type
+0000000000001d90 t _win_lines
+000000000000281e s l___asan_gen_.4
+0000000000002838 s l___asan_gen_.7
+
+all/libft_static.a(type_of_number.o):
+                 U ___asan_init
+                 U ___asan_option_detect_stack_use_after_return
+                 U ___asan_report_load1
+                 U ___asan_report_load4
+                 U ___asan_report_load8
+                 U ___asan_report_store4
+                 U ___asan_stack_malloc_1
+                 U ___asan_version_mismatch_check_apple_902
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+0000000000002770 t _asan.module_ctor
+0000000000000000 T _ft_tnum
+00000000000013b0 T _ft_utnum
+
+all/libft_static.a(color.o):
+0000000000000420 s _.str
+0000000000000460 s _.str.1
+00000000000006a0 s _.str.10
+00000000000006e0 s _.str.11
+0000000000000720 s _.str.12
+0000000000000760 s _.str.13
+00000000000007a0 s _.str.14
+00000000000007e0 s _.str.15
+0000000000000820 s _.str.16
+0000000000000860 s _.str.17
+00000000000004a0 s _.str.2
+00000000000004e0 s _.str.3
+0000000000000520 s _.str.4
+0000000000000560 s _.str.5
+00000000000005a0 s _.str.6
+00000000000005e0 s _.str.7
+0000000000000620 s _.str.8
+0000000000000660 s _.str.9
+0000000000000008 C ____asan_globals_registered
+0000000000001180 s ___asan_binder_.str
+0000000000001190 s ___asan_binder_.str.1
+0000000000001220 s ___asan_binder_.str.10
+0000000000001230 s ___asan_binder_.str.11
+0000000000001240 s ___asan_binder_.str.12
+0000000000001250 s ___asan_binder_.str.13
+0000000000001260 s ___asan_binder_.str.14
+0000000000001270 s ___asan_binder_.str.15
+0000000000001280 s ___asan_binder_.str.16
+0000000000001290 s ___asan_binder_.str.17
+00000000000011a0 s ___asan_binder_.str.2
+00000000000011b0 s ___asan_binder_.str.3
+00000000000011c0 s ___asan_binder_.str.4
+00000000000011d0 s ___asan_binder_.str.5
+00000000000011e0 s ___asan_binder_.str.6
+00000000000011f0 s ___asan_binder_.str.7
+0000000000001200 s ___asan_binder_.str.8
+0000000000001210 s ___asan_binder_.str.9
+0000000000000d00 s ___asan_global_.str
+0000000000000d40 s ___asan_global_.str.1
+0000000000000f80 s ___asan_global_.str.10
+0000000000000fc0 s ___asan_global_.str.11
+0000000000001000 s ___asan_global_.str.12
+0000000000001040 s ___asan_global_.str.13
+0000000000001080 s ___asan_global_.str.14
+00000000000010c0 s ___asan_global_.str.15
+0000000000001100 s ___asan_global_.str.16
+0000000000001140 s ___asan_global_.str.17
+0000000000000d80 s ___asan_global_.str.2
+0000000000000dc0 s ___asan_global_.str.3
+0000000000000e00 s ___asan_global_.str.4
+0000000000000e40 s ___asan_global_.str.5
+0000000000000e80 s ___asan_global_.str.6
+0000000000000ec0 s ___asan_global_.str.7
+0000000000000f00 s ___asan_global_.str.8
+0000000000000f40 s ___asan_global_.str.9
+                 U ___asan_init
+                 U ___asan_register_image_globals
+                 U ___asan_report_load1
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+00000000000003e0 t _asan.module_ctor
+0000000000000400 t _asan.module_dtor
+                 U _ft_replace
+                 U _ft_strncmp
+0000000000000000 T _pf_couleur
+0000000000000100 t _replace_couleur
+00000000000008a0 s l___asan_gen_
+0000000000000bd8 s l___asan_gen_.20
+0000000000000be8 s l___asan_gen_.23
+0000000000000bf8 s l___asan_gen_.26
+0000000000000c08 s l___asan_gen_.29
+0000000000000c18 s l___asan_gen_.32
+0000000000000c28 s l___asan_gen_.35
+0000000000000c38 s l___asan_gen_.38
+0000000000000c48 s l___asan_gen_.41
+0000000000000c58 s l___asan_gen_.44
+0000000000000c68 s l___asan_gen_.47
+0000000000000c78 s l___asan_gen_.50
+0000000000000c88 s l___asan_gen_.53
+0000000000000c98 s l___asan_gen_.56
+0000000000000ca8 s l___asan_gen_.59
+0000000000000cb8 s l___asan_gen_.62
+0000000000000cc8 s l___asan_gen_.65
+0000000000000cd8 s l___asan_gen_.68
+0000000000000ce8 s l___asan_gen_.71
+
+all/libft_static.a(ft_dprintf.o):
+                 U ___asan_init
+                 U ___asan_option_detect_stack_use_after_return
+                 U ___asan_stack_malloc_1
+                 U ___asan_version_mismatch_check_apple_902
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+0000000000000300 t _asan.module_ctor
+0000000000000000 T _ft_dprintf
+                 U _print
+
+all/libft_static.a(print.o):
+                 U ___asan_init
+                 U ___asan_memcpy
+                 U ___asan_option_detect_stack_use_after_return
+                 U ___asan_report_load1
+                 U ___asan_report_load4
+                 U ___asan_report_store1
+                 U ___asan_report_store4
+                 U ___asan_stack_malloc_1
+                 U ___asan_stack_malloc_2
+                 U ___asan_version_mismatch_check_apple_902
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+0000000000001000 t _asan.module_ctor
+                 U _free
+                 U _ft_convers
+                 U _ft_putstr_fd
+                 U _ft_strdup
+                 U _ft_strlen
+                 U _get_struct
+                 U _pf_couleur
+0000000000000000 T _print
+0000000000000fb0 t _ret
+0000000000000920 t _zero
+
+all/libft_static.a(ft_secu_free.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_report_store8
+                 U ___asan_version_mismatch_check_apple_902
+00000000000007c0 t _asan.module_ctor
+                 U _free
+00000000000003d0 t _ft_malloc_search
+0000000000000000 T _ft_secu_free
+00000000000004d0 T _ft_secu_free_all
+0000000000000600 T _ft_secu_free_lvl
+                 U _get_mem
+
+all/libft_static.a(ft_secu_malloc.o):
+0000000000000560 s _.str
+00000000000005a0 s _.str.1
+0000000000000008 C ____asan_globals_registered
+00000000000007a0 s ___asan_binder_.str
+00000000000007b0 s ___asan_binder_.str.1
+00000000000007c0 s ___asan_binder_get_mem.mem
+00000000000006e0 s ___asan_global_.str
+0000000000000720 s ___asan_global_.str.1
+0000000000000760 s ___asan_global_get_mem.mem
+                 U ___asan_init
+                 U ___asan_register_image_globals
+                 U ___asan_report_load8
+                 U ___asan_report_store8
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000530 t _asan.module_ctor
+0000000000000550 t _asan.module_dtor
+                 U _exit_error
+                 U _ft_memalloc
+0000000000000270 t _ft_s_malloc_mouv
+0000000000000000 T _ft_secu_malloc_lvl
+0000000000000190 T _get_mem
+00000000000011c0 b _get_mem.mem
+0000000000000510 T _secu_malloc
+00000000000005e0 s l___asan_gen_
+00000000000006c8 s l___asan_gen_.10
+00000000000006a8 s l___asan_gen_.4
+00000000000006b8 s l___asan_gen_.7
+
+all/libft_static.a(btree_apply_infix.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000180 t _asan.module_ctor
+0000000000000000 T _btree_apply_infix
+
+all/libft_static.a(btree_apply_prefix.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000180 t _asan.module_ctor
+0000000000000000 T _btree_apply_prefix
+
+all/libft_static.a(btree_apply_suffix.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000180 t _asan.module_ctor
+0000000000000000 T _btree_apply_suffix
+
+all/libft_static.a(btree_create_node.o):
+                 U ___asan_init
+                 U ___asan_report_store8
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000160 t _asan.module_ctor
+0000000000000000 T _btree_create_node
+                 U _malloc
+
+all/libft_static.a(btree_destroy.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_report_store8
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000550 t _asan.module_ctor
+                 U _btree_apply_prefix
+0000000000000000 T _btree_destroy
+                 U _free
+
+all/libft_static.a(btree_insert_data.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_report_store8
+                 U ___asan_version_mismatch_check_apple_902
+00000000000003d0 t _asan.module_ctor
+                 U _btree_create_node
+0000000000000000 T _btree_insert_data
+
+all/libft_static.a(btree_level_count.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_version_mismatch_check_apple_902
+00000000000000f0 t _asan.module_ctor
+0000000000000030 T _btree_level_count
+0000000000000000 T _ft_max
+
+all/libft_static.a(btree_print.o):
+00000000000003a0 s _.str
+00000000000003e0 s _.str.1
+0000000000000420 s _.str.2
+0000000000000460 s _.str.3
+00000000000004a0 s _.str.4
+00000000000004e0 s _.str.5
+0000000000000008 C ____asan_globals_registered
+0000000000000830 s ___asan_binder_.str
+0000000000000840 s ___asan_binder_.str.1
+0000000000000850 s ___asan_binder_.str.2
+0000000000000860 s ___asan_binder_.str.3
+0000000000000870 s ___asan_binder_.str.4
+0000000000000880 s ___asan_binder_.str.5
+00000000000006b0 s ___asan_global_.str
+00000000000006f0 s ___asan_global_.str.1
+0000000000000730 s ___asan_global_.str.2
+0000000000000770 s ___asan_global_.str.3
+00000000000007b0 s ___asan_global_.str.4
+00000000000007f0 s ___asan_global_.str.5
+                 U ___asan_init
+                 U ___asan_register_image_globals
+                 U ___asan_report_load1
+                 U ___asan_report_load8
+                 U ___asan_unregister_image_globals
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000360 t _asan.module_ctor
+0000000000000380 t _asan.module_dtor
+00000000000001f0 t _btree_display_str
+                 U _btree_level_count
+0000000000000260 T _btree_print
+00000000000002d0 t _btree_strlen
+0000000000000000 T _node_print
+                 U _write
+0000000000000520 s l___asan_gen_
+0000000000000660 s l___asan_gen_.11
+0000000000000670 s l___asan_gen_.14
+0000000000000680 s l___asan_gen_.17
+0000000000000690 s l___asan_gen_.20
+00000000000006a0 s l___asan_gen_.23
+0000000000000650 s l___asan_gen_.8
+
+all/libft_static.a(btree_search_item.o):
+                 U ___asan_init
+                 U ___asan_report_load8
+                 U ___asan_version_mismatch_check_apple_902
+0000000000000210 t _asan.module_ctor
+0000000000000000 T _btree_search_item

@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/12 15:01:51 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/13 18:26:58 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,39 +24,40 @@ int		identify_as_archive(t_header_parser *parser, t_browser *browser)
 
 void	get_header(t_header_parser *parser, t_browser *browser, int first)
 {
-	int verbose = 0;
+	int verbose;
+
+	verbose = 0;
 	parser->magic = *(uint32_t*)parser->ptr;
 	if (parser->magic == MH_MAGIC_64 || parser->magic == MH_CIGAM_64)
 	{
-		if(verbose)
+		if (verbose)
 			ft_printf("Executable 64 bits\n");
 		parser->type = E_64;
 		parser->header_union.header64 = (struct mach_header_64*)parser->ptr;
 	}
 	else if (parser->magic == MH_MAGIC || parser->magic == MH_CIGAM)
 	{
-		if(verbose)
-		ft_printf("Executable 32 bits\n");
+		if (verbose)
+			ft_printf("Executable 32 bits\n");
 		parser->type = E_32;
 		parser->header_union.header32 = (struct mach_header*)parser->ptr;
 	}
 	else if (parser->magic == FAT_MAGIC || parser->magic == FAT_CIGAM)
 	{
-		if(verbose)
-		ft_printf("Executable fat 32 bits\n");
+		if (verbose)
+			ft_printf("Executable fat 32 bits\n");
 		parser->type = E_FAT32;
 		parser->header_union.fat_header = (struct fat_header*)parser->ptr;
 	}
 	else if (parser->magic == FAT_MAGIC_64 || parser->magic == FAT_CIGAM_64)
 	{
-		if(verbose)
-		ft_printf("Executable fat 64 bits\n");
+		if (verbose)
+			ft_printf("Executable fat 64 bits\n");
 		parser->type = E_FAT64;
 		parser->header_union.fat_header = (struct fat_header*)parser->ptr;
 	}
 	else if (identify_as_archive(parser, browser))
 	{
-
 		if (verbose)
 			ft_printf("ARCHIVE\n");
 		parser->type = E_ARCHIVE;
@@ -70,6 +71,7 @@ void	get_header(t_header_parser *parser, t_browser *browser, int first)
 /*
 ** update the should_swap field and swap the header of the file if necessary
 */
+
 void	swap_header(t_header_parser *parser)
 {
 	if (parser->magic == MH_CIGAM_64 || parser->magic == MH_CIGAM
@@ -98,17 +100,16 @@ void	swap_header(t_header_parser *parser)
 ** recursively for all theheaders found in the fat_header
 */
 
-int	fill_browser(t_header_parser *parser, t_browser *browser, int first)
+int		fill_browser(t_header_parser *parser, t_browser *browser, int first)
 {
 	get_header(parser, browser, first);
 	if (parser->type == E_UNKNOWN)
 	{
-		ft_dprintf(2, "%s: %s The file was not recognised"
-			" as a valid object file\n\n", browser->progname, browser->filename);
+		ft_dprintf(2, "%s: %s The file was not recognised as "\
+		"a valid object file\n\n", browser->progname, browser->filename);
 		return (1);
 	}
 	swap_header(parser);
-//	ft_printf("should swap: %d\n", parser->should_swap);
 	if (parser->type == E_64)
 	{
 		return (fill_browser64(parser, browser));
@@ -121,7 +122,5 @@ int	fill_browser(t_header_parser *parser, t_browser *browser, int first)
 		return (fill_browser_fat32(parser, browser));
 	else if (parser->type == E_ARCHIVE)
 		return (fill_browser_archive(parser, browser));
-//	else
-//		return (fill_parser_fat64(parser, browser));
 	return (0);
 }

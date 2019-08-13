@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:35:21 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/22 15:47:09 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/13 18:35:49 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ t_symbol	*nm_new_symbol64(struct nlist_64 *nlist, char *symbol_name,
 	{
 		fill_bad_index(browser, index);
 	}
-	if (!(symbol->symbol_union.symbol64.name
-		= compute_symbol64_name(&symbol->symbol_union.symbol64, symbol_name)))
+	if (!(symbol->symbol_union.symbol64.name = compute_symbol64_name(
+		&symbol->symbol_union.symbol64, symbol_name)))
 	{
 		free(symbol);
 		return (NULL);
@@ -98,8 +98,8 @@ t_symbol	*nm_new_symbol32(struct nlist *nlist, char *symbol_name,
 	{
 		browser->has_bad_index = 1;
 	}
-	if (!(symbol->symbol_union.symbol32.name
-		= compute_symbol32_name(&symbol->symbol_union.symbol32, symbol_name)))
+	if (!(symbol->symbol_union.symbol32.name = compute_symbol32_name(
+		&symbol->symbol_union.symbol32, symbol_name)))
 	{
 		free(symbol);
 		return (NULL);
@@ -108,14 +108,14 @@ t_symbol	*nm_new_symbol32(struct nlist *nlist, char *symbol_name,
 	return (symbol);
 }
 
-int		add_symbol_to_browser(t_header_parser *parser,
+int			add_symbol_to_browser(t_header_parser *parser,
 			t_browser *browser, t_symbol *new_symbol)
 {
 	return (ft_tree_add_sorted(&parser->symbols, new_symbol,
 				browser, browser->sort_func));
 }
 
-uint32_t max_uint32(uint32_t a, uint32_t b)
+uint32_t	max_uint32(uint32_t a, uint32_t b)
 {
 	if (a > b)
 		return (a);
@@ -123,29 +123,19 @@ uint32_t max_uint32(uint32_t a, uint32_t b)
 		return (b);
 }
 
-int nm_perror(char *error_message, t_browser *browser)
+int			nm_perror(char *error_message, t_browser *browser)
 {
 	ft_dprintf(2, "%s: %s\n", browser->filename, error_message);
 	return (0);
 }
 
-int		should_add_symbol(uint8_t n_type, uint16_t n_desc, char *name,
+int			should_add_symbol(uint8_t n_type, uint16_t n_desc, char *name,
 			t_browser *browser)
 {
 	(void)browser;
 	(void)name;
 	(void)n_desc;
-	/*
-	if (!(ft_strncmp(name, ".objc", ft_strlen(".objc"))))
-	{
-		ft_printf(RED);
-		ft_printf("name: %s\ntype: %u\ndesc:%d\n\n", name, n_type, GET_LIBRARY_ORDINAL(n_desc));
-		ft_printf(EOC);
-	}
-	else
-		ft_printf("name: %s\ntype: %u\ndesc:%d\n\n", name, n_type, GET_LIBRARY_ORDINAL(n_desc));
-	*/
-	if (n_type & N_STAB )//|| GET_LIBRARY_ORDINAL(n_desc))// || n_desc) & N_DESC_DISCARDED)
+	if (n_type & N_STAB)
 		return (0);
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 21:07:18 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/22 16:52:37 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/13 18:39:19 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	swap_bytes(void *to_swap, size_t size, int should_swap)
 void	swap_uint16(uint16_t *value, int should_swap)
 {
 	if (should_swap)
-		*value =  (((*(value) & 0xff) << 8) | (((*value) & 0xff00) >> 8));
+		*value = (((*(value) & 0xff) << 8) | (((*value) & 0xff00) >> 8));
 }
 
 void	swap_uint32(uint32_t *value, int should_swap)
@@ -136,7 +136,7 @@ void	swap_nlist(struct nlist *nlist, int should_swap)
 	swap_bytes(&nlist->n_desc, sizeof(int16_t), should_swap);
 }
 
-void	swap_section(struct section *section , int should_swap)
+void	swap_section(struct section *section, int should_swap)
 {
 	swap_uint32(&section->addr, should_swap);
 	swap_uint32(&section->size, should_swap);
@@ -150,7 +150,7 @@ void	swap_section(struct section *section , int should_swap)
 	swap_uint32(&section->reserved2, should_swap);
 }
 
-void	swap_section_64(struct section_64 *section , int should_swap)
+void	swap_section_64(struct section_64 *section, int should_swap)
 {
 	swap_uint64(&section->addr, should_swap);
 	swap_uint64(&section->size, should_swap);

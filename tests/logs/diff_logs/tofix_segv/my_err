@@ -1,0 +1,25 @@
+ASAN:DEADLYSIGNAL
+=================================================================
+==14016==ERROR: AddressSanitizer: SEGV on unknown address 0x000104639000 (pc 0x0001012e70e8 bp 0x7fff5e92fc40 sp 0x7fff5e92fac0 T0)
+==14016==The signal is caused by a READ memory access.
+    #0 0x1012e70e7 in process_fill_symbols32 fill32.c:41
+    #1 0x1012e77f6 in fill_symbol_table32 fill32.c:90
+    #2 0x1012e96fd in fill_browser32 fill32.c:261
+    #3 0x1012e6bdc in fill_browser fill.c:118
+    #4 0x1012ee0e7 in fill_archive_member fill_archive_member.c:60
+    #5 0x1012ed21d in fill_ranlib fill_archive.c:64
+    #6 0x1012ed878 in fill_browser_archive fill_archive.c:109
+    #7 0x1012e6cd8 in fill_browser fill.c:123
+    #8 0x1012d01b5 in process_nm main.c:33
+    #9 0x1012d04ef in process_args main.c:60
+    #10 0x1012d0998 in main main.c:85
+    #11 0x7fffcb65d234 in start (libdyld.dylib:x86_64+0x5234)
+
+==14016==Register values:
+rax = 0x0000100000000000  rbx = 0x00007fff5e92ff20  rcx = 0x0000000104639000  rdx = 0x0000000000000000  
+rdi = 0x0000000104639000  rsi = 0x0000000000000000  rbp = 0x00007fff5e92fc40  rsp = 0x00007fff5e92fac0  
+ r8 = 0x00001000208c7100   r9 = 0x00007fff5e92f900  r10 = 0x00001fffebd25f20  r11 = 0xffffffffffffff04  
+r12 = 0x00007fff5e9306a0  r13 = 0x00007fff5e9307e0  r14 = 0x0000000000008cc0  r15 = 0x00007fff5e930680  
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV fill32.c:41 in process_fill_symbols32
+==14016==ABORTING

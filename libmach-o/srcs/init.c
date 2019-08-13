@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 02:14:47 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/12 15:30:05 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/13 18:36:11 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_parser(t_header_parser *parser, void *ptr,
 	parser->parser_union.arch.relevant = 0;
 }
 
-int	init_browser(t_browser *browser, char *filename)
+int		init_browser(t_browser *browser, char *filename)
 {
 	int			fd;
 

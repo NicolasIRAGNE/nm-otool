@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 02:25:02 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/13 12:50:42 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/13 18:03:02 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int		fill_symbol_table32(t_header_parser *parser, t_browser *browser)
 			ft_dprintf(2,"%s: %s: truncated or malformed object (load commands"
 				" extend past the end of the file)\n", browser->progname,
 					browser->filename);
-			return (CORRUPTED);
+			return (ERROR_CORRUPTED);
 		}
 		if (lc->cmd == LC_SYMTAB)
 		{
@@ -199,7 +199,7 @@ int		get_sections32(t_header_parser *parser, t_browser *browser)
 			ft_dprintf(2,"%s: %s: truncated or malformed object (load commands"
 				" extend past the end of the file)\n", browser->progname,
 					browser->filename);
-			return (CORRUPTED);
+			return (ERROR_CORRUPTED);
 		}
 		if (is_corrupted_data(lc, lc->cmdsize, browser)
 				|| (void *)lc + max_uint32(lc->cmdsize, 1) > (void *)header + sizeof(*header) + header->sizeofcmds)
@@ -208,21 +208,21 @@ int		get_sections32(t_header_parser *parser, t_browser *browser)
 			ft_dprintf(2, "%s: %s truncated or malformed object "
 				"(load command %d extends past the end of all load commands in the file)\n\n",
 					browser->progname, browser->filename, j);
-			return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
+			return (ft_lstdel_ptr_ret(&segments, ERROR_CORRUPTED));
 		}
 		if (lc->cmdsize % 4)
 		{
 			ft_dprintf(2, "%s: %s truncated or malformed object "
 					"(load command %d fileoff not a multiple of 4)\n\n",
 					browser->progname, browser->filename, j);
-			return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
+			return (ft_lstdel_ptr_ret(&segments, ERROR_CORRUPTED));
 		}
 		if (lc->cmd == LC_SEGMENT)
 		{
 			seg = (struct segment_command *)lc;
 			if (is_corrupted_data(seg, sizeof(struct segment_command), browser))
 			{
-				return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
+				return (ft_lstdel_ptr_ret(&segments, ERROR_CORRUPTED));
 			}
 			swap_segment_command(seg, parser->should_swap);
 			if (is_corrupted_offset(parser->offset + seg->fileoff, seg->filesize, browser))
@@ -232,7 +232,7 @@ int		get_sections32(t_header_parser *parser, t_browser *browser)
 					"(load command %d fileoff filed plus filesize "
 						"field in LC_SEGMENT extends past the end of the"
 							"file)\n", browser->progname, browser->filename, j);
-				return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
+				return (ft_lstdel_ptr_ret(&segments, ERROR_CORRUPTED));
 			}
 			if (ft_add_to_list_ptr_back(&segments, seg, sizeof(seg)))
 				return (ft_lstdel_ptr_ret(&segments, 1));

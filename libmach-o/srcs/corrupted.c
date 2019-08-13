@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corrupted.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 19:10:30 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/15 18:00:24 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/13 18:19:14 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ret_corr(t_browser *browser)
 int		is_corrupted_string(char *str, t_browser *browser, int *len)
 {
 	int		i;
-	
+
 	*len = -1;
 	if ((void *)str >= browser->ptr + browser->st.st_size
 		|| (void *)str < browser->ptr)

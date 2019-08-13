@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   fill_debug.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 01:46:28 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/17 17:51:57 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/13 18:32:43 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mach_o.h"
 
 /*
-** if the symbol is global (ie (n_type & N_EXT)) then nm 
+** if the symbol is global (ie (n_type & N_EXT)) then nm
 ** shall print an uppercase symbol, else its lowercase counterpart
 */
+
 char	global_case_symbol(uint8_t n_type, char c)
 {
 	if (!(n_type & N_EXT))
@@ -27,8 +28,6 @@ char	global_case_symbol(uint8_t n_type, char c)
 int		process_fill_debug_from_section(t_symbol *symbol,
 			uint8_t n_type, char *sectname)
 {
-//	printf("%s\n", get_symbol_name(symbol));
-//	ft_printf("%s\n", sectname);
 	if (!sectname)
 		symbol->debug = global_case_symbol(n_type, 'S');
 	else if (!ft_strcmp(sectname, SECT_TEXT))
@@ -47,7 +46,7 @@ int		process_fill_debug_from_section(t_symbol *symbol,
 int		fill_debug_from_type(t_symbol *symbol, uint8_t type, uint64_t value,
 			t_browser *browser)
 {
-	if (type == N_UNDF && value != 0)// && !browser->has_bad_index)
+	if (type == N_UNDF && value != 0)
 		symbol->debug = 'U';
 	else if ((type & N_TYPE) == N_ABS)
 		symbol->debug = global_case_symbol(type, 'A');
@@ -90,10 +89,7 @@ int		fill_debug64(t_symbol *symbol, t_section_arr section_arr,
 			return (0);
 		}
 		else
-		{
-			//error corrupted
 			return (1);
-		}
 	}
 	else
 		return (fill_debug_from_type(symbol, symbol64->nlist->n_type,
@@ -114,18 +110,15 @@ int		fill_debug32(t_symbol *symbol, t_section_arr section_arr,
 	{
 		if (symbol32->nlist->n_sect <= section_arr.size)
 		{
-			
 			process_fill_debug_from_section(symbol, symbol32->nlist->n_type,
 				section_arr.sections[symbol32->nlist->n_sect].
 					section_union.section32->sectname);
 			return (0);
 		}
 		else
-		{
-			//error corrupted
 			return (1);
-		}
 	}
 	else
-		return (fill_debug_from_type(symbol, symbol32->nlist->n_type, symbol32->nlist->n_value, browser));
+		return (fill_debug_from_type(symbol, symbol32->nlist->n_type,
+		symbol32->nlist->n_value, browser));
 }

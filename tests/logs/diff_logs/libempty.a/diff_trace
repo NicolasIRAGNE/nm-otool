@@ -1,0 +1,10 @@
+1,3c1,5
+< name size: 0
+< ranlib length: 244190636
+< ranlib array size: 1953525093
+---
+> 
+> all/libempty.a(empty.o):
+>                  U ___asan_init
+>                  U ___asan_version_mismatch_check_apple_900
+> 0000000000000000 t _asan.module_ctor

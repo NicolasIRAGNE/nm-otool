@@ -1,0 +1,162 @@
+name size: 20
+ranlib length: 26
+ranlib array size: 208
+string array size: 616
+
+all/libmalloc_test.a(malloc.o):
+                 U _g_in_alloc_data
+                 U _intern_malloc_create_alloc
+                 U _intern_malloc_create_alloc_map
+                 U _intern_malloc_init_zones
+                 U _intern_malloc_pthread_lock
+                 U _intern_malloc_pthread_unlock
+0000000000000000 T _malloc
+
+all/libmalloc_test.a(free.o):
+0000000000000000 T _free
+00000000000002b0 t _free_zone_mmap
+                 U _ft_putendl_fd
+                 U _ft_putnbr_base_fd
+                 U _ft_putstr_fd
+                 U _g_in_alloc_data
+                 U _intern_malloc_alloc_to_free
+                 U _intern_malloc_defrag_free
+                 U _intern_malloc_mmunmap
+                 U _intern_malloc_pthread_lock
+                 U _intern_malloc_pthread_unlock
+                 U _intern_malloc_search_zone
+00000000000001f0 t _invalid_free
+                 U _kill
+
+all/libmalloc_test.a(realloc.o):
+                 U _free
+                 U _ft_memcpy
+                 U _g_in_alloc_data
+                 U _intern_malloc_modify_size_alloc
+                 U _intern_malloc_pthread_lock
+                 U _intern_malloc_pthread_unlock
+                 U _malloc
+0000000000000000 T _realloc
+0000000000000350 t _realloc_map_memory_resize
+0000000000000250 t _realloc_try_to_resize
+
+all/libmalloc_test.a(show_alloc_mem.o):
+                 U _ft_putchar
+                 U _ft_putnbr_base_fd
+                 U _ft_putstr
+                 U _g_in_alloc_data
+                 U _intern_malloc_pthread_lock
+                 U _intern_malloc_pthread_unlock
+0000000000000000 T _show_alloc_mem
+00000000000002e0 t _show_alloc_mem_in_zone_alloc
+0000000000000290 t _show_alloc_mem_large
+00000000000001a0 t _show_alloc_mem_one
+0000000000000350 t _show_alloc_mem_print
+
+all/libmalloc_test.a(calloc.o):
+0000000000000000 T _calloc
+                 U _ft_memset
+                 U _malloc
+
+all/libmalloc_test.a(show_alloc_data.o):
+                 U _ft_isprint
+                 U _ft_printf
+                 U _ft_putendl
+                 U _ft_putstr
+                 U _g_in_alloc_data
+                 U _intern_malloc_pthread_lock
+                 U _intern_malloc_pthread_unlock
+0000000000000370 t _print_data_char
+0000000000000270 t _print_data_hex
+00000000000001c0 t _print_header
+0000000000000000 T _show_alloc_data
+
+all/libmalloc_test.a(intern_malloc_error.o):
+                 U ___error
+                 U _exit
+                 U _ft_putchar_fd
+                 U _ft_putendl_fd
+                 U _ft_putnbr_fd
+                 U _ft_putstr_fd
+                 U _g_in_alloc_data
+                 U _getenv
+0000000000000080 T _intern_malloc_error
+0000000000000000 T _intern_malloc_error_file
+0000000000000150 t _intern_malloc_error_over
+
+all/libmalloc_test.a(intern_malloc_set_header.o):
+0000000000000000 T _intern_malloc_set_header
+
+all/libmalloc_test.a(intern_malloc_create_zone.o):
+                 U _ft_memcpy
+                 U _ft_next_multiple
+                 U _getpagesize
+0000000000000000 T _intern_malloc_create_zone
+                 U _intern_malloc_error
+                 U _intern_malloc_set_header
+                 U _mmap
+
+all/libmalloc_test.a(intern_malloc_destroy_zone.o):
+0000000000000000 T _intern_malloc_destroy_zone
+                 U _intern_malloc_error
+                 U _munmap
+
+all/libmalloc_test.a(intern_malloc_create_alloc.o):
+                 U _ft_memcpy
+                 U _ft_next_multiple
+                 U _getpagesize
+0000000000000000 T _intern_malloc_create_alloc
+00000000000000e0 T _intern_malloc_create_alloc_map
+                 U _intern_malloc_error
+                 U _intern_malloc_search_first_fit
+                 U _intern_malloc_set_header
+                 U _mmap
+
+all/libmalloc_test.a(intern_malloc_search.o):
+                 U _intern_malloc_error
+0000000000000000 T _intern_malloc_search_first_fit
+0000000000000070 T _intern_malloc_search_ptr
+0000000000000290 T _intern_malloc_search_zone
+00000000000001d0 t _static_intern_malloc_search_ptr_in_malloc_zone
+
+all/libmalloc_test.a(intern_malloc_free.o):
+                 U _ft_memcpy
+0000000000000000 T _intern_malloc_alloc_to_free
+                 U _intern_malloc_error_file
+0000000000000120 T _intern_malloc_mmunmap
+                 U _intern_malloc_search_ptr
+                 U _intern_malloc_set_header
+                 U _munmap
+
+all/libmalloc_test.a(intern_malloc_defrag_free.o):
+0000000000000000 T _intern_malloc_defrag_free
+00000000000000a0 t _static_intern_malloc_defrag_one
+
+all/libmalloc_test.a(intern_malloc_list_free_add_remove.o):
+                 U _ft_memcpy
+0000000000000000 T _intern_malloc_list_free_add
+00000000000000b0 T _intern_malloc_list_free_remove
+                 U _intern_malloc_set_header
+
+all/libmalloc_test.a(intern_malloc_modify_size_alloc.o):
+                 U _ft_memcpy
+                 U _intern_malloc_list_free_add
+                 U _intern_malloc_list_free_remove
+0000000000000000 T _intern_malloc_modify_size_alloc
+                 U _intern_malloc_search_ptr
+                 U _intern_malloc_set_header
+0000000000000240 t _static_intern_malloc_growth_size_alloc
+0000000000000370 t _static_intern_malloc_init_modify_size_alloc
+0000000000000130 t _static_intern_malloc_reduce_size_alloc
+
+all/libmalloc_test.a(intern_malloc_init_zones.o):
+0000000000000098 D _g_in_alloc_data
+                 U _intern_malloc_create_zone
+0000000000000000 T _intern_malloc_init_zones
+
+all/libmalloc_test.a(intern_malloc_pthread.o):
+                 U _intern_malloc_error
+0000000000000000 T _intern_malloc_pthread_lock
+0000000000000030 T _intern_malloc_pthread_unlock
+                 U _pthread_mutex_lock
+                 U _pthread_mutex_unlock

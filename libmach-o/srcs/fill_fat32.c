@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 19:16:02 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/12 15:02:31 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/13 18:03:02 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		process_browser_fat_arch32(struct fat_arch *fat_arch,
 	new_parser.parser_union.arch.relevant = 1;
 	if ((ret = fill_browser(&new_parser, browser, 0)) == 0)
 		return (0);
-	else if ((ret == CORRUPTED && browser->bin == E_BIN_OTOOL) || ret == 1)
+	else if ((ret == ERROR_CORRUPTED && browser->bin == E_BIN_OTOOL) || ret == 1)
 	{
 		return (ret);
 	}
@@ -68,7 +68,7 @@ int			fat_corrupted_print_error_alignment(struct fat_arch *fat_arch,
 			"not aligned on its alignment (2^%d))\n\n", browser->progname,
 				browser->filename, fat_arch->offset, fat_arch->cputype,
 					fat_arch->cpusubtype, fat_arch->align);
-	return (CORRUPTED);
+	return (ERROR_CORRUPTED);
 }
 
 
@@ -77,7 +77,7 @@ int		fat_corrupted_print_error(char *str, struct fat_arch *fat_arch,
 {
 	ft_dprintf(2, str, browser->progname, browser->filename,
 		fat_arch->cputype, fat_arch->cpusubtype);
-	return (CORRUPTED);
+	return (ERROR_CORRUPTED);
 }
 
 int		check_all_architectures(struct fat_arch **found,
@@ -140,7 +140,7 @@ int		fill_browser_fat32(t_header_parser *parser, t_browser *browser)
 	fat_arch = (void *)browser->ptr + sizeof(fat_header);
 	found = NULL;
 	if (check_all_architectures(&found, fat_arch, parser, browser))
-		return (CORRUPTED);
+		return (ERROR_CORRUPTED);
 	if (found)
 		return (process_browser_fat_arch32(found, parser, browser));
 	i = 0;

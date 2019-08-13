@@ -1,0 +1,383 @@
+
+all/libftprintf32.a(ft_printf.o):
+00000120 s EH_frame1
+         U _count_flags
+         U _free
+000000db T _ft_printf
+         U _ft_printf_dispatch
+00000000 t _parse_args
+         U _parse_printf_attr
+         U _write$UNIX2003
+
+all/libftprintf32.a(check_flag.o):
+000000c0 s EH_frame1
+00000000 T _is_char
+00000098 T _is_hexa
+00000026 T _is_int
+00000072 T _is_octal
+0000004c T _is_string
+
+all/libftprintf32.a(check_more_flag.o):
+00000028 s EH_frame1
+00000000 T _is_uint
+
+all/libftprintf32.a(attr.o):
+0000034c s EH_frame1
+00000000 t _check_correct
+         U _get_cond_ciip
+         U _get_cond_ihu
+         U _get_cond_iiouh
+         U _get_cond_mfnh
+         U _get_cond_spsc
+         U _init_printfv
+         U _is_conversion
+         U _is_flag
+         U _is_int
+         U _is_number
+         U _is_special_char
+0000019f t _loop_bad_attr
+         U _manage_conversion
+         U _manage_first_flag
+         U _manage_main_flag
+         U _manage_min_size
+         U _manage_special_char
+00000111 t _parse_int
+000002b7 T _parse_printf_attr
+
+all/libftprintf32.a(attr_check.o):
+0000021c s EH_frame1
+00000000 T _authorized_conversions
+00000159 T _is_flag
+00000123 T _is_number
+000000c7 T _is_prec
+000000ed T _is_special_char
+
+all/libftprintf32.a(attr_conversion.o):
+00000218 s EH_frame1
+00000212 S ___x86.get_pc_thunk.bx
+000000dc t _check_conversion
+         U _ft_strcmp
+         U _ft_strlen
+         U _ft_strncmp
+00000000 t _get_int_conversion
+00000147 T _is_conversion
+
+all/libftprintf32.a(attr_mgmt.o):
+000001f0 s EH_frame1
+         U _authorized_conversions
+         U _is_conversion
+         U _is_flag
+         U _is_prec
+00000148 T _manage_conversion
+0000017b T _manage_first_flag
+000001ae T _manage_main_flag
+00000000 T _manage_min_size
+0000007a T _manage_special_char
+
+all/libftprintf32.a(attr_conditions.o):
+000001ec s EH_frame1
+00000000 T _get_cond_ciip
+000000ea T _get_cond_ihu
+0000005d T _get_cond_iiouh
+00000138 T _get_cond_mfnh
+00000198 T _get_cond_spsc
+         U _is_char
+         U _is_hexa
+         U _is_int
+         U _is_octal
+         U _is_uint
+
+all/libftprintf32.a(dispatch_helper.o):
+00000268 s EH_frame1
+00000000 t _arg_option
+00000092 T _count_flags
+         U _dispatch_char
+         U _dispatch_hexa
+         U _dispatch_int
+         U _dispatch_octal
+         U _dispatch_pointer
+         U _dispatch_string
+         U _dispatch_unsigned
+         U _dispatch_wchar
+         U _dispatch_wstring
+00000138 T _ft_printf_dispatch
+         U _multi_int_init
+         U _multi_set
+
+all/libftprintf32.a(dispatch.o):
+00000650 s EH_frame1
+000000e6 T _dispatch_int
+000002ae T _dispatch_octal
+00000000 T _dispatch_string
+00000483 T _dispatch_unsigned
+00000088 T _dispatch_wstring
+         U _put_max_int
+         U _put_string
+         U _put_umax_int
+         U _put_uoctal
+         U _put_usigned_char
+         U _put_widestring
+
+all/libftprintf32.a(dispatch_next.o):
+00000320 s EH_frame1
+00000208 T _dispatch_char
+00000064 T _dispatch_hexa
+00000000 T _dispatch_pointer
+000002bf T _dispatch_wchar
+         U _put_signed_char
+         U _put_uhexa
+         U _put_widechar
+
+all/libftprintf32.a(secondary_call.o):
+00000274 s EH_frame1
+         U _char_tos
+         U _count_hexdigit
+         U _decimal_hex
+         U _free
+         U _ft_putustr
+         U _ft_strnew
+         U _ft_ustrdup
+         U _ft_ustrjoin
+         U _ft_ustrlen
+         U _ft_ustrsub
+00000056 T _put_pointer
+00000000 T _put_signed_char
+         U _put_string
+00000127 T _put_usigned_char
+0000016d T _put_ustring
+000000c3 T _put_widechar
+         U _put_widestring
+         U _uchar_tos
+         U _ustring_fill
+         U _wchar_tos
+
+all/libftprintf32.a(wstr_call.o):
+0000027c s EH_frame1
+00000278 S ___x86.get_pc_thunk.bx
+0000015a t _fill_wstr
+         U _free
+         U _ft_putwstr
+         U _ft_wputstr_nullable
+         U _ft_wstrdup
+         U _ft_wstrjoin
+         U _ft_wstrjoin_nullable
+         U _ft_wstrsub
+00000000 t _join_wstr
+000001be T _put_widestring
+000000cc t _sub_wstr
+         U _wsizeof
+         U _wstring_fill
+
+all/libftprintf32.a(str_call.o):
+0000027c s EH_frame1
+00000278 S ___x86.get_pc_thunk.bx
+0000008b t _fill_str
+         U _free
+         U _ft_putstr
+         U _ft_putstr_nullable
+         U _ft_strdup
+         U _ft_strjoin
+         U _ft_strjoin_nullable
+         U _ft_strlen
+         U _ft_strsub
+000000f0 t _join_str
+000001da T _put_string
+         U _string_fill
+00000000 t _sub_str
+
+all/libftprintf32.a(hex_call.o):
+00000528 s EH_frame1
+00000521 S ___x86.get_pc_thunk.bx
+0000020a t _alternate_hex
+         U _count_hexdigit
+         U _decimal_hex
+00000149 t _fill_hex
+         U _free
+         U _ft_strdup
+         U _ft_strjoin
+         U _ft_strlen
+         U _ft_strnew
+00000366 t _join_hex
+         U _put_string
+0000045d T _put_uhexa
+         U _string_fill
+00000000 t _transform_hex
+
+all/libftprintf32.a(oct_call.o):
+0000027c s EH_frame1
+00000275 S ___x86.get_pc_thunk.bx
+0000009f t _alternate_oct
+         U _count_octdigit
+         U _decimal_octal
+00000000 t _fill_oct
+         U _free
+         U _ft_strjoin
+         U _ft_strlen
+         U _ft_strnew
+00000105 t _join_oct
+         U _put_string
+000001b8 T _put_uoctal
+         U _string_fill
+
+all/libftprintf32.a(uintmax_call.o):
+0000024c s EH_frame1
+00000246 S ___x86.get_pc_thunk.bx
+00000059 t _fill_umaxint
+         U _free
+         U _ft_strdup
+         U _ft_strjoin
+         U _ft_uimtoa
+         U _get_nb_digituim
+000000d2 t _join_umaxint
+         U _put_string
+00000186 T _put_umax_int
+         U _string_fill
+00000000 t _sub_umaxint
+
+all/libftprintf32.a(intmax_call.o):
+00000524 s EH_frame1
+0000051f S ___x86.get_pc_thunk.bx
+000001ad t _fill_int
+000000a8 t _fill_int_prec
+         U _free
+         U _ft_imtoa
+         U _ft_strdup
+         U _ft_strjoin
+         U _ft_strlen
+         U _get_nb_digitim
+         U _int_flag
+         U _int_nb_fill
+0000030c t _join_int
+00000000 t _join_int_prec
+         U _pos_join_neg_int
+         U _pos_joindefault_int
+         U _pos_joinprec_neg_int
+00000404 T _put_max_int
+         U _put_string
+         U _string_fill
+
+all/libftprintf32.a(intmax_call_helper.o):
+000001d0 s EH_frame1
+000001cb S ___x86.get_pc_thunk.bx
+         U _free
+         U _ft_strjoin
+00000000 T _int_flag
+0000003e T _int_nb_fill
+0000006a T _pos_join_neg_int
+00000154 T _pos_joindefault_int
+000000df T _pos_joinprec_neg_int
+
+all/libftprintf32.a(string_helper.o):
+000001d0 s EH_frame1
+000000bb T _char_tos
+         U _ft_memcpy
+000001b1 T _ft_putstr_nullable
+000000f4 T _ft_strjoin_nullable
+         U _ft_strlen
+         U _ft_strnew
+         U _malloc
+00000000 T _rev
+0000005d T _string_fill
+         U _write$UNIX2003
+
+all/libftprintf32.a(int_helper.o):
+000002b0 s EH_frame1
+         U ___divdi3
+         U ___moddi3
+         U ___udivdi3
+         U ___umoddi3
+000001aa T _ft_imtoa
+         U _ft_strnew
+000000ec T _ft_uimtoa
+0000006e T _get_nb_digitim
+00000000 T _get_nb_digituim
+         U _rev
+
+all/libftprintf32.a(ustr_helper.o):
+00000194 s EH_frame1
+         U _ft_memalloc
+         U _ft_memcpy
+000000c6 T _ft_ustrdup
+         U _ft_ustrlen
+0000011a T _ft_ustrnew
+00000000 T _ft_ustrsub
+         U _malloc
+00000158 T _uchar_tos
+00000068 T _ustring_fill
+
+all/libftprintf32.a(ustr_next_helper.o):
+000000f0 s EH_frame1
+         U _ft_memcpy
+00000034 T _ft_putustr
+00000058 T _ft_ustrjoin
+00000000 T _ft_ustrlen
+         U _ft_ustrnew
+         U _write$UNIX2003
+
+all/libftprintf32.a(wstr_helper.o):
+00000254 s EH_frame1
+         U _count_wchar
+         U _ft_memcpy
+0000015b T _ft_wstrdup
+0000008b T _ft_wstrjoin
+         U _ft_wstrlen
+00000000 T _ft_wstrsub
+         U _malloc
+000001b5 T _wchar_tos
+000001ea T _wstring_fill
+
+all/libftprintf32.a(wstr_next_helper.o):
+000000f0 s EH_frame1
+         U _ft_memcpy
+00000000 T _ft_wstrjoin_nullable
+         U _ft_wstrlen
+         U _malloc
+
+all/libftprintf32.a(wstr_size_helper.o):
+00000150 s EH_frame1
+00000024 T _count_bits
+000000a5 T _count_wchar
+0000011e T _ft_wstrlen
+00000000 T _get_unicode_bytes
+00000045 T _wsizeof
+
+all/libftprintf32.a(wstr_byte_helper.o):
+00000288 s EH_frame1
+000000d5 T _copy_bytes
+00000094 t _fill_byte_def
+00000041 t _fill_byte_start
+00000000 T _int2bin
+000001c9 T _parse_bytes
+
+all/libftprintf32.a(wstr_display_helper.o):
+00000348 s EH_frame1
+         U _copy_bytes
+         U _count_bits
+00000000 t _display_wchars
+         U _free
+00000259 T _ft_putwstr
+0000006d T _ft_wputchar
+00000175 T _ft_wputstr_nullable
+         U _ft_wstrlen
+         U _get_unicode_bytes
+         U _int2bin
+         U _malloc
+         U _parse_bytes
+         U _write$UNIX2003
+0000004a t _wstr_bml
+
+all/libftprintf32.a(conversion_helper.o):
+00000230 s EH_frame1
+0000013e t _conversion_maj
+000000ea T _count_hexdigit
+00000096 T _count_octdigit
+0000015f T _decimal_hex
+00000000 T _decimal_octal
+         U _rev
+
+all/libftprintf32.a(multi_init.o):
+000000dc s EH_frame1
+0000002d T _init_printfv
+         U _malloc
+00000000 T _multi_int_init
+00000018 T _multi_set

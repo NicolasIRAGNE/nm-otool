@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 11:40:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/12 15:30:29 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/13 18:05:46 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define DEFAULT_NM_FILE	"a.out"
 # define BAD_INDEX_STR		"bad string index"
 
-# define CORRUPTED			3
+# define ERROR_CORRUPTED			3
 # define ARCHIVE_IDENTIFIER	"!<arch>\n"
 
 # ifndef ARCH 
@@ -257,5 +257,10 @@ size_t	align(size_t value, size_t alignment);
 */
 long	cmp_parser_ran_off(void *p1, void *p2);
 int		add_parser(t_browser *browser, t_header_parser *parser);
+
+/*
+** macho_perror
+*/
+int     macho_perror(int error, t_browser *browser);
 
 #endif

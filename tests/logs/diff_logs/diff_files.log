@@ -1,2 +1,15 @@
-all//lib_long_name.a
-all//libmlx_corupted.a
+all/ar0
+all/bad_string_index
+all/hello_je_diff
+all/lib_long_name.a
+all/lib_static.a
+all/libempty.a
+all/libft32.a
+all/libft_static.a
+all/libftprintf.a
+all/libftprintf32.a
+all/libmalloc_test.a
+all/libmlx.a
+all/libmlx_corupted.a
+all/strtable_past_eof
+all/tofix_segv

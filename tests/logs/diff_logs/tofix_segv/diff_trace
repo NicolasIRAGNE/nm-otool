@@ -1,0 +1,221 @@
+1,4c1,214
+< name size: 20
+< ranlib length: 60
+< ranlib array size: 480
+< string array size: 728
+---
+> 
+> all/tofix_segv(ft_tolower.o):
+> 0000001c s EH_frame1
+> 00000000 T _ft_tolower
+> 
+> all/tofix_segv(ft_toupper.o):
+> 0000001c s EH_frame1
+> 00000000 T _ft_toupper
+> 
+> all/tofix_segv(ft_isprint.o):
+> 00000020 s EH_frame1
+> 00000000 T _ft_isprint
+> 
+> all/tofix_segv(ft_isascii.o):
+> 00000020 s EH_frame1
+> 00000000 T _ft_isascii
+> 
+> all/tofix_segv(ft_isalnum.o):
+> 00000038 s EH_frame1
+> 00000000 T _ft_isalnum
+> 
+> all/tofix_segv(ft_isdigit.o):
+> 00000020 s EH_frame1
+> 00000000 T _ft_isdigit
+> 
+> all/tofix_segv(ft_isalpha.o):
+> 0000002c s EH_frame1
+> 00000000 T _ft_isalpha
+> 
+> all/tofix_segv(ft_atoi.o):
+> 000000cc s EH_frame1
+> 00000000 T _ft_atoi
+> 
+> all/tofix_segv(ft_strncmp.o):
+> 00000098 s EH_frame1
+> 00000000 T _ft_strncmp
+> 
+> all/tofix_segv(ft_strcmp.o):
+> 00000084 s EH_frame1
+> 00000000 T _ft_strcmp
+> 
+> all/tofix_segv(ft_strlen.o):
+> 00000034 s EH_frame1
+> 00000000 T _ft_strlen
+> 
+> all/tofix_segv(ft_strnstr.o):
+> 000000b8 s EH_frame1
+>          U _ft_strchr
+>          U _ft_strlen
+>          U _ft_strncmp
+> 00000000 T _ft_strnstr
+> 
+> all/tofix_segv(ft_strstr.o):
+> 00000074 s EH_frame1
+>          U _ft_strlen
+>          U _ft_strncmp
+> 00000000 T _ft_strstr
+> 
+> all/tofix_segv(ft_strrchr.o):
+> 00000060 s EH_frame1
+> 00000000 T _ft_strrchr
+> 
+> all/tofix_segv(ft_strchr.o):
+> 0000004c s EH_frame1
+> 00000000 T _ft_strchr
+> 
+> all/tofix_segv(ft_strlcat.o):
+> 0000007c s EH_frame1
+>          U _ft_memcpy
+> 00000000 T _ft_strlcat
+>          U _ft_strlen
+> 
+> all/tofix_segv(ft_memset.o):
+> 00000030 s EH_frame1
+> 00000000 T _ft_memset
+> 
+> all/tofix_segv(ft_bzero.o):
+> 0000002c s EH_frame1
+> 00000000 T _ft_bzero
+> 
+> all/tofix_segv(ft_memcpy.o):
+> 00000038 s EH_frame1
+> 00000000 T _ft_memcpy
+> 
+> all/tofix_segv(ft_memccpy.o):
+> 0000004c s EH_frame1
+> 00000000 T _ft_memccpy
+> 
+> all/tofix_segv(ft_memmove.o):
+> 0000008c s EH_frame1
+> 00000000 T _ft_memmove
+> 
+> all/tofix_segv(ft_memcmp.o):
+> 00000058 s EH_frame1
+> 00000000 T _ft_memcmp
+> 
+> all/tofix_segv(ft_memchr.o):
+> 00000038 s EH_frame1
+> 00000000 T _ft_memchr
+> 
+> all/tofix_segv(ft_strdup.o):
+> 00000054 s EH_frame1
+>          U _ft_memcpy
+> 00000000 T _ft_strdup
+>          U _ft_strlen
+>          U _malloc
+> 
+> all/tofix_segv(ft_strcpy.o):
+> 00000030 s EH_frame1
+>          U _ft_memcpy
+> 00000000 T _ft_strcpy
+>          U _ft_strlen
+> 
+> all/tofix_segv(ft_strncpy.o):
+> 00000078 s EH_frame1
+> 00000000 T _ft_strncpy
+> 
+> all/tofix_segv(ft_strcat.o):
+> 00000044 s EH_frame1
+>          U _ft_memcpy
+> 00000000 T _ft_strcat
+>          U _ft_strlen
+> 
+> all/tofix_segv(ft_strncat.o):
+> 00000048 s EH_frame1
+>          U _ft_memcpy
+>          U _ft_strlen
+> 00000000 T _ft_strncat
+> 
+> all/tofix_segv(ft_memalloc.o):
+> 00000034 s EH_frame1
+>          U _ft_bzero
+> 00000000 T _ft_memalloc
+>          U _malloc
+> 
+> all/tofix_segv(ft_memdel.o):
+> 00000028 s EH_frame1
+>          U _free
+> 00000000 T _ft_memdel
+> 
+> all/tofix_segv(ft_strnew.o):
+> 00000040 s EH_frame1
+>          U _ft_memalloc
+> 00000000 T _ft_strnew
+> 
+> all/tofix_segv(ft_strdel.o):
+> 00000018 s EH_frame1
+>          U _ft_memdel
+> 00000000 T _ft_strdel
+> 
+> all/tofix_segv(ft_strclr.o):
+> 00000030 s EH_frame1
+>          U _ft_memset
+> 00000000 T _ft_strclr
+>          U _ft_strlen
+> 
+> all/tofix_segv(ft_striter.o):
+> 0000003c s EH_frame1
+> 00000000 T _ft_striter
+> 
+> all/tofix_segv(ft_striteri.o):
+> 00000044 s EH_frame1
+> 00000000 T _ft_striteri
+> 
+> all/tofix_segv(ft_strmap.o):
+> 000000a8 s EH_frame1
+>          U _ft_strlen
+> 00000000 T _ft_strmap
+>          U _ft_strncpy
+>          U _ft_strnew
+> 
+> all/tofix_segv(ft_strmapi.o):
+> 000000a8 s EH_frame1
+>          U _ft_strlen
+> 00000000 T _ft_strmapi
+>          U _ft_strncpy
+>          U _ft_strnew
+> 
+> all/tofix_segv(ft_strequ.o):
+> 00000038 s EH_frame1
+>          U _ft_strcmp
+> 00000000 T _ft_strequ
+> 
+> all/tofix_segv(ft_strnequ.o):
+> 00000024 s EH_frame1
+>          U _ft_strncmp
+> 00000000 T _ft_strnequ
+> 
+> all/tofix_segv(ft_strsub.o):
+> 0000006c s EH_frame1
+>          U _ft_memcpy
+>          U _ft_strlen
+>          U _ft_strnew
+> 00000000 T _ft_strsub
+> 
+> all/tofix_segv(ft_strjoin.o):
+> 000000a0 s EH_frame1
+>          U _ft_memcpy
+> 00000000 T _ft_strjoin
+>          U _ft_strlen
+>          U _ft_strnew
+> 
+> all/tofix_segv(ft_strtrim.o):
+> 000000e0 s EH_frame1
+>          U _ft_strlen
+>          U _ft_strnew
+> 00000000 T _ft_strtrim
+> 
+> all/tofix_segv(ft_strsplit.o):
+> 0000017c s EH_frame1
+> 00000000 t _count_parts
+> 00000097 T _ft_strsplit
+>          U _ft_strsub
+>          U _
+\ No newline at end of file

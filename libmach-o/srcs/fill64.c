@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:29:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/13 12:48:49 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/13 18:18:17 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		overlaps_symtab_command(struct symtab_command *sym)
 **
 ** also fill its debug character by peeking at its corresponding section
 */
+
 int		process_fill_symbols64(t_header_parser *parser, t_browser *browser,
 			struct symtab_command *sym)
 {
@@ -49,7 +50,7 @@ int		process_fill_symbols64(t_header_parser *parser, t_browser *browser,
 	{
 		ft_dprintf(2, "%s: %s: stringtable size (%u) exceeds end of file\n",
 			browser->progname, browser->filename, sym->strsize);
-		return (CORRUPTED);
+		return (ERROR_CORRUPTED);
 	}
 	if (overlaps_symtab_command(sym))
 	{
@@ -88,24 +89,19 @@ int		process_fill_symbols64(t_header_parser *parser, t_browser *browser,
 
 int		fill_symbol_table64(t_header_parser *parser, t_browser *browser)
 {
-	struct		load_command *lc;
-	struct		symtab_command *sym;
-	uint64_t	i;
-	struct 		mach_header_64 *header;
-	int			ret;
+	struct load_command		*lc;
+	struct symtab_command	*sym;
+	uint64_t				i;
+	struct mach_header_64	*header;
+	int						ret;
 
 	header = parser->header_union.header64;
 	i = (uint64_t)((void *)header + sizeof(*header));
-		while (i < (uint64_t)((void *)header + header->sizeofcmds))
+	while (i < (uint64_t)((void *)header + header->sizeofcmds))
 	{
-		lc = (struct load_command*) i;
+		lc = (struct load_command*)i;
 		if (lc->cmdsize == 0)
-		{
-			ft_dprintf(2,"%s: %s: truncated or malformed object (load commands"
-				" extend past the end of the file)\n", browser->progname,
-					browser->filename);
-			return (CORRUPTED);
-		}
+			return (macho_perror(ERROR_CORRUPTED, browser));
 		if (lc->cmd == LC_SYMTAB)
 		{
 			sym = (struct symtab_command *)lc;
@@ -143,19 +139,18 @@ int		fill_sections_from_segment64(t_section *sections, int *index,
 	while (i < seg->nsects)
 	{
 		sections[*index].section_enum = E_SECTION_64;
-		sections[*index].section_union.section64 = (void *)seg + 
+		sections[*index].section_union.section64 = (void *)seg +
 			sizeof(*seg) + i++ * sizeof(struct section_64);
 		if (!ft_strcmp(sections[*index].section_union.section64->sectname,
-				SECT_TEXT)
-					&& !ft_strcmp(sections[*index]
-						.section_union.section64->segname, SEG_TEXT))
+				SECT_TEXT) && !ft_strcmp(sections[*index].
+				section_union.section64->segname, SEG_TEXT))
 			parser->text_section = &sections[*index];
 		else if (!ft_strcmp(sections[*index].section_union.section32->sectname,
-				SECT_DATA)
-				&& !ft_strcmp(sections[*index]
-					.section_union.section32->segname, SEG_DATA))
+				SECT_DATA) && !ft_strcmp(sections[*index].
+				section_union.section32->segname, SEG_DATA))
 			parser->data_section = &sections[*index];
-		swap_section_64(sections[*index].section_union.section64, parser->should_swap);
+		swap_section_64(sections[*index].section_union.section64,
+		parser->should_swap);
 		(*index)++;
 	}
 	return (0);
@@ -164,6 +159,7 @@ int		fill_sections_from_segment64(t_section *sections, int *index,
 /*
 ** map all sections into a single array starting at index 1 from a linked list
 */
+
 int		process_sections_array64(t_header_parser *parser, t_list **segments)
 {
 	int							len;
@@ -193,9 +189,10 @@ int		process_sections_array64(t_header_parser *parser, t_list **segments)
 }
 
 /*
-** gathers all segments in a linked list in order to iterate over them 
+** gathers all segments in a linked list in order to iterate over them
 ** and create an array for every sections
 */
+
 int		get_sections64(t_header_parser *parser, t_browser *browser)
 {
 	struct load_command			*lc;
@@ -213,54 +210,58 @@ int		get_sections64(t_header_parser *parser, t_browser *browser)
 	i = (uint64_t)((void *)header + sizeof(*header));
 	while (j < header->ncmds)
 	{
-		lc = (struct load_command*) i;
+		lc = (struct load_command*)i;
 		swap_load_command(lc, parser->should_swap);
 		if (lc->cmdsize == 0)
 		{
-			ft_dprintf(2,"%s: %s: truncated or malformed object (load commands"
+			ft_dprintf(2, "%s: %s: truncated or malformed object (load commands"
 				" extend past the end of the file)\n", browser->progname,
 					browser->filename);
-			return (CORRUPTED);
+			return (ERROR_CORRUPTED);
 		}
 		if (is_corrupted_data(lc, lc->cmdsize, browser)
-			|| (void *)lc + max_uint32(lc->cmdsize, 1) > (void *)header + sizeof(*header) + header->sizeofcmds)
+			|| (void *)lc + max_uint32(lc->cmdsize, 1) > (void *)header
+			+ sizeof(*header) + header->sizeofcmds)
 		{
 			ft_dprintf(2, "%s: %s truncated or malformed object "
-				"(load command %d extends past the end of all load commands in the file)\n\n",
+				"(load command %d extends past the end of all"\
+				"load commands in the file)\n\n",
 					browser->progname, browser->filename, j);
-			return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
+			return (ft_lstdel_ptr_ret(&segments, ERROR_CORRUPTED));
 		}
 		if (lc->cmdsize % 8)
 		{
 			ft_dprintf(2, "%s: %s truncated or malformed object "
 				"(load command %d fileoff not a multiple of 8)\n\n",
 					browser->progname, browser->filename, j);
-			return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
+			return (ft_lstdel_ptr_ret(&segments, ERROR_CORRUPTED));
 		}
 		if (lc->cmd == LC_SEGMENT_64)
 		{
 			seg = (struct segment_command_64 *)lc;
-			if (is_corrupted_data(seg, sizeof(struct segment_command_64), browser))
+			if (is_corrupted_data(seg, sizeof(struct segment_command_64),
+			browser))
 			{
-				return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
+				return (ft_lstdel_ptr_ret(&segments, ERROR_CORRUPTED));
 			}
 			swap_segment_command_64(seg, parser->should_swap);
-			
-			if (seg->cmdsize != sizeof(*seg) + sizeof(struct section_64) * seg->nsects)
+			if (seg->cmdsize != sizeof(*seg) + sizeof(struct section_64)
+			* seg->nsects)
 			{
 				ft_dprintf(2, "%s: %s truncated or malformed object "
-					"(load command %d inconsistent cmdsize in LC_SEGMENT_64 for the number of sections)\n\n",
+					"(load command %d inconsistent cmdsize in LC_SEGMENT_64"\
+					"for the number of sections)\n\n",
 						browser->progname, browser->filename, j);
-				return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
+				return (ft_lstdel_ptr_ret(&segments, ERROR_CORRUPTED));
 			}
 			if (is_corrupted_offset(parser->offset + seg->fileoff,
 				seg->filesize, browser))
 			{
 				ft_dprintf(2, "%s: %s truncated or malformed object "
 					"(load command %d fileoff filed plus filesize "
-						"field in LC_SEGMENT_64 extends past the end of the"
-					  		 "file)\n\n", browser->progname, browser->filename, j);
-				return (ft_lstdel_ptr_ret(&segments, CORRUPTED));
+					"field in LC_SEGMENT_64 extends past the end of the"
+					"file)\n\n", browser->progname, browser->filename, j);
+				return (ft_lstdel_ptr_ret(&segments, ERROR_CORRUPTED));
 			}
 			if (ft_add_to_list_ptr_back(&segments, seg, sizeof(seg)))
 				return (ft_lstdel_ptr_ret(&segments, 1));
@@ -277,13 +278,12 @@ int		add_parser(t_browser *browser, t_header_parser *parser)
 
 	if (parser->parser_enum == PARSER_ENUM_OBJECT)
 	{
-		if ((ret = (ft_tree_add_sorted_value_no_doubles(&browser->parsers, parser,
-			sizeof(t_header_parser), cmp_parser_ran_off))) == 1)
+		if ((ret = (ft_tree_add_sorted_value_no_doubles(&browser->parsers,
+		parser, sizeof(t_header_parser), cmp_parser_ran_off))) == 1)
 			return (1);
 		else if (ret == 2)
 			free_parser(parser);
 		return (0);
-		
 	}
 	else
 	{
@@ -293,7 +293,7 @@ int		add_parser(t_browser *browser, t_header_parser *parser)
 }
 
 /*
-** store sections by index of apparition and symbol tables sorted 
+** store sections by index of apparition and symbol tables sorted
 ** in a tree structure (stocks the debug Character (T, U, ...) by peeking
 ** at the matching section (mainly)
 */
@@ -306,7 +306,7 @@ int		fill_browser64(t_header_parser *parser, t_browser *browser)
 		return (ret);
 	if ((ret = fill_symbol_table64(parser, browser)))
 	{
-		if (ret == CORRUPTED)
+		if (ret == ERROR_CORRUPTED)
 		{
 			if (add_parser(browser, parser))
 			{

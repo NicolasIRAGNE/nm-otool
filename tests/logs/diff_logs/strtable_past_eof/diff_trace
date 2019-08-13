@@ -1,0 +1,46 @@
+1,45d0
+< 0f000000f9000000 ? 
+< 0f00000173000000 ? 
+< 6166686b6166686a b _type_name
+< 0000000100001040 t _wchar
+< 0000000100008060 d aballoc
+< 01000004a6000000 ? bad string index
+< 01000004ac000000 ? bad string index
+< 01000004bb000000 ? bad string index
+< 01000004c3000000 ? bad string index
+< 01000004cb000000 ? bad string index
+< 01000004d1000000 ? bad string index
+< 01000004d9000000 ? bad string index
+< 0f00000051000000 i bad string index
+< 0f000000b4000000 ? bad string index
+< 0f000000bd000000 I bad string index
+< 0f000000c7000000 a bad string index
+< 0f000000d1000000 ? bad string index
+< 0f000000eb000000 ? bad string index
+< 0f00000112000000 ? bad string index
+< 0f0000011d000000 ? bad string index
+< 0f00000128000000 ? bad string index
+< 0f00000133000000 ? bad string index
+< 0f0000013f000000 ? bad string index
+< 0f0000014a000000 ? bad string index
+< 0f00000158000000 ? bad string index
+< 0f0000017e000000 A bad string index
+< 0f00000189000000 ? bad string index
+< 0f00000194000000 C bad string index
+< 0f0000019f000000 ? bad string index
+< 0f000001ab000000 ? bad string index
+< 0f000001b6000000 ? bad string index
+< 0f000001c2000000 a bad string index
+< 0f000001cd000000 ? bad string index
+< 0f000001da000000 ? bad string index
+< 0f000001e5000000 C bad string index
+< 0f000001f1000000 ? bad string index
+< 0f000001fd000000 ? bad string index
+< 0f00000276000000 ? bad string index
+< 0f0000028f000000 S bad string index
+< 0000000100000f70 t har
+< 0000000100000e60 t har.c
+< 0000000100007260 t ode_masks
+< 00000001000080b0 b ord
+< 0000000100000ec0 t to_u
+< 0f00000016000000 ? ypes.c

@@ -1,0 +1,573 @@
+name size: 20
+ranlib length: 154
+ranlib array size: 1232
+string array size: 1904
+
+all/lib_static.a(error.o):
+0000000000000000 T _basicerror
+0000000000000050 T _basicerror_out
+                 U _exit
+0000000000000090 T _exit_error
+                 U _ft_putendl_fd
+                 U _ft_putstr_fd
+                 U _kill
+                 U _perror
+
+all/lib_static.a(over_p_str.o):
+                 U _ft_putchar_fd
+                 U _ft_putstr_fd
+0000000000000000 T _over_p_str
+
+all/lib_static.a(over_p.o):
+                 U _ft_putendl_fd
+                 U _ft_putstr_fd
+0000000000000000 T _over_p
+
+all/lib_static.a(over_str.o):
+                 U _ft_putendl
+0000000000000000 T _over_str
+
+all/lib_static.a(over.o):
+                 U _ft_putendl_fd
+0000000000000000 T _over
+
+all/lib_static.a(ft_lstadd.o):
+0000000000000000 T _ft_lstadd
+
+all/lib_static.a(ft_lstdel.o):
+0000000000000000 T _ft_lstdel
+                 U _ft_lstdelone
+
+all/lib_static.a(ft_lstdelone.o):
+0000000000000000 T _ft_lstdelone
+                 U _ft_memdel
+
+all/lib_static.a(ft_lstfree.o):
+                 U _free
+0000000000000000 T _ft_lstaddnew
+                 U _ft_lstnew
+0000000000000070 T _ft_lstsuppress
+
+all/lib_static.a(ft_lstiter.o):
+0000000000000000 T _ft_lstiter
+
+all/lib_static.a(ft_lstmap.o):
+0000000000000000 T _ft_lstmap
+
+all/lib_static.a(ft_lstnew.o):
+0000000000000000 T _ft_lstnew
+                 U _ft_memcpy
+                 U _malloc
+
+all/lib_static.a(ft_lstpush.o):
+                 U _ft_lstnew
+0000000000000000 T _ft_lstpush
+0000000000000090 T _ft_lstpush_new
+
+all/lib_static.a(ft_atoi_base.o):
+0000000000000000 T _ft_atoi_base
+0000000000000150 t _ft_inbase
+
+all/lib_static.a(ft_atoi.o):
+0000000000000000 T _ft_atoi
+                 U _ft_isdigit
+
+all/lib_static.a(ft_strcat.o):
+0000000000000000 T _ft_strcat
+
+all/lib_static.a(ft_strchr.o):
+0000000000000090 T _ft_indexchr
+0000000000000000 T _ft_strchr
+
+all/lib_static.a(ft_strcpy.o):
+0000000000000000 T _ft_strcpy
+
+all/lib_static.a(ft_striter.o):
+0000000000000000 T _ft_striter
+
+all/lib_static.a(ft_striteri.o):
+0000000000000000 T _ft_striteri
+
+all/lib_static.a(ft_strlcat.o):
+0000000000000000 T _ft_strlcat
+                 U _ft_strlen
+
+all/lib_static.a(ft_strlen.o):
+0000000000000000 T _ft_strlen
+
+all/lib_static.a(ft_strmap.o):
+                 U _ft_strdup
+0000000000000000 T _ft_strmap
+
+all/lib_static.a(ft_strmapi.o):
+                 U _ft_strdup
+0000000000000000 T _ft_strmapi
+
+all/lib_static.a(ft_strncat.o):
+0000000000000000 T _ft_strncat
+
+all/lib_static.a(ft_strncpy.o):
+0000000000000000 T _ft_strncpy
+
+all/lib_static.a(ft_strnstr.o):
+0000000000000000 T _ft_strnstr
+
+all/lib_static.a(ft_strrchr.o):
+                 U _ft_strlen
+0000000000000000 T _ft_strrchr
+
+all/lib_static.a(ft_strsplit.o):
+0000000000000180 t _ft_split_cut
+                 U _ft_strdblnew
+0000000000000000 T _ft_strsplit
+                 U _ft_strsub
+00000000000000b0 t _nb_word
+
+all/lib_static.a(ft_strstr.o):
+0000000000000000 T _ft_strstr
+
+all/lib_static.a(ft_strsub.o):
+                 U _ft_strncpy
+                 U _ft_strnew
+0000000000000000 T _ft_strsub
+
+all/lib_static.a(ft_strtolower.o):
+0000000000000000 T _ft_strtolower
+                 U _ft_tolower
+
+all/lib_static.a(ft_tolower.o):
+0000000000000000 T _ft_tolower
+
+all/lib_static.a(ft_toupper.o):
+0000000000000000 T _ft_toupper
+
+all/lib_static.a(ft_strcmpa.o):
+                 U _free
+                 U _ft_isalpha
+0000000000000000 T _ft_strcmpa
+                 U _ft_strdup
+                 U _ft_strtolower
+0000000000000280 t _lines_free
+
+all/lib_static.a(ft_strcmp.o):
+0000000000000000 T _ft_strcmp
+
+all/lib_static.a(ft_strequ.o):
+                 U _ft_strcmp
+0000000000000000 T _ft_strequ
+
+all/lib_static.a(ft_strncmp.o):
+0000000000000000 T _ft_strncmp
+
+all/lib_static.a(ft_strnequ.o):
+                 U _ft_strncmp
+0000000000000000 T _ft_strnequ
+
+all/lib_static.a(ft_fri.o):
+                 U _free
+0000000000000000 T _ft_fri
+
+all/lib_static.a(ft_strclr.o):
+                 U _ft_bzero
+0000000000000000 T _ft_strclr
+                 U _ft_strlen
+
+all/lib_static.a(ft_strdel.o):
+                 U _ft_memdel
+0000000000000000 T _ft_strdel
+
+all/lib_static.a(ft_isalnum.o):
+0000000000000000 T _ft_isalnum
+
+all/lib_static.a(ft_isalpha.o):
+0000000000000000 T _ft_isalpha
+
+all/lib_static.a(ft_isascii.o):
+0000000000000000 T _ft_isascii
+
+all/lib_static.a(ft_isdigit.o):
+0000000000000000 T _ft_isdigit
+
+all/lib_static.a(ft_isprint.o):
+0000000000000000 T _ft_isprint
+
+all/lib_static.a(ft_str_isdigit.o):
+                 U _ft_isdigit
+0000000000000000 T _ft_str_isdigit
+
+all/lib_static.a(ft_str_isprint.o):
+                 U _ft_isprint
+0000000000000000 T _ft_str_isprint
+
+all/lib_static.a(ft_str_isvalue.o):
+                 U _ft_str_isdigit
+0000000000000000 T _ft_str_isvalue
+
+all/lib_static.a(ft_putchar.o):
+0000000000000000 T _ft_putchar
+                 U _ft_putchar_fd
+
+all/lib_static.a(ft_putchar_fd.o):
+0000000000000000 T _ft_putchar_fd
+                 U _write
+
+all/lib_static.a(ft_putendl.o):
+0000000000000000 T _ft_putendl
+                 U _ft_putendl_fd
+
+all/lib_static.a(ft_putendl_fd.o):
+                 U _ft_putchar_fd
+0000000000000000 T _ft_putendl_fd
+                 U _ft_putstr_fd
+
+all/lib_static.a(ft_putnbr.o):
+                 U _ft_putchar
+0000000000000000 T _ft_putnbr
+
+all/lib_static.a(ft_putnbr_fd.o):
+                 U _ft_putchar_fd
+0000000000000000 T _ft_putnbr_fd
+
+all/lib_static.a(ft_putstr.o):
+0000000000000000 T _ft_putstr
+                 U _ft_putstr_fd
+
+all/lib_static.a(ft_putstr_fd.o):
+0000000000000000 T _ft_putstr_fd
+                 U _ft_strlen
+                 U _write
+
+all/lib_static.a(ft_putsize_t_base_fd.o):
+00000000000000c0 d _base_ref
+                 U _ft_putchar_fd
+0000000000000000 T _ft_putsize_t_base_fd
+
+all/lib_static.a(ft_putnbr_base.o):
+00000000000000a0 d _base_ref
+                 U _ft_putchar_fd
+0000000000000000 T _ft_putnbr_base_fd
+                 U _ft_putsize_t_base_fd
+
+all/lib_static.a(ft_itoa_base.o):
+0000000000000100 T _ft_itoa_base
+0000000000000200 T _ft_itoa_plusbase
+                 U _ft_strdup
+                 U _ft_strnew
+                 U _nb_of_figure
+                 U _rev
+0000000000000000 T _win_linesitoa
+
+all/lib_static.a(ft_itoa.o):
+0000000000000000 T _ft_itoa
+00000000000000f0 t _ft_number_of_figures
+0000000000000250 t _ft_number_of_ufigures
+0000000000000190 T _ft_uitoa
+                 U _malloc
+
+all/lib_static.a(ft_replace.o):
+                 U _ft_fri
+0000000000000080 T _ft_replace
+0000000000000000 T _ft_replace_init
+                 U _ft_strjoin
+                 U _ft_strlen
+                 U _ft_strncpy
+                 U _ft_strnew
+
+all/lib_static.a(ft_strdup.o):
+                 U _ft_strcpy
+0000000000000000 T _ft_strdup
+                 U _ft_strlen
+                 U _ft_strnew
+
+all/lib_static.a(ft_strjoin.o):
+                 U _ft_fri
+                 U _ft_strcat
+0000000000000000 T _ft_strjoin
+00000000000000a0 T _ft_strjoincl
+                 U _ft_strlen
+                 U _ft_strnew
+
+all/lib_static.a(ft_strnew.o):
+                 U _ft_bzero
+0000000000000000 T _ft_strnew
+                 U _malloc
+
+all/lib_static.a(ft_strtrim.o):
+                 U _ft_strlen
+                 U _ft_strnew
+0000000000000000 T _ft_strtrim
+0000000000000130 t _ft_trimlen
+
+all/lib_static.a(pf_itoa_base.o):
+                 U _free
+                 U _ft_strdup
+                 U _ft_strlen
+                 U _ft_strnew
+0000000000000000 T _nb_of_figure
+0000000000000110 T _pf_itoa_base
+0000000000000280 T _pf_itoa_plusbase
+0000000000000210 T _pf_uitoa_base
+0000000000000070 T _rev
+                 U _win_linesitoa
+
+all/lib_static.a(ft_getchar.o):
+                 U _free
+0000000000000000 T _ft_getchar
+00000000000001b0 T _ft_getwstr
+                 U _ft_strdup
+                 U _ft_strjoin
+                 U _ft_strnew
+0000000000000110 t _win_lines
+
+all/lib_static.a(ft_putwchar.o):
+                 U _ft_putchar_fd
+00000000000001b0 T _ft_putwchar
+0000000000000000 T _ft_putwchar_fd
+00000000000001d0 T _ft_putwstr
+0000000000000160 T _ft_putwstr_fd
+
+all/lib_static.a(ft_strwlen.o):
+0000000000000000 T _ft_strwlen
+
+all/lib_static.a(ft_strdbldup.o):
+0000000000000000 T _ft_strdbldup
+                 U _ft_strdblnew
+                 U _ft_strdup
+
+all/lib_static.a(ft_strdblfree.o):
+                 U _free
+0000000000000000 T _ft_strdblfree
+
+all/lib_static.a(ft_strdblnew.o):
+0000000000000000 T _ft_strdblnew
+                 U _malloc
+
+all/lib_static.a(ft_strdblprint.o):
+                 U _ft_printf
+                 U _ft_putstr
+0000000000000000 T _ft_strdblprint
+
+all/lib_static.a(tri.o):
+                 U _ft_strcmp
+0000000000000100 T _tri_strdbl
+0000000000000000 T _tri_strdbl_r
+
+all/lib_static.a(ft_bzero.o):
+0000000000000000 T _ft_bzero
+                 U _ft_memset
+
+all/lib_static.a(ft_memalloc.o):
+                 U _ft_bzero
+0000000000000000 T _ft_memalloc
+                 U _malloc
+
+all/lib_static.a(ft_memccpy.o):
+0000000000000000 T _ft_memccpy
+
+all/lib_static.a(ft_memchr.o):
+0000000000000000 T _ft_memchr
+
+all/lib_static.a(ft_memcmp.o):
+0000000000000000 T _ft_memcmp
+
+all/lib_static.a(ft_memcpy.o):
+0000000000000000 T _ft_memcpy
+
+all/lib_static.a(ft_memdel.o):
+                 U _free
+0000000000000000 T _ft_memdel
+
+all/lib_static.a(ft_memmove.o):
+                 U _ft_memcpy
+0000000000000000 T _ft_memmove
+
+all/lib_static.a(ft_memset.o):
+0000000000000000 T _ft_memset
+
+all/lib_static.a(get_next_line.o):
+0000000000000120 t _exist_stock
+                 U _free
+                 U _ft_fri
+                 U _ft_strchr
+                 U _ft_strdup
+                 U _ft_strjoin
+                 U _ft_strnew
+0000000000000000 T _get_next_line
+0000000000000460 b _get_next_line.stock
+                 U _read
+00000000000001b0 t _read_gnl
+0000000000000280 t _win_lines_return
+
+all/lib_static.a(ft_next_multiple.o):
+0000000000000000 T _ft_next_multiple
+
+all/lib_static.a(ft_getopt.o):
+0000000000000000 T _ft_getopt
+0000000000000560 b _ft_getopt.next
+0000000000000260 t _ft_getopt_check
+00000000000001c0 t _ft_getopt_current
+0000000000000310 t _ft_getopt_error
+0000000000000140 t _ft_getopt_init
+                 U _ft_isalnum
+                 U _ft_putstr_fd
+                 U _ft_strequ
+0000000000000558 S _g_optarg
+0000000000000394 D _g_opterr
+0000000000000390 D _g_optind
+0000000000000004 C _g_optopt
+                 U _over_p_str
+
+all/lib_static.a(convers.o):
+                 U _free
+                 U _ft_atoi
+                 U _ft_c
+0000000000000550 T _ft_convers
+0000000000000000 T _ft_d
+0000000000000440 T _ft_hs
+                 U _ft_o
+                 U _ft_replace
+                 U _ft_s
+                 U _ft_strdup
+                 U _ft_strlen
+                 U _ft_tnum
+0000000000000270 T _ft_u
+                 U _ft_upc
+                 U _ft_ups
+                 U _ft_utnum
+                 U _ft_x
+                 U _minus
+                 U _pf_itoa_base
+                 U _pf_itoa_plusbase
+                 U _pf_uitoa_base
+                 U _preci
+                 U _width
+
+all/lib_static.a(display_flags.o):
+                 U _free
+                 U _ft_strcpy
+                 U _ft_strdup
+                 U _ft_strjoin
+                 U _ft_strlen
+                 U _ft_strnew
+0000000000000340 T _minus
+0000000000000000 T _preci
+0000000000000140 T _width
+
+all/lib_static.a(ft_cs.o):
+                 U _free
+0000000000000200 T _ft_c
+                 U _ft_getchar
+                 U _ft_getwstr
+                 U _ft_replace
+0000000000000000 T _ft_s
+                 U _ft_strcmp
+                 U _ft_strdup
+                 U _ft_strlen
+                 U _ft_strnew
+00000000000003f0 T _ft_upc
+00000000000005f0 T _ft_ups
+                 U _minus
+                 U _preci
+                 U _width
+00000000000007b7 s l_.str.2
+
+all/lib_static.a(ft_o.o):
+                 U _free
+                 U _ft_atoi
+                 U _ft_itoa_base
+00000000000003a0 T _ft_o
+                 U _ft_replace
+                 U _ft_strdup
+                 U _ft_strlen
+                 U _ft_strnew
+                 U _ft_strtolower
+                 U _ft_tnum
+                 U _minus
+                 U _nb_of_figure
+0000000000000290 T _o_itoa
+                 U _pf_itoa_base
+0000000000000140 T _pfoitoa_char
+0000000000000000 T _pfoitoa_short
+                 U _preci
+                 U _rev
+                 U _width
+
+all/lib_static.a(ft_printf.o):
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+0000000000000000 T _ft_printf
+                 U _print
+
+all/lib_static.a(ft_x.o):
+                 U _free
+                 U _ft_atoi
+                 U _ft_atoi_base
+                 U _ft_replace
+                 U _ft_strlen
+                 U _ft_strtolower
+                 U _ft_tnum
+0000000000000000 T _ft_x
+                 U _minus
+0000000000000220 t _next_x
+                 U _pf_itoa_base
+                 U _preci
+                 U _width
+
+all/lib_static.a(get.o):
+                 U _free
+                 U _ft_atoi
+                 U _ft_isdigit
+                 U _ft_strdup
+0000000000000000 T _get_conver
+0000000000000200 T _get_flags
+0000000000000310 T _get_struct
+0000000000000090 T _get_type
+0000000000000580 t _win_lines
+
+all/lib_static.a(type_of_number.o):
+0000000000000000 T _ft_tnum
+00000000000003b0 T _ft_utnum
+
+all/lib_static.a(color.o):
+                 U _ft_replace
+                 U _ft_strncmp
+0000000000000000 T _pf_couleur
+0000000000000070 t _replace_couleur
+
+all/lib_static.a(ft_dprintf.o):
+                 U ___stack_chk_fail
+                 U ___stack_chk_guard
+0000000000000000 T _ft_dprintf
+                 U _print
+
+all/lib_static.a(print.o):
+                 U _free
+                 U _ft_convers
+                 U _ft_putstr_fd
+                 U _ft_strdup
+                 U _ft_strlen
+                 U _get_struct
+                 U _pf_couleur
+0000000000000000 T _print
+0000000000000250 t _ret
+00000000000001e0 t _zero
+
+all/lib_static.a(ft_secu_free.o):
+                 U _free
+00000000000000e0 t _ft_malloc_search
+0000000000000000 T _ft_secu_free
+0000000000000150 T _ft_secu_free_all
+00000000000001d0 T _ft_secu_free_lvl
+                 U _get_mem
+
+all/lib_static.a(ft_secu_malloc.o):
+                 U _exit_error
+                 U _ft_memalloc
+0000000000000150 t _ft_s_malloc_mouv
+0000000000000000 T _ft_secu_malloc_lvl
+00000000000000e0 T _get_mem
+0000000000000348 b _get_mem.mem
+00000000000001d0 T _secu_malloc
+
+all/lib_static.a(btree_apply_infix.o):
+0000000000000000 T _btree_apply_infix

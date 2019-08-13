@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/12 18:53:15 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/13 18:03:02 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		process_otool(char *filename, t_browser *browser, t_otool_flags *flags)
 	init_parser(&parser, browser->ptr, 0, filename);
 	if ((ret = fill_browser(&parser, browser, 1)))
 	{
-		if (ret == CORRUPTED)
+		if (ret == ERROR_CORRUPTED)
 		{
 			otool_print(browser, flags);
 		}

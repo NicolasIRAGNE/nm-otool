@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_archive.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 18:19:32 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/13 16:13:41 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/13 18:29:59 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ int		process_fill_identifier(t_header_parser *parser,
 	}
 	if (!ft_strncmp((char *)parser->ptr + *address, identifier, len))
 	{
-	//	ft_printf("%d\n", *address);
-	//	ft_printf("%d\n", *address + len);
 		*address = align(*address + len + 1, 4);
 		return (0);
 	}
@@ -58,9 +56,6 @@ int		fill_ranlib(t_header_parser *parser, t_browser *browser,
 			struct ranlib ranlib, char *stringtable, int strsize)
 {
 	(void)strsize;
-//	ft_printf("library member offset: %d\n", ranlib.ran_off);
-//	ft_printf("%s\n", parser->ptr + ranlib.ran_off);
-//	ft_printf("%s\n", stringtable + ranlib.ran_un.ran_strx);
 	return (fill_archive_member(browser, parser, ranlib.ran_off,
 		stringtable + ranlib.ran_un.ran_strx));
 }
@@ -100,22 +95,18 @@ int		fill_browser_archive(t_header_parser *parser, t_browser *browser)
 	}
 	string_array_size = *(uint32_t *)(parser->ptr + address);
 	address += 4;
-   	stringtable = parser->ptr + address;
+	stringtable = parser->ptr + address;
 	ft_printf("string array size: %d\n", string_array_size);
-
 	i = 0;
 	while ((uint32_t)i < ranlib_array_len)
 	{
-		if ((ret = fill_ranlib(parser, browser, ranlib_array[i], stringtable, string_array_size)))
+		if ((ret = fill_ranlib(parser, browser, ranlib_array[i],
+		stringtable, string_array_size)))
 		{
 			if (ret == 1)
 				return (ret);
 		}
 		i++;
 	}
-//	
-//	ft_printf("string array size: %d\n", string_array_size);
-//	ft_printf("%s\n", parser->ptr + address + string_array_size);
-//	exit(1);
 	return (0);
 }
