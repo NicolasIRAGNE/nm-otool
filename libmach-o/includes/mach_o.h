@@ -50,6 +50,12 @@ typedef enum e_bin_type
 	E_ARCHIVE
 }			t_bin_type;
 
+typedef enum e_bin
+{
+	E_BIN_OTOOL,
+	E_BIN_NM
+}			t_bin;
+
 typedef union				u_header_union
 {
 	struct mach_header		*header32;
@@ -118,6 +124,7 @@ struct						s_browser
 	int						strsize;
 	char					*last_member_name;
 	t_tree					*parsers;
+	t_bin					bin;
 };
 
 typedef struct s_browser	t_browser;
@@ -133,7 +140,7 @@ void						print_arch32(struct fat_arch *fat_arch);
 ** init.c
 */
 void						init_browser_general(t_browser *browser,
-								char *progname);
+								char *progname, t_bin bin);
 int							init_browser(t_browser *browser, char *filename);
 void						init_parser(t_header_parser *parser,
 								void *ptr, uint64_t offset, char *filename);

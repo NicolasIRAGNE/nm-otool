@@ -52,10 +52,12 @@ int		process_browser_fat_arch32(struct fat_arch *fat_arch,
 	new_parser.parser_union.arch.cputype = fat_arch->cputype;
 	new_parser.parser_union.arch.cpusubtype = fat_arch->cpusubtype;
 	new_parser.parser_union.arch.relevant = 1;
-	if ((ret = fill_browser(&new_parser, browser, 0)) == CORRUPTED)
+	if ((ret = fill_browser(&new_parser, browser, 0)) == 0)
 		return (0);
-	else if (ret)
-		return (1);
+	else if ((ret == CORRUPTED && browser->bin == E_BIN_OTOOL) || ret == 1)
+	{
+		return (ret);
+	}
 	return (0);
 }
 int			fat_corrupted_print_error_alignment(struct fat_arch *fat_arch,
@@ -132,6 +134,7 @@ int		fill_browser_fat32(t_header_parser *parser, t_browser *browser)
 	struct fat_arch		*fat_arch;
 	struct fat_header	*fat_header;
 	struct fat_arch		*found;
+	int					ret;
 
 	fat_header = parser->header_union.fat_header;
 	fat_arch = (void *)browser->ptr + sizeof(fat_header);
@@ -143,8 +146,8 @@ int		fill_browser_fat32(t_header_parser *parser, t_browser *browser)
 	i = 0;
 	while (i < fat_header->nfat_arch)
 	{
-		if (process_browser_fat_arch32(&fat_arch[i], parser, browser))
-			return (1);
+		if ((ret = process_browser_fat_arch32(&fat_arch[i], parser, browser)))
+			return (ret);
 		i++;
 	}
 	return (0);

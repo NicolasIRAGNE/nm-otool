@@ -56,8 +56,9 @@ int	init_browser(t_browser *browser, char *filename)
 	return (0);
 }
 
-void	init_browser_general(t_browser *browser, char *progname)
+void	init_browser_general(t_browser *browser, char *progname, t_bin bin)
 {
+	browser->bin = bin;
 	browser->ret = 0;
 	browser->has_bad_index = 0;
 	browser->sort_func = cmp_symbol_alpha;

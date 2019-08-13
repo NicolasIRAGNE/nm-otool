@@ -39,7 +39,7 @@ int		process_otool(char *filename, t_browser *browser, t_otool_flags *flags)
 		{
 			otool_print(browser, flags);
 		}
-		free_parser(&parser);
+//		free_parser(&parser);
 		ft_tree_del(&browser->parsers, free_parser_tree);
 		free_browser(browser);
 		return (1);
@@ -104,7 +104,7 @@ int		main(int ac, char **av)
     opt_add_to_parser(&parser, g_opts, sizeof(g_opts));
 	opt_parse_args(&parser, av + 1);
 	process_opt(&parser, &flags);
-	init_browser_general(&browser, av[0]);
+	init_browser_general(&browser, av[0], E_BIN_OTOOL);
 	if (process_args(&parser, &flags, &browser))
 		return (opt_free(&parser, EXIT_FAILURE));
 	return (opt_free(&parser, browser.ret));

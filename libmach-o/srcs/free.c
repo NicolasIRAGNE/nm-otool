@@ -14,11 +14,14 @@
 
 void	free_symbol(t_symbol *symbol)
 {
-	if (symbol->symbol_enum == E_SYMBOL_64)
-		free(symbol->symbol_union.symbol64.name);
-	else
-		free(symbol->symbol_union.symbol32.name);
-	free(symbol);
+	if (symbol)
+	{
+		if (symbol->symbol_enum == E_SYMBOL_64)
+			free(symbol->symbol_union.symbol64.name);
+		else
+			free(symbol->symbol_union.symbol32.name);
+		free(symbol);
+	}
 }
 
 void	free_symbol_tree(void *content)

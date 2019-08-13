@@ -34,7 +34,7 @@ int		process_nm(char *filename, t_browser *browser)
 	{
 		if (free_browser(browser))
 			return (1);
-		free_parser(&parser);
+//		free_parser(&parser);
 		ft_tree_del(&browser->parsers, free_parser_tree);
 		return (1);
 	}
@@ -74,7 +74,7 @@ int		main(int ac, char **av)
 	(void)ac;
 	wrapper.flags = &flags;
 	wrapper.browser = &browser;
-	init_browser_general(&browser, av[0]);
+	init_browser_general(&browser, av[0], E_BIN_NM);
 	opt_init_parser(&parser, flag_invalid, av[0]);
 	opt_add_to_parser(&parser, g_opts, sizeof(g_opts));
 	if (opt_parse_args(&parser, av + 1))

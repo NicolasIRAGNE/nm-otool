@@ -96,9 +96,16 @@ int		fill_symbol_table64(t_header_parser *parser, t_browser *browser)
 
 	header = parser->header_union.header64;
 	i = (uint64_t)((void *)header + sizeof(*header));
-	while (i < (uint64_t)((void *)header + header->sizeofcmds))
+		while (i < (uint64_t)((void *)header + header->sizeofcmds))
 	{
 		lc = (struct load_command*) i;
+		if (lc->cmdsize == 0)
+		{
+			ft_dprintf(2,"%s: %s: truncated or malformed object (load commands"
+				" extend past the end of the file)\n", browser->progname,
+					browser->filename);
+			return (CORRUPTED);
+		}
 		if (lc->cmd == LC_SYMTAB)
 		{
 			sym = (struct symtab_command *)lc;
@@ -300,7 +307,8 @@ int		fill_browser64(t_header_parser *parser, t_browser *browser)
 				return (1);
 			}
 		}
-		//free_parser(parser);
+		else
+			free_parser(parser);
 		return (ret);
 	}
 	if (add_parser(browser, parser))
