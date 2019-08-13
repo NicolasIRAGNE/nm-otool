@@ -1,0 +1,1 @@
+.././own_tests/compile.sh

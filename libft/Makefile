@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/06 18:20:16 by ldedier           #+#    #+#              #
-#    Updated: 2019/08/13 15:40:13 by niragne          ###   ########.fr        #
+#    Updated: 2019/08/13 16:18:45 by ldedier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ SRCS_NO_PREFIX = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c\
 	   ft_add_to_list_ptr.c ft_add_to_list_ptr_back.c ft_tree_get.c \
 	   ft_add_to_tree_back.c ft_tree_new.c ft_tree_add_sorted_no_doubles.c \
 	   opt_parse.c print_usage.c ft_lstdel_ptr_ret.c
+
 SOURCES = $(addprefix $(SRCDIR)/, $(SRCS_NO_PREFIX))
 OBJECTS = $(addprefix $(OBJDIR)/, $(SRCS_NO_PREFIX:%.c=%.o))
 
@@ -90,10 +91,12 @@ $(OBJDIR)/%.o : $(SRCDIR)/%.c $(INCLUDES)
 	@mkdir -p $(OBJDIR)
 	$(CC) -c $< -o $@ $(CFLAGS)
 
+
 $(BINDIR)/$(NAME): $(OBJECTS)
 	ar rc $@ $^
-	ranlib $(NAME)
+#	ranlib $(NAME)
 	@echo "$(OK_COLOR)$(NAME) linked with success !$(EOC)"
+
 clean:
 	@rm -f $(OBJECTS)
 	@rm -rf $(OBJDIR)

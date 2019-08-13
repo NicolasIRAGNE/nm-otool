@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 18:19:32 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/12 18:22:54 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/13 16:13:41 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ int		fill_ranlib(t_header_parser *parser, t_browser *browser,
 			struct ranlib ranlib, char *stringtable, int strsize)
 {
 	(void)strsize;
-	(void)parser;
-	(void)stringtable;
 //	ft_printf("library member offset: %d\n", ranlib.ran_off);
 //	ft_printf("%s\n", parser->ptr + ranlib.ran_off);
 //	ft_printf("%s\n", stringtable + ranlib.ran_un.ran_strx);
@@ -75,20 +73,19 @@ int		fill_browser_archive(t_header_parser *parser, t_browser *browser)
 	uint32_t		string_array_size;
 	struct ranlib	*ranlib_array;
 	char			*stringtable;
-	int name_size;
+	int				name_size;
 	int				ret;
+	int				i;
 
 	name_size = ft_atoi(parser->ptr + ft_strlen(ARCHIVE_IDENTIFIER) + 3);
-	address = ft_strlen(ARCHIVE_IDENTIFIER) + 60;
-//	if (fill_identifier(parser, browser, &address))
-//	{
-//		return (1);
-//	}
 	address = ft_strlen(ARCHIVE_IDENTIFIER) + 60 + name_size;
 	ranlib_array_size = *(uint32_t *)(parser->ptr + address);
 	ranlib_array_len = *(uint32_t *)(parser->ptr + address) /
 		sizeof(struct ranlib);
 	address += 4;
+	ft_printf("name size: %d\n", name_size);
+	ft_printf("ranlib length: %d\n", ranlib_array_len);
+	ft_printf("ranlib array size: %d\n", ranlib_array_size);
 	if ((off_t)(address + ranlib_array_len * sizeof(struct ranlib))
 		> browser->st.st_size)
 	{
@@ -101,11 +98,11 @@ int		fill_browser_archive(t_header_parser *parser, t_browser *browser)
 	{
 		return (1);
 	}
-//	ft_printf("%s\n", parser->ptr);
 	string_array_size = *(uint32_t *)(parser->ptr + address);
-	address += sizeof(uint32_t);
+	address += 4;
    	stringtable = parser->ptr + address;
-	int i;
+	ft_printf("string array size: %d\n", string_array_size);
+
 	i = 0;
 	while ((uint32_t)i < ranlib_array_len)
 	{
