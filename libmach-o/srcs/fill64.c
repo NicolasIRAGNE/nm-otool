@@ -277,6 +277,49 @@ int is_corrupted_segment_command_64(struct segment_command_64 *seg,
 	return (0);
 }
 
+int		get_sections_load_command_64(t_browser *browser,
+			t_header_parser *parser, struct load_command *lc, int index)
+{
+	struct mach_header_64		*header;
+	struct segment_command_64	*seg;
+
+	header = parser->header_union.header64;
+	swap_load_command(lc, parser->should_swap);
+	if (corrupted_load_command(lc, browser, header, index))
+		return (ERROR_CORRUPTED);
+	if (lc->cmd == LC_SEGMENT_64)
+	{
+		seg = (struct segment_command_64 *)lc;
+		if (is_corrupted_segment_command_64(seg, parser, browser, index))
+			return (ERROR_CORRUPTED);
+		if (ft_add_to_list_ptr_back(browser->segments, seg, sizeof(seg)))
+			return (1);
+	}
+	return (0);
+}
+
+int		get_sections_lcs_64(t_browser *browser, t_header_parser *parser,
+			struct mach_header_64 *header)
+{
+	struct load_command			*lc;
+	uint64_t					j;
+	uint64_t					i;
+	int							ret;
+
+	i = (uint64_t)((void *)header + sizeof(*header));
+	j = 0;
+	header = parser->header_union.header64;
+	while (j < header->ncmds)
+	{
+		lc = (struct load_command*)i;
+		if ((ret = get_sections_load_command_64(browser, parser, lc, j)))
+			return (ret);
+		j++;
+		i += lc->cmdsize;
+	}
+	return (0);
+}
+
 /*
 ** gathers all segments in a linked list in order to iterate over them
 ** and create an array for every sections
@@ -284,36 +327,17 @@ int is_corrupted_segment_command_64(struct segment_command_64 *seg,
 
 int		get_sections64(t_header_parser *parser, t_browser *browser)
 {
-	struct load_command			*lc;
-	struct segment_command_64	*seg;
-	uint64_t					i;
 	t_list						*segments;
 	struct mach_header_64		*header;
-	uint32_t					j;
+	int							ret;
 
-	j = 0;
 	header = parser->header_union.header64;
 	parser->parser_union.arch.cputype = header->cputype;
 	parser->parser_union.arch.cpusubtype = header->cpusubtype;
 	segments = NULL;
-	i = (uint64_t)((void *)header + sizeof(*header));
-	while (j < header->ncmds)
-	{
-		lc = (struct load_command*)i;
-		swap_load_command(lc, parser->should_swap);
-		if (corrupted_load_command(lc, browser, header, j))
-			return (ft_lstdel_ptr_ret(&segments, ERROR_CORRUPTED));
-		if (lc->cmd == LC_SEGMENT_64)
-		{
-			seg = (struct segment_command_64 *)lc;
-			if (is_corrupted_segment_command_64(seg, parser, browser, j))
-				return (ft_lstdel_ptr_ret(&segments, ERROR_CORRUPTED));
-			if (ft_add_to_list_ptr_back(&segments, seg, sizeof(seg)))
-				return (ft_lstdel_ptr_ret(&segments, 1));
-		}
-		j++;
-		i += lc->cmdsize;
-	}
+	browser->segments = &segments;
+	if ((ret = get_sections_lcs_64(browser, parser, header)))
+		return (ft_lstdel_ptr_ret(&segments, ret));
 	return (process_sections_array64(parser, &segments));
 }
 

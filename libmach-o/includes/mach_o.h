@@ -125,6 +125,7 @@ struct						s_browser
 	char					*last_member_name;
 	t_tree					*parsers;
 	t_bin					bin;
+	t_list					**segments;
 };
 
 typedef struct s_browser	t_browser;
