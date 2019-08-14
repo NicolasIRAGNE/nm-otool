@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 18:19:32 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/13 18:29:59 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/14 18:25:20 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ int		fill_browser_archive(t_header_parser *parser, t_browser *browser)
 	ranlib_array_len = *(uint32_t *)(parser->ptr + address) /
 		sizeof(struct ranlib);
 	address += 4;
-	ft_printf("name size: %d\n", name_size);
-	ft_printf("ranlib length: %d\n", ranlib_array_len);
-	ft_printf("ranlib array size: %d\n", ranlib_array_size);
+//	ft_printf("name size: %d\n", name_size);
+//	ft_printf("ranlib length: %d\n", ranlib_array_len);
+//	ft_printf("ranlib array size: %d\n", ranlib_array_size);
 	if ((off_t)(address + ranlib_array_len * sizeof(struct ranlib))
 		> browser->st.st_size)
 	{
@@ -96,7 +96,7 @@ int		fill_browser_archive(t_header_parser *parser, t_browser *browser)
 	string_array_size = *(uint32_t *)(parser->ptr + address);
 	address += 4;
 	stringtable = parser->ptr + address;
-	ft_printf("string array size: %d\n", string_array_size);
+//	ft_printf("string array size: %d\n", string_array_size);
 	i = 0;
 	while ((uint32_t)i < ranlib_array_len)
 	{

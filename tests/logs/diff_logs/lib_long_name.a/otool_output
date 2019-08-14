@@ -1051,6 +1051,9 @@ Contents of (__TEXT,__text) section
 0000000000000020	20 89 45 fc e9 06 00 00 00 8b 45 f8 89 45 fc 8b 
 0000000000000030	45 fc 5d c3 66 66 66 2e 0f 1f 84 00 00 00 00 00 
 0000000000000040	50 e8 00 00 00 00 e8 00 00 00 00 58 c3 
+all//lib_long_name.a(azertyuiopqsdfghjklmwxcvbn.o):
+Contents of (__TEXT,__text) section
+0000000000000000	50 e8 00 00 00 00 e8 00 00 00 00 58 c3 
 all//lib_long_name.a(ft_strcmpa.o):
 Contents of (__TEXT,__text) section
 0000000000000000	55 48 89 e5 48 81 ec 10 01 00 00 48 89 7d f8 48 
