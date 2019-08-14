@@ -1,4 +1,4 @@
-all//lib_long_name.a
-all//libempty.a
-all//libmlx_corupted.a
-all//tofix_segv
+all/lib_long_name.a
+all/libempty.a
+all/libmlx_corupted.a
+all/tofix_segv

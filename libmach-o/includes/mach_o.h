@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 11:40:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/13 18:05:46 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/14 19:19:28 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,8 +230,8 @@ void	swap_bytes(void *to_swap, size_t size, int should_swap);
 */
 int		is_corrupted_string(char *str, t_browser *browser, int *len);
 int		is_corrupted_data(void *address, size_t size, t_browser *browser);
-int		is_corrupted_segment_command_64(struct segment_command_64 *seg,
-			uint64_t offset, t_browser *browser);
+//int		is_corrupted_segment_command_64(struct segment_command_64 *seg,
+//			uint64_t offset, t_browser *browser);
 int		is_corrupted_offset(uint64_t offset, uint64_t size,
 			t_browser *browser);
 
