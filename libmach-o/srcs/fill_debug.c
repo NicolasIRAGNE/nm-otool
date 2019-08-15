@@ -92,8 +92,10 @@ int		fill_debug64(t_symbol *symbol, t_section_arr section_arr,
 			return (1);
 	}
 	else
+	{
 		return (fill_debug_from_type(symbol, symbol64->nlist->n_type,
 			symbol64->nlist->n_value, browser));
+	}
 }
 
 int		fill_debug32(t_symbol *symbol, t_section_arr section_arr,

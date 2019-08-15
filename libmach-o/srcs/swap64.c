@@ -21,7 +21,7 @@ void	swap_mach_header64(struct mach_header_64 *header64)
 {
 	swap_bytes(&header64->cputype, sizeof(header64->cputype), 1);
 	swap_bytes(&header64->cpusubtype,
-		sizeof(header64->cpusubtype), 1);
+			sizeof(header64->cpusubtype), 1);
 	swap_uint32(&header64->filetype, 1);
 	swap_uint32(&header64->ncmds, 1);
 	swap_uint32(&header64->sizeofcmds, 1);
@@ -54,4 +54,11 @@ void	swap_section_64(struct section_64 *section, int should_swap)
 	swap_uint32(&section->flags, should_swap);
 	swap_uint32(&section->reserved1, should_swap);
 	swap_uint32(&section->reserved2, should_swap);
+}
+
+void	swap_nlist64(struct nlist_64 *nlist, int should_swap)
+{
+	swap_uint32(&nlist->n_un.n_strx, should_swap);
+	swap_bytes(&nlist->n_desc, sizeof(int16_t), should_swap);
+	swap_uint64(&nlist->n_value, should_swap);
 }

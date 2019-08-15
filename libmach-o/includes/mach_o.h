@@ -243,6 +243,7 @@ void	swap_segment_command_64(struct segment_command_64 *seg,
 void	swap_symtab_command(struct symtab_command *sym, int should_swap);
 void	swap_nlist(struct nlist *nlist, int should_swap);
 void	swap_nlist(struct nlist *nlist, int should_swap);
+void	swap_nlist64(struct nlist_64 *nlist_64, int should_swap);
 void	swap_section(struct section *section, int should_swap);
 void	swap_section_64(struct section_64 *section, int should_swap);
 void	swap_bytes(void *to_swap, size_t size, int should_swap);

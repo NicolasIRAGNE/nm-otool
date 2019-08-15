@@ -87,6 +87,7 @@ int		process_process_fill_symbols64(struct symtab_command *sym,
 	i = 0;
 	while (i < sym->nsyms)
 	{
+		swap_nlist64(&array[i], parser->should_swap);
 		if ((ret = process_process_fill_symbol64(&array[i],
 			stringtable, parser, browser)))
 			return (ret == 1);
@@ -135,6 +136,8 @@ int		fill_symbol_table64(t_header_parser *parser, t_browser *browser)
 		if (lc->cmd == LC_SYMTAB)
 		{
 			sym = (struct symtab_command *)lc;
+			//swap here
+			swap_symtab_command(sym, parser->should_swap);
 			if ((ret = process_fill_symbols64(parser, browser, sym)))
 				return (ret);
 		}

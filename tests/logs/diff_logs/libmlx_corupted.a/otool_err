@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/objdump: all/libmlx_corupted.a(mlx_shaders.o): truncated or malformed object (bad string table index: 1818304570 past the end of string table, for symbol at index 39)

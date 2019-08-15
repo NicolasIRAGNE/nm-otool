@@ -83,10 +83,11 @@ int		process_process_fill_symbols32(struct symtab_command *sym,
 	char					*stringtable;
 	int						ret;
 
-	stringtable = (void *)((void *)parser->header_union.header32 + sym->stroff);
+	stringtable = ((void *)parser->header_union.header32 + sym->stroff);
 	i = 0;
 	while (i < sym->nsyms)
 	{
+		swap_nlist(&array[i], parser->should_swap);
 		if ((ret = process_process_fill_symbol32(&array[i],
 			stringtable, parser, browser)))
 			return (ret == 1);
@@ -126,8 +127,8 @@ int		fill_symbol_table32(t_header_parser *parser, t_browser *browser)
 	int						ret;
 
 	header = parser->header_union.header32;
-	i = (uint32_t)((void *)header + sizeof(*header));
-	while (i < (uint32_t)((void *)header + header->sizeofcmds))
+	i = (uint64_t)((void *)header + sizeof(*header));
+	while (i < (uint64_t)((void *)header + header->sizeofcmds))
 	{
 		lc = (struct load_command*)i;
 		if (lc->cmdsize == 0)
@@ -135,6 +136,7 @@ int		fill_symbol_table32(t_header_parser *parser, t_browser *browser)
 		if (lc->cmd == LC_SYMTAB)
 		{
 			sym = (struct symtab_command *)lc;
+			swap_symtab_command(sym, parser->should_swap);
 			if ((ret = process_fill_symbols32(parser, browser, sym)))
 				return (ret);
 		}
@@ -180,7 +182,7 @@ int		fill_sections_from_segment32(t_section *sections, int *index,
 				section_union.section32->segname, SEG_DATA))
 			parser->data_section = &sections[*index];
 		swap_section(sections[*index].section_union.section32,
-		parser->should_swap);
+			parser->should_swap);
 		(*index)++;
 	}
 	return (0);
@@ -305,12 +307,12 @@ int		get_sections_lcs_32(t_browser *browser, t_header_parser *parser,
 	uint64_t					i;
 	int							ret;
 
-	i = (uint32_t)((void *)header + sizeof(*header));
+	i = (uint64_t)((void *)header + sizeof(*header));
 	j = 0;
 	header = parser->header_union.header32;
 	while (j < header->ncmds)
 	{
-		lc = (struct load_command*)i;
+		lc = (struct load_command *)i;
 		if ((ret = get_sections_load_command_32(browser, parser, lc, j)))
 			return (ret);
 		j++;
