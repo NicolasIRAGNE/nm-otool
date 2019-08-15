@@ -6,16 +6,17 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/13 17:46:50 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/15 18:00:30 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-t_arg_option g_opts[] = 
+t_arg_option g_opts[] =
 {
 	{"no-sort", 'p', nm_opt_p, "Don't sort; display in symbol-table order"},
-	{"numeric-sort", 'n', nm_opt_n, "Sort numerically rather than alphabetically"},
+	{"numeric-sort", 'n', nm_opt_n,
+		"Sort numerically rather than alphabetically"},
 	{"reverse-sort", 'r', nm_opt_r, "Sort in reverse order"}
 };
 
@@ -23,6 +24,7 @@ t_arg_option g_opts[] =
 ** dump obj filename by creating a list of the parsed architectures
 ** in fill_browser, then printing it one by one in nm_print
 */
+
 int		process_nm(char *filename, t_browser *browser)
 {
 	t_header_parser	parser;
@@ -34,7 +36,6 @@ int		process_nm(char *filename, t_browser *browser)
 	{
 		if (free_browser(browser))
 			return (1);
-//		free_parser(&parser);
 		ft_tree_del(&browser->parsers, free_parser_tree);
 		return (1);
 	}
@@ -47,20 +48,20 @@ int		process_nm(char *filename, t_browser *browser)
 
 int		process_args(t_arg_parser *parser, t_browser *browser)
 {
-	t_list  *lst;
+	t_list			*lst;
+	t_arg_parsed	*test;
 
 	browser->nb_args = parser->nb_args;
-    lst = parser->parsed;
+	lst = parser->parsed;
 	while (lst)
-    {
-        t_arg_parsed *test;
-        test = (t_arg_parsed*)lst->content;
+	{
+		test = (t_arg_parsed*)lst->content;
 		if (test->type == E_ARG)
 		{
 			process_nm(test->long_name, browser);
 		}
-        lst = lst->next;
-    }
+		lst = lst->next;
+	}
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 12:58:24 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/08 19:12:40 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/15 18:05:43 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,11 @@ int							parse_options(int *i, int ac,
 ** print.c
 */
 void						nm_print(t_browser *browser, int force);
+
+/*
+** print_symbols.c
+*/
+void						print_parser_header_intro(t_header_parser *parser);
+void						print_symbol(t_header_parser *parser,
+								t_symbol *symbol, t_browser *browser);
 #endif

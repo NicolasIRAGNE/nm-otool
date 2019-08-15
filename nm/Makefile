@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/18 12:01:42 by ldedier           #+#    #+#              #
-#    Updated: 2019/07/24 09:49:14 by niragne          ###   ########.fr        #
+#    Updated: 2019/08/15 18:06:08 by ldedier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ LIBMACHODIR = ../libmach-o
 LIBMACHO_INCLUDEDIR = $(LIBMACHODIR)/includes
 LIBMACHO = $(LIBMACHODIR)/libmach-o.a
 
-SRCS =	main.c options.c options_tools.c options_func.c print.c
+SRCS =	main.c options.c options_tools.c options_func.c print.c print_symbols.c
 
 SRC	= $(addprefix $(SRCDIR)/, $(SRCS))
 DEP = $(addprefix $(INCLUDES)/,$(DEPS))
