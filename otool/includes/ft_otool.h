@@ -38,7 +38,14 @@ typedef struct		s_otool_flags
 ** print.c
 */
 void	otool_print(t_browser *browser, t_otool_flags *flags);
+int		is_little_endian(void);
 
+/*
+** print_sections.c
+*/
+void	print_parser_header_intro(t_header_parser *parser);
+void    otool_process_print_header_parser(t_header_parser *parser,
+			cpu_type_t cputype, t_section *section);
 /*
 ** flags
 */
@@ -46,5 +53,6 @@ void	flag_h(t_arg_parser *parser, void *flags);
 void	flag_t(t_arg_parser *parser, void *flags);
 void	flag_d(t_arg_parser *parser, void *flags);
 void	flag_invalid(t_arg_parser *parser, void *flags);
+
 
 #endif

@@ -49,7 +49,7 @@ LIBMACHODIR = ../libmach-o
 LIBMACHO_INCLUDEDIR = $(LIBMACHODIR)/includes
 LIBMACHO = $(LIBMACHODIR)/libmach-o.a
 
-SRCS =	main.c print.c flags_1.c
+SRCS =	main.c print.c print_sections.c flags_1.c
 
 SRC	= $(addprefix $(SRCDIR)/, $(SRCS))
 DEP = $(addprefix $(INCLUDES)/,$(DEPS))

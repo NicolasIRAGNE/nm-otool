@@ -27,19 +27,15 @@ t_arg_option g_opts[] =
 int		process_otool(char *filename, t_browser *browser, t_otool_flags *flags)
 {
 	t_header_parser	parser;
-	int ret;
+	int				ret;
 
-	(void)flags;
 	if (init_browser(browser, filename))
 		return (1);
 	init_parser(&parser, browser->ptr, 0, filename);
 	if ((ret = fill_browser(&parser, browser, 1)))
 	{
 		if (ret == ERROR_CORRUPTED)
-		{
 			otool_print(browser, flags);
-		}
-//		free_parser(&parser);
 		ft_tree_del(&browser->parsers, free_parser_tree);
 		free_browser(browser);
 		return (1);
@@ -62,8 +58,10 @@ int		check_valid(t_arg_parser *parser, t_otool_flags *flags)
 	}
 	if (!flags->valid)
 	{
-		shorts = get_shorts(parser);
-		ft_dprintf(2, "error: %s: one of -%s must be specified\n", parser->prog_name, shorts);
+		if (!(shorts = get_shorts(parser)))
+			return (1);
+		ft_dprintf(2, "error: %s: one of -%s must be specified\n",
+			parser->prog_name, shorts);
 		free(shorts);
 		print_usage(parser);
 		return (1);
@@ -71,16 +69,17 @@ int		check_valid(t_arg_parser *parser, t_otool_flags *flags)
 	return (0);
 }
 
-int		process_args(t_arg_parser *parser, t_otool_flags *flags, t_browser *browser)
+int		process_args(t_arg_parser *parser, t_otool_flags *flags,
+			t_browser *browser)
 {
-	t_list  *lst;
+	t_list			*lst;
+	t_arg_parsed	*test;
 
     lst = parser->parsed;
 	if (check_valid(parser, flags))
 		return (1);
 	while (lst)
     {
-        t_arg_parsed *test;
         test = (t_arg_parsed*)lst->content;
 		if (test->type == E_ARG)
 		{
