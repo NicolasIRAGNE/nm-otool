@@ -146,7 +146,7 @@ int		fill_symbol_table32(t_header_parser *parser, t_browser *browser)
 int		get_total_sections32(t_list *segments32)
 {
 	t_list						*ptr;
-	struct segment_command		*seg;
+	struct segment_command	*seg;
 	int							total;
 
 	total = 0;
@@ -194,7 +194,7 @@ int		process_sections_array32(t_header_parser *parser, t_list **segments)
 {
 	int							len;
 	int							i;
-	struct segment_command		*seg;
+	struct segment_command	*seg;
 
 	len = get_total_sections32(*segments);
 	parser->section_arr.size = len;
@@ -327,7 +327,7 @@ int		get_sections_lcs_32(t_browser *browser, t_header_parser *parser,
 int		get_sections32(t_header_parser *parser, t_browser *browser)
 {
 	t_list						*segments;
-	struct mach_header			*header;
+	struct mach_header		*header;
 	int							ret;
 
 	header = parser->header_union.header32;
