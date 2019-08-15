@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/09 14:43:14 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/15 16:42:43 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ void	print_symbol64(t_header_parser *parser, t_symbol64 symbol64,
 	{
 		ft_printf("%016llx %c %s\n", symbol64.nlist->n_value,
 			get_debug(debug, browser->has_bad_index),
-				get_symbol64_name(&symbol64));
+				symbol64.name);
 	}
 	else
 	{
 		ft_printf("%18s %*s\n", "U", (symbol64.length != -1 ? symbol64.length
-			: ft_strlen(get_symbol64_name(&symbol64))),
-				get_symbol64_name(&symbol64));
+			: ft_strlen(symbol64.name)),
+				symbol64.name);
 	}
 }
 
@@ -70,11 +70,11 @@ void	print_symbol32(t_symbol32 symbol32, char debug, t_browser *browser)
 	{
 		ft_printf("%08llx %c %s\n", symbol32.nlist->n_value,
 			get_debug(debug, browser->has_bad_index),
-				get_symbol32_name(&symbol32));
+				symbol32.name);
 	}
 	else
 	{
-		ft_printf("%10s %s\n", "U", get_symbol32_name(&symbol32));
+		ft_printf("%10s %s\n", "U", symbol32.name);
 	}
 }
 

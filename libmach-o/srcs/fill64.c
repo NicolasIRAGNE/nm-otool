@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:29:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/14 19:26:51 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/15 17:34:17 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		process_process_fill_symbol64(struct nlist_64 *nlist,
 		if (fill_debug64(new_symbol, parser->section_arr, browser))
 		{
 			free_symbol(new_symbol);
-			return (2); // == 0 ?
+			return (2);
 		}
 		if (add_symbol_to_browser(parser, browser, new_symbol))
 		{
@@ -218,7 +218,6 @@ int		process_sections_array64(t_header_parser *parser, t_list **segments)
 	return (0);
 }
 
-
 int		corrupted_load_command(struct load_command *lc, t_browser *browser,
 			struct mach_header_64 *header, int index)
 {
@@ -249,7 +248,7 @@ int		corrupted_load_command(struct load_command *lc, t_browser *browser,
 	return (0);
 }
 
-int is_corrupted_segment_command_64(struct segment_command_64 *seg,
+int		is_corrupted_segment_command_64(struct segment_command_64 *seg,
 		t_header_parser *parser, t_browser *browser, int index)
 {
 	if (is_corrupted_data(seg, sizeof(struct segment_command_64),
@@ -339,26 +338,6 @@ int		get_sections64(t_header_parser *parser, t_browser *browser)
 	if ((ret = get_sections_lcs_64(browser, parser, header)))
 		return (ft_lstdel_ptr_ret(&segments, ret));
 	return (process_sections_array64(parser, &segments));
-}
-
-int		add_parser(t_browser *browser, t_header_parser *parser)
-{
-	int ret;
-
-	if (parser->parser_enum == PARSER_ENUM_OBJECT)
-	{
-		if ((ret = (ft_tree_add_sorted_value_no_doubles(&browser->parsers,
-		parser, sizeof(t_header_parser), cmp_parser_ran_off))) == 1)
-			return (1);
-		else if (ret == 2)
-			free_parser(parser);
-		return (0);
-	}
-	else
-	{
-		return (ft_add_to_tree_back(&browser->parsers, parser,
-			sizeof(t_header_parser)));
-	}
 }
 
 /*

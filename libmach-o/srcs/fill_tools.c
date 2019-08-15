@@ -6,113 +6,17 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:35:21 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/13 18:35:49 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/15 16:58:45 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mach_o.h"
-
-char		*get_new_str_from_buffer(char *ptr, size_t n)
-{
-	char *res;
-
-	if (!(res = (char *)malloc(sizeof(char) * n + 1)))
-		return (NULL);
-	ft_memcpy(res, ptr, n);
-	res[n] = '\0';
-	return (res);
-}
-
-char		*compute_symbol64_name(t_symbol64 *symbol, char *symbol_name)
-{
-	if (symbol->bad_index)
-	{
-		if (symbol->length == -1)
-			return (ft_strdup(BAD_INDEX_STR));
-		else
-			return (get_new_str_from_buffer(symbol_name, symbol->length));
-	}
-	return (ft_strdup(symbol_name));
-}
-
-char		*compute_symbol32_name(t_symbol32 *symbol, char *symbol_name)
-{
-	if (symbol->bad_index)
-	{
-		if (symbol->length == -1)
-			return (ft_strdup(BAD_INDEX_STR));
-		else
-			return (get_new_str_from_buffer(symbol_name, symbol->length));
-	}
-	return (ft_strdup(symbol_name));
-}
 
 void		fill_bad_index(t_browser *browser, int index)
 {
 	browser->has_bad_index = 1;
 	browser->bad_string_index = index;
 	browser->bad_symbol_index = 1;
-}
-
-t_symbol	*nm_new_symbol64(struct nlist_64 *nlist, char *symbol_name,
-				int index, t_browser *browser)
-{
-	t_symbol	*symbol;
-
-	(void)nlist;
-	if (!(symbol = (t_symbol *)malloc(sizeof(t_symbol))))
-		return (NULL);
-	symbol->symbol_union.symbol64.nlist = nlist;
-	symbol->symbol_union.symbol64.index = index;
-	if ((symbol->symbol_union.symbol64.bad_index =
-		is_corrupted_string(symbol_name, browser,
-			&symbol->symbol_union.symbol64.length))
-				&& symbol->symbol_union.symbol64.length == -1
-					&& !browser->has_bad_index)
-	{
-		fill_bad_index(browser, index);
-	}
-	if (!(symbol->symbol_union.symbol64.name = compute_symbol64_name(
-		&symbol->symbol_union.symbol64, symbol_name)))
-	{
-		free(symbol);
-		return (NULL);
-	}
-	symbol->symbol_enum = E_SYMBOL_64;
-	return (symbol);
-}
-
-t_symbol	*nm_new_symbol32(struct nlist *nlist, char *symbol_name,
-				int index, t_browser *browser)
-{
-	t_symbol *symbol;
-
-	if (!(symbol = (t_symbol *)malloc(sizeof(t_symbol))))
-		return (NULL);
-	symbol->symbol_union.symbol32.nlist = nlist;
-	symbol->symbol_union.symbol32.index = index;
-	if ((symbol->symbol_union.symbol32.bad_index =
-		is_corrupted_string(symbol_name, browser,
-			&symbol->symbol_union.symbol32.length))
-				&& symbol->symbol_union.symbol32.length == -1)
-	{
-		browser->has_bad_index = 1;
-	}
-	if (!(symbol->symbol_union.symbol32.name = compute_symbol32_name(
-		&symbol->symbol_union.symbol32, symbol_name)))
-	{
-		free(symbol);
-		return (NULL);
-	}
-	symbol->symbol_enum = E_SYMBOL_32;
-	return (symbol);
-}
-
-int			add_symbol_to_browser(t_header_parser *parser,
-			t_browser *browser, t_symbol *new_symbol)
-{
-	return (ft_tree_add_sorted(&parser->symbols, new_symbol,
-				browser, browser->sort_func));
 }
 
 uint32_t	max_uint32(uint32_t a, uint32_t b)
@@ -127,15 +31,4 @@ int			nm_perror(char *error_message, t_browser *browser)
 {
 	ft_dprintf(2, "%s: %s\n", browser->filename, error_message);
 	return (0);
-}
-
-int			should_add_symbol(uint8_t n_type, uint16_t n_desc, char *name,
-			t_browser *browser)
-{
-	(void)browser;
-	(void)name;
-	(void)n_desc;
-	if (n_type & N_STAB)
-		return (0);
-	return (1);
 }

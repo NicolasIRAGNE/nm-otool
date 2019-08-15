@@ -1,6 +1,4 @@
-305a306,310
+1053a1054,1056
 > all/lib_long_name.a(azertyuiopqsdfghjklmwxcvbn.o):
->                  U ___asan_init
->                  U ___asan_version_mismatch_check_apple_902
-> 0000000000000000 t _asan.module_ctor
-> 
+> Contents of (__TEXT,__text) section
+> 0000000000000000	50 e8 00 00 00 00 e8 00 00 00 00 58 c3 

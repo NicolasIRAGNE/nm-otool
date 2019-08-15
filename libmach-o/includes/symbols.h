@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 21:11:46 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/16 17:55:47 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/15 16:53:43 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,7 @@ long						cmp_symbol_numerical(void *s1, void *s2, void *env);
 long						cmp_symbol_none(void *s1, void *s2, void *env);
 long						cmp_symbol_alpha_inv(void *s1, void *s2, void *env);
 long						cmp_symbol_numerical_inv(void *s1,
+								void *s2, void *env);
+long						cmp_symbol_numerical2(void *s1,
 								void *s2, void *env);
 #endif

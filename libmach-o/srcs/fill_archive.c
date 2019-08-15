@@ -6,58 +6,23 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 18:19:32 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/14 18:25:20 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/15 17:03:46 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mach_o.h"
 
-int		process_fill_identifier(t_header_parser *parser,
-			t_browser *browser, char *identifier, int *address)
-{
-	int len;
-
-	len = ft_strlen(identifier);
-	if ((off_t)(*address + sizeof(int32_t)) > browser->st.st_size)
-	{
-		return (-1);
-	}
-	if (!ft_strncmp((char *)parser->ptr + *address, identifier, len))
-	{
-		*address = align(*address + len + 1, 4);
-		return (0);
-	}
-	return (1);
-}
-
-int		fill_identifier(t_header_parser *parser, t_browser *browser,
-			int *address)
-{
-	int ret;
-
-	if ((ret = process_fill_identifier(parser, browser,
-		SYMDEF_SORTED, address)))
-	{
-		if (ret == -1)
-		{
-			return (1);
-		}
-		if ((ret = process_fill_identifier(parser, browser,
-			SYMDEF, address)))
-		{
-			if (ret == -1)
-				return (1);
-		}
-	}
-	return (0);
-}
-
 int		fill_ranlib(t_header_parser *parser, t_browser *browser,
 			struct ranlib ranlib)
 {
-	//check size;
-	return (fill_archive_member(browser, parser, ranlib.ran_off,
-		parser->parser_union.ar.stringtable + ranlib.ran_un.ran_strx));
+	if (ranlib.ran_un.ran_strx > parser->parser_union.ar.string_array_size)
+	{
+		ft_dprintf(2, "member exceeds array size\n");
+		return (1);
+	}
+	else
+		return (fill_archive_member(browser, parser, ranlib.ran_off,
+			parser->parser_union.ar.stringtable + ranlib.ran_un.ran_strx));
 }
 
 int		process_fill_browser_archive(t_header_parser *parser,
@@ -96,7 +61,8 @@ int		get_ranlib_struct(t_header_parser *parser, t_browser *browser,
 	}
 	parser->parser_union.ar.ranlib_array =
 		(struct ranlib *)((void *)parser->ptr + *address);
-	*address += parser->parser_union.ar.ranlib_array_len * sizeof(struct ranlib);
+	*address += parser->parser_union.ar.ranlib_array_len
+		* sizeof(struct ranlib);
 	if ((off_t)(*address + sizeof(uint32_t)) > browser->st.st_size)
 	{
 		return (1);

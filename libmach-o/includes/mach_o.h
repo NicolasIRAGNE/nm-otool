@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 11:40:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/14 19:19:28 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/15 16:56:55 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,8 @@ struct						s_browser
 	t_tree					*parsers;
 	t_bin					bin;
 	t_list					**segments;
+	int						returned;
+	int						cmp_ret;
 };
 
 typedef struct s_browser	t_browser;
@@ -173,6 +175,7 @@ t_symbol					*nm_new_symbol64(struct nlist_64 *nlist,
 int							should_add_symbol(uint8_t n_type, uint16_t n_stab,
 								char *name, t_browser *browser);
 uint32_t					max_uint32(uint32_t a, uint32_t b);
+void						fill_bad_index(t_browser *browser, int index);
 /*
 ** fill.c
 */
@@ -195,7 +198,14 @@ int							fill_browser64(t_header_parser *parser,
 int							fill_browser_fat32(
 								t_header_parser *parser,
 									t_browser *browser);
+/*
+** fill_fat32_tools.c
+*/
 char						*get_cpu_name(cpu_type_t cpu, cpu_subtype_t sub);
+int							is_corrupted_fat_arch(struct fat_arch *fat_arch,
+								t_header_parser *parser, t_browser *browser);
+int							fat_corrupted_print_error_alignment(
+								struct fat_arch *fat_arch, t_browser *browser);
 /*
 ** print.c
 */
@@ -236,6 +246,7 @@ void	swap_nlist(struct nlist *nlist, int should_swap);
 void	swap_section(struct section *section, int should_swap);
 void	swap_section_64(struct section_64 *section, int should_swap);
 void	swap_bytes(void *to_swap, size_t size, int should_swap);
+void	swap_uint32(uint32_t *value, int should_swap);
 /*
 ** corrupted.c
 */
