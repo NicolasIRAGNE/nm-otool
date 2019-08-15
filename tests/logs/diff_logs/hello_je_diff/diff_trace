@@ -1,0 +1,26 @@
+2,3d1
+< 0100000000000000 ? bad string index
+< 0100000000000000 ? bad string index
+7d4
+< 0100000000000000 C bad string index
+10d6
+< 0100000000000000 C bad string index
+11a8
+> 0100000000000000 C bad string index
+15a13
+> 0100000000000000 ? bad string index
+19a18
+> 0100000000000000 C bad string index
+22d20
+< 0100000000000000 C bad string index
+25d22
+< 0100000000000000 C bad string index
+29a27
+> 0100000000000000 C bad string index
+33a32,33
+> 0100000000000000 C bad string index
+> 0100000000000000 ? bad string index
+212d211
+< ea00000000000000 ? bad string index
+213a213
+> ea00000000000000 ? bad string index

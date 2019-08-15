@@ -12,6 +12,8 @@
 
 #include "mach_o.h"
 
+static int verbose = 0;
+
 int		identify_as_archive(t_header_parser *parser, t_browser *browser)
 {
 	int identifier_len;
@@ -22,27 +24,9 @@ int		identify_as_archive(t_header_parser *parser, t_browser *browser)
 			(char *)parser->ptr, identifier_len));
 }
 
-void	get_header(t_header_parser *parser, t_browser *browser, int first)
+void	get_header_others(t_header_parser *parser, t_browser *browser)
 {
-	int verbose;
-
-	verbose = 0;
-	parser->magic = *(uint32_t*)parser->ptr;
-	if (parser->magic == MH_MAGIC_64 || parser->magic == MH_CIGAM_64)
-	{
-		if (verbose)
-			ft_printf("Executable 64 bits\n");
-		parser->type = E_64;
-		parser->header_union.header64 = (struct mach_header_64*)parser->ptr;
-	}
-	else if (parser->magic == MH_MAGIC || parser->magic == MH_CIGAM)
-	{
-		if (verbose)
-			ft_printf("Executable 32 bits\n");
-		parser->type = E_32;
-		parser->header_union.header32 = (struct mach_header*)parser->ptr;
-	}
-	else if (parser->magic == FAT_MAGIC || parser->magic == FAT_CIGAM)
+	if (parser->magic == FAT_MAGIC || parser->magic == FAT_CIGAM)
 	{
 		if (verbose)
 			ft_printf("Executable fat 32 bits\n");
@@ -64,6 +48,27 @@ void	get_header(t_header_parser *parser, t_browser *browser, int first)
 	}
 	else
 		parser->type = E_UNKNOWN;
+}
+
+void	get_header(t_header_parser *parser, t_browser *browser, int first)
+{
+	parser->magic = *(uint32_t*)parser->ptr;
+	if (parser->magic == MH_MAGIC_64 || parser->magic == MH_CIGAM_64)
+	{
+		if (verbose)
+			ft_printf("Executable 64 bits\n");
+		parser->type = E_64;
+		parser->header_union.header64 = (struct mach_header_64*)parser->ptr;
+	}
+	else if (parser->magic == MH_MAGIC || parser->magic == MH_CIGAM)
+	{
+		if (verbose)
+			ft_printf("Executable 32 bits\n");
+		parser->type = E_32;
+		parser->header_union.header32 = (struct mach_header*)parser->ptr;
+	}
+	else
+		get_header_others(parser, browser);
 	if (first)
 		browser->from = parser->type;
 }
@@ -97,7 +102,7 @@ void	swap_header(t_header_parser *parser)
 ** any symbols
 **
 ** in the case of fat_headers, this function will call itself
-** recursively for all theheaders found in the fat_header
+** recursively for all the headers found in the fat_header
 */
 
 int		fill_browser(t_header_parser *parser, t_browser *browser, int first)

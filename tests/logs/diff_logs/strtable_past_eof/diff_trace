@@ -1,0 +1,4 @@
+15c15
+< 0f000000bd000000 I bad string index
+---
+>                  I bad string index (indirect for ?)

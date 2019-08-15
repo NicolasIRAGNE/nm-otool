@@ -1,0 +1,4 @@
+1096c1096
+< 0000000000003cb1 I _krb5_get_init_creds_opt_set_salt
+---
+>                  I _krb5_get_init_creds_opt_set_salt (indirect for _krb5_get_init_creds_opt_set_salt)

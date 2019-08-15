@@ -33,7 +33,7 @@ SRCS_NO_PREFIX = corrupted.c debug.c fill.c fill32.c fill64.c fill_archive.c \
 				 free.c init.c swap.c macho_perror.c \
 				 symbols.c symbols_sort.c symbols_sort_inv.c tools.c sections.c
 
-INCLUDES_NO_PREFIX = mach_o.h
+INCLUDES_NO_PREFIX = mach_o.h sections.h symbols.h
 
 SOURCES = $(addprefix $(SRCDIR)/, $(SRCS_NO_PREFIX))
 OBJECTS = $(addprefix $(OBJDIR)/, $(SRCS_NO_PREFIX:%.c=%.o))

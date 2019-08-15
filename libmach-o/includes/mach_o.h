@@ -83,10 +83,20 @@ typedef struct				s_object
 	uint32_t				ran_off;
 }							t_object;
 
+typedef struct				s_archive
+{
+	uint32_t				ranlib_array_len;
+	uint32_t				ranlib_array_size;
+	uint32_t				string_array_size;
+	struct ranlib			*ranlib_array;
+	char					*stringtable;
+}							t_archive;
+
 typedef struct				u_parser_union
 {
 	t_arch					arch;
 	t_object				object;
+	t_archive				ar;
 }							t_parser_union;
 
 typedef struct				s_header_parser

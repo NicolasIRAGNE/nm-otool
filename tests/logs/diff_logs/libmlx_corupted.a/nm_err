@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/nm: all/libmlx_corupted.a truncated or malformed archive (offset to next archive member past the end of the archive after member mlx_shaders.o)
+

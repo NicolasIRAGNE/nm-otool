@@ -1,0 +1,12 @@
+7c7
+< 1400000001000032 I bad string index
+---
+>                  I bad string index (indirect for ?)
+13c13
+< 1e00000001000032 I bad string index
+---
+>                  I bad string index (indirect for ?)
+17c17
+< 2700000001000032 I bad string index
+---
+>                  I bad string index (indirect for ?)
