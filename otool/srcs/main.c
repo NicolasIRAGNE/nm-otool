@@ -6,13 +6,13 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/13 18:03:02 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/16 15:28:53 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_otool.h"
 
-t_arg_option g_opts[] = 
+t_arg_option g_opts[] =
 {
 	{"mach-header", 'h', flag_h, "print the mach headers"},
 	{"text", 't', flag_t, "print the text section"},
@@ -61,7 +61,7 @@ int		check_valid(t_arg_parser *parser, t_otool_flags *flags)
 		if (!(shorts = get_shorts(parser)))
 			return (1);
 		ft_dprintf(2, "error: %s: one of -%s must be specified\n",
-			parser->prog_name, shorts);
+				parser->prog_name, shorts);
 		free(shorts);
 		print_usage(parser);
 		return (1);
@@ -70,37 +70,37 @@ int		check_valid(t_arg_parser *parser, t_otool_flags *flags)
 }
 
 int		process_args(t_arg_parser *parser, t_otool_flags *flags,
-			t_browser *browser)
+		t_browser *browser)
 {
 	t_list			*lst;
 	t_arg_parsed	*test;
 
-    lst = parser->parsed;
+	lst = parser->parsed;
 	if (check_valid(parser, flags))
 		return (1);
 	while (lst)
-    {
-        test = (t_arg_parsed*)lst->content;
+	{
+		test = (t_arg_parsed*)lst->content;
 		if (test->type == E_ARG)
 		{
 			if (process_otool(test->long_name, browser, flags))
 				return (1);
 		}
-        lst = lst->next;
-    }
+		lst = lst->next;
+	}
 	return (0);
 }
 
 int		main(int ac, char **av)
 {
-	t_browser	browser;
-	t_otool_flags flags;
-    t_arg_parser parser;
+	t_browser		browser;
+	t_otool_flags	flags;
+	t_arg_parser	parser;
 
 	(void)ac;
 	ft_bzero(&flags, sizeof(flags));
 	opt_init_parser(&parser, flag_invalid, av[0]);
-    opt_add_to_parser(&parser, g_opts, sizeof(g_opts));
+	opt_add_to_parser(&parser, g_opts, sizeof(g_opts));
 	opt_parse_args(&parser, av + 1);
 	process_opt(&parser, &flags);
 	init_browser_general(&browser, av[0], E_BIN_OTOOL);

@@ -6,13 +6,11 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/13 18:26:58 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/16 16:09:05 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mach_o.h"
-
-static int verbose = 0;
 
 int		identify_as_archive(t_header_parser *parser, t_browser *browser)
 {
@@ -24,7 +22,8 @@ int		identify_as_archive(t_header_parser *parser, t_browser *browser)
 			(char *)parser->ptr, identifier_len));
 }
 
-void	get_header_others(t_header_parser *parser, t_browser *browser)
+void	get_header_others(t_header_parser *parser, t_browser *browser,
+			int verbose)
 {
 	if (parser->magic == FAT_MAGIC || parser->magic == FAT_CIGAM)
 	{
@@ -52,6 +51,9 @@ void	get_header_others(t_header_parser *parser, t_browser *browser)
 
 void	get_header(t_header_parser *parser, t_browser *browser, int first)
 {
+	int verbose;
+
+	verbose = 0;
 	parser->magic = *(uint32_t*)parser->ptr;
 	if (parser->magic == MH_MAGIC_64 || parser->magic == MH_CIGAM_64)
 	{
@@ -68,7 +70,7 @@ void	get_header(t_header_parser *parser, t_browser *browser, int first)
 		parser->header_union.header32 = (struct mach_header*)parser->ptr;
 	}
 	else
-		get_header_others(parser, browser);
+		get_header_others(parser, browser, verbose);
 	if (first)
 		browser->from = parser->type;
 }

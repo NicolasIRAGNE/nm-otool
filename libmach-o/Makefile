@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/18 11:31:28 by ldedier           #+#    #+#              #
-#    Updated: 2019/08/15 17:15:43 by ldedier          ###   ########.fr        #
+#    Updated: 2019/08/16 15:13:01 by ldedier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,9 @@ SRCS_NO_PREFIX = corrupted.c debug.c fill.c fill32.c fill64.c fill_archive.c \
 				 free.c init.c swap.c swap64.c swap32.c swapfat.c macho_perror.c \
 				 symbols.c symbols_sort.c symbols_sort_inv.c tools.c sections.c \
 				 symbols_sort_numerical.c symbol_tools.c new_symbols.c \
-				 add_objects.c fill_fat32_tools.c
+				 add_objects.c fill_fat32_tools.c corrupted_fill64.c \
+				 fill_sections64.c fill64_tools.c corrupted_fill32.c \
+				 fill32_tools.c fill_sections32.c
 
 INCLUDES_NO_PREFIX = mach_o.h sections.h symbols.h
 

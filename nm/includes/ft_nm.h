@@ -6,31 +6,31 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 12:58:24 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/15 18:05:43 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/16 15:25:37 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_NM
-# define FT_NM
+#ifndef FT_NM_H
+# define FT_NM_H
 
 # include "libft.h"
 # include "mach_o.h"
 
 # define DEFAULT_NM_FILE	"a.out"
 
-typedef struct		s_nm_flags
+typedef struct				s_nm_flags
 {
-	int			valid : 1;
-	int			flag_n : 1;
-	int			flag_p : 1;
-	int			flag_r : 1;
-}					t_nm_flags;
+	int						valid : 1;
+	int						flag_n : 1;
+	int						flag_p : 1;
+	int						flag_r : 1;
+}							t_nm_flags;
 
-typedef	struct 		s_nm_wrapper
+typedef	struct				s_nm_wrapper
 {
-	t_browser		*browser;
-	t_nm_flags		*flags;
-}					t_nm_wrapper;
+	t_browser				*browser;
+	t_nm_flags				*flags;
+}							t_nm_wrapper;
 
 /*
 ** options_tools.c

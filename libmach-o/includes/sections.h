@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 06:06:04 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/18 17:48:52 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/16 15:51:31 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,5 @@ char						*get_section_segname(t_section *section);
 uint64_t					get_section_addr(t_section *section);
 uint64_t					get_section_size(t_section *section);
 uint64_t					get_section_offset(t_section *section);
-
 
 #endif

@@ -1,0 +1,81 @@
+337,414c337
+< 000000b0	ff 75 08 e8 48 ff ff ff 83 c4 08 89 45 f4 8b 45 
+< 000000c0	f4 83 c0 01 c1 e0 02 83 ec 0c 50 e8 30 ff ff ff 
+< 000000d0	83 c4 10 89 45 ec 83 7d ec 00 0f 84 91 00 00 00 
+< 000000e0	eb 6d eb 04 83 45 08 01 8b 45 08 0f b6 00 84 c0 
+< 000000f0	74 0b 8b 45 08 0f b6 00 3a 45 e4 74 e7 8b 45 f0 
+< 00000100	8d 50 01 89 55 f0 8d 14 85 00 00 00 00 8b 45 ec 
+< 00000110	8d 34 02 0f be 45 e4 83 ec 08 50 ff 75 08 e8 37 
+< 00000120	ff ff ff 83 c4 10 83 ec 04 50 6a 00 ff 75 08 e8 
+< 00000130	cc fe ff ff 83 c4 10 89 06 0f be 45 e4 83 ec 08 
+< 00000140	50 ff 75 08 e8 11 ff ff ff 83 c4 10 01 45 08 8b 
+< 00000150	45 f4 8d 50 ff 89 55 f4 85 c0 75 86 8b 45 f0 8d 
+< 00000160	14 85 00 00 00 00 8b 45 ec 01 d0 c7 00 00 00 00 
+< 00000170	00 8b 45 ec 8b 75 fc c9 c3 
+< all/tofix_segv(ft_itoa.o):
+< Contents of (__TEXT,__text) section
+< 00000000	55 89 e5 83 ec 10 c7 45 fc 00 00 00 00 83 7d 08 
+< 00000010	00 79 03 f7 5d 08 83 7d 08 00 75 07 c7 45 fc 01 
+< 00000020	00 00 00 eb 1f 8b 4d 08 ba 67 66 66 66 89 c8 f7 
+< 00000030	ea c1 fa 02 89 c8 c1 f8 1f 29 c2 89 d0 89 45 08 
+< 00000040	83 45 fc 01 83 7d 08 00 75 db 8b 45 fc c9 c3 55 
+< 00000050	89 e5 83 ec 18 8b 45 08 89 45 f4 83 ec 0c ff 75 
+< 00000060	08 e8 9a ff ff ff 83 c4 10 8d 50 ff 8b 45 f4 01 
+< 00000070	d0 89 45 f0 eb 29 8b 45 f4 0f b6 00 88 45 ef 8b 
+< 00000080	45 f4 8d 50 01 89 55 f4 8b 55 f0 0f b6 12 88 10 
+< 00000090	8b 45 f0 8d 50 ff 89 55 f0 0f b6 55 ef 88 10 8b 
+< 000000a0	45 f4 3b 45 f0 72 cf 8b 45 08 c9 c3 55 89 e5 56 
+< 000000b0	83 ec 14 8b 45 08 c1 e8 1f 0f b6 c0 89 45 e8 83 
+< 000000c0	7d e8 00 74 03 f7 5d 08 ff 75 08 e8 30 ff ff ff 
+< 000000d0	83 c4 04 89 45 f4 8b 55 f4 8b 45 e8 01 d0 83 ec 
+< 000000e0	0c 50 e8 19 ff ff ff 83 c4 10 89 45 f0 83 7d f0 
+< 000000f0	00 0f 84 80 00 00 00 8b 45 f0 89 45 ec eb 4e 8b 
+< 00000100	75 ec 8d 46 01 89 45 ec 8b 4d 08 ba 67 66 66 66 
+< 00000110	89 c8 f7 ea c1 fa 02 89 c8 c1 f8 1f 29 c2 89 d0 
+< 00000120	c1 e0 02 01 d0 01 c0 29 c1 89 ca 89 d0 83 c0 30 
+< 00000130	88 06 8b 4d 08 ba 67 66 66 66 89 c8 f7 ea c1 fa 
+< 00000140	02 89 c8 c1 f8 1f 29 c2 89 d0 89 45 08 8b 45 f4 
+< 00000150	8d 50 ff 89 55 f4 85 c0 7f a5 83 7d e8 00 74 06 
+< 00000160	8b 45 ec c6 00 2d 83 ec 0c ff 75 f0 e8 de fe ff 
+< 00000170	ff 83 c4 10 89 45 f0 8b 45 f0 8b 75 fc c9 c3 
+< all/tofix_segv(ft_putchar.o):
+< Contents of (__TEXT,__text) section
+< 00000000	55 89 e5 83 ec 18 8b 45 08 88 45 f4 83 ec 04 6a 
+< 00000010	01 8d 45 f4 50 6a 01 e8 e4 ff ff ff 83 c4 10 c9 
+< 00000020	c3 
+< all/tofix_segv(ft_putstr.o):
+< Contents of (__TEXT,__text) section
+< 00000000	55 89 e5 83 ec 08 83 ec 0c ff 75 08 e8 ef ff ff 
+< 00000010	ff 83 c4 10 83 ec 04 50 ff 75 08 6a 01 e8 de ff 
+< 00000020	ff ff 83 c4 10 c9 c3 
+< all/tofix_segv(ft_putendl.o):
+< Contents of (__TEXT,__text) section
+< 00000000	55 89 e5 53 83 ec 04 e8 f4 ff ff ff 83 ec 0c ff 
+< 00000010	75 08 e8 e9 ff ff ff 83 c4 10 83 ec 04 50 ff 75 
+< 00000020	08 6a 01 e8 d8 ff ff ff 83 c4 10 83 ec 04 6a 01 
+< 00000030	8d 83 3a 00 00 00 50 6a 01 e8 c2 ff ff ff 83 c4 
+< 00000040	10 8b 5d fc c9 c3 
+< all/tofix_segv(ft_putnbr.o):
+< Contents of (__TEXT,__text) section
+< 00000000	55 89 e5 83 ec 08 83 ec 0c ff 75 08 e8 ef ff ff 
+< 00000010	ff 83 c4 10 83 ec 0c 50 e8 e3 ff ff ff 83 c4 10 
+< 00000020	c9 c3 
+< all/tofix_segv(ft_putchar_fd.o):
+< Contents of (__TEXT,__text) section
+< 00000000	55 89 e5 83 ec 18 8b 45 08 88 45 f4 83 ec 04 6a 
+< 00000010	01 8d 45 f4 50 ff 75 0c e8 e3 ff ff ff 83 c4 10 
+< 00000020	c9 c3 
+< all/tofix_segv(ft_putstr_fd.o):
+< Contents of (__TEXT,__text) section
+< 00000000	55 89 e5 83 ec 08 83 ec 0c ff 75 08 e8 ef ff ff 
+< 00000010	ff 83 c4 10 83 ec 04 50 ff 75 08 ff 75 0c e8 dd 
+< 00000020	ff ff ff 83 c4 10 c9 c3 
+< all/tofix_segv(ft_putendl_fd.o):
+< Contents of (__TEXT,__text) section
+< 00000000	55 89 e5 53 83 ec 04 e8 f4 ff ff ff 83 ec 0c ff 
+< 00000010	75 08 e8 e9 ff ff ff 83 c4 10 83 ec 04 50 ff 75 
+< 00000020	08 ff 75 0c e8 d7 ff ff ff 83 c4 10 83 ec 04 6a 
+< 00000030	01 8d 83 3c 00 00 00 50 ff 75 0c e8 c0 ff ff ff 
+< 00000040	83 c4 10 8b 5d fc c9 c3 
+---
+> 000000b0	ff 75

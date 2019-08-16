@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:24:40 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/13 16:56:51 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/16 15:31:48 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,26 @@ int		is_little_endian(void)
 		return (0);
 }
 
-void	otool_print_header_parser(t_header_parser *parser,
-			t_browser *browser, int len, t_otool_flags *flags)
+void	process_otool_print_header_parser(t_header_parser *parser,
+			t_otool_flags *flags)
 {
 	t_section *section;
 
+	if (flags->flag_t && (section = parser->text_section))
+	{
+		otool_process_print_header_parser(parser,
+				parser->parser_union.arch.cputype, section);
+	}
+	if (flags->flag_d && (section = parser->data_section))
+	{
+		otool_process_print_header_parser(parser,
+				parser->parser_union.arch.cputype, section);
+	}
+}
+
+void	otool_print_header_parser(t_header_parser *parser,
+			t_browser *browser, int len, t_otool_flags *flags)
+{
 	(void)len;
 	print_parser_header_intro(parser);
 	if (browser->has_bad_index)
@@ -39,16 +54,7 @@ void	otool_print_header_parser(t_header_parser *parser,
 						browser->bad_symbol_index);
 		return ;
 	}
-	if (flags->flag_t && (section = parser->text_section))
-	{
-		otool_process_print_header_parser(parser,
-			parser->parser_union.arch.cputype, section);
-	}
-	if (flags->flag_d && (section = parser->data_section))
-	{
-		otool_process_print_header_parser(parser,
-			parser->parser_union.arch.cputype, section);
-	}
+	process_otool_print_header_parser(parser, flags);
 }
 
 void	process_otool_print_tree(t_browser *browser, t_tree *tree, int len,
