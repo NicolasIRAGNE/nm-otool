@@ -1,0 +1,4 @@
+0a1,3
+> Mach header
+>       magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags
+>  0xfeedfacf 16777223          3  0x00           6    17       1800 0x02100085

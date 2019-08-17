@@ -1,0 +1,343 @@
+make -C libft
+make[1]: Nothing to be done for `all'.
+make -C libmach-o libcompiled
+make[2]: `libmach-o.a' is up to date.
+make -C otool libcompiled
+make[2]: `ft_otool' is up to date.
+make -C nm libcompiled
+make[2]: `ft_nm' is up to date.
+rsync -u nm/ft_nm .
+rsync -u otool/ft_otool .
+processing ===> all/32_exe_hard <====
+-e [32mno diff for file all/32_exe_hard[39m
+processing ===> all/32_exe_hard_corupted <====
+-e [32mno diff for file all/32_exe_hard_corupted[39m
+processing ===> all/64_bundle <====
+-e [32mno diff for file all/64_bundle[39m
+processing ===> all/64_corrupted_string_table <====
+-e [32mno diff for file all/64_corrupted_string_table[39m
+processing ===> all/64_exe_easy <====
+-e [32mno diff for file all/64_exe_easy[39m
+processing ===> all/64_exe_hard <====
+-e [32mno diff for file all/64_exe_hard[39m
+processing ===> all/64_exe_hard_corupted <====
+-e [32mno diff for file all/64_exe_hard_corupted[39m
+processing ===> all/64_exe_medium <====
+-e [32mno diff for file all/64_exe_medium[39m
+processing ===> all/64_lib_dynamic_hard <====
+-e [32mno diff for file all/64_lib_dynamic_hard[39m
+processing ===> all/64_lib_dynamic_medium <====
+-e [32mno diff for file all/64_lib_dynamic_medium[39m
+processing ===> all/MachO-OSX-ppc-and-i386-bash <====
+-e [32mno diff for file all/MachO-OSX-ppc-and-i386-bash[39m
+processing ===> all/MachO-OSX-ppc-openssl-1.0.1h <====
+-e [32mno diff for file all/MachO-OSX-ppc-openssl-1.0.1h[39m
+processing ===> all/MachO-OSX-x64-ls <====
+-e [32mno diff for file all/MachO-OSX-x64-ls[39m
+processing ===> all/MachO-OSX-x86-ls <====
+-e [32mno diff for file all/MachO-OSX-x86-ls[39m
+processing ===> all/MachO-iOS-arm1176JZFS-bash <====
+-e [32mno diff for file all/MachO-iOS-arm1176JZFS-bash[39m
+processing ===> all/MachO-iOS-armv7-armv7s-arm64-Helloworld <====
+-e [32mno diff for file all/MachO-iOS-armv7-armv7s-arm64-Helloworld[39m
+processing ===> all/MachO-iOS-armv7s-Helloworld <====
+-e [32mno diff for file all/MachO-iOS-armv7s-Helloworld[39m
+processing ===> all/PN548_API.dylib <====
+-e [32mno diff for file all/PN548_API.dylib[39m
+processing ===> all/PN548_HAL_OSX.dylib <====
+-e [32mno diff for file all/PN548_HAL_OSX.dylib[39m
+processing ===> all/PN548_OSX.dylib <====
+-e [32mno diff for file all/PN548_OSX.dylib[39m
+processing ===> all/a <====
+-e [32mno diff for file all/a[39m
+processing ===> all/appsleepd <====
+-e [32mno diff for file all/appsleepd[39m
+processing ===> all/ar0 <====
+-e [32mno diff for file all/ar0[39m
+processing ===> all/audiodevice <====
+-e [32mno diff for file all/audiodevice[39m
+processing ===> all/audiodevice_arch_plus_1 <====
+-e [32mno diff for file all/audiodevice_arch_plus_1[39m
+processing ===> all/audiodevice_arch_plus_10 <====
+-e [32mno diff for file all/audiodevice_arch_plus_10[39m
+processing ===> all/audiodevice_arch_plus_2 <====
+-e [32mno diff for file all/audiodevice_arch_plus_2[39m
+processing ===> all/audiodevice_corupted <====
+-e [32mno diff for file all/audiodevice_corupted[39m
+processing ===> all/bad_string_index <====
+-e [32mno diff for file all/bad_string_index[39m
+processing ===> all/bash <====
+-e [32mno diff for file all/bash[39m
+processing ===> all/bash-ppc_7400 <====
+-e [32mno diff for file all/bash-ppc_7400[39m
+processing ===> all/cfprefsd <====
+-e [32mno diff for file all/cfprefsd[39m
+processing ===> all/compile.sh <====
+-e [32mno diff for file all/compile.sh[39m
+processing ===> all/count_32 <====
+-e [32mno diff for file all/count_32[39m
+processing ===> all/count_32.o <====
+-e [32mno diff for file all/count_32.o[39m
+processing ===> all/count_64 <====
+-e [32mno diff for file all/count_64[39m
+processing ===> all/count_64.o <====
+-e [32mno diff for file all/count_64.o[39m
+processing ===> all/curl_chibre <====
+-e [32mno diff for file all/curl_chibre[39m
+processing ===> all/curl_truncated_load <====
+-e [32mno diff for file all/curl_truncated_load[39m
+processing ===> all/diff <====
+-e [32mno diff for file all/diff[39m
+processing ===> all/distnoted <====
+-e [32mno diff for file all/distnoted[39m
+processing ===> all/empty <====
+-e [32mno diff for file all/empty[39m
+processing ===> all/fat_bad_string_index <====
+-e [32mno diff for file all/fat_bad_string_index[39m
+processing ===> all/fat_hard <====
+-e [32mno diff for file all/fat_hard[39m
+processing ===> all/fat_hard_corupted <====
+-e [32mno diff for file all/fat_hard_corupted[39m
+processing ===> all/fat_not_fail_except_one <====
+-e [32mno diff for file all/fat_not_fail_except_one[39m
+processing ===> all/fat_one_arch_system <====
+-e [32mno diff for file all/fat_one_arch_system[39m
+processing ===> all/fichier_vide <====
+-e [32mno diff for file all/fichier_vide[39m
+processing ===> all/ft_nm <====
+-e [32mno diff for file all/ft_nm[39m
+processing ===> all/ft_nm32 <====
+-e [32mno diff for file all/ft_nm32[39m
+processing ===> all/gcc-6-ppc_7400 <====
+-e [32mno diff for file all/gcc-6-ppc_7400[39m
+processing ===> all/global <====
+-e [32mno diff for file all/global[39m
+processing ===> all/hello_32 <====
+-e [32mno diff for file all/hello_32[39m
+processing ===> all/hello_32.o <====
+-e [32mno diff for file all/hello_32.o[39m
+processing ===> all/hello_64 <====
+-e [32mno diff for file all/hello_64[39m
+processing ===> all/hello_64.o <====
+-e [32mno diff for file all/hello_64.o[39m
+processing ===> all/hello_je_diff <====
+-e [32mno diff for file all/hello_je_diff[39m
+processing ===> all/hmmm_je_met_mon_gros_doigt_de_pied <====
+-e [32mno diff for file all/hmmm_je_met_mon_gros_doigt_de_pied[39m
+processing ===> all/i386 <====
+-e [32mno diff for file all/i386[39m
+processing ===> all/incomplete_fat <====
+-e [32mno diff for file all/incomplete_fat[39m
+processing ===> all/indirect_bad_string <====
+-e [32mno diff for file all/indirect_bad_string[39m
+processing ===> all/last_byte_nl <====
+-e [32mno diff for file all/last_byte_nl[39m
+processing ===> all/launchctl-ppc_7400 <====
+-e [32mno diff for file all/launchctl-ppc_7400[39m
+processing ===> all/lc_past_eof <====
+-e [32mno diff for file all/lc_past_eof[39m
+processing ===> all/lc_past_eof2 <====
+-e [32mno diff for file all/lc_past_eof2[39m
+processing ===> all/lc_past_eof3 <====
+-e [32mno diff for file all/lc_past_eof3[39m
+processing ===> all/libAccountPolicyTranslation.dylib <====
+-e [32mno diff for file all/libAccountPolicyTranslation.dylib[39m
+processing ===> all/libFosl_dynamic.dylib <====
+-e [32mno diff for file all/libFosl_dynamic.dylib[39m
+processing ===> all/lib_archive_medium <====
+-e [32mno diff for file all/lib_archive_medium[39m
+processing ===> all/lib_long_name.a <====
+-e [91mdiff for file all/lib_long_name.a logged in logs/diff_logs/lib_long_name.a[39m
+processing ===> all/lib_static.a <====
+-e [32mno diff for file all/lib_static.a[39m
+processing ===> all/libarchive.dylib <====
+-e [32mno diff for file all/libarchive.dylib[39m
+processing ===> all/libate.dylib <====
+-e [32mno diff for file all/libate.dylib[39m
+processing ===> all/libblas.dylib <====
+-e [32mno diff for file all/libblas.dylib[39m
+processing ===> all/libc++.1.dylib <====
+-e [32mno diff for file all/libc++.1.dylib[39m
+processing ===> all/libc++.dylib <====
+-e [32mno diff for file all/libc++.dylib[39m
+processing ===> all/libcblas.dylib <====
+-e [32mno diff for file all/libcblas.dylib[39m
+processing ===> all/libclapack.dylib <====
+-e [32mno diff for file all/libclapack.dylib[39m
+processing ===> all/libcom_err.dylib <====
+-e [32mno diff for file all/libcom_err.dylib[39m
+processing ===> all/libcompression.dylib <====
+-e [32mno diff for file all/libcompression.dylib[39m
+processing ===> all/libcoretls.dylib <====
+-e [32mno diff for file all/libcoretls.dylib[39m
+processing ===> all/libdes425.dylib <====
+-e [32mno diff for file all/libdes425.dylib[39m
+processing ===> all/libdns_services.dylib <====
+-e [32mno diff for file all/libdns_services.dylib[39m
+processing ===> all/libempty.a <====
+-e [91mdiff for file all/libempty.a logged in logs/diff_logs/libempty.a[39m
+processing ===> all/libextension.dylib <====
+-e [32mno diff for file all/libextension.dylib[39m
+processing ===> all/libf77lapack.dylib <====
+-e [32mno diff for file all/libf77lapack.dylib[39m
+processing ===> all/libform.5.4.dylib <====
+-e [32mno diff for file all/libform.5.4.dylib[39m
+processing ===> all/libform.dylib <====
+-e [32mno diff for file all/libform.dylib[39m
+processing ===> all/libft.a <====
+-e [32mno diff for file all/libft.a[39m
+processing ===> all/libft32.a <====
+-e [32mno diff for file all/libft32.a[39m
+processing ===> all/libft_malloc_x86_64_Darwin.so <====
+-e [32mno diff for file all/libft_malloc_x86_64_Darwin.so[39m
+processing ===> all/libft_static.a <====
+-e [32mno diff for file all/libft_static.a[39m
+processing ===> all/libftprintf.a <====
+-e [32mno diff for file all/libftprintf.a[39m
+processing ===> all/libftprintf32.a <====
+-e [32mno diff for file all/libftprintf32.a[39m
+processing ===> all/libgssapi_krb5.dylib <====
+-e [32mno diff for file all/libgssapi_krb5.dylib[39m
+processing ===> all/libhunspell-1.2.dylib <====
+-e [32mno diff for file all/libhunspell-1.2.dylib[39m
+processing ===> all/libicucore.dylib <====
+-e [32mno diff for file all/libicucore.dylib[39m
+processing ===> all/libinfo.dylib <====
+-e [32mno diff for file all/libinfo.dylib[39m
+processing ===> all/libk5crypto.dylib <====
+-e [32mno diff for file all/libk5crypto.dylib[39m
+processing ===> all/libkrb4.dylib <====
+-e [32mno diff for file all/libkrb4.dylib[39m
+processing ===> all/libkrb5.dylib <====
+-e [32mno diff for file all/libkrb5.dylib[39m
+processing ===> all/libkrb524.dylib <====
+-e [32mno diff for file all/libkrb524.dylib[39m
+processing ===> all/libkrb5support.dylib <====
+-e [32mno diff for file all/libkrb5support.dylib[39m
+processing ===> all/liblapack.dylib <====
+-e [32mno diff for file all/liblapack.dylib[39m
+processing ===> all/libmalloc_test.a <====
+-e [32mno diff for file all/libmalloc_test.a[39m
+processing ===> all/libmenu.dylib <====
+-e [32mno diff for file all/libmenu.dylib[39m
+processing ===> all/libmlx.a <====
+-e [32mno diff for file all/libmlx.a[39m
+processing ===> all/libmlx_corupted.a <====
+-e [32mno diff for file all/libmlx_corupted.a[39m
+processing ===> all/libmx.A.dylib <====
+-e [32mno diff for file all/libmx.A.dylib[39m
+processing ===> all/libobjc.A.dylib <====
+-e [32mno diff for file all/libobjc.A.dylib[39m
+processing ===> all/libobjc.dylib <====
+-e [32mno diff for file all/libobjc.dylib[39m
+processing ===> all/libpmenergy.dylib <====
+-e [32mno diff for file all/libpmenergy.dylib[39m
+processing ===> all/libpmsample.dylib <====
+-e [32mno diff for file all/libpmsample.dylib[39m
+processing ===> all/libsqlite3.0.dylib <====
+-e [32mno diff for file all/libsqlite3.0.dylib[39m
+processing ===> all/libsqlite3.dylib <====
+-e [32mno diff for file all/libsqlite3.dylib[39m
+processing ===> all/libstdc++.6.0.9.dylib <====
+-e [32mno diff for file all/libstdc++.6.0.9.dylib[39m
+processing ===> all/libstdc++.6.dylib <====
+-e [32mno diff for file all/libstdc++.6.dylib[39m
+processing ===> all/libstdc++.dylib <====
+-e [32mno diff for file all/libstdc++.dylib[39m
+processing ===> all/libsystemstats.dylib <====
+-e [32mno diff for file all/libsystemstats.dylib[39m
+processing ===> all/libz.1.dylib <====
+-e [32mno diff for file all/libz.1.dylib[39m
+processing ===> all/libz.dylib <====
+-e [32mno diff for file all/libz.dylib[39m
+processing ===> all/ls <====
+-e [32mno diff for file all/ls[39m
+processing ===> all/ls-ppc_7400 <====
+-e [32mno diff for file all/ls-ppc_7400[39m
+processing ===> all/ls_data_overwritten <====
+-e [32mno diff for file all/ls_data_overwritten[39m
+processing ===> all/magic <====
+-e [32mno diff for file all/magic[39m
+processing ===> all/main32 <====
+-e [32mno diff for file all/main32[39m
+processing ===> all/mega_bad_string <====
+-e [32mno diff for file all/mega_bad_string[39m
+processing ===> all/mine <====
+-e [32mno diff for file all/mine[39m
+processing ===> all/mine_err <====
+-e [32mno diff for file all/mine_err[39m
+processing ===> all/no_lc <====
+-e [32mno diff for file all/no_lc[39m
+processing ===> all/not_aligned <====
+-e [32mno diff for file all/not_aligned[39m
+processing ===> all/not_aligned2 <====
+-e [32mno diff for file all/not_aligned2[39m
+processing ===> all/numbers_32 <====
+-e [32mno diff for file all/numbers_32[39m
+processing ===> all/numbers_32.o <====
+-e [32mno diff for file all/numbers_32.o[39m
+processing ===> all/numbers_64 <====
+-e [32mno diff for file all/numbers_64[39m
+processing ===> all/numbers_64.o <====
+-e [32mno diff for file all/numbers_64.o[39m
+processing ===> all/object_easy <====
+-e [32mno diff for file all/object_easy[39m
+processing ===> all/object_medium <====
+-e [32mno diff for file all/object_medium[39m
+processing ===> all/offset_past_eof <====
+-e [32mno diff for file all/offset_past_eof[39m
+processing ===> all/openssl-ppc_7400 <====
+-e [32mno diff for file all/openssl-ppc_7400[39m
+processing ===> all/overlap <====
+-e [32mno diff for file all/overlap[39m
+processing ===> all/pboard <====
+-e [32mno diff for file all/pboard[39m
+processing ===> all/prise_astrale_unijambiste <====
+-e [32mno diff for file all/prise_astrale_unijambiste[39m
+processing ===> all/python_returns <====
+-e [32mno diff for file all/python_returns[39m
+processing ===> all/reversed_magic <====
+-e [32mno diff for file all/reversed_magic[39m
+processing ===> all/salam_i_like_cum <====
+-e [32mno diff for file all/salam_i_like_cum[39m
+processing ===> all/sqlite3 <====
+-e [32mno diff for file all/sqlite3[39m
+processing ===> all/ssh-keychain.dylib <====
+-e [32mno diff for file all/ssh-keychain.dylib[39m
+processing ===> all/strtable_overlap_symtable <====
+-e [32mno diff for file all/strtable_overlap_symtable[39m
+processing ===> all/strtable_past_eof <====
+-e [32mno diff for file all/strtable_past_eof[39m
+processing ===> all/test_32 <====
+-e [32mno diff for file all/test_32[39m
+processing ===> all/test_32.o <====
+-e [32mno diff for file all/test_32.o[39m
+processing ===> all/test_64 <====
+-e [32mno diff for file all/test_64[39m
+processing ===> all/test_64.o <====
+-e [32mno diff for file all/test_64.o[39m
+processing ===> all/test_facile <====
+-e [32mno diff for file all/test_facile[39m
+processing ===> all/test_half_obj <====
+-e [32mno diff for file all/test_half_obj[39m
+processing ===> all/test_moins_facile <====
+-e [32mno diff for file all/test_moins_facile[39m
+processing ===> all/test_wrong_lc_command_size <====
+-e [32mno diff for file all/test_wrong_lc_command_size[39m
+processing ===> all/the_revengeance_of_python <====
+-e [32mno diff for file all/the_revengeance_of_python[39m
+processing ===> all/tofix_segv <====
+-e [91mdiff for file all/tofix_segv logged in logs/diff_logs/tofix_segv[39m
+processing ===> all/truncated_10_load <====
+-e [32mno diff for file all/truncated_10_load[39m
+processing ===> all/truncated_cputype <====
+-e [32mno diff for file all/truncated_cputype[39m
+processing ===> all/truncated_load_2 <====
+-e [32mno diff for file all/truncated_load_2[39m
+processing ===> all/uuidgen <====
+-e [32mno diff for file all/uuidgen[39m
+processing ===> all/why_are_you_crashing <====
+-e [32mno diff for file all/why_are_you_crashing[39m
+processing ===> all/wrong_cmdsize <====
+-e [32mno diff for file all/wrong_cmdsize[39m
+-e [91monly 163/166 tests passed[39m

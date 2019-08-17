@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:59:56 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/17 12:27:48 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/17 12:43:58 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ void	nm_print_header(t_header_parser *parser)
 	if (parser->type == E_64)
 	{
 		ptr = (struct mach_header_64*)parser->header_union.header64;
+		swap_uint32(&(ptr->magic), parser->should_swap);
 		ft_printf("      magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags\n");
 		ft_printf("%#11x %8u %10hu  %#04p %11d %5d %10d %#010x\n", ptr->magic, ptr->cputype, ptr->cpusubtype, (ptr->cpusubtype & 0xff000000) >> 24, ptr->filetype, ptr->ncmds, ptr->sizeofcmds, ptr->flags);
 	}
 	else if (parser->type == E_32)
 	{
 		ptr = (struct mach_header_64*)parser->header_union.header32;
+		swap_uint32(&(ptr->magic), parser->should_swap);
 		ft_printf("      magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags\n");
 		ft_printf("%#11x %7u %10hu  %#04p %11d %5d %10d %#010x\n", ptr->magic, ptr->cputype, ptr->cpusubtype, (ptr->cpusubtype & 0xff000000) >> 24, ptr->filetype, ptr->ncmds, ptr->sizeofcmds, ptr->flags);
 	}

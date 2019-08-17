@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 18:21:30 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/16 15:21:56 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/17 14:02:14 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@
 
 # define MAX_INT 	2147483647
 
-typedef enum		e_op_enum
+typedef enum		e_opt_enum
 {
 	E_ARG,
 	E_VALUE,
 	E_OPT_SHORT,
 	E_OPT_LONG
-}					opt_enum;
+}					t_opt_enum;
 
 typedef struct		s_list
 {
@@ -63,7 +63,7 @@ typedef struct		s_arg_parsed
 {
 	char			short_name;
 	char			*long_name;
-	opt_enum		type;
+	t_opt_enum		type;
 }					t_arg_parsed;
 
 typedef struct s_arg_parser	t_arg_parser;
@@ -258,8 +258,7 @@ void				opt_add_to_parser(t_arg_parser *parser, t_arg_option *opt,
 						size_t size);
 int					opt_add_arg(t_arg_parser *parser, t_arg_parsed opt);
 void				opt_init_parser(t_arg_parser *parser,
-						void (*f)(t_arg_parser *parser, void *),
-							char *progname);
+		void (*f)(t_arg_parser *parser, void *), char *progname);
 void				opt_print_parser_opt(t_arg_parser *parser);
 void				opt_print_parsed(t_arg_parser *parser);
 t_arg_option		*find_opt_by_short(t_arg_parser *parser, char c);

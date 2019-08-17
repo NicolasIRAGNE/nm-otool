@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:24:40 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/17 12:33:24 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/17 13:38:56 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,10 @@ void	otool_print_header_parser(t_header_parser *parser,
 							browser->bad_symbol_index);
 			return ;
 		}
+		process_otool_print_header_parser(parser, flags);
 	}
 	if (flags->flag_h)
-	{
 		nm_print_header(parser);
-	}
-	process_otool_print_header_parser(parser, flags);
 }
 
 void	process_otool_print_tree(t_browser *browser, t_tree *tree, int len,
