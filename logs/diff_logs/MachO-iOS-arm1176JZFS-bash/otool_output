@@ -1,3 +1,0 @@
-Mach header
-      magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags
- 0xfeedface      12          0  0x00           2    15       1560 0x00000085

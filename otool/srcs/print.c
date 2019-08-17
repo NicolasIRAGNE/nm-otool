@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:24:40 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/17 13:38:56 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/17 14:20:38 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	process_otool_print_header_parser(t_header_parser *parser,
 		otool_process_print_header_parser(parser,
 				parser->parser_union.arch.cputype, section);
 	}
-
 }
 
 void	otool_print_header_parser(t_header_parser *parser,
@@ -52,9 +51,9 @@ void	otool_print_header_parser(t_header_parser *parser,
 		{
 			ft_dprintf(2, "%s: '%s': truncated or malformed object ("
 				"bad string table index: %d past the end of"
-					" string table, for symbol at index %d)\n", browser->progname,
-						browser->filename, browser->bad_string_index,
-							browser->bad_symbol_index);
+				" string table, for symbol at index %d)\n", browser->progname,
+				browser->filename, browser->bad_string_index,
+				browser->bad_symbol_index);
 			return ;
 		}
 		process_otool_print_header_parser(parser, flags);

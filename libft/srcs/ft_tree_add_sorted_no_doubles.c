@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tree_add_sorted_no_doubles.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 17:22:40 by ldedier           #+#    #+#             */
-/*   Updated: 2019/07/17 17:27:53 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/17 14:07:00 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int		ft_tree_add_sorted_value_no_doubles(t_tree **tree,
 			return (ft_tree_add_sorted_value_no_doubles(&((*tree)->right),
 				content, size, sort));
 		else
-		   return (2);
+			return (2);
 	}
 }
