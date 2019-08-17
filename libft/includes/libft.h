@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 18:21:30 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/17 14:02:14 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/17 17:52:51 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct		s_arg_option
 	char			*description;
 }					t_arg_option;
 
-struct		s_arg_parser
+struct				s_arg_parser
 {
 	char			*prog_name;
 	size_t			nb_args;
@@ -220,7 +220,7 @@ int					ft_isspace(int c);
 int					ft_onesign(int n);
 void				ft_print_line(char *str);
 char				*ft_strjoin_3(char const *s1, char const *s2,
-		char const *s3);
+						char const *s3);
 int					ft_free_turn(void *to_free, int ret);
 int					ft_free_turn_2(void *to_free, void *to_free2, int ret);
 int					ft_free_turn_3(void *to_free, void *to_free2,

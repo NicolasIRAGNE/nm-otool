@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 01:45:37 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/09 14:28:03 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/17 17:18:47 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,15 @@ void	nm_opt_r(t_arg_parser *parser, void *flags)
 		ptr->browser->sort_func = cmp_symbol_numerical_inv;
 	else
 		ptr->browser->sort_func = cmp_symbol_alpha_inv;
+}
+
+void	nm_opt_u(t_arg_parser *parser, void *flags)
+{
+	t_nm_wrapper *ptr;
+
+	(void)parser;
+	ptr = (t_nm_wrapper*)flags;
+	if (ptr->flags->flag_u)
+		nm_option_error("-undefined-only", ptr->browser);
+	ptr->flags->flag_u = 1;
 }

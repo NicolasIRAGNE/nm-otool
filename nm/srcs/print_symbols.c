@@ -6,7 +6,7 @@
 /*   By: ldedier <ldedier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 18:03:11 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/15 18:03:13 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/17 17:51:52 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,43 @@ void	print_symbol64(t_header_parser *parser, t_symbol64 symbol64,
 			(parser->parser_enum == PARSER_ENUM_OBJECT &&
 				symbol64.nlist->n_value > 0))
 	{
-		ft_printf("%016llx %c %s\n", symbol64.nlist->n_value,
-			get_debug(debug, browser->has_bad_index),
-				symbol64.name);
+		if (!((t_nm_flags *)(browser->reserved))->flag_u)
+		{
+			ft_printf("%016llx %c %s\n", symbol64.nlist->n_value,
+				get_debug(debug, browser->has_bad_index),
+					symbol64.name);
+		}
 	}
 	else
 	{
-		ft_printf("%18s %*s\n", "U", (symbol64.length != -1 ? symbol64.length
-			: ft_strlen(symbol64.name)),
-				symbol64.name);
+		if (!((t_nm_flags *)(browser->reserved))->flag_u)
+			ft_printf("%18s %*s\n", "U",
+				(symbol64.length != -1 ? symbol64.length
+					: ft_strlen(symbol64.name)),
+						symbol64.name);
+		else
+			ft_printf("%*s\n", (symbol64.length != -1 ? symbol64.length
+				: ft_strlen(symbol64.name)), symbol64.name);
 	}
 }
 
 void	print_symbol32(t_symbol32 symbol32, char debug, t_browser *browser)
 {
-	if (!((symbol32.nlist->n_type & N_TYPE) == N_UNDF)
-			|| browser->has_bad_index)
+	if (((!((symbol32.nlist->n_type & N_TYPE) == N_UNDF)
+			|| browser->has_bad_index)))
 	{
-		ft_printf("%08llx %c %s\n", symbol32.nlist->n_value,
-			get_debug(debug, browser->has_bad_index),
-				symbol32.name);
+		if (!((t_nm_flags *)(browser->reserved))->flag_u)
+			ft_printf("%08llx %c %s\n", symbol32.nlist->n_value,
+				get_debug(debug, browser->has_bad_index),
+					symbol32.name);
 	}
 	else
 	{
-		ft_printf("%10s %s\n", "U", symbol32.name);
+		if (!((t_nm_flags *)(browser->reserved))->flag_u)
+			ft_printf("%10s %s\n", "U", symbol32.name);
+		else
+			ft_printf("%*s\n", (symbol32.length != -1 ? symbol32.length
+				: ft_strlen(symbol32.name)), symbol32.name);
 	}
 }
 

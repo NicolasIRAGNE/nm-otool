@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:02:13 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/15 18:00:30 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/17 17:35:04 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ t_arg_option g_opts[] =
 	{"no-sort", 'p', nm_opt_p, "Don't sort; display in symbol-table order"},
 	{"numeric-sort", 'n', nm_opt_n,
 		"Sort numerically rather than alphabetically"},
-	{"reverse-sort", 'r', nm_opt_r, "Sort in reverse order"}
+	{"reverse-sort", 'r', nm_opt_r, "Sort in reverse order"},
+	{"undefined-only", 'u', nm_opt_u, "Display only undefined symbols"}
 };
 
 /*
@@ -65,6 +66,14 @@ int		process_args(t_arg_parser *parser, t_browser *browser)
 	return (0);
 }
 
+void	init_wrapper(t_nm_wrapper *wrapper, t_nm_flags *flags,
+			t_browser *browser)
+{
+	ft_bzero(flags, sizeof(flags));
+	wrapper->flags = flags;
+	wrapper->browser = browser;
+}
+
 int		main(int ac, char **av)
 {
 	t_nm_wrapper	wrapper;
@@ -73,14 +82,14 @@ int		main(int ac, char **av)
 	t_arg_parser	parser;
 
 	(void)ac;
-	wrapper.flags = &flags;
-	wrapper.browser = &browser;
+	init_wrapper(&wrapper, &flags, &browser);
 	init_browser_general(&browser, av[0], E_BIN_NM);
 	opt_init_parser(&parser, flag_invalid, av[0]);
 	opt_add_to_parser(&parser, g_opts, sizeof(g_opts));
 	if (opt_parse_args(&parser, av + 1))
 		return (opt_free(&parser, EXIT_FAILURE));
 	process_opt(&parser, &wrapper);
+	browser.reserved = &flags;
 	if (browser.ret)
 		return (opt_free(&parser, browser.ret));
 	process_args(&parser, &browser);

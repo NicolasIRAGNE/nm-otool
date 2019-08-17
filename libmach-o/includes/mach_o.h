@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 11:40:27 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/16 15:50:53 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/17 17:33:19 by ldedier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ struct						s_browser
 	t_list					**segments;
 	int						returned;
 	int						cmp_ret;
+	void					*reserved;
 };
 
 typedef struct s_browser	t_browser;
