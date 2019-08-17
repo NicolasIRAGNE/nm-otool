@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 13:58:37 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/16 15:27:59 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/17 12:14:01 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	flag_h(t_arg_parser *parser, void *flags)
 	(void)parser;
 	ptr = (t_otool_flags*)flags;
 	ptr->flag_h = 1;
+	ptr->valid = 1;
 }
 
 void	flag_d(t_arg_parser *parser, void *flags)

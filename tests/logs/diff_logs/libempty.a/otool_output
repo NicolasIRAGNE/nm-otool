@@ -1,4 +1,4 @@
 Archive : all/libempty.a
-all/libempty.a(empty.o):
-Contents of (__TEXT,__text) section
-0000000000000000	50 e8 00 00 00 00 e8 00 00 00 00 58 c3 
+Mach header
+      magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags
+ 0xfeedfacf 16777223          3  0x00           1     4        512 0x00002000

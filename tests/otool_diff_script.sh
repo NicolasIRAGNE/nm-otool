@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ((index=2))
-otool_options="-t"
+otool_options=""
 while [ $index -lt $(($# + 1)) ];
 do
 	otool_options="$otool_options ${!index}"

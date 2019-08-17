@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:24:40 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/16 15:31:48 by ldedier          ###   ########.fr       */
+/*   Updated: 2019/08/17 12:33:24 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,29 @@ void	process_otool_print_header_parser(t_header_parser *parser,
 		otool_process_print_header_parser(parser,
 				parser->parser_union.arch.cputype, section);
 	}
+
 }
 
 void	otool_print_header_parser(t_header_parser *parser,
 			t_browser *browser, int len, t_otool_flags *flags)
 {
 	(void)len;
-	print_parser_header_intro(parser);
-	if (browser->has_bad_index)
+	if (flags->flag_d || flags->flag_t)
 	{
-		ft_dprintf(2, "%s: '%s': truncated or malformed object ("
-			"bad string table index: %d past the end of"
-				" string table, for symbol at index %d)\n", browser->progname,
-					browser->filename, browser->bad_string_index,
-						browser->bad_symbol_index);
-		return ;
+		print_parser_header_intro(parser);
+		if (browser->has_bad_index)
+		{
+			ft_dprintf(2, "%s: '%s': truncated or malformed object ("
+				"bad string table index: %d past the end of"
+					" string table, for symbol at index %d)\n", browser->progname,
+						browser->filename, browser->bad_string_index,
+							browser->bad_symbol_index);
+			return ;
+		}
+	}
+	if (flags->flag_h)
+	{
+		nm_print_header(parser);
 	}
 	process_otool_print_header_parser(parser, flags);
 }

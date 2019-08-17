@@ -1,4 +1,10 @@
+all/MachO-OSX-ppc-and-i386-bash
+all/MachO-OSX-ppc-openssl-1.0.1h
+all/audiodevice
+all/bash-ppc_7400
+all/gcc-6-ppc_7400
+all/launchctl-ppc_7400
 all/lib_long_name.a
 all/libempty.a
-all/libmlx_corupted.a
-all/tofix_segv
+all/ls-ppc_7400
+all/openssl-ppc_7400
