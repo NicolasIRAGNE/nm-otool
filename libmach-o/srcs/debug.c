@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:59:56 by niragne           #+#    #+#             */
-/*   Updated: 2019/08/13 18:22:42 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/14 18:49:30 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,12 @@ void	nm_print_header(t_header_parser *parser)
 	struct mach_header_64	*ptr;
 	struct fat_header		*ptr2;
 
+	ft_printf("Mach header\n");
 	if (parser->type == E_64)
 	{
 		ptr = (struct mach_header_64*)parser->header_union.header64;
-		ft_dprintf(2, "mach magic number identifier: %x\n", ptr->magic);
-		ft_dprintf(2, "cpu specifier: %p\n", ptr->cputype);
-		ft_dprintf(2, "machine specifier: %p\n", ptr->cpusubtype);
-		ft_dprintf(2, "type of file: %d\n", ptr->filetype);
-		ft_dprintf(2, "number of load commands: %d\n", ptr->ncmds);
-		ft_dprintf(2, "size of all the load commands: %d\n", ptr->sizeofcmds);
-		ft_dprintf(2, "flags: %d\n", ptr->flags);
-		ft_dprintf(2, "reserved: %d\n", ptr->reserved);
+		ft_printf("      magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags\n");
+		ft_printf("%#11x %8u %10hu  %#04p %11d %5d %10d %#010x\n", ptr->magic, ptr->cputype, ptr->cpusubtype, (ptr->cpusubtype & 0xff000000) >> 24, ptr->filetype, ptr->ncmds, ptr->sizeofcmds, ptr->flags);
 	}
 	else if (parser->type == E_32)
 		debug_mach_header(parser->header_union.header32);

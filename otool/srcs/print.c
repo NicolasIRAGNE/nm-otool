@@ -6,7 +6,7 @@
 /*   By: niragne <niragne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:24:40 by ldedier           #+#    #+#             */
-/*   Updated: 2019/08/13 16:56:51 by niragne          ###   ########.fr       */
+/*   Updated: 2019/08/14 18:47:24 by niragne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,15 @@ int		is_little_endian(void)
 		return (0);
 }
 
-void	print_parser_header_intro(t_header_parser *parser)
+void	print_parser_header_intro(t_header_parser *parser, t_otool_flags *flags)
 {
 	char *str;
 
 	str = get_cpu_name(parser->parser_union.arch.cputype,
 			parser->parser_union.arch.cpusubtype);
 	if ((parser->parser_enum == PARSER_ENUM_NONE || !ft_strcmp(str, ARCH) ||
-			!ft_strcmp("", str)) && parser->parser_enum != PARSER_ENUM_OBJECT)
+			!ft_strcmp("", str)) && parser->parser_enum != PARSER_ENUM_OBJECT
+			&& (flags->flag_d || flags->flag_t))
 		ft_printf("%s:\n", parser->filename);
 	else if (parser->parser_enum == PARSER_ENUM_ARCHI
 			&& parser->parser_union.arch.relevant)
@@ -132,7 +133,7 @@ void	otool_print_header_parser(t_header_parser *parser,
 	t_section *section;
 
 	(void)len;
-	print_parser_header_intro(parser);
+	print_parser_header_intro(parser, flags);
 	if (browser->has_bad_index)
 	{
 		ft_dprintf(2, "%s: '%s': truncated or malformed object ("
@@ -151,6 +152,10 @@ void	otool_print_header_parser(t_header_parser *parser,
 	{
 		otool_process_print_header_parser(parser,
 			parser->parser_union.arch.cputype, section);
+	}
+	if (flags->flag_h)
+	{
+		nm_print_header(parser);
 	}
 }
 
