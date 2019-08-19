@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 18:36:41 by niragne           #+#    #+#              #
-#    Updated: 2019/08/16 15:39:51 by ldedier          ###   ########.fr        #
+#    Updated: 2019/08/19 12:01:50 by niragne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ UNAME = $(shell uname -m)
 DEBUG ?= 0
 OK_COLOR = \x1b[32;01m
 EOC = \033[0m
-
 
 CFLAGS = -DARCH=\"$(UNAME)\" -Wall -Wextra 
 
