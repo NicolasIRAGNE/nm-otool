@@ -6,7 +6,7 @@
 #    By: niragne <niragne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/18 12:01:42 by ldedier           #+#    #+#              #
-#    Updated: 2019/08/15 18:06:08 by ldedier          ###   ########.fr        #
+#    Updated: 2019/08/19 11:59:02 by niragne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,13 +75,13 @@ $(LIBMACHO):
 	make -C $(LIBMACHODIR)
 
 clean:
-	make clean -C $(LIBFTDIR)
-	make clean -C $(LIBMACHODIR)
-	rm -rf $(NAME)
+	@make clean -C $(LIBFTDIR)
+	@make clean -C $(LIBMACHODIR)
+	@rm -rf $(NAME)
 
 fclean: clean
-	make fclean -C $(LIBFTDIR)
-	make fclean -C $(LIBMACHODIR)
-	rm -rf $(OBJECTS)
+	@make fclean -C $(LIBFTDIR)
+	@make fclean -C $(LIBMACHODIR)
+	@rm -rf $(OBJECTS)
 
 re: fclean all
